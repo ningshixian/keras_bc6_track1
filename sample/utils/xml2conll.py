@@ -120,7 +120,7 @@ def readXML(files):
                     sentence = sentence.replace(' B-RNA- ', ' B-RNA-').replace(' -I-RNA ', '-I-RNA ')
                     s.append(sentence)
 
-    with open(BioC_PATH + "/" + 'train.txt', 'a') as f:
+    with open(BioC_PATH + "/" + 'train.txt', 'w') as f:
         for sentence in s:
             f.write(sentence)
             f.write('\n')
