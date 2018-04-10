@@ -35,12 +35,11 @@ from keras.regularizers import l2
 from keras_contrib.layers import CRF
 from keraslayers.ChainCRF import ChainCRF
 from keraslayers.ChainCRF import create_custom_objects
+from helpers import createCharDict
+from callbacks import ConllevalCallback
 import keras.backend as K
 import numpy as np
 from collections import OrderedDict
-from utils.highwayLayer import Highway
-from utils.attention_self import Attention_layer
-from utils.attention_recurrent import AttentionDecoder
 
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
@@ -53,7 +52,7 @@ set_session(tf.Session(config=config))
 
 # Parameters of the network
 char_emb_size = 25
-word_emb_size = 50
+word_emb_size = 200
 dropout_rate = 0.5
 # dropout_rate = [0.5, 0.5]
 
@@ -81,59 +80,23 @@ learning_rate_disc = 2e-4
 feature_maps = [25, 25]
 kernels = [2, 3]
 
-# chemCorpus = r'data/chemdner_corpus/'
-# cdrCorpus = r'data/cdr_corpus/'
-gmCorpus = r'data/BC2GM-IOBES/'
-chemdCorpus = r'data/BC4CHEMD-IOBES/'
-cdrCorpus = r'data/BC5CDR-IOBES/'
-jnlpbaCorpus = r'data/JNLPBA-IOBES/'
-ncbiCorpus = r'data/NCBI-disease-IOBES/'
+trainCorpus = r'data'
+embeddingPath = r'/home/administrator/PycharmProjects/embedding'
 
-label2idx = {0: 'O', 1: 'B', 2: 'I'}
-idx2label_gm = {0: 'O', 1: 'B-GENE', 2: 'I-GENE', 3: 'E-GENE', 4: 'S-GENE'}
-idx2label_chemd = {0: 'O', 1: 'B-Chemical', 2: 'I-Chemical', 3: 'E-Chemical', 4: 'S-Chemical'}
-idx2label_cdr = {0: 'O', 1: 'B-Chemical', 2: 'I-Chemical', 3: 'E-Chemical', 4: 'S-Chemical',
-                 5: 'B-Disease', 6: 'I-Disease', 7: 'E-Disease', 8: 'S-Disease'}
-idx2label_jnlpba = {0: 'O', 1: 'B-protein', 2: 'I-protein', 3: 'E-protein', 4: 'S-protein',
-                    5: 'B-cell_type', 6: 'I-cell_type', 7: 'E-cell_type', 8: 'S-cell_type',
-                    9: 'B-DNA', 10: 'I-DNA', 11: 'E-DNA', 12: 'S-DNA',
-                    13: 'B-cell_line', 14: 'I-cell_line', 15: 'E-cell_line', 16: 'S-cell_line',
-                    17: 'B-RNA', 18: 'I-RNA', 19: 'E-RNA', 20: 'S-RNA'}
-idx2label_ncbi = {0: 'O', 1: 'B-Disease', 2: 'I-Disease', 3: 'E-Disease', 4: 'S-Disease'}
-
-taskList = ['gm', 'chemd', 'cdr', 'jnlpba', 'ncbi']
-corpusList = [gmCorpus, chemdCorpus, cdrCorpus, jnlpbaCorpus, ncbiCorpus]
-labelList = [idx2label_gm, idx2label_chemd, idx2label_cdr, idx2label_jnlpba, idx2label_ncbi]
-main_id = 1
-aux_id = 3
-num_class_main = len(labelList[main_id])
-num_class_aux = len(labelList[aux_id])
+label2idx = {0: 'O', 1: 'B-GENE', 2: 'I-GENE', 3: 'B-PROTEIN', 4: 'I-PROTEIN'}
 
 print('load data...')
 
-with open(corpusList[main_id] + 'pkl/train.pkl', "rb") as f:
+with open(trainCorpus + '/train.pkl', "rb") as f:
     train_x, train_y, train_char, train_cap = pkl.load(f)
-with open(corpusList[main_id] + 'pkl/devel.pkl', "rb") as f:
-    devel_x, devel_y, devel_char, devel_cap = pkl.load(f)
-with open(corpusList[main_id] + 'pkl/test.pkl', "rb") as f:
-    test_x, test_y, test_char, test_cap = pkl.load(f)
-with open('embedding/emb.pkl', "rb") as f:
-    embedding_matrix, word_maxlen, sentence_maxlen, char2idx = pkl.load(f)
-
-with open(corpusList[aux_id] + 'pkl/train.pkl', "rb") as f:
-    cdr_train_x, cdr_train_y, cdr_train_char, cdr_train_cap = pkl.load(f)
-with open(corpusList[aux_id] + 'pkl/devel.pkl', "rb") as f:
-    cdr_devel_x, cdr_devel_y, cdr_devel_char, cdr_devel_cap = pkl.load(f)
-with open(corpusList[aux_id] + 'pkl/test.pkl', "rb") as f:
-    cdr_test_x, cdr_test_y, cdr_test_char, cdr_test_cap = pkl.load(f)
+with open(embeddingPath+'/emb.pkl', "rb") as f:
+    embedding_matrix, word_maxlen, sentence_maxlen = pkl.load(f)
 
 print('Data loading completed!')
 
 dataSet = OrderedDict()
-dataSet['main'] = [train_x[:maxmax], train_cap[:maxmax]]
-dataSet['aux'] = [cdr_train_x[:maxmax], cdr_train_cap[:maxmax]]
-dataSet['test'] = [test_x[:maxmax], test_cap[:maxmax]]
-dataSet['cdr_test'] = [cdr_test_x[:maxmax], cdr_test_cap[:maxmax]]
+dataSet['train'] = [train_x[:maxmax], train_cap[:maxmax]]
+# dataSet['test'] = []
 
 print('Data preprocessing....')
 
@@ -143,55 +106,17 @@ for key, value in dataSet.items():
         dataSet[key][i] = pad_sequences(value[i], maxlen=sentence_maxlen, padding='post')
 
 # pad the char sequences with zero list
-char_list = [train_char, cdr_train_char, test_char, cdr_test_char]
-# char_list = [train_char, cdr_train_char, craft_train_char, test_char, cdr_test_char, craft_test_char]
-for item in char_list:
-    for j in tqdm(range(len(item))):
-        if len(item[j]) < sentence_maxlen:
-            item[j].extend(np.asarray([[0] * word_maxlen] * (sentence_maxlen - len(item[j]))))
-print(np.array(train_char).shape)   # (61609, 180, 25)
+for j in tqdm(range(len(train_char))):
+    if len(train_char[j]) < sentence_maxlen:
+        train_char[j].extend(np.asarray([[0] * word_maxlen] * (sentence_maxlen - len(train_char[j]))))
+print(np.array(train_char).shape)   # (13697, 180, 25)
 
-dataSet['main'].insert(1, np.asarray(train_char[:maxmax]))
-dataSet['aux'].insert(1, np.asarray(cdr_train_char[:maxmax]))
-# dataSet['aux2'].insert(1, np.asarray(craft_train_char))
-dataSet['test'].insert(1, np.asarray(test_char[:maxmax]))
-dataSet['cdr_test'].insert(1, np.asarray(cdr_test_char[:maxmax]))
-# dataSet['craft_test'].insert(1, np.asarray(craft_test_char))
-
+dataSet['train'].insert(1, np.asarray(train_char[:maxmax]))
 
 train_y = pad_sequences(train_y[:maxmax], maxlen=sentence_maxlen, padding='post')
-cdr_train_y = pad_sequences(cdr_train_y[:maxmax], maxlen=sentence_maxlen, padding='post')
-# craft_train_y = pad_sequences(craft_train_y, maxlen=sentence_maxlen, padding='post')
+print(train_y.shape)    # (13697, 180, 5)
 
-# train_y = to_categorical(train_y, num_classes=3)
-# cdr_train_y = to_categorical(cdr_train_y, num_classes=5)
-# # craft_train_y = to_categorical(craft_train_y, num_classes=3)
 
-print(train_y.shape)    # (61609, 180, 3)
-
-test_y = pad_sequences(test_y[:maxmax], maxlen=sentence_maxlen, padding='post')
-cdr_test_y = pad_sequences(cdr_test_y[:maxmax], maxlen=sentence_maxlen, padding='post')
-# craft_test_y = pad_sequences(craft_test_y, maxlen=sentence_maxlen, padding='post')
-
-# test_y = to_categorical(test_y, num_classes=3)
-# cdr_test_y = to_categorical(cdr_test_y, num_classes=5)
-# # craft_test_y = to_categorical(craft_test_y, num_classes=3)
-
-print(test_y.shape)    # (26453, 180, 3)
-
-y0 = np.ones([len(train_y), 1])
-labels0 = to_categorical(y0, num_classes=2)
-y1 = np.zeros([len(cdr_train_y), 1])
-labels1 = to_categorical(y1, num_classes=2)
-
-y0_t = np.ones([len(test_y), 1])
-labels0_t = to_categorical(y0_t, num_classes=2)
-y1_t = np.ones([len(cdr_test_y), 1])
-labels1_t = to_categorical(y1_t, num_classes=2)
-
-# Add random noise to the labels - important trick!
-y0 += 0.05 * np.random.random(y0.shape)
-y1 += 0.05 * np.random.random(y1.shape)
 
 
 def _shared_layer(concat_input):
@@ -247,9 +172,9 @@ def CNN(seq_length, length, feature_maps, kernels, x):
 
 
 def buildModel():
+    char2idx = createCharDict()
 
     char_embedding = np.zeros([len(char2idx)+1, char_emb_size])
-    print(char2idx)
     for key, value in char2idx.items():
         limit = math.sqrt(3.0 / char_emb_size)
         vector = np.random.uniform(-limit, limit, char_emb_size)
@@ -303,76 +228,41 @@ def buildModel():
     # ======================================================================= #
 
     # Classifier
-    models = {}
-    for modelName in ['main', 'aux']:  # , 'aux2'
-        output = TimeDistributed(Dense(100, activation=LeakyReLU()))(shared_output)
-        if modelName == 'aux':
-            output = TimeDistributed(Dense(num_class_aux))(output)
-        else:
-            output = TimeDistributed(Dense(num_class_main))(output)
+    output = TimeDistributed(Dense(5, activation=LeakyReLU()))(shared_output)
+    crf = ChainCRF(name='CRF')
+    output = crf(output)
+    loss_function = crf.loss
 
-        crf = ChainCRF(name=modelName + '_CRF')
-        output = crf(output)
-        loss_function = crf.sparse_loss
+    if optimizer.lower() == 'adam':
+        opt = Adam(lr=learning_rate, clipvalue=1., decay=1e-8)
+    elif optimizer.lower() == 'nadam':
+        opt = Nadam(lr=learning_rate, clipvalue=1.)
+    elif optimizer.lower() == 'rmsprop':
+        opt = RMSprop(lr=learning_rate, clipvalue=1., decay=1e-8)
+    elif optimizer.lower() == 'sgd':
+        opt = SGD(lr=0.01, momentum=0.9, decay=1e-6, nesterov=True, clipvalue=5)
 
-        if optimizer.lower() == 'adam':
-            opt = Adam(lr=learning_rate, clipvalue=1., decay=1e-8)
-        elif optimizer.lower() == 'nadam':
-            opt = Nadam(lr=learning_rate, clipvalue=1.)
-        elif optimizer.lower() == 'rmsprop':
-            opt = RMSprop(lr=learning_rate, clipvalue=1., decay=1e-8)
-        elif optimizer.lower() == 'sgd':
-            opt = SGD(lr=0.01, momentum=0.9, decay=1e-6, nesterov=True, clipvalue=5)
-
-        model = Model(inputs=[tokens_input, chars_input, cap_input], outputs=[output])
-        model.compile(loss=loss_function,
-                      # loss_weights=[1, 0.05],
-                      optimizer=opt,
-                      metrics=["accuracy"])
-        models[modelName] = model
-
-    # models['discriminator'].summary()
-    models['main'].summary()
-    return models
+    model = Model(inputs=[tokens_input, chars_input, cap_input], outputs=[output])
+    model.compile(loss=loss_function,
+                  # loss_weights=[1, 0.05],
+                  optimizer=opt,
+                  metrics=["accuracy"])
+    model.summary()
+    return model
 
 
 if __name__ == '__main__':
-    models = buildModel()
+    model = buildModel()
 
-    hist_list = []
-    from utils.callbacks import ConllevalCallback
-    calculatePRF1 = ConllevalCallback(dataSet['test'], test_y, 0, labelList[main_id], sentence_maxlen, flag='main')
-    calculatePRF2 = ConllevalCallback(dataSet['cdr_test'], cdr_test_y, 0, labelList[aux_id], sentence_maxlen, flag='aux')
+    # calculatePRF1 = ConllevalCallback(dataSet['test'], test_y, 0, labelList[main_id], sentence_maxlen, flag='main')
 
     start_time = time.time()
-    for epoch in range(epochs):
-        hist = models['main'].fit(x=dataSet['main'], y=[train_y],
-                           epochs=1, batch_size=batch_size,
-                           shuffle=True,
-                           validation_data=(dataSet['test'], [test_y]),
-                           callbacks=[calculatePRF1])
-        models['aux'].fit(x=dataSet['aux'], y=[cdr_train_y],
-                           epochs=1, batch_size=batch_size,
-                          shuffle=True,
-                           callbacks=[calculatePRF2],
-                          validation_data=(dataSet['cdr_test'], [cdr_test_y]))
-
-        hist_list.append(hist.history['val_loss'])
-
-        # # for i in range(5):
-        # models['discriminator'].fit(x=dataSet['main'], y=y0, shuffle=True,
-        #                    epochs=1, batch_size=batch_size)
-        # models['discriminator'].fit(x=dataSet['aux'], y=y1, shuffle=True,
-        #                   epochs=1, batch_size=batch_size)
-        # # models['discriminator'].fit(x=dataSet['aux2'], y=labels2, shuffle=True,
-        # #                             epochs=1, batch_size=batch_size)
-
+    model.fit(x=dataSet['train'], y=train_y,
+              epochs=1, batch_size=batch_size,
+              shuffle=True,
+              # callbacks=[calculatePRF1],
+              validation_split=0.2)
 
     time_diff = time.time() - start_time
     print("%.2f sec for training (4.5)" % time_diff)
-    print(models['main'].metrics_names)
-
-
-    # 看曲线判断模型是否过拟合
-    from utils import plot
-    plot.plot_val_acc(epochs, hist_list, 'results/val_loss.png')
+    print(model.metrics_names)
