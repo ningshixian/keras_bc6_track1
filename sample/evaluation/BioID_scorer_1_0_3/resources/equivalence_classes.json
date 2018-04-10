@@ -1,0 +1,11827 @@
+[
+  [
+    "Uniprot:P70335", 
+    "NCBI gene:19877"
+  ], 
+  [
+    "Uniprot:Q8C0J2", 
+    "NCBI gene:77040"
+  ], 
+  [
+    "Uniprot:P70211", 
+    "NCBI gene:13176"
+  ], 
+  [
+    "Uniprot:Q9NQ87", 
+    "NCBI gene:26508"
+  ], 
+  [
+    "Uniprot:Q61144", 
+    "NCBI gene:19165"
+  ], 
+  [
+    "Uniprot:Q8SX86", 
+    "NCBI gene:38443"
+  ], 
+  [
+    "Uniprot:P40126", 
+    "NCBI gene:1638"
+  ], 
+  [
+    "Uniprot:Q9NRD9", 
+    "NCBI gene:53905"
+  ], 
+  [
+    "Uniprot:Q60823", 
+    "NCBI gene:11652"
+  ], 
+  [
+    "Uniprot:P35359", 
+    "NCBI gene:30295"
+  ], 
+  [
+    "Uniprot:P14901", 
+    "NCBI gene:15368"
+  ], 
+  [
+    "Uniprot:P35193", 
+    "NCBI gene:854072"
+  ], 
+  [
+    "Uniprot:P53618", 
+    "NCBI gene:1315"
+  ], 
+  [
+    "Uniprot:P08505", 
+    "NCBI gene:16193"
+  ], 
+  [
+    "PubChem:28782", 
+    "PubChem:6322", 
+    "CHEBI:16467"
+  ], 
+  [
+    "PubChem:923", 
+    "CHEBI:29101"
+  ], 
+  [
+    "Uniprot:P29295", 
+    "NCBI gene:855897"
+  ], 
+  [
+    "Uniprot:P45984", 
+    "NCBI gene:5601"
+  ], 
+  [
+    "Uniprot:P98177", 
+    "NCBI gene:4303"
+  ], 
+  [
+    "Uniprot:P26450", 
+    "NCBI gene:18708"
+  ], 
+  [
+    "Uniprot:Q8VCF0", 
+    "NCBI gene:228607"
+  ], 
+  [
+    "Uniprot:Q8LEM4", 
+    "NCBI gene:828287"
+  ], 
+  [
+    "Uniprot:Q64693", 
+    "NCBI gene:18985"
+  ], 
+  [
+    "Uniprot:Q12211", 
+    "NCBI gene:855889"
+  ], 
+  [
+    "Uniprot:Q9Y228", 
+    "NCBI gene:80342"
+  ], 
+  [
+    "Uniprot:Q3TBT3", 
+    "NCBI gene:72512"
+  ], 
+  [
+    "Uniprot:P43601", 
+    "NCBI gene:850577"
+  ], 
+  [
+    "Uniprot:A1Z7Y7", 
+    "Uniprot:Q95SK9", 
+    "NCBI gene:36002"
+  ], 
+  [
+    "Uniprot:Q9WUN2", 
+    "NCBI gene:56480"
+  ], 
+  [
+    "Uniprot:Q9DDE4", 
+    "NCBI gene:79186"
+  ], 
+  [
+    "PubChem:5462309", 
+    "CHEBI:28659"
+  ], 
+  [
+    "Uniprot:P49840", 
+    "NCBI gene:2931"
+  ], 
+  [
+    "Uniprot:Q5FWF5", 
+    "NCBI gene:114799"
+  ], 
+  [
+    "Uniprot:Q9NWR8", 
+    "NCBI gene:55013"
+  ], 
+  [
+    "Uniprot:P17676", 
+    "NCBI gene:1051"
+  ], 
+  [
+    "PubChem:2419", 
+    "CHEBI:92539"
+  ], 
+  [
+    "Uniprot:Q3URY2", 
+    "NCBI gene:239789"
+  ], 
+  [
+    "Uniprot:O00444", 
+    "NCBI gene:10733"
+  ], 
+  [
+    "Uniprot:O94243", 
+    "NCBI gene:2539342"
+  ], 
+  [
+    "Uniprot:P07288", 
+    "NCBI gene:354"
+  ], 
+  [
+    "Uniprot:A8JCJ2", 
+    "NCBI gene:5725696"
+  ], 
+  [
+    "Uniprot:E1JGQ5", 
+    "Uniprot:Q7KVP4", 
+    "Uniprot:Q86BS7", 
+    "Uniprot:Q9W2H8", 
+    "NCBI gene:37435"
+  ], 
+  [
+    "Uniprot:Q94533", 
+    "NCBI gene:38654"
+  ], 
+  [
+    "Uniprot:Q93008", 
+    "NCBI gene:8239"
+  ], 
+  [
+    "Uniprot:P17931", 
+    "NCBI gene:3958"
+  ], 
+  [
+    "Uniprot:Q921J2", 
+    "NCBI gene:19744"
+  ], 
+  [
+    "PubChem:27284", 
+    "CHEBI:34754"
+  ], 
+  [
+    "Uniprot:O35787", 
+    "NCBI gene:113886"
+  ], 
+  [
+    "Uniprot:Q9Z238", 
+    "NCBI gene:12448"
+  ], 
+  [
+    "Uniprot:P10589", 
+    "NCBI gene:7025"
+  ], 
+  [
+    "Uniprot:P28301", 
+    "NCBI gene:16948"
+  ], 
+  [
+    "Uniprot:Q00175", 
+    "NCBI gene:18667"
+  ], 
+  [
+    "PubChem:5281847", 
+    "CHEBI:8899"
+  ], 
+  [
+    "PubChem:46843772", 
+    "CHEBI:60325"
+  ], 
+  [
+    "Uniprot:P05759", 
+    "NCBI gene:850864"
+  ], 
+  [
+    "Uniprot:P01589", 
+    "NCBI gene:3559"
+  ], 
+  [
+    "Uniprot:P30050", 
+    "NCBI gene:6136"
+  ], 
+  [
+    "Uniprot:P86546", 
+    "NCBI gene:12096"
+  ], 
+  [
+    "PubChem:165007", 
+    "CHEBI:15721"
+  ], 
+  [
+    "Uniprot:P9WNK7", 
+    "NCBI gene:886209"
+  ], 
+  [
+    "Uniprot:Q8W1E3", 
+    "NCBI gene:836364"
+  ], 
+  [
+    "Uniprot:Q06831", 
+    "NCBI gene:20677"
+  ], 
+  [
+    "PubChem:23223116", 
+    "PubChem:6421", 
+    "CHEBI:30956"
+  ], 
+  [
+    "Uniprot:O43482", 
+    "NCBI gene:11339"
+  ], 
+  [
+    "PubChem:1388", 
+    "CHEBI:639"
+  ], 
+  [
+    "Uniprot:P01120", 
+    "NCBI gene:855625"
+  ], 
+  [
+    "Uniprot:P54803", 
+    "NCBI gene:2581"
+  ], 
+  [
+    "Uniprot:Q13813", 
+    "NCBI gene:6709"
+  ], 
+  [
+    "Uniprot:Q9Z2S7", 
+    "NCBI gene:14605"
+  ], 
+  [
+    "Uniprot:P06865", 
+    "NCBI gene:3073"
+  ], 
+  [
+    "Uniprot:O09164", 
+    "NCBI gene:20657"
+  ], 
+  [
+    "Uniprot:Q39067", 
+    "NCBI gene:830502"
+  ], 
+  [
+    "Uniprot:Q8N1K5", 
+    "NCBI gene:387357"
+  ], 
+  [
+    "Uniprot:G5E899", 
+    "NCBI gene:18787"
+  ], 
+  [
+    "Uniprot:Q17740", 
+    "NCBI gene:181719"
+  ], 
+  [
+    "PubChem:5497136", 
+    "CHEBI:46979"
+  ], 
+  [
+    "Uniprot:O74842", 
+    "NCBI gene:2539045"
+  ], 
+  [
+    "Uniprot:Q13492", 
+    "NCBI gene:8301"
+  ], 
+  [
+    "Uniprot:P27958", 
+    "NCBI gene:951475"
+  ], 
+  [
+    "Uniprot:P54254", 
+    "NCBI gene:20238"
+  ], 
+  [
+    "Uniprot:P22339", 
+    "NCBI gene:17873"
+  ], 
+  [
+    "Uniprot:Q9CUN6", 
+    "NCBI gene:75788"
+  ], 
+  [
+    "Uniprot:O95259", 
+    "NCBI gene:3756"
+  ], 
+  [
+    "Uniprot:Q9CQV6", 
+    "NCBI gene:67443"
+  ], 
+  [
+    "PubChem:11524144", 
+    "CHEBI:78510"
+  ], 
+  [
+    "Uniprot:Q8NEM7", 
+    "NCBI gene:55578"
+  ], 
+  [
+    "PubChem:14710", 
+    "PubChem:53630235", 
+    "CHEBI:4883"
+  ], 
+  [
+    "Uniprot:Q9WVS8", 
+    "NCBI gene:23939"
+  ], 
+  [
+    "PubChem:51358113", 
+    "CHEBI:90682"
+  ], 
+  [
+    "Uniprot:Q9QXE7", 
+    "NCBI gene:21372"
+  ], 
+  [
+    "Uniprot:O61267", 
+    "NCBI gene:35288"
+  ], 
+  [
+    "Uniprot:O00267", 
+    "NCBI gene:6829"
+  ], 
+  [
+    "Uniprot:A2A6M5", 
+    "NCBI gene:76815"
+  ], 
+  [
+    "PubChem:444679", 
+    "CHEBI:16933"
+  ], 
+  [
+    "Uniprot:P55957", 
+    "NCBI gene:637"
+  ], 
+  [
+    "Uniprot:P18850", 
+    "NCBI gene:22926"
+  ], 
+  [
+    "Uniprot:P35638", 
+    "NCBI gene:1649"
+  ], 
+  [
+    "Uniprot:Q9VFG8", 
+    "NCBI gene:41783"
+  ], 
+  [
+    "Uniprot:Q8NEB9", 
+    "NCBI gene:5289"
+  ], 
+  [
+    "Uniprot:P70323", 
+    "NCBI gene:21380"
+  ], 
+  [
+    "Uniprot:Q8C6G3", 
+    "NCBI gene:19752"
+  ], 
+  [
+    "PubChem:4497", 
+    "CHEBI:7575"
+  ], 
+  [
+    "Uniprot:A1Z992", 
+    "NCBI gene:326264"
+  ], 
+  [
+    "PubChem:2022", 
+    "CHEBI:2453"
+  ], 
+  [
+    "Uniprot:Q99697", 
+    "NCBI gene:5308"
+  ], 
+  [
+    "Uniprot:P00175", 
+    "NCBI gene:854950"
+  ], 
+  [
+    "PubChem:5281929", 
+    "CHEBI:15929"
+  ], 
+  [
+    "Uniprot:P02088", 
+    "NCBI gene:15129"
+  ], 
+  [
+    "PubChem:253602", 
+    "CHEBI:40748"
+  ], 
+  [
+    "PubChem:2733531", 
+    "CHEBI:42768"
+  ], 
+  [
+    "Uniprot:Q6NZT3", 
+    "NCBI gene:326282"
+  ], 
+  [
+    "Uniprot:Q21921", 
+    "NCBI gene:177924"
+  ], 
+  [
+    "Uniprot:P10909", 
+    "NCBI gene:1191"
+  ], 
+  [
+    "Uniprot:P53350", 
+    "NCBI gene:5347"
+  ], 
+  [
+    "Uniprot:Q56135", 
+    "NCBI gene:1249313"
+  ], 
+  [
+    "Uniprot:P43243", 
+    "NCBI gene:9782"
+  ], 
+  [
+    "Uniprot:Q1PDV6", 
+    "NCBI gene:831979"
+  ], 
+  [
+    "Uniprot:P27544", 
+    "NCBI gene:10715"
+  ], 
+  [
+    "Uniprot:Q05193", 
+    "NCBI gene:1759"
+  ], 
+  [
+    "Uniprot:Q9UHD8", 
+    "NCBI gene:10801"
+  ], 
+  [
+    "Uniprot:P25119", 
+    "NCBI gene:21938"
+  ], 
+  [
+    "Uniprot:Q05788", 
+    "NCBI gene:850906"
+  ], 
+  [
+    "PubChem:668", 
+    "CHEBI:16108"
+  ], 
+  [
+    "Uniprot:Q8BJA3", 
+    "NCBI gene:219150"
+  ], 
+  [
+    "PubChem:5330286", 
+    "CHEBI:85993"
+  ], 
+  [
+    "Uniprot:O60260", 
+    "NCBI gene:5071"
+  ], 
+  [
+    "Uniprot:D3ZHV2", 
+    "NCBI gene:362587"
+  ], 
+  [
+    "Uniprot:Q6UWE0", 
+    "NCBI gene:90678"
+  ], 
+  [
+    "Uniprot:Q9SB64", 
+    "NCBI gene:828571"
+  ], 
+  [
+    "Uniprot:O60016", 
+    "NCBI gene:2540825"
+  ], 
+  [
+    "Uniprot:Q9VY77", 
+    "NCBI gene:32351"
+  ], 
+  [
+    "PubChem:6083", 
+    "CHEBI:16027"
+  ], 
+  [
+    "Uniprot:P27048", 
+    "NCBI gene:20638"
+  ], 
+  [
+    "PubChem:22280438", 
+    "PubChem:10855382"
+  ], 
+  [
+    "Uniprot:Q9Y7J9", 
+    "NCBI gene:2540712"
+  ], 
+  [
+    "Uniprot:P25446", 
+    "NCBI gene:14102"
+  ], 
+  [
+    "PubChem:107670", 
+    "CHEBI:1418"
+  ], 
+  [
+    "Uniprot:Q92930", 
+    "NCBI gene:51762"
+  ], 
+  [
+    "Uniprot:Q5XIS0", 
+    "NCBI gene:365601"
+  ], 
+  [
+    "PubChem:126456178", 
+    "CHEBI:17146"
+  ], 
+  [
+    "Uniprot:Q53FA7", 
+    "NCBI gene:9540"
+  ], 
+  [
+    "Uniprot:Q15327", 
+    "NCBI gene:27063"
+  ], 
+  [
+    "Uniprot:P06244", 
+    "NCBI gene:853275"
+  ], 
+  [
+    "PubChem:3016", 
+    "CHEBI:49575"
+  ], 
+  [
+    "PubChem:42611257", 
+    "CHEBI:63637"
+  ], 
+  [
+    "Uniprot:P60709", 
+    "NCBI gene:60"
+  ], 
+  [
+    "Uniprot:Q76LW6", 
+    "NCBI gene:23863"
+  ], 
+  [
+    "Uniprot:Q9BQ87", 
+    "NCBI gene:90665"
+  ], 
+  [
+    "Uniprot:O60603", 
+    "NCBI gene:7097"
+  ], 
+  [
+    "PubChem:101037082", 
+    "PubChem:57689798", 
+    "CHEBI:75029"
+  ], 
+  [
+    "Uniprot:P35228", 
+    "NCBI gene:4843"
+  ], 
+  [
+    "Uniprot:P25916", 
+    "NCBI gene:12151"
+  ], 
+  [
+    "Uniprot:Q61830", 
+    "NCBI gene:17533"
+  ], 
+  [
+    "Uniprot:Q9Y2Q0", 
+    "NCBI gene:10396"
+  ], 
+  [
+    "Uniprot:O75030", 
+    "NCBI gene:4286"
+  ], 
+  [
+    "Uniprot:Q18892", 
+    "NCBI gene:3565794"
+  ], 
+  [
+    "Uniprot:Q6R0H1", 
+    "NCBI gene:839341"
+  ], 
+  [
+    "Uniprot:Q9H0Y0", 
+    "NCBI gene:83734"
+  ], 
+  [
+    "Uniprot:P32316", 
+    "NCBI gene:852266"
+  ], 
+  [
+    "Uniprot:P00403", 
+    "NCBI gene:4513"
+  ], 
+  [
+    "Uniprot:Q8TCG1", 
+    "NCBI gene:57650"
+  ], 
+  [
+    "Uniprot:Q8QZR1", 
+    "NCBI gene:234724"
+  ], 
+  [
+    "PubChem:2973", 
+    "CHEBI:4356"
+  ], 
+  [
+    "Uniprot:O14986", 
+    "NCBI gene:8395"
+  ], 
+  [
+    "Uniprot:Q76MZ3", 
+    "NCBI gene:51792"
+  ], 
+  [
+    "Uniprot:O61667", 
+    "NCBI gene:179943"
+  ], 
+  [
+    "Uniprot:Q05655", 
+    "NCBI gene:5580"
+  ], 
+  [
+    "Uniprot:P0CG53", 
+    "NCBI gene:281370"
+  ], 
+  [
+    "Uniprot:P78325", 
+    "NCBI gene:101"
+  ], 
+  [
+    "Uniprot:Q960X8", 
+    "NCBI gene:33458"
+  ], 
+  [
+    "Uniprot:Q9NQX3", 
+    "NCBI gene:10243"
+  ], 
+  [
+    "Uniprot:Q5DM57", 
+    "NCBI gene:5717250"
+  ], 
+  [
+    "Uniprot:P53228", 
+    "NCBI gene:852934"
+  ], 
+  [
+    "Uniprot:Q07436", 
+    "NCBI gene:33218"
+  ], 
+  [
+    "Uniprot:P19091", 
+    "NCBI gene:11835"
+  ], 
+  [
+    "Uniprot:Q86VP6", 
+    "NCBI gene:55832"
+  ], 
+  [
+    "Uniprot:Q9W4X9", 
+    "NCBI gene:47874"
+  ], 
+  [
+    "Uniprot:P08151", 
+    "NCBI gene:2735"
+  ], 
+  [
+    "Uniprot:Q4KLL7", 
+    "NCBI gene:360834"
+  ], 
+  [
+    "Uniprot:P03882", 
+    "NCBI gene:854590"
+  ], 
+  [
+    "Uniprot:Q62227", 
+    "NCBI gene:23957"
+  ], 
+  [
+    "Uniprot:O42667", 
+    "NCBI gene:2542069"
+  ], 
+  [
+    "Uniprot:P07992", 
+    "NCBI gene:2067"
+  ], 
+  [
+    "Uniprot:P31396", 
+    "NCBI gene:36073"
+  ], 
+  [
+    "Uniprot:P39429", 
+    "NCBI gene:22030"
+  ], 
+  [
+    "Uniprot:Q9H0A0", 
+    "NCBI gene:55226"
+  ], 
+  [
+    "PubChem:5284616", 
+    "CHEBI:9168"
+  ], 
+  [
+    "Uniprot:P21372", 
+    "NCBI gene:852539"
+  ], 
+  [
+    "PubChem:5951", 
+    "PubChem:6857581", 
+    "CHEBI:17115"
+  ], 
+  [
+    "Uniprot:P10090", 
+    "NCBI gene:31271"
+  ], 
+  [
+    "PubChem:275196", 
+    "CHEBI:73237"
+  ], 
+  [
+    "Uniprot:P17861", 
+    "NCBI gene:7494"
+  ], 
+  [
+    "Uniprot:Q9W1I8", 
+    "NCBI gene:37774"
+  ], 
+  [
+    "Uniprot:Q7M6Y2", 
+    "NCBI gene:20666"
+  ], 
+  [
+    "PubChem:23932", 
+    "CHEBI:6968"
+  ], 
+  [
+    "Uniprot:P57678", 
+    "NCBI gene:50628"
+  ], 
+  [
+    "Uniprot:Q12462", 
+    "NCBI gene:854018"
+  ], 
+  [
+    "Uniprot:P31786", 
+    "NCBI gene:13167"
+  ], 
+  [
+    "Uniprot:P47806", 
+    "NCBI gene:14632"
+  ], 
+  [
+    "Uniprot:P49816", 
+    "NCBI gene:24855"
+  ], 
+  [
+    "PubChem:4624", 
+    "CHEBI:78741"
+  ], 
+  [
+    "Uniprot:Q3U3Q1", 
+    "NCBI gene:71742"
+  ], 
+  [
+    "Uniprot:P01193", 
+    "NCBI gene:18976"
+  ], 
+  [
+    "PubChem:14957", 
+    "CHEBI:22584"
+  ], 
+  [
+    "PubChem:166033", 
+    "PubChem:24380", 
+    "CHEBI:30808"
+  ], 
+  [
+    "Uniprot:Q9WVH4", 
+    "NCBI gene:56484"
+  ], 
+  [
+    "Uniprot:P25587", 
+    "NCBI gene:850351"
+  ], 
+  [
+    "Uniprot:P04075", 
+    "NCBI gene:226"
+  ], 
+  [
+    "PubChem:24850", 
+    "PubChem:75366293", 
+    "CHEBI:74768"
+  ], 
+  [
+    "Uniprot:P36507", 
+    "NCBI gene:5605"
+  ], 
+  [
+    "Uniprot:Q04179", 
+    "NCBI gene:852009"
+  ], 
+  [
+    "Uniprot:O02195", 
+    "NCBI gene:33710"
+  ], 
+  [
+    "Uniprot:Q24570", 
+    "NCBI gene:40014"
+  ], 
+  [
+    "Uniprot:Q80Z64", 
+    "NCBI gene:71950"
+  ], 
+  [
+    "Uniprot:P01580", 
+    "NCBI gene:15978"
+  ], 
+  [
+    "Uniprot:O15083", 
+    "NCBI gene:26059"
+  ], 
+  [
+    "Uniprot:P48555", 
+    "NCBI gene:31332"
+  ], 
+  [
+    "Uniprot:Q08959", 
+    "NCBI gene:855895"
+  ], 
+  [
+    "Uniprot:Q15020", 
+    "NCBI gene:9733"
+  ], 
+  [
+    "PubChem:6912226", 
+    "CHEBI:63954"
+  ], 
+  [
+    "PubChem:433294", 
+    "CHEBI:48607"
+  ], 
+  [
+    "Uniprot:P63000", 
+    "NCBI gene:5879"
+  ], 
+  [
+    "Uniprot:O94817", 
+    "NCBI gene:9140"
+  ], 
+  [
+    "Uniprot:Q8CIR4", 
+    "NCBI gene:225997"
+  ], 
+  [
+    "Uniprot:E9Q7B5", 
+    "Uniprot:E9QPX8", 
+    "Uniprot:F8VQE0", 
+    "Uniprot:Q3UPG8", 
+    "NCBI gene:12292"
+  ], 
+  [
+    "Uniprot:O60159", 
+    "NCBI gene:2540750"
+  ], 
+  [
+    "Uniprot:P37238", 
+    "NCBI gene:19016"
+  ], 
+  [
+    "Uniprot:Q08174", 
+    "NCBI gene:5097"
+  ], 
+  [
+    "PubChem:50992434", 
+    "CHEBI:75991"
+  ], 
+  [
+    "Uniprot:P56726", 
+    "NCBI gene:319757"
+  ], 
+  [
+    "Uniprot:Q9ERD7", 
+    "NCBI gene:22152"
+  ], 
+  [
+    "Uniprot:P17439", 
+    "NCBI gene:14466"
+  ], 
+  [
+    "Uniprot:Q13526", 
+    "NCBI gene:5300"
+  ], 
+  [
+    "Uniprot:P39685", 
+    "NCBI gene:855159"
+  ], 
+  [
+    "Uniprot:P49698", 
+    "NCBI gene:15378"
+  ], 
+  [
+    "Uniprot:Q9DGB8", 
+    "NCBI gene:58126"
+  ], 
+  [
+    "Uniprot:O60238", 
+    "NCBI gene:665"
+  ], 
+  [
+    "Uniprot:Q02330", 
+    "NCBI gene:176229"
+  ], 
+  [
+    "Uniprot:O43896", 
+    "NCBI gene:10749"
+  ], 
+  [
+    "Uniprot:P68134", 
+    "NCBI gene:11459"
+  ], 
+  [
+    "Uniprot:O00231", 
+    "NCBI gene:5717"
+  ], 
+  [
+    "Uniprot:Q8BVE3", 
+    "NCBI gene:108664"
+  ], 
+  [
+    "Uniprot:P22855", 
+    "NCBI gene:852721"
+  ], 
+  [
+    "Uniprot:Q968Y9", 
+    "NCBI gene:175410"
+  ], 
+  [
+    "PubChem:2051", 
+    "CHEBI:75404"
+  ], 
+  [
+    "Uniprot:P51587", 
+    "NCBI gene:675"
+  ], 
+  [
+    "Uniprot:P13405", 
+    "NCBI gene:19645"
+  ], 
+  [
+    "Uniprot:O88792", 
+    "NCBI gene:16456"
+  ], 
+  [
+    "Uniprot:Q0VGT2", 
+    "NCBI gene:14633"
+  ], 
+  [
+    "Uniprot:Q15836", 
+    "NCBI gene:9341"
+  ], 
+  [
+    "Uniprot:P49841", 
+    "NCBI gene:2932"
+  ], 
+  [
+    "PubChem:1110", 
+    "PubChem:21952380", 
+    "CHEBI:15741"
+  ], 
+  [
+    "Uniprot:Q9Z2F7", 
+    "NCBI gene:12177"
+  ], 
+  [
+    "PubChem:6830", 
+    "CHEBI:15996", 
+    "CHEBI:5234"
+  ], 
+  [
+    "Uniprot:Q99814", 
+    "NCBI gene:2034"
+  ], 
+  [
+    "PubChem:985", 
+    "CHEBI:15756"
+  ], 
+  [
+    "Uniprot:Q9QYH9", 
+    "NCBI gene:50930"
+  ], 
+  [
+    "Uniprot:Q811U4", 
+    "NCBI gene:67414"
+  ], 
+  [
+    "Uniprot:Q9Y283", 
+    "NCBI gene:27130"
+  ], 
+  [
+    "PubChem:2765", 
+    "CHEBI:92950"
+  ], 
+  [
+    "Uniprot:Q91X79", 
+    "NCBI gene:109901"
+  ], 
+  [
+    "Uniprot:P25962", 
+    "NCBI gene:11556"
+  ], 
+  [
+    "Uniprot:P15408", 
+    "NCBI gene:2355"
+  ], 
+  [
+    "Uniprot:P54103", 
+    "NCBI gene:22791"
+  ], 
+  [
+    "Uniprot:P9WFK7", 
+    "NCBI gene:885903"
+  ], 
+  [
+    "Uniprot:P97287", 
+    "NCBI gene:17210"
+  ], 
+  [
+    "Uniprot:Q02248", 
+    "NCBI gene:12387"
+  ], 
+  [
+    "PubChem:9281", 
+    "CHEBI:9505"
+  ], 
+  [
+    "Uniprot:P07213", 
+    "NCBI gene:855602"
+  ], 
+  [
+    "Uniprot:Q99708", 
+    "NCBI gene:5932"
+  ], 
+  [
+    "Uniprot:Q61473", 
+    "NCBI gene:20671"
+  ], 
+  [
+    "Uniprot:P36165", 
+    "NCBI gene:853964"
+  ], 
+  [
+    "Uniprot:P25208", 
+    "NCBI gene:4801"
+  ], 
+  [
+    "Uniprot:Q08209", 
+    "NCBI gene:5530"
+  ], 
+  [
+    "PubChem:5497103", 
+    "CHEBI:73001"
+  ], 
+  [
+    "PubChem:644213", 
+    "CHEBI:79993"
+  ], 
+  [
+    "Uniprot:Q90270", 
+    "NCBI gene:30333"
+  ], 
+  [
+    "Uniprot:P49334", 
+    "NCBI gene:855592"
+  ], 
+  [
+    "PubChem:9032", 
+    "CHEBI:33191"
+  ], 
+  [
+    "Uniprot:A0A0B4LF37", 
+    "Uniprot:A1Z8J3", 
+    "Uniprot:A1Z8J4", 
+    "NCBI gene:45587"
+  ], 
+  [
+    "Uniprot:Q66I28", 
+    "NCBI gene:403079"
+  ], 
+  [
+    "Uniprot:Q17381", 
+    "NCBI gene:180357"
+  ], 
+  [
+    "PubChem:86289378", 
+    "CHEBI:77834"
+  ], 
+  [
+    "PubChem:73364", 
+    "CHEBI:3330"
+  ], 
+  [
+    "Uniprot:P11438", 
+    "NCBI gene:16783"
+  ], 
+  [
+    "Uniprot:P55273", 
+    "NCBI gene:1032"
+  ], 
+  [
+    "Uniprot:A0A0A6YY64", 
+    "Uniprot:A2AUP1", 
+    "Uniprot:A2AUP5", 
+    "Uniprot:A7UAK4", 
+    "Uniprot:A7UAK5", 
+    "Uniprot:A7UAK8", 
+    "Uniprot:Q3U3S6", 
+    "Uniprot:Q7TS91", 
+    "Uniprot:Q8BVM1", 
+    "NCBI gene:170768"
+  ], 
+  [
+    "Uniprot:P00533", 
+    "NCBI gene:1956"
+  ], 
+  [
+    "Uniprot:Q12043", 
+    "NCBI gene:854248"
+  ], 
+  [
+    "Uniprot:O13329", 
+    "NCBI gene:851688"
+  ], 
+  [
+    "PubChem:148123", 
+    "CHEBI:59809"
+  ], 
+  [
+    "Uniprot:P18409", 
+    "NCBI gene:851223"
+  ], 
+  [
+    "Uniprot:Q13323", 
+    "NCBI gene:638"
+  ], 
+  [
+    "Uniprot:P50281", 
+    "NCBI gene:4323"
+  ], 
+  [
+    "PubChem:47936", 
+    "CHEBI:42471"
+  ], 
+  [
+    "PubChem:119", 
+    "PubChem:6992099", 
+    "CHEBI:16865"
+  ], 
+  [
+    "Uniprot:P19525", 
+    "NCBI gene:5610"
+  ], 
+  [
+    "Uniprot:P63015", 
+    "NCBI gene:18508"
+  ], 
+  [
+    "PubChem:9444", 
+    "CHEBI:2038"
+  ], 
+  [
+    "Uniprot:P54274", 
+    "NCBI gene:7013"
+  ], 
+  [
+    "Uniprot:Q8NB14", 
+    "NCBI gene:84640"
+  ], 
+  [
+    "Uniprot:P16298", 
+    "NCBI gene:5532"
+  ], 
+  [
+    "Uniprot:P08551", 
+    "NCBI gene:18039"
+  ], 
+  [
+    "Uniprot:Q9CQY1", 
+    "NCBI gene:67526"
+  ], 
+  [
+    "Uniprot:Q9HCU0", 
+    "NCBI gene:57124"
+  ], 
+  [
+    "Uniprot:Q9WVS7", 
+    "NCBI gene:23938"
+  ], 
+  [
+    "Uniprot:Q9JJZ8", 
+    "NCBI gene:12790"
+  ], 
+  [
+    "Uniprot:P00920", 
+    "NCBI gene:12349"
+  ], 
+  [
+    "Uniprot:Q9VK45", 
+    "NCBI gene:47396"
+  ], 
+  [
+    "Uniprot:Q15389", 
+    "NCBI gene:284"
+  ], 
+  [
+    "Uniprot:Q03052", 
+    "NCBI gene:5453"
+  ], 
+  [
+    "Uniprot:P43564", 
+    "NCBI gene:850510"
+  ], 
+  [
+    "Uniprot:P13098", 
+    "NCBI gene:43161"
+  ], 
+  [
+    "Uniprot:Q3UM38", 
+    "Uniprot:Q8BGZ6", 
+    "NCBI gene:11605"
+  ], 
+  [
+    "Uniprot:Q60843", 
+    "NCBI gene:16598"
+  ], 
+  [
+    "Uniprot:Q8SY33", 
+    "NCBI gene:43808"
+  ], 
+  [
+    "Uniprot:P35639", 
+    "NCBI gene:13198"
+  ], 
+  [
+    "Uniprot:A5XCD6", 
+    "NCBI gene:559174"
+  ], 
+  [
+    "Uniprot:B2RUG9", 
+    "Uniprot:Q8BNP7", 
+    "NCBI gene:11789"
+  ], 
+  [
+    "Uniprot:P17221", 
+    "NCBI gene:177335"
+  ], 
+  [
+    "Uniprot:P11491", 
+    "NCBI gene:852092"
+  ], 
+  [
+    "Uniprot:Q96AH8", 
+    "NCBI gene:338382"
+  ], 
+  [
+    "Uniprot:P53112", 
+    "NCBI gene:852724"
+  ], 
+  [
+    "PubChem:444041", 
+    "CHEBI:495055"
+  ], 
+  [
+    "Uniprot:Q21480", 
+    "NCBI gene:180949"
+  ], 
+  [
+    "Uniprot:P04359", 
+    "NCBI gene:43573"
+  ], 
+  [
+    "Uniprot:Q924X6", 
+    "NCBI gene:16975"
+  ], 
+  [
+    "Uniprot:Q16695", 
+    "NCBI gene:8290"
+  ], 
+  [
+    "Uniprot:Q13426", 
+    "NCBI gene:7518"
+  ], 
+  [
+    "Uniprot:C4MCP1", 
+    "Uniprot:F6N9E8", 
+    "NCBI gene:100301946"
+  ], 
+  [
+    "Uniprot:F1QP24", 
+    "Uniprot:F1QP25", 
+    "NCBI gene:30519"
+  ], 
+  [
+    "Uniprot:Q08473", 
+    "NCBI gene:41666"
+  ], 
+  [
+    "PubChem:123985", 
+    "CHEBI:30270"
+  ], 
+  [
+    "Uniprot:B7WN96", 
+    "Uniprot:E5QCG7", 
+    "Uniprot:E5QCG8", 
+    "Uniprot:G5ECF7", 
+    "NCBI gene:181503"
+  ], 
+  [
+    "PubChem:3961", 
+    "CHEBI:6541"
+  ], 
+  [
+    "PubChem:24854", 
+    "PubChem:5284359", 
+    "CHEBI:3312"
+  ], 
+  [
+    "Uniprot:Q13615", 
+    "NCBI gene:8897"
+  ], 
+  [
+    "Uniprot:Q96TC7", 
+    "NCBI gene:55177"
+  ], 
+  [
+    "Uniprot:A0A0B4LGJ9", 
+    "Uniprot:A0A0B4LHH1", 
+    "Uniprot:Q960R0", 
+    "Uniprot:Q9W1B5", 
+    "NCBI gene:37852"
+  ], 
+  [
+    "Uniprot:Q96FW1", 
+    "NCBI gene:55611"
+  ], 
+  [
+    "Uniprot:Q92934", 
+    "NCBI gene:572"
+  ], 
+  [
+    "Uniprot:B7Z0R7", 
+    "Uniprot:Q86BR6", 
+    "Uniprot:Q95TJ1", 
+    "Uniprot:Q9VAF9", 
+    "NCBI gene:326115"
+  ], 
+  [
+    "Uniprot:Q0KHV6", 
+    "NCBI gene:31607"
+  ], 
+  [
+    "Uniprot:Q8IYK8", 
+    "NCBI gene:161253"
+  ], 
+  [
+    "Uniprot:Q8IVL0", 
+    "NCBI gene:89795"
+  ], 
+  [
+    "Uniprot:Q5MPA9", 
+    "NCBI gene:310698"
+  ], 
+  [
+    "Uniprot:Q9UBK2", 
+    "NCBI gene:10891"
+  ], 
+  [
+    "Uniprot:P37275", 
+    "NCBI gene:6935"
+  ], 
+  [
+    "Uniprot:P12004", 
+    "NCBI gene:5111"
+  ], 
+  [
+    "Uniprot:P19438", 
+    "NCBI gene:7132"
+  ], 
+  [
+    "Uniprot:Q9DCD6", 
+    "NCBI gene:56486"
+  ], 
+  [
+    "PubChem:32051", 
+    "CHEBI:10113"
+  ], 
+  [
+    "Uniprot:Q6TL19", 
+    "NCBI gene:73707"
+  ], 
+  [
+    "Uniprot:H2L0M4", 
+    "Uniprot:Q9TXN6", 
+    "NCBI gene:178561"
+  ], 
+  [
+    "Uniprot:O75460", 
+    "NCBI gene:2081"
+  ], 
+  [
+    "Uniprot:Q15759", 
+    "NCBI gene:5600"
+  ], 
+  [
+    "Uniprot:P09411", 
+    "NCBI gene:18655"
+  ], 
+  [
+    "Uniprot:P29673", 
+    "NCBI gene:35509"
+  ], 
+  [
+    "Uniprot:Q8CFN5", 
+    "NCBI gene:17260"
+  ], 
+  [
+    "Uniprot:Q9Z2M7", 
+    "NCBI gene:54128"
+  ], 
+  [
+    "Uniprot:O54942", 
+    "NCBI gene:12741"
+  ], 
+  [
+    "PubChem:10340", 
+    "PubChem:516885", 
+    "CHEBI:29377"
+  ], 
+  [
+    "Uniprot:Q60769", 
+    "NCBI gene:21929"
+  ], 
+  [
+    "Uniprot:O97111", 
+    "NCBI gene:32752"
+  ], 
+  [
+    "PubChem:27099", 
+    "CHEBI:29036"
+  ], 
+  [
+    "Uniprot:Q64282", 
+    "NCBI gene:15957"
+  ], 
+  [
+    "Uniprot:Q07804", 
+    "NCBI gene:850648"
+  ], 
+  [
+    "Uniprot:Q6UVJ0", 
+    "NCBI gene:163786"
+  ], 
+  [
+    "Uniprot:P20700", 
+    "NCBI gene:4001"
+  ], 
+  [
+    "Uniprot:I6L9G6", 
+    "NCBI gene:298648"
+  ], 
+  [
+    "Uniprot:Q27365", 
+    "NCBI gene:181663"
+  ], 
+  [
+    "Uniprot:P26599", 
+    "NCBI gene:5725"
+  ], 
+  [
+    "Uniprot:P38182", 
+    "NCBI gene:852200"
+  ], 
+  [
+    "Uniprot:P17426", 
+    "NCBI gene:11771"
+  ], 
+  [
+    "PubChem:93082", 
+    "CHEBI:1963"
+  ], 
+  [
+    "PubChem:171548", 
+    "CHEBI:15956"
+  ], 
+  [
+    "Uniprot:P30665", 
+    "NCBI gene:856130"
+  ], 
+  [
+    "Uniprot:P62340", 
+    "NCBI gene:237336"
+  ], 
+  [
+    "PubChem:65399", 
+    "CHEBI:65310"
+  ], 
+  [
+    "Uniprot:P55735", 
+    "NCBI gene:6396"
+  ], 
+  [
+    "Uniprot:Q9Z1J1", 
+    "NCBI gene:21415"
+  ], 
+  [
+    "Uniprot:P84228", 
+    "NCBI gene:319150"
+  ], 
+  [
+    "Uniprot:P19838", 
+    "NCBI gene:4790"
+  ], 
+  [
+    "Uniprot:P0CG50", 
+    "NCBI gene:22190"
+  ], 
+  [
+    "Uniprot:Q9Z2D1", 
+    "NCBI gene:77116"
+  ], 
+  [
+    "Uniprot:P11152", 
+    "NCBI gene:16956"
+  ], 
+  [
+    "Uniprot:E3CTH5", 
+    "Uniprot:Q5DTE8", 
+    "Uniprot:Q86MP3", 
+    "Uniprot:Q9XX21", 
+    "NCBI gene:189705"
+  ], 
+  [
+    "Uniprot:Q60767", 
+    "NCBI gene:17076"
+  ], 
+  [
+    "PubChem:124886", 
+    "PubChem:25246407", 
+    "CHEBI:16856", 
+    "CHEBI:5437"
+  ], 
+  [
+    "Uniprot:P19881", 
+    "NCBI gene:851362"
+  ], 
+  [
+    "Uniprot:Q08857", 
+    "NCBI gene:12491"
+  ], 
+  [
+    "Uniprot:P32939", 
+    "NCBI gene:855012"
+  ], 
+  [
+    "PubChem:617", 
+    "PubChem:6857552", 
+    "CHEBI:17822"
+  ], 
+  [
+    "Uniprot:P17182", 
+    "NCBI gene:13806"
+  ], 
+  [
+    "Uniprot:P84243", 
+    "NCBI gene:3020"
+  ], 
+  [
+    "Uniprot:P53779", 
+    "NCBI gene:5602"
+  ], 
+  [
+    "Uniprot:O18335", 
+    "NCBI gene:42501"
+  ], 
+  [
+    "PubChem:108108", 
+    "CHEBI:16043"
+  ], 
+  [
+    "Uniprot:Q9WU00", 
+    "NCBI gene:18181"
+  ], 
+  [
+    "Uniprot:Q14671", 
+    "NCBI gene:9698"
+  ], 
+  [
+    "Uniprot:O94898", 
+    "NCBI gene:9860"
+  ], 
+  [
+    "PubChem:5353431", 
+    "CHEBI:85928"
+  ], 
+  [
+    "Uniprot:Q9D2C7", 
+    "NCBI gene:110213"
+  ], 
+  [
+    "Uniprot:Q9H649", 
+    "NCBI gene:63899"
+  ], 
+  [
+    "Uniprot:Q7M6Y5", 
+    "NCBI gene:234964"
+  ], 
+  [
+    "Uniprot:Q12057", 
+    "NCBI gene:854271"
+  ], 
+  [
+    "Uniprot:P51149", 
+    "NCBI gene:7879"
+  ], 
+  [
+    "Uniprot:P34932", 
+    "NCBI gene:3308"
+  ], 
+  [
+    "Uniprot:P14734", 
+    "NCBI gene:43383"
+  ], 
+  [
+    "Uniprot:Q06455", 
+    "NCBI gene:862"
+  ], 
+  [
+    "PubChem:6166", 
+    "CHEBI:16973"
+  ], 
+  [
+    "Uniprot:O95782", 
+    "NCBI gene:160"
+  ], 
+  [
+    "Uniprot:P08680", 
+    "NCBI gene:11656"
+  ], 
+  [
+    "Uniprot:P40075", 
+    "NCBI gene:856856"
+  ], 
+  [
+    "Uniprot:Q9SUS1", 
+    "NCBI gene:828455"
+  ], 
+  [
+    "Uniprot:P35869", 
+    "NCBI gene:196"
+  ], 
+  [
+    "Uniprot:P11087", 
+    "NCBI gene:12842"
+  ], 
+  [
+    "PubChem:5329102", 
+    "CHEBI:38940"
+  ], 
+  [
+    "Uniprot:Q02566", 
+    "NCBI gene:17888"
+  ], 
+  [
+    "Uniprot:P28563", 
+    "NCBI gene:19252"
+  ], 
+  [
+    "Uniprot:Q9SQI2", 
+    "NCBI gene:838883"
+  ], 
+  [
+    "Uniprot:P24385", 
+    "NCBI gene:595"
+  ], 
+  [
+    "Uniprot:P84086", 
+    "NCBI gene:12890"
+  ], 
+  [
+    "Uniprot:P29465", 
+    "NCBI gene:852311"
+  ], 
+  [
+    "Uniprot:P49959", 
+    "NCBI gene:4361"
+  ], 
+  [
+    "PubChem:5360545", 
+    "CHEBI:26708"
+  ], 
+  [
+    "Uniprot:P11352", 
+    "NCBI gene:14775"
+  ], 
+  [
+    "Uniprot:Q9VQ26", 
+    "NCBI gene:33338"
+  ], 
+  [
+    "Uniprot:O95166", 
+    "NCBI gene:11337"
+  ], 
+  [
+    "Uniprot:P35829", 
+    "NCBI gene:3252774"
+  ], 
+  [
+    "Uniprot:P42336", 
+    "NCBI gene:5290"
+  ], 
+  [
+    "Uniprot:P21145", 
+    "NCBI gene:4118"
+  ], 
+  [
+    "Uniprot:P18242", 
+    "NCBI gene:13033"
+  ], 
+  [
+    "Uniprot:Q9CUX1", 
+    "NCBI gene:72981"
+  ], 
+  [
+    "Uniprot:Q9W418", 
+    "NCBI gene:326237"
+  ], 
+  [
+    "Uniprot:O15117", 
+    "NCBI gene:2533"
+  ], 
+  [
+    "PubChem:11001318", 
+    "CHEBI:78538"
+  ], 
+  [
+    "PubChem:1182", 
+    "PubChem:5237032", 
+    "CHEBI:27266"
+  ], 
+  [
+    "PubChem:439268", 
+    "CHEBI:90760"
+  ], 
+  [
+    "Uniprot:P22460", 
+    "NCBI gene:3741"
+  ], 
+  [
+    "PubChem:9887054", 
+    "CHEBI:31941"
+  ], 
+  [
+    "Uniprot:P48549", 
+    "NCBI gene:3760"
+  ], 
+  [
+    "PubChem:6029", 
+    "CHEBI:16704"
+  ], 
+  [
+    "Uniprot:P05202", 
+    "NCBI gene:14719"
+  ], 
+  [
+    "Uniprot:Q96RF0", 
+    "NCBI gene:112574"
+  ], 
+  [
+    "Uniprot:O75293", 
+    "NCBI gene:4616"
+  ], 
+  [
+    "Uniprot:P40792", 
+    "NCBI gene:38146"
+  ], 
+  [
+    "Uniprot:P19785", 
+    "NCBI gene:13982"
+  ], 
+  [
+    "Uniprot:Q9Y2L1", 
+    "NCBI gene:22894"
+  ], 
+  [
+    "Uniprot:Q9BQS8", 
+    "NCBI gene:79443"
+  ], 
+  [
+    "Uniprot:Q08650", 
+    "NCBI gene:854419"
+  ], 
+  [
+    "Uniprot:P00749", 
+    "NCBI gene:5328"
+  ], 
+  [
+    "Uniprot:Q9QYB1", 
+    "NCBI gene:29876"
+  ], 
+  [
+    "PubChem:44825325", 
+    "PubChem:6438639", 
+    "CHEBI:60568"
+  ], 
+  [
+    "PubChem:21924987", 
+    "PubChem:12820921"
+  ], 
+  [
+    "PubChem:3730", 
+    "CHEBI:31709"
+  ], 
+  [
+    "Uniprot:Q3UUV5", 
+    "NCBI gene:78473"
+  ], 
+  [
+    "PubChem:312145", 
+    "CHEBI:52289"
+  ], 
+  [
+    "Uniprot:Q07879", 
+    "NCBI gene:850684"
+  ], 
+  [
+    "Uniprot:O60341", 
+    "NCBI gene:23028"
+  ], 
+  [
+    "PubChem:951", 
+    "CHEBI:33569"
+  ], 
+  [
+    "PubChem:236", 
+    "PubChem:5247114", 
+    "CHEBI:22653"
+  ], 
+  [
+    "Uniprot:Q7JVY2", 
+    "NCBI gene:47121"
+  ], 
+  [
+    "Uniprot:Q3UPN1", 
+    "NCBI gene:22329"
+  ], 
+  [
+    "Uniprot:Q15349", 
+    "NCBI gene:6196"
+  ], 
+  [
+    "PubChem:104729", 
+    "CHEBI:48828"
+  ], 
+  [
+    "Uniprot:P31996", 
+    "NCBI gene:12514"
+  ], 
+  [
+    "Uniprot:O48771", 
+    "NCBI gene:817856"
+  ], 
+  [
+    "Uniprot:Q6A078", 
+    "NCBI gene:216274"
+  ], 
+  [
+    "Uniprot:Q8WU20", 
+    "NCBI gene:10818"
+  ], 
+  [
+    "Uniprot:Q6S7F2", 
+    "NCBI gene:52679"
+  ], 
+  [
+    "Uniprot:P48356", 
+    "NCBI gene:16847"
+  ], 
+  [
+    "Uniprot:Q9Y6K9", 
+    "NCBI gene:8517"
+  ], 
+  [
+    "Uniprot:Q16236", 
+    "NCBI gene:4780"
+  ], 
+  [
+    "Uniprot:P42357", 
+    "NCBI gene:3034"
+  ], 
+  [
+    "Uniprot:P36626", 
+    "NCBI gene:2540458"
+  ], 
+  [
+    "Uniprot:Q07950", 
+    "NCBI gene:850707"
+  ], 
+  [
+    "Uniprot:Q91ZW8", 
+    "NCBI gene:170779"
+  ], 
+  [
+    "Uniprot:Q8VC56", 
+    "NCBI gene:58230"
+  ], 
+  [
+    "Uniprot:Q9VHN6", 
+    "NCBI gene:41028"
+  ], 
+  [
+    "Uniprot:P01574", 
+    "NCBI gene:3456"
+  ], 
+  [
+    "Uniprot:P03911", 
+    "NCBI gene:17719"
+  ], 
+  [
+    "Uniprot:Q9NXA8", 
+    "NCBI gene:23408"
+  ], 
+  [
+    "Uniprot:O95631", 
+    "NCBI gene:9423"
+  ], 
+  [
+    "Uniprot:P79734", 
+    "NCBI gene:30590"
+  ], 
+  [
+    "PubChem:6537502", 
+    "CHEBI:4548", 
+    "CHEBI:27729"
+  ], 
+  [
+    "Uniprot:Q9V780", 
+    "NCBI gene:36670"
+  ], 
+  [
+    "Uniprot:P03372", 
+    "NCBI gene:2099"
+  ], 
+  [
+    "Uniprot:Q9NQL2", 
+    "NCBI gene:58528"
+  ], 
+  [
+    "Uniprot:Q5T1M5", 
+    "NCBI gene:23307"
+  ], 
+  [
+    "PubChem:5255805", 
+    "PubChem:876", 
+    "CHEBI:16811"
+  ], 
+  [
+    "PubChem:753", 
+    "CHEBI:17754"
+  ], 
+  [
+    "Uniprot:Q9CXJ4", 
+    "NCBI gene:74610"
+  ], 
+  [
+    "PubChem:4362", 
+    "CHEBI:7269", 
+    "CHEBI:44485"
+  ], 
+  [
+    "Uniprot:Q9JHG6", 
+    "NCBI gene:54720"
+  ], 
+  [
+    "PubChem:5746", 
+    "CHEBI:27504"
+  ], 
+  [
+    "Uniprot:Q9WVS6", 
+    "NCBI gene:50873"
+  ], 
+  [
+    "PubChem:4278", 
+    "CHEBI:48958"
+  ], 
+  [
+    "Uniprot:P15391", 
+    "NCBI gene:930"
+  ], 
+  [
+    "Uniprot:P09225", 
+    "NCBI gene:16992"
+  ], 
+  [
+    "PubChem:2247", 
+    "CHEBI:2896"
+  ], 
+  [
+    "Uniprot:P24869", 
+    "NCBI gene:856236"
+  ], 
+  [
+    "Uniprot:Q9BYH8", 
+    "NCBI gene:64332"
+  ], 
+  [
+    "Uniprot:P07267", 
+    "NCBI gene:855949"
+  ], 
+  [
+    "Uniprot:P62736", 
+    "NCBI gene:59"
+  ], 
+  [
+    "Uniprot:P22812", 
+    "NCBI gene:40554"
+  ], 
+  [
+    "Uniprot:Q4LDG0", 
+    "NCBI gene:26459"
+  ], 
+  [
+    "Uniprot:P33416", 
+    "NCBI gene:851845"
+  ], 
+  [
+    "Uniprot:Q15569", 
+    "NCBI gene:7016"
+  ], 
+  [
+    "Uniprot:Q24292", 
+    "NCBI gene:33245"
+  ], 
+  [
+    "Uniprot:Q3UP23", 
+    "NCBI gene:327766"
+  ], 
+  [
+    "Uniprot:Q9W3R7", 
+    "NCBI gene:31666"
+  ], 
+  [
+    "Uniprot:Q22W82", 
+    "NCBI gene:7835183"
+  ], 
+  [
+    "Uniprot:Q9Y4P1", 
+    "NCBI gene:23192"
+  ], 
+  [
+    "Uniprot:Q14435", 
+    "NCBI gene:2591"
+  ], 
+  [
+    "Uniprot:Q2YDW7", 
+    "NCBI gene:67956"
+  ], 
+  [
+    "Uniprot:P04925", 
+    "NCBI gene:19122"
+  ], 
+  [
+    "Uniprot:P0CT33", 
+    "NCBI gene:2541932"
+  ], 
+  [
+    "Uniprot:P08637", 
+    "NCBI gene:2214"
+  ], 
+  [
+    "Uniprot:Q96KS0", 
+    "NCBI gene:112398"
+  ], 
+  [
+    "Uniprot:P62942", 
+    "NCBI gene:2280"
+  ], 
+  [
+    "Uniprot:Q9XU10", 
+    "NCBI gene:176783"
+  ], 
+  [
+    "PubChem:1176", 
+    "CHEBI:9888", 
+    "CHEBI:16199"
+  ], 
+  [
+    "Uniprot:P89884", 
+    "NCBI gene:1497180"
+  ], 
+  [
+    "PubChem:30751", 
+    "CHEBI:63599"
+  ], 
+  [
+    "Uniprot:Q80ZV0", 
+    "NCBI gene:67153"
+  ], 
+  [
+    "PubChem:170848", 
+    "CHEBI:31605"
+  ], 
+  [
+    "PubChem:11327430", 
+    "CHEBI:91361"
+  ], 
+  [
+    "Uniprot:Q8IYU2", 
+    "NCBI gene:57531"
+  ], 
+  [
+    "Uniprot:P53621", 
+    "NCBI gene:1314"
+  ], 
+  [
+    "Uniprot:P10242", 
+    "NCBI gene:4602"
+  ], 
+  [
+    "PubChem:3330", 
+    "CHEBI:75458"
+  ], 
+  [
+    "PubChem:3651426", 
+    "PubChem:773", 
+    "CHEBI:27570"
+  ], 
+  [
+    "Uniprot:P61006", 
+    "NCBI gene:4218"
+  ], 
+  [
+    "Uniprot:Q9JK42", 
+    "NCBI gene:18604"
+  ], 
+  [
+    "Uniprot:Q6KAU8", 
+    "NCBI gene:73683"
+  ], 
+  [
+    "Uniprot:Q9HCU8", 
+    "NCBI gene:57804"
+  ], 
+  [
+    "Uniprot:Q3UH93", 
+    "NCBI gene:67784"
+  ], 
+  [
+    "Uniprot:P46972", 
+    "NCBI gene:855051"
+  ], 
+  [
+    "PubChem:65064", 
+    "CHEBI:4806"
+  ], 
+  [
+    "Uniprot:Q9WVC6", 
+    "NCBI gene:20393"
+  ], 
+  [
+    "Uniprot:Q71DI3", 
+    "NCBI gene:333932"
+  ], 
+  [
+    "Uniprot:O43008", 
+    "NCBI gene:2540450"
+  ], 
+  [
+    "Uniprot:P06804", 
+    "NCBI gene:21926"
+  ], 
+  [
+    "Uniprot:Q80W47", 
+    "NCBI gene:74781"
+  ], 
+  [
+    "Uniprot:Q15382", 
+    "NCBI gene:6009"
+  ], 
+  [
+    "Uniprot:M9NDL9", 
+    "Uniprot:M9NE54", 
+    "Uniprot:M9PES2", 
+    "Uniprot:M9PHT1", 
+    "Uniprot:Q7KUA8", 
+    "Uniprot:Q86BH2", 
+    "Uniprot:Q8IQA6", 
+    "Uniprot:Q9VSK5", 
+    "NCBI gene:46156"
+  ], 
+  [
+    "Uniprot:Q02858", 
+    "NCBI gene:21687"
+  ], 
+  [
+    "Uniprot:Q8CA95", 
+    "NCBI gene:23984"
+  ], 
+  [
+    "Uniprot:P70677", 
+    "NCBI gene:12367"
+  ], 
+  [
+    "Uniprot:P02309", 
+    "NCBI gene:855701", 
+    "NCBI gene:852294"
+  ], 
+  [
+    "PubChem:3062316", 
+    "CHEBI:49375"
+  ], 
+  [
+    "Uniprot:Q13131", 
+    "NCBI gene:5562"
+  ], 
+  [
+    "Uniprot:Q06219", 
+    "NCBI gene:18227"
+  ], 
+  [
+    "Uniprot:P49711", 
+    "NCBI gene:10664"
+  ], 
+  [
+    "Uniprot:P35283", 
+    "NCBI gene:19328"
+  ], 
+  [
+    "Uniprot:P35226", 
+    "NCBI gene:648"
+  ], 
+  [
+    "Uniprot:P07900", 
+    "NCBI gene:3320"
+  ], 
+  [
+    "Uniprot:P41546", 
+    "NCBI gene:850513"
+  ], 
+  [
+    "Uniprot:Q9FQ08", 
+    "NCBI gene:838268"
+  ], 
+  [
+    "Uniprot:P03466", 
+    "NCBI gene:956531"
+  ], 
+  [
+    "Uniprot:Q9H492", 
+    "NCBI gene:84557"
+  ], 
+  [
+    "Uniprot:E9Q552", 
+    "Uniprot:E9QP54", 
+    "NCBI gene:52906"
+  ], 
+  [
+    "PubChem:9826528", 
+    "CHEBI:88249"
+  ], 
+  [
+    "PubChem:54670067", 
+    "CHEBI:29073"
+  ], 
+  [
+    "Uniprot:Q9W0F8", 
+    "NCBI gene:44856"
+  ], 
+  [
+    "Uniprot:P00492", 
+    "NCBI gene:3251"
+  ], 
+  [
+    "Uniprot:Q60793", 
+    "NCBI gene:16600"
+  ], 
+  [
+    "Uniprot:P11928", 
+    "NCBI gene:246730"
+  ], 
+  [
+    "Uniprot:Q9HC29", 
+    "NCBI gene:64127"
+  ], 
+  [
+    "Uniprot:P07149", 
+    "NCBI gene:853653"
+  ], 
+  [
+    "Uniprot:Q60766", 
+    "NCBI gene:15944"
+  ], 
+  [
+    "Uniprot:P51617", 
+    "NCBI gene:3654"
+  ], 
+  [
+    "Uniprot:F8VPZ1", 
+    "Uniprot:Q8CFN7", 
+    "NCBI gene:433766"
+  ], 
+  [
+    "Uniprot:Q80TA9", 
+    "NCBI gene:100502841"
+  ], 
+  [
+    "Uniprot:P46414", 
+    "NCBI gene:12576"
+  ], 
+  [
+    "Uniprot:P53994", 
+    "NCBI gene:59021"
+  ], 
+  [
+    "Uniprot:P23678", 
+    "NCBI gene:174144"
+  ], 
+  [
+    "Uniprot:P53778", 
+    "NCBI gene:6300"
+  ], 
+  [
+    "Uniprot:Q8TBX8", 
+    "NCBI gene:79837"
+  ], 
+  [
+    "Uniprot:Q9H1Y0", 
+    "NCBI gene:9474"
+  ], 
+  [
+    "Uniprot:Q61456", 
+    "NCBI gene:12427"
+  ], 
+  [
+    "Uniprot:Q5RH73", 
+    "NCBI gene:30225"
+  ], 
+  [
+    "Uniprot:P04173", 
+    "NCBI gene:850342"
+  ], 
+  [
+    "Uniprot:P98200", 
+    "NCBI gene:50769"
+  ], 
+  [
+    "Uniprot:O43502", 
+    "NCBI gene:5889"
+  ], 
+  [
+    "Uniprot:P11279", 
+    "NCBI gene:3916"
+  ], 
+  [
+    "PubChem:5283731", 
+    "CHEBI:17933"
+  ], 
+  [
+    "PubChem:14250", 
+    "CHEBI:3565"
+  ], 
+  [
+    "Uniprot:Q8BXG3", 
+    "NCBI gene:73916"
+  ], 
+  [
+    "Uniprot:Q9PTH3", 
+    "NCBI gene:794176"
+  ], 
+  [
+    "Uniprot:P23804", 
+    "NCBI gene:17246"
+  ], 
+  [
+    "Uniprot:Q91ZE9", 
+    "NCBI gene:171543"
+  ], 
+  [
+    "Uniprot:P27694", 
+    "NCBI gene:6117"
+  ], 
+  [
+    "Uniprot:A8K0Z3", 
+    "NCBI gene:100287171"
+  ], 
+  [
+    "Uniprot:Q9H0R8", 
+    "NCBI gene:23710"
+  ], 
+  [
+    "Uniprot:I3KPD4", 
+    "NCBI gene:100702192"
+  ], 
+  [
+    "PubChem:5702063", 
+    "CHEBI:5553"
+  ], 
+  [
+    "PubChem:40486", 
+    "CHEBI:3305"
+  ], 
+  [
+    "Uniprot:P23254", 
+    "NCBI gene:856188"
+  ], 
+  [
+    "Uniprot:Q61115", 
+    "NCBI gene:19206"
+  ], 
+  [
+    "Uniprot:Q704Y3", 
+    "NCBI gene:193034"
+  ], 
+  [
+    "Uniprot:P30558", 
+    "NCBI gene:14062"
+  ], 
+  [
+    "PubChem:24288", 
+    "PubChem:3032536", 
+    "CHEBI:35696"
+  ], 
+  [
+    "Uniprot:Q6N021", 
+    "NCBI gene:54790"
+  ], 
+  [
+    "Uniprot:P08082", 
+    "NCBI gene:116561"
+  ], 
+  [
+    "PubChem:764", 
+    "CHEBI:16235"
+  ], 
+  [
+    "Uniprot:O95202", 
+    "NCBI gene:3954"
+  ], 
+  [
+    "Uniprot:P36363", 
+    "NCBI gene:14178"
+  ], 
+  [
+    "Uniprot:Q8ZNG2", 
+    "NCBI gene:1253809"
+  ], 
+  [
+    "Uniprot:P0CG69", 
+    "NCBI gene:38456"
+  ], 
+  [
+    "Uniprot:Q01860", 
+    "NCBI gene:5460"
+  ], 
+  [
+    "Uniprot:P32335", 
+    "NCBI gene:850900"
+  ], 
+  [
+    "PubChem:160419", 
+    "CHEBI:30031"
+  ], 
+  [
+    "Uniprot:H1UBJ1", 
+    "Uniprot:H1UBJ2", 
+    "Uniprot:Q9XWQ4", 
+    "NCBI gene:172847"
+  ], 
+  [
+    "Uniprot:P07237", 
+    "NCBI gene:5034"
+  ], 
+  [
+    "Uniprot:Q8WZ42", 
+    "NCBI gene:7273"
+  ], 
+  [
+    "Uniprot:Q9UM54", 
+    "NCBI gene:4646"
+  ], 
+  [
+    "Uniprot:Q08176", 
+    "NCBI gene:854131"
+  ], 
+  [
+    "Uniprot:P10417", 
+    "NCBI gene:12043"
+  ], 
+  [
+    "PubChem:5943", 
+    "CHEBI:3400"
+  ], 
+  [
+    "Uniprot:P27661", 
+    "NCBI gene:15270"
+  ], 
+  [
+    "PubChem:11181459", 
+    "CHEBI:71580"
+  ], 
+  [
+    "Uniprot:P40791", 
+    "NCBI gene:36032"
+  ], 
+  [
+    "Uniprot:P18653", 
+    "NCBI gene:20111"
+  ], 
+  [
+    "Uniprot:Q9CQS8", 
+    "NCBI gene:66212"
+  ], 
+  [
+    "Uniprot:Q9I8L5", 
+    "NCBI gene:171481"
+  ], 
+  [
+    "Uniprot:P52209", 
+    "NCBI gene:5226"
+  ], 
+  [
+    "Uniprot:Q9R0S0", 
+    "NCBI gene:23882"
+  ], 
+  [
+    "Uniprot:Q92734", 
+    "NCBI gene:10342"
+  ], 
+  [
+    "Uniprot:Q15468", 
+    "NCBI gene:6491"
+  ], 
+  [
+    "Uniprot:P26321", 
+    "NCBI gene:855972"
+  ], 
+  [
+    "Uniprot:Q8CIG8", 
+    "NCBI gene:27374"
+  ], 
+  [
+    "Uniprot:P04049", 
+    "NCBI gene:5894"
+  ], 
+  [
+    "Uniprot:Q61169", 
+    "NCBI gene:14465"
+  ], 
+  [
+    "Uniprot:P35492", 
+    "NCBI gene:15109"
+  ], 
+  [
+    "Uniprot:Q9EPB4", 
+    "NCBI gene:66824"
+  ], 
+  [
+    "Uniprot:O88658", 
+    "NCBI gene:117548"
+  ], 
+  [
+    "Uniprot:O08875", 
+    "NCBI gene:83825"
+  ], 
+  [
+    "Uniprot:P48598", 
+    "NCBI gene:45525"
+  ], 
+  [
+    "Uniprot:Q9BV38", 
+    "NCBI gene:57418"
+  ], 
+  [
+    "PubChem:8515", 
+    "CHEBI:90695"
+  ], 
+  [
+    "PubChem:6035", 
+    "CHEBI:472552"
+  ], 
+  [
+    "PubChem:588", 
+    "CHEBI:16737"
+  ], 
+  [
+    "Uniprot:Q04792", 
+    "NCBI gene:855291"
+  ], 
+  [
+    "PubChem:92133", 
+    "CHEBI:15380"
+  ], 
+  [
+    "Uniprot:Q61575", 
+    "NCBI gene:15218"
+  ], 
+  [
+    "PubChem:5362549", 
+    "CHEBI:49637", 
+    "CHEBI:24634"
+  ], 
+  [
+    "Uniprot:P44791", 
+    "NCBI gene:949684"
+  ], 
+  [
+    "Uniprot:P18502", 
+    "NCBI gene:35851"
+  ], 
+  [
+    "Uniprot:Q9U298", 
+    "NCBI gene:175072"
+  ], 
+  [
+    "Uniprot:Q9QZI9", 
+    "NCBI gene:26943"
+  ], 
+  [
+    "PubChem:5994", 
+    "CHEBI:17026"
+  ], 
+  [
+    "Uniprot:P23396", 
+    "NCBI gene:6188"
+  ], 
+  [
+    "Uniprot:Q62632", 
+    "NCBI gene:79210"
+  ], 
+  [
+    "Uniprot:G3G8W1", 
+    "NCBI gene:2952533"
+  ], 
+  [
+    "PubChem:442292", 
+    "CHEBI:8206"
+  ], 
+  [
+    "Uniprot:P68032", 
+    "NCBI gene:70"
+  ], 
+  [
+    "Uniprot:P62820", 
+    "NCBI gene:5861"
+  ], 
+  [
+    "Uniprot:Q05789", 
+    "NCBI gene:850908"
+  ], 
+  [
+    "PubChem:6917907", 
+    "CHEBI:52646"
+  ], 
+  [
+    "PubChem:2733618", 
+    "PubChem:6508724", 
+    "CHEBI:52077"
+  ], 
+  [
+    "Uniprot:A0A0B4LF29", 
+    "Uniprot:A0A0B4LFC7", 
+    "Uniprot:A0A126GUP1", 
+    "Uniprot:A1Z9M3", 
+    "Uniprot:A1Z9M4", 
+    "Uniprot:A8DYD1", 
+    "Uniprot:A8DYD2", 
+    "Uniprot:A8DYD3", 
+    "Uniprot:B7YZE6", 
+    "Uniprot:Q7KHK4", 
+    "NCBI gene:36571"
+  ], 
+  [
+    "PubChem:77213", 
+    "CHEBI:76793"
+  ], 
+  [
+    "Uniprot:Q04781", 
+    "NCBI gene:855289"
+  ], 
+  [
+    "Uniprot:P15208", 
+    "NCBI gene:16337"
+  ], 
+  [
+    "Uniprot:Q63943", 
+    "NCBI gene:17261"
+  ], 
+  [
+    "Uniprot:Q99594", 
+    "NCBI gene:7005"
+  ], 
+  [
+    "Uniprot:Q05466", 
+    "NCBI gene:827384"
+  ], 
+  [
+    "Uniprot:P12830", 
+    "NCBI gene:999"
+  ], 
+  [
+    "Uniprot:Q05397", 
+    "NCBI gene:5747"
+  ], 
+  [
+    "Uniprot:P01575", 
+    "NCBI gene:15977"
+  ], 
+  [
+    "Uniprot:P39689", 
+    "NCBI gene:12575"
+  ], 
+  [
+    "Uniprot:Q9QZ05", 
+    "NCBI gene:27103"
+  ], 
+  [
+    "Uniprot:P27619", 
+    "NCBI gene:45928"
+  ], 
+  [
+    "Uniprot:P06876", 
+    "NCBI gene:17863"
+  ], 
+  [
+    "Uniprot:P51686", 
+    "NCBI gene:10803"
+  ], 
+  [
+    "Uniprot:P51450", 
+    "NCBI gene:19885"
+  ], 
+  [
+    "Uniprot:Q6GTZ3", 
+    "NCBI gene:15901"
+  ], 
+  [
+    "Uniprot:P22893", 
+    "NCBI gene:22695"
+  ], 
+  [
+    "Uniprot:P47048", 
+    "NCBI gene:853398"
+  ], 
+  [
+    "Uniprot:Q07817", 
+    "NCBI gene:598"
+  ], 
+  [
+    "Uniprot:O09100", 
+    "NCBI gene:14461"
+  ], 
+  [
+    "Uniprot:P12850", 
+    "NCBI gene:14825"
+  ], 
+  [
+    "Uniprot:P43488", 
+    "NCBI gene:22164"
+  ], 
+  [
+    "Uniprot:O75116", 
+    "NCBI gene:9475"
+  ], 
+  [
+    "Uniprot:P68400", 
+    "NCBI gene:1457"
+  ], 
+  [
+    "Uniprot:Q06507", 
+    "NCBI gene:11911"
+  ], 
+  [
+    "Uniprot:Q91VT1", 
+    "NCBI gene:68501"
+  ], 
+  [
+    "Uniprot:P14066", 
+    "NCBI gene:851491"
+  ], 
+  [
+    "Uniprot:Q62093", 
+    "NCBI gene:20382"
+  ], 
+  [
+    "Uniprot:P08553", 
+    "NCBI gene:18040"
+  ], 
+  [
+    "Uniprot:Q9JHG7", 
+    "NCBI gene:30955"
+  ], 
+  [
+    "Uniprot:O88522", 
+    "NCBI gene:16151"
+  ], 
+  [
+    "Uniprot:Q12778", 
+    "NCBI gene:2308"
+  ], 
+  [
+    "Uniprot:Q00987", 
+    "NCBI gene:4193"
+  ], 
+  [
+    "PubChem:9548661", 
+    "CHEBI:23614"
+  ], 
+  [
+    "Uniprot:P30280", 
+    "NCBI gene:12444"
+  ], 
+  [
+    "PubChem:5288382", 
+    "CHEBI:5292"
+  ], 
+  [
+    "Uniprot:P55258", 
+    "NCBI gene:17274"
+  ], 
+  [
+    "Uniprot:O15169", 
+    "NCBI gene:8312"
+  ], 
+  [
+    "Uniprot:Q9JK66", 
+    "NCBI gene:56816"
+  ], 
+  [
+    "Uniprot:C6G9P0", 
+    "NCBI gene:8094872"
+  ], 
+  [
+    "Uniprot:P53566", 
+    "NCBI gene:12606"
+  ], 
+  [
+    "PubChem:4873", 
+    "CHEBI:32588"
+  ], 
+  [
+    "Uniprot:Q8BRK8", 
+    "NCBI gene:108079"
+  ], 
+  [
+    "Uniprot:Q9UN37", 
+    "NCBI gene:27183"
+  ], 
+  [
+    "Uniprot:O16368", 
+    "NCBI gene:178988"
+  ], 
+  [
+    "PubChem:9547172", 
+    "CHEBI:60427"
+  ], 
+  [
+    "Uniprot:Q6VY05", 
+    "NCBI gene:213236"
+  ], 
+  [
+    "Uniprot:Q6WBX7", 
+    "NCBI gene:231724"
+  ], 
+  [
+    "Uniprot:P51816", 
+    "NCBI gene:2334"
+  ], 
+  [
+    "Uniprot:P62987", 
+    "NCBI gene:7311"
+  ], 
+  [
+    "Uniprot:Q8C788", 
+    "NCBI gene:170625"
+  ], 
+  [
+    "Uniprot:P56473", 
+    "NCBI gene:11604"
+  ], 
+  [
+    "Uniprot:Q13772", 
+    "NCBI gene:8031"
+  ], 
+  [
+    "Uniprot:Q9VEG5", 
+    "NCBI gene:42132"
+  ], 
+  [
+    "Uniprot:Q80Z19", 
+    "NCBI gene:17831"
+  ], 
+  [
+    "Uniprot:Q91VJ1", 
+    "NCBI gene:383619"
+  ], 
+  [
+    "PubChem:8758", 
+    "CHEBI:44557"
+  ], 
+  [
+    "PubChem:10234210", 
+    "CHEBI:52770"
+  ], 
+  [
+    "Uniprot:P09914", 
+    "NCBI gene:3434"
+  ], 
+  [
+    "Uniprot:Q86UE8", 
+    "NCBI gene:11011"
+  ], 
+  [
+    "PubChem:91435", 
+    "CHEBI:24996"
+  ], 
+  [
+    "Uniprot:P11310", 
+    "NCBI gene:34"
+  ], 
+  [
+    "Uniprot:P60953", 
+    "NCBI gene:998"
+  ], 
+  [
+    "Uniprot:Q09490", 
+    "NCBI gene:174050"
+  ], 
+  [
+    "Uniprot:D3ZBQ1", 
+    "NCBI gene:294515"
+  ], 
+  [
+    "Uniprot:Q02630", 
+    "NCBI gene:855066"
+  ], 
+  [
+    "Uniprot:P97946", 
+    "NCBI gene:14205"
+  ], 
+  [
+    "Uniprot:P41183", 
+    "NCBI gene:12053"
+  ], 
+  [
+    "Uniprot:P08050", 
+    "NCBI gene:24392"
+  ], 
+  [
+    "Uniprot:P15884", 
+    "NCBI gene:6925"
+  ], 
+  [
+    "Uniprot:Q86TG7", 
+    "NCBI gene:23089"
+  ], 
+  [
+    "PubChem:5753", 
+    "CHEBI:16827"
+  ], 
+  [
+    "Uniprot:Q5EB52", 
+    "NCBI gene:4232"
+  ], 
+  [
+    "Uniprot:Q6S5J6", 
+    "NCBI gene:79264"
+  ], 
+  [
+    "Uniprot:O96020", 
+    "NCBI gene:9134"
+  ], 
+  [
+    "Uniprot:Q9NSY0", 
+    "NCBI gene:340371"
+  ], 
+  [
+    "Uniprot:O95067", 
+    "NCBI gene:9133"
+  ], 
+  [
+    "Uniprot:Q8C253", 
+    "NCBI gene:16854"
+  ], 
+  [
+    "Uniprot:Q6NQK2", 
+    "NCBI gene:839145"
+  ], 
+  [
+    "Uniprot:Q02224", 
+    "NCBI gene:1062"
+  ], 
+  [
+    "Uniprot:P10238", 
+    "NCBI gene:24271474"
+  ], 
+  [
+    "Uniprot:Q9N3T8", 
+    "NCBI gene:171914"
+  ], 
+  [
+    "Uniprot:Q2NL51", 
+    "NCBI gene:606496"
+  ], 
+  [
+    "Uniprot:Q9VVJ6", 
+    "NCBI gene:326198"
+  ], 
+  [
+    "Uniprot:Q9GZQ8", 
+    "NCBI gene:81631"
+  ], 
+  [
+    "PubChem:5917", 
+    "CHEBI:34910"
+  ], 
+  [
+    "Uniprot:P35583", 
+    "NCBI gene:15376"
+  ], 
+  [
+    "PubChem:504166", 
+    "CHEBI:7896"
+  ], 
+  [
+    "Uniprot:P15019", 
+    "NCBI gene:851068"
+  ], 
+  [
+    "Uniprot:P22981", 
+    "NCBI gene:178104"
+  ], 
+  [
+    "PubChem:45479437", 
+    "CHEBI:62041"
+  ], 
+  [
+    "Uniprot:P70658", 
+    "NCBI gene:12767"
+  ], 
+  [
+    "Uniprot:Q5TBB1", 
+    "NCBI gene:79621"
+  ], 
+  [
+    "Uniprot:O00571", 
+    "NCBI gene:1654"
+  ], 
+  [
+    "Uniprot:Q6NUQ1", 
+    "NCBI gene:60561"
+  ], 
+  [
+    "Uniprot:Q9UBS4", 
+    "NCBI gene:51726"
+  ], 
+  [
+    "Uniprot:P25293", 
+    "NCBI gene:853922"
+  ], 
+  [
+    "PubChem:3973", 
+    "CHEBI:65329"
+  ], 
+  [
+    "Uniprot:P25911", 
+    "NCBI gene:17096"
+  ], 
+  [
+    "Uniprot:P30183", 
+    "NCBI gene:829904"
+  ], 
+  [
+    "PubChem:8082", 
+    "CHEBI:18049"
+  ], 
+  [
+    "PubChem:5056", 
+    "CHEBI:27881"
+  ], 
+  [
+    "Uniprot:Q5TCZ1", 
+    "NCBI gene:9644"
+  ], 
+  [
+    "Uniprot:P14965", 
+    "NCBI gene:2538768"
+  ], 
+  [
+    "Uniprot:Q94CD5", 
+    "NCBI gene:834630"
+  ], 
+  [
+    "Uniprot:Q14AT2", 
+    "NCBI gene:83558"
+  ], 
+  [
+    "Uniprot:P14199", 
+    "NCBI gene:35246"
+  ], 
+  [
+    "PubChem:43031", 
+    "CHEBI:50010"
+  ], 
+  [
+    "Uniprot:Q9Y261", 
+    "NCBI gene:3170"
+  ], 
+  [
+    "Uniprot:P36122", 
+    "NCBI gene:853898"
+  ], 
+  [
+    "Uniprot:Q9DCT2", 
+    "NCBI gene:68349"
+  ], 
+  [
+    "Uniprot:Q96PK6", 
+    "NCBI gene:10432"
+  ], 
+  [
+    "Uniprot:P81274", 
+    "NCBI gene:29899"
+  ], 
+  [
+    "Uniprot:Q9NPH5", 
+    "NCBI gene:50507"
+  ], 
+  [
+    "Uniprot:Q22712", 
+    "NCBI gene:175490"
+  ], 
+  [
+    "Uniprot:P40499", 
+    "NCBI gene:854718"
+  ], 
+  [
+    "Uniprot:P00493", 
+    "NCBI gene:15452"
+  ], 
+  [
+    "Uniprot:P38270", 
+    "NCBI gene:852425"
+  ], 
+  [
+    "Uniprot:Q21166", 
+    "NCBI gene:180992"
+  ], 
+  [
+    "Uniprot:Q7JNL9", 
+    "NCBI gene:36001"
+  ], 
+  [
+    "PubChem:445420", 
+    "CHEBI:43626", 
+    "CHEBI:69136"
+  ], 
+  [
+    "Uniprot:P10361", 
+    "NCBI gene:24842"
+  ], 
+  [
+    "Uniprot:P43081", 
+    "NCBI gene:14913"
+  ], 
+  [
+    "Uniprot:G5EFY4", 
+    "NCBI gene:179058"
+  ], 
+  [
+    "Uniprot:P01732", 
+    "NCBI gene:925"
+  ], 
+  [
+    "Uniprot:A0A125YKY6", 
+    "NCBI gene:7900047"
+  ], 
+  [
+    "Uniprot:Q8R4Z9", 
+    "NCBI gene:192647"
+  ], 
+  [
+    "PubChem:161282", 
+    "PubChem:24636", 
+    "CHEBI:35458"
+  ], 
+  [
+    "PubChem:542762", 
+    "CHEBI:64206"
+  ], 
+  [
+    "Uniprot:Q9VTU1", 
+    "NCBI gene:39383"
+  ], 
+  [
+    "Uniprot:Q61457", 
+    "NCBI gene:12447"
+  ], 
+  [
+    "Uniprot:Q9R013", 
+    "NCBI gene:56464"
+  ], 
+  [
+    "Uniprot:P21359", 
+    "NCBI gene:4763"
+  ], 
+  [
+    "Uniprot:Q96AQ8", 
+    "NCBI gene:63933"
+  ], 
+  [
+    "Uniprot:Q8K2K6", 
+    "NCBI gene:15463"
+  ], 
+  [
+    "PubChem:5257127", 
+    "PubChem:750", 
+    "CHEBI:5460", 
+    "CHEBI:15428"
+  ], 
+  [
+    "Uniprot:Q80ZI6", 
+    "NCBI gene:227738"
+  ], 
+  [
+    "PubChem:54675850", 
+    "CHEBI:30762"
+  ], 
+  [
+    "Uniprot:Q9H6Z9", 
+    "NCBI gene:112399"
+  ], 
+  [
+    "PubChem:2603", 
+    "CHEBI:3259"
+  ], 
+  [
+    "Uniprot:Q86YC2", 
+    "NCBI gene:79728"
+  ], 
+  [
+    "Uniprot:Q61221", 
+    "NCBI gene:15251"
+  ], 
+  [
+    "Uniprot:Q95Q95", 
+    "NCBI gene:172167"
+  ], 
+  [
+    "Uniprot:Q60989", 
+    "NCBI gene:11798"
+  ], 
+  [
+    "Uniprot:P33981", 
+    "NCBI gene:7272"
+  ], 
+  [
+    "PubChem:5086465", 
+    "CHEBI:30066"
+  ], 
+  [
+    "Uniprot:Q15418", 
+    "NCBI gene:6195"
+  ], 
+  [
+    "Uniprot:Q9JHI8", 
+    "NCBI gene:50490"
+  ], 
+  [
+    "Uniprot:P63027", 
+    "NCBI gene:6844"
+  ], 
+  [
+    "Uniprot:Q9PUD0", 
+    "NCBI gene:30710"
+  ], 
+  [
+    "PubChem:2719", 
+    "CHEBI:3638"
+  ], 
+  [
+    "Uniprot:Q9NTG7", 
+    "NCBI gene:23410"
+  ], 
+  [
+    "Uniprot:Q15019", 
+    "NCBI gene:4735"
+  ], 
+  [
+    "Uniprot:P01731", 
+    "NCBI gene:12525"
+  ], 
+  [
+    "Uniprot:P05125", 
+    "NCBI gene:230899"
+  ], 
+  [
+    "Uniprot:Q12114", 
+    "NCBI gene:851041"
+  ], 
+  [
+    "Uniprot:Q9LPT1", 
+    "NCBI gene:841483"
+  ], 
+  [
+    "PubChem:148124", 
+    "CHEBI:4672"
+  ], 
+  [
+    "PubChem:6253", 
+    "CHEBI:28680"
+  ], 
+  [
+    "Uniprot:Q923B6", 
+    "NCBI gene:117167"
+  ], 
+  [
+    "PubChem:14625150", 
+    "PubChem:2149", 
+    "CHEBI:16080"
+  ], 
+  [
+    "Uniprot:P39923", 
+    "NCBI gene:856647"
+  ], 
+  [
+    "Uniprot:P21580", 
+    "NCBI gene:7128"
+  ], 
+  [
+    "Uniprot:Q9BYG4", 
+    "NCBI gene:84552"
+  ], 
+  [
+    "Uniprot:Q12355", 
+    "NCBI gene:851625"
+  ], 
+  [
+    "Uniprot:O76742", 
+    "NCBI gene:42841"
+  ], 
+  [
+    "Uniprot:Q9HCE0", 
+    "NCBI gene:57724"
+  ], 
+  [
+    "Uniprot:Q8TE12", 
+    "NCBI gene:4009"
+  ], 
+  [
+    "Uniprot:D4QFJ3", 
+    "NCBI gene:1487343"
+  ], 
+  [
+    "Uniprot:F5HB62", 
+    "NCBI gene:4961484"
+  ], 
+  [
+    "Uniprot:Q92328", 
+    "NCBI gene:854153"
+  ], 
+  [
+    "Uniprot:P27773", 
+    "NCBI gene:14827"
+  ], 
+  [
+    "Uniprot:Q60987", 
+    "NCBI gene:15228"
+  ], 
+  [
+    "Uniprot:P01375", 
+    "NCBI gene:7124"
+  ], 
+  [
+    "PubChem:4629", 
+    "CHEBI:38322"
+  ], 
+  [
+    "PubChem:72429", 
+    "CHEBI:6426"
+  ], 
+  [
+    "Uniprot:P57724", 
+    "NCBI gene:59092"
+  ], 
+  [
+    "Uniprot:Q38806", 
+    "NCBI gene:826616"
+  ], 
+  [
+    "Uniprot:P08646", 
+    "NCBI gene:41140"
+  ], 
+  [
+    "Uniprot:Q8IZL8", 
+    "NCBI gene:27043"
+  ], 
+  [
+    "Uniprot:P54754", 
+    "NCBI gene:13845"
+  ], 
+  [
+    "Uniprot:Q9BPX6", 
+    "NCBI gene:10367"
+  ], 
+  [
+    "Uniprot:P00519", 
+    "NCBI gene:25"
+  ], 
+  [
+    "Uniprot:Q8T8Y5", 
+    "NCBI gene:36251"
+  ], 
+  [
+    "Uniprot:O62245", 
+    "NCBI gene:176765"
+  ], 
+  [
+    "Uniprot:Q3UNW5", 
+    "NCBI gene:81879"
+  ], 
+  [
+    "Uniprot:Q7Z7L1", 
+    "NCBI gene:91607"
+  ], 
+  [
+    "Uniprot:O74804", 
+    "NCBI gene:2540492"
+  ], 
+  [
+    "Uniprot:Q8SXP8", 
+    "Uniprot:Q9W1I0", 
+    "NCBI gene:37781"
+  ], 
+  [
+    "Uniprot:O35595", 
+    "NCBI gene:19207"
+  ], 
+  [
+    "Uniprot:P04608", 
+    "NCBI gene:155871"
+  ], 
+  [
+    "Uniprot:Q3E798", 
+    "NCBI gene:850789"
+  ], 
+  [
+    "PubChem:2907", 
+    "CHEBI:4027"
+  ], 
+  [
+    "Uniprot:Q9EQU3", 
+    "NCBI gene:81897"
+  ], 
+  [
+    "Uniprot:Q8N4Z0", 
+    "NCBI gene:115273"
+  ], 
+  [
+    "Uniprot:P28028", 
+    "NCBI gene:109880"
+  ], 
+  [
+    "PubChem:288", 
+    "CHEBI:17126"
+  ], 
+  [
+    "Uniprot:Q95XR4", 
+    "NCBI gene:171787"
+  ], 
+  [
+    "Uniprot:P44790", 
+    "NCBI gene:950801"
+  ], 
+  [
+    "Uniprot:O43521", 
+    "NCBI gene:10018"
+  ], 
+  [
+    "Uniprot:Q9Y286", 
+    "NCBI gene:27036"
+  ], 
+  [
+    "PubChem:11960529", 
+    "CHEBI:62880"
+  ], 
+  [
+    "PubChem:5997", 
+    "CHEBI:3659", 
+    "CHEBI:16113"
+  ], 
+  [
+    "PubChem:443781", 
+    "CHEBI:31464"
+  ], 
+  [
+    "Uniprot:Q7KRZ3", 
+    "Uniprot:Q9VBI4", 
+    "NCBI gene:43163"
+  ], 
+  [
+    "Uniprot:P40379", 
+    "NCBI gene:2540433"
+  ], 
+  [
+    "Uniprot:J3QMK1", 
+    "NCBI gene:244495"
+  ], 
+  [
+    "Uniprot:P13002", 
+    "NCBI gene:37038"
+  ], 
+  [
+    "PubChem:4216", 
+    "CHEBI:78761"
+  ], 
+  [
+    "Uniprot:O95471", 
+    "NCBI gene:1366"
+  ], 
+  [
+    "Uniprot:P61019", 
+    "NCBI gene:5862"
+  ], 
+  [
+    "Uniprot:Q96PG8", 
+    "Uniprot:Q9BXH1", 
+    "NCBI gene:27113"
+  ], 
+  [
+    "Uniprot:O95999", 
+    "NCBI gene:8915"
+  ], 
+  [
+    "PubChem:104751", 
+    "CHEBI:60888"
+  ], 
+  [
+    "Uniprot:Q8BMI3", 
+    "NCBI gene:260302"
+  ], 
+  [
+    "Uniprot:Q61462", 
+    "NCBI gene:13057"
+  ], 
+  [
+    "Uniprot:P22366", 
+    "NCBI gene:17874"
+  ], 
+  [
+    "PubChem:30318", 
+    "CHEBI:88215"
+  ], 
+  [
+    "Uniprot:G5ECL2", 
+    "NCBI gene:178284"
+  ], 
+  [
+    "Uniprot:Q7KVW1", 
+    "Uniprot:Q9W4C4", 
+    "NCBI gene:31459"
+  ], 
+  [
+    "Uniprot:Q641Q2", 
+    "NCBI gene:387680"
+  ], 
+  [
+    "Uniprot:Q9UTR8", 
+    "NCBI gene:2543254"
+  ], 
+  [
+    "Uniprot:O00750", 
+    "NCBI gene:5287"
+  ], 
+  [
+    "PubChem:46931152", 
+    "CHEBI:60356"
+  ], 
+  [
+    "Uniprot:P10148", 
+    "NCBI gene:20296"
+  ], 
+  [
+    "Uniprot:Q9VTU7", 
+    "NCBI gene:39389"
+  ], 
+  [
+    "Uniprot:O55055", 
+    "NCBI gene:13434"
+  ], 
+  [
+    "Uniprot:Q08050", 
+    "NCBI gene:2305"
+  ], 
+  [
+    "Uniprot:Q00690", 
+    "NCBI gene:20339"
+  ], 
+  [
+    "Uniprot:Q9VVG4", 
+    "NCBI gene:39940"
+  ], 
+  [
+    "Uniprot:Q9LDL7", 
+    "NCBI gene:834867"
+  ], 
+  [
+    "Uniprot:P68403", 
+    "NCBI gene:25023"
+  ], 
+  [
+    "Uniprot:O35618", 
+    "NCBI gene:17248"
+  ], 
+  [
+    "Uniprot:Q96M93", 
+    "NCBI gene:132612"
+  ], 
+  [
+    "Uniprot:Q70AM4", 
+    "NCBI gene:305967"
+  ], 
+  [
+    "Uniprot:Q9Z0J0", 
+    "NCBI gene:67963"
+  ], 
+  [
+    "Uniprot:P11473", 
+    "NCBI gene:7421"
+  ], 
+  [
+    "Uniprot:P63280", 
+    "NCBI gene:22196"
+  ], 
+  [
+    "Uniprot:Q8BYR2", 
+    "NCBI gene:16798"
+  ], 
+  [
+    "Uniprot:Q10719", 
+    "NCBI gene:2541741"
+  ], 
+  [
+    "Uniprot:P23284", 
+    "NCBI gene:5479"
+  ], 
+  [
+    "Uniprot:P43146", 
+    "NCBI gene:1630"
+  ], 
+  [
+    "Uniprot:P97445", 
+    "NCBI gene:12286"
+  ], 
+  [
+    "Uniprot:P00332", 
+    "NCBI gene:2538902"
+  ], 
+  [
+    "PubChem:164735", 
+    "CHEBI:17969"
+  ], 
+  [
+    "PubChem:39042", 
+    "CHEBI:47612"
+  ], 
+  [
+    "Uniprot:G5EEV7", 
+    "Uniprot:G5EF88", 
+    "Uniprot:Q68TI8", 
+    "Uniprot:S6F588", 
+    "Uniprot:S6FD39", 
+    "NCBI gene:177770"
+  ], 
+  [
+    "Uniprot:P27999", 
+    "NCBI gene:852810"
+  ], 
+  [
+    "Uniprot:Q12888", 
+    "NCBI gene:7158"
+  ], 
+  [
+    "PubChem:1598", 
+    "CHEBI:131184"
+  ], 
+  [
+    "Uniprot:O54990", 
+    "NCBI gene:19126"
+  ], 
+  [
+    "Uniprot:P26687", 
+    "NCBI gene:22160"
+  ], 
+  [
+    "Uniprot:Q60856", 
+    "NCBI gene:23961"
+  ], 
+  [
+    "Uniprot:Q71F23", 
+    "NCBI gene:79682"
+  ], 
+  [
+    "Uniprot:P23738", 
+    "NCBI gene:15186"
+  ], 
+  [
+    "Uniprot:P25859", 
+    "NCBI gene:824585"
+  ], 
+  [
+    "Uniprot:P28700", 
+    "NCBI gene:20181"
+  ], 
+  [
+    "Uniprot:P08536", 
+    "NCBI gene:853466"
+  ], 
+  [
+    "Uniprot:Q7L1W4", 
+    "NCBI gene:55144"
+  ], 
+  [
+    "Uniprot:P50704", 
+    "NCBI gene:13240"
+  ], 
+  [
+    "PubChem:159832", 
+    "CHEBI:25805"
+  ], 
+  [
+    "Uniprot:O13852", 
+    "NCBI gene:2542244"
+  ], 
+  [
+    "Uniprot:P05161", 
+    "NCBI gene:9636"
+  ], 
+  [
+    "Uniprot:P30276", 
+    "NCBI gene:12442"
+  ], 
+  [
+    "Uniprot:Q92995", 
+    "NCBI gene:8975"
+  ], 
+  [
+    "Uniprot:P62984", 
+    "NCBI gene:22186"
+  ], 
+  [
+    "Uniprot:Q99661", 
+    "NCBI gene:11004"
+  ], 
+  [
+    "Uniprot:Q9UDY8", 
+    "NCBI gene:10892"
+  ], 
+  [
+    "PubChem:5280352", 
+    "CHEBI:16990"
+  ], 
+  [
+    "Uniprot:Q9NYB9", 
+    "NCBI gene:10152"
+  ], 
+  [
+    "Uniprot:P20263", 
+    "NCBI gene:18999"
+  ], 
+  [
+    "PubChem:36462", 
+    "CHEBI:4911"
+  ], 
+  [
+    "Uniprot:Q2F514", 
+    "NCBI gene:944566"
+  ], 
+  [
+    "Uniprot:Q6PAJ1", 
+    "NCBI gene:110279"
+  ], 
+  [
+    "Uniprot:G5EDT1", 
+    "NCBI gene:172249"
+  ], 
+  [
+    "Uniprot:Q58FA4", 
+    "NCBI gene:108961"
+  ], 
+  [
+    "Uniprot:O73727", 
+    "NCBI gene:30262"
+  ], 
+  [
+    "Uniprot:P63158", 
+    "NCBI gene:15289"
+  ], 
+  [
+    "Uniprot:Q9C075", 
+    "NCBI gene:25984"
+  ], 
+  [
+    "PubChem:1174", 
+    "CHEBI:17568"
+  ], 
+  [
+    "Uniprot:P35590", 
+    "NCBI gene:7075"
+  ], 
+  [
+    "Uniprot:C4R5T1", 
+    "NCBI gene:8200351"
+  ], 
+  [
+    "Uniprot:Q99816", 
+    "NCBI gene:7251"
+  ], 
+  [
+    "Uniprot:Q9UI95", 
+    "NCBI gene:10459"
+  ], 
+  [
+    "Uniprot:P32455", 
+    "NCBI gene:2633"
+  ], 
+  [
+    "Uniprot:Q9Y1I2", 
+    "NCBI gene:32947"
+  ], 
+  [
+    "Uniprot:Q09014", 
+    "NCBI gene:17969"
+  ], 
+  [
+    "Uniprot:P15514", 
+    "NCBI gene:374"
+  ], 
+  [
+    "Uniprot:P39986", 
+    "NCBI gene:856681"
+  ], 
+  [
+    "Uniprot:Q8N5C8", 
+    "NCBI gene:257397"
+  ], 
+  [
+    "Uniprot:Q9BTA9", 
+    "NCBI gene:51322"
+  ], 
+  [
+    "Uniprot:B2GUY2", 
+    "NCBI gene:288562"
+  ], 
+  [
+    "Uniprot:P30825", 
+    "NCBI gene:6541"
+  ], 
+  [
+    "PubChem:5610", 
+    "CHEBI:15760"
+  ], 
+  [
+    "Uniprot:P03962", 
+    "NCBI gene:856692"
+  ], 
+  [
+    "Uniprot:P38139", 
+    "NCBI gene:852503"
+  ], 
+  [
+    "Uniprot:G5ED76", 
+    "NCBI gene:177594"
+  ], 
+  [
+    "Uniprot:O15389", 
+    "NCBI gene:8778"
+  ], 
+  [
+    "Uniprot:Q9Z136", 
+    "NCBI gene:60445"
+  ], 
+  [
+    "Uniprot:Q17RY0", 
+    "NCBI gene:80315"
+  ], 
+  [
+    "PubChem:9941444", 
+    "CHEBI:72312"
+  ], 
+  [
+    "Uniprot:Q9TXI7", 
+    "NCBI gene:172280"
+  ], 
+  [
+    "Uniprot:Q9Y6I3", 
+    "NCBI gene:29924"
+  ], 
+  [
+    "Uniprot:P87314", 
+    "NCBI gene:2540219"
+  ], 
+  [
+    "Uniprot:Q16181", 
+    "NCBI gene:989"
+  ], 
+  [
+    "Uniprot:Q9UHD2", 
+    "NCBI gene:29110"
+  ], 
+  [
+    "PubChem:3541", 
+    "CHEBI:47495"
+  ], 
+  [
+    "Uniprot:Q13618", 
+    "NCBI gene:8452"
+  ], 
+  [
+    "PubChem:1148", 
+    "PubChem:4099458", 
+    "CHEBI:27897", 
+    "CHEBI:9769"
+  ], 
+  [
+    "Uniprot:Q9Y243", 
+    "NCBI gene:10000"
+  ], 
+  [
+    "Uniprot:P04412", 
+    "NCBI gene:37455"
+  ], 
+  [
+    "Uniprot:Q9EQY0", 
+    "NCBI gene:78943"
+  ], 
+  [
+    "Uniprot:Q01083", 
+    "NCBI gene:35253"
+  ], 
+  [
+    "Uniprot:Q9EQW6", 
+    "NCBI gene:50913"
+  ], 
+  [
+    "Uniprot:Q9WTR1", 
+    "NCBI gene:22368"
+  ], 
+  [
+    "Uniprot:Q6PF93", 
+    "NCBI gene:225326"
+  ], 
+  [
+    "Uniprot:Q8JUX6", 
+    "NCBI gene:956309"
+  ], 
+  [
+    "Uniprot:Q6TCG8", 
+    "NCBI gene:231474"
+  ], 
+  [
+    "Uniprot:P38532", 
+    "NCBI gene:15499"
+  ], 
+  [
+    "Uniprot:P04406", 
+    "NCBI gene:2597"
+  ], 
+  [
+    "Uniprot:Q56019", 
+    "NCBI gene:1254408"
+  ], 
+  [
+    "PubChem:5893", 
+    "CHEBI:15846", 
+    "CHEBI:7422"
+  ], 
+  [
+    "Uniprot:Q9ES19", 
+    "NCBI gene:79255"
+  ], 
+  [
+    "Uniprot:P00942", 
+    "NCBI gene:851620"
+  ], 
+  [
+    "PubChem:457193", 
+    "CHEBI:2446", 
+    "CHEBI:27666"
+  ], 
+  [
+    "Uniprot:Q9H1K1", 
+    "NCBI gene:23479"
+  ], 
+  [
+    "Uniprot:O93548", 
+    "NCBI gene:81538"
+  ], 
+  [
+    "PubChem:25244438", 
+    "PubChem:5282290", 
+    "CHEBI:60286"
+  ], 
+  [
+    "Uniprot:O95721", 
+    "NCBI gene:9342"
+  ], 
+  [
+    "Uniprot:P23528", 
+    "NCBI gene:1072"
+  ], 
+  [
+    "Uniprot:Q8IRB5", 
+    "NCBI gene:326205"
+  ], 
+  [
+    "Uniprot:Q8TDW0", 
+    "NCBI gene:84230"
+  ], 
+  [
+    "Uniprot:P41155", 
+    "NCBI gene:16994"
+  ], 
+  [
+    "Uniprot:Q9XZI6", 
+    "NCBI gene:171952"
+  ], 
+  [
+    "Uniprot:P0DP23", 
+    "Uniprot:P0DP24", 
+    "Uniprot:P0DP25", 
+    "NCBI gene:801", 
+    "NCBI gene:805", 
+    "NCBI gene:808"
+  ], 
+  [
+    "PubChem:5462310", 
+    "CHEBI:27594"
+  ], 
+  [
+    "Uniprot:P54132", 
+    "NCBI gene:641"
+  ], 
+  [
+    "PubChem:5362487", 
+    "CHEBI:26833"
+  ], 
+  [
+    "Uniprot:O43914", 
+    "NCBI gene:7305"
+  ], 
+  [
+    "Uniprot:P10275", 
+    "NCBI gene:367"
+  ], 
+  [
+    "PubChem:9848818", 
+    "CHEBI:80774"
+  ], 
+  [
+    "Uniprot:G5EFY7", 
+    "NCBI gene:174705"
+  ], 
+  [
+    "PubChem:6324668", 
+    "CHEBI:9506"
+  ], 
+  [
+    "Uniprot:D4A7A8", 
+    "NCBI gene:501854"
+  ], 
+  [
+    "Uniprot:Q99MQ3", 
+    "NCBI gene:68943"
+  ], 
+  [
+    "Uniprot:P20722", 
+    "NCBI gene:12161"
+  ], 
+  [
+    "Uniprot:Q5FWU3", 
+    "NCBI gene:363254"
+  ], 
+  [
+    "Uniprot:F1QNE4", 
+    "NCBI gene:30697"
+  ], 
+  [
+    "Uniprot:Q7KTX7", 
+    "NCBI gene:40336"
+  ], 
+  [
+    "Uniprot:Q8C0S1", 
+    "NCBI gene:213550"
+  ], 
+  [
+    "Uniprot:P40926", 
+    "NCBI gene:4191"
+  ], 
+  [
+    "Uniprot:Q6IAA8", 
+    "NCBI gene:55004"
+  ], 
+  [
+    "Uniprot:Q62468", 
+    "NCBI gene:22349"
+  ], 
+  [
+    "PubChem:56069", 
+    "CHEBI:3090"
+  ], 
+  [
+    "Uniprot:O08580", 
+    "NCBI gene:26379"
+  ], 
+  [
+    "Uniprot:Q63639", 
+    "NCBI gene:116676"
+  ], 
+  [
+    "Uniprot:P18340", 
+    "NCBI gene:17329"
+  ], 
+  [
+    "Uniprot:Q91953", 
+    "NCBI gene:395848"
+  ], 
+  [
+    "Uniprot:P41376", 
+    "NCBI gene:820605"
+  ], 
+  [
+    "Uniprot:Q14833", 
+    "NCBI gene:2914"
+  ], 
+  [
+    "Uniprot:A0A0H3MIQ3", 
+    "NCBI gene:7154475"
+  ], 
+  [
+    "Uniprot:P38630", 
+    "NCBI gene:854392"
+  ], 
+  [
+    "Uniprot:O15297", 
+    "NCBI gene:8493"
+  ], 
+  [
+    "Uniprot:P68871", 
+    "NCBI gene:3043"
+  ], 
+  [
+    "Uniprot:P03891", 
+    "NCBI gene:4536"
+  ], 
+  [
+    "Uniprot:P33450", 
+    "NCBI gene:33627"
+  ], 
+  [
+    "Uniprot:Q14469", 
+    "NCBI gene:3280"
+  ], 
+  [
+    "Uniprot:A8JNN5", 
+    "Uniprot:Q9VSI2", 
+    "NCBI gene:38945"
+  ], 
+  [
+    "Uniprot:O75626", 
+    "NCBI gene:639"
+  ], 
+  [
+    "PubChem:9260", 
+    "CHEBI:16898"
+  ], 
+  [
+    "PubChem:2361", 
+    "CHEBI:77013"
+  ], 
+  [
+    "Uniprot:Q94148", 
+    "NCBI gene:266836"
+  ], 
+  [
+    "PubChem:5430", 
+    "CHEBI:45979"
+  ], 
+  [
+    "Uniprot:Q08351", 
+    "NCBI gene:17480"
+  ], 
+  [
+    "PubChem:145742", 
+    "PubChem:6971047", 
+    "CHEBI:17203"
+  ], 
+  [
+    "PubChem:145068", 
+    "CHEBI:16480"
+  ], 
+  [
+    "Uniprot:P00374", 
+    "NCBI gene:1719"
+  ], 
+  [
+    "Uniprot:P22211", 
+    "NCBI gene:855538"
+  ], 
+  [
+    "PubChem:10339178", 
+    "CHEBI:31355"
+  ], 
+  [
+    "Uniprot:Q8C863", 
+    "NCBI gene:16396"
+  ], 
+  [
+    "PubChem:1639", 
+    "CHEBI:40036", 
+    "CHEBI:1448"
+  ], 
+  [
+    "Uniprot:Q91WD9", 
+    "NCBI gene:214189"
+  ], 
+  [
+    "Uniprot:Q5MNZ9", 
+    "NCBI gene:55062"
+  ], 
+  [
+    "Uniprot:Q14457", 
+    "NCBI gene:8678"
+  ], 
+  [
+    "Uniprot:P14904", 
+    "NCBI gene:853758"
+  ], 
+  [
+    "Uniprot:O41940", 
+    "NCBI gene:1497151"
+  ], 
+  [
+    "Uniprot:P05186", 
+    "NCBI gene:249"
+  ], 
+  [
+    "Uniprot:Q7ZUD8", 
+    "NCBI gene:322425"
+  ], 
+  [
+    "PubChem:1986", 
+    "CHEBI:27690"
+  ], 
+  [
+    "Uniprot:P51880", 
+    "NCBI gene:12140"
+  ], 
+  [
+    "Uniprot:Q9V3B8", 
+    "NCBI gene:44786"
+  ], 
+  [
+    "Uniprot:Q16611", 
+    "NCBI gene:578"
+  ], 
+  [
+    "Uniprot:Q06609", 
+    "NCBI gene:5888"
+  ], 
+  [
+    "Uniprot:G3UWD2", 
+    "Uniprot:G3X9W7", 
+    "Uniprot:Q3UM65", 
+    "Uniprot:Q8BQ09", 
+    "NCBI gene:12394"
+  ], 
+  [
+    "Uniprot:P38316", 
+    "NCBI gene:852518"
+  ], 
+  [
+    "PubChem:68740", 
+    "CHEBI:46557"
+  ], 
+  [
+    "Uniprot:Q8IWT6", 
+    "NCBI gene:56262"
+  ], 
+  [
+    "Uniprot:P35569", 
+    "NCBI gene:16367"
+  ], 
+  [
+    "Uniprot:Q9N369", 
+    "Uniprot:U4PRD2", 
+    "NCBI gene:176921"
+  ], 
+  [
+    "Uniprot:Q02748", 
+    "NCBI gene:33835"
+  ], 
+  [
+    "PubChem:3724", 
+    "CHEBI:31705"
+  ], 
+  [
+    "Uniprot:Q86UY6", 
+    "NCBI gene:79829"
+  ], 
+  [
+    "Uniprot:P43005", 
+    "NCBI gene:6505"
+  ], 
+  [
+    "Uniprot:Q9Y6E7", 
+    "NCBI gene:23409"
+  ], 
+  [
+    "Uniprot:P24468", 
+    "NCBI gene:7026"
+  ], 
+  [
+    "Uniprot:P05030", 
+    "NCBI gene:852876"
+  ], 
+  [
+    "Uniprot:P08670", 
+    "NCBI gene:7431"
+  ], 
+  [
+    "Uniprot:Q9BXM7", 
+    "NCBI gene:65018"
+  ], 
+  [
+    "Uniprot:Q80SY9", 
+    "NCBI gene:257632"
+  ], 
+  [
+    "Uniprot:M9MM96", 
+    "NCBI gene:798920"
+  ], 
+  [
+    "Uniprot:E9QLN8", 
+    "NCBI gene:19819"
+  ], 
+  [
+    "Uniprot:P63085", 
+    "NCBI gene:26413"
+  ], 
+  [
+    "Uniprot:P19447", 
+    "NCBI gene:2071"
+  ], 
+  [
+    "PubChem:6433194", 
+    "CHEBI:83267"
+  ], 
+  [
+    "Uniprot:Q9P2M4", 
+    "NCBI gene:57533"
+  ], 
+  [
+    "Uniprot:Q91V98", 
+    "NCBI gene:70445"
+  ], 
+  [
+    "PubChem:3035842", 
+    "CHEBI:81390"
+  ], 
+  [
+    "PubChem:119434", 
+    "CHEBI:29238"
+  ], 
+  [
+    "Uniprot:Q9NYJ8", 
+    "NCBI gene:23118"
+  ], 
+  [
+    "Uniprot:P12883", 
+    "NCBI gene:4625"
+  ], 
+  [
+    "PubChem:462382", 
+    "CHEBI:75142"
+  ], 
+  [
+    "Uniprot:P51480", 
+    "Uniprot:Q64364", 
+    "NCBI gene:12578"
+  ], 
+  [
+    "Uniprot:Q9P802", 
+    "NCBI gene:2538763"
+  ], 
+  [
+    "Uniprot:Q9VDE6", 
+    "NCBI gene:42499"
+  ], 
+  [
+    "Uniprot:P04385", 
+    "NCBI gene:852308"
+  ], 
+  [
+    "Uniprot:Q8C6Q7", 
+    "Uniprot:S4R1M0", 
+    "Uniprot:S4R1S4", 
+    "Uniprot:S4R2V1", 
+    "NCBI gene:19264"
+  ], 
+  [
+    "Uniprot:P91645", 
+    "NCBI gene:32158"
+  ], 
+  [
+    "Uniprot:P08468", 
+    "NCBI gene:855299"
+  ], 
+  [
+    "Uniprot:Q8MQJ7", 
+    "Uniprot:Q9VU14", 
+    "NCBI gene:39454"
+  ], 
+  [
+    "PubChem:1606", 
+    "CHEBI:50154"
+  ], 
+  [
+    "Uniprot:Q8VCW8", 
+    "NCBI gene:264895"
+  ], 
+  [
+    "PubChem:10964", 
+    "CHEBI:566274"
+  ], 
+  [
+    "Uniprot:P57764", 
+    "NCBI gene:79792"
+  ], 
+  [
+    "Uniprot:Q9JLM8", 
+    "NCBI gene:13175"
+  ], 
+  [
+    "PubChem:5311272", 
+    "CHEBI:86193"
+  ], 
+  [
+    "Uniprot:Q8IVP5", 
+    "NCBI gene:139341"
+  ], 
+  [
+    "Uniprot:P21283", 
+    "NCBI gene:528"
+  ], 
+  [
+    "Uniprot:Q5SV02", 
+    "NCBI gene:19360"
+  ], 
+  [
+    "Uniprot:E1JHA3", 
+    "Uniprot:M9PB55", 
+    "Uniprot:M9PC77", 
+    "Uniprot:M9PCD7", 
+    "Uniprot:M9PCS0", 
+    "Uniprot:Q8IPJ3", 
+    "Uniprot:Q9VM88", 
+    "NCBI gene:33950"
+  ], 
+  [
+    "PubChem:6199", 
+    "CHEBI:27616"
+  ], 
+  [
+    "PubChem:10836", 
+    "CHEBI:6809"
+  ], 
+  [
+    "PubChem:6267", 
+    "PubChem:6992089", 
+    "CHEBI:17196"
+  ], 
+  [
+    "Uniprot:Q9VW97", 
+    "NCBI gene:40217"
+  ], 
+  [
+    "Uniprot:P16294", 
+    "NCBI gene:14071"
+  ], 
+  [
+    "Uniprot:P45379", 
+    "NCBI gene:7139"
+  ], 
+  [
+    "PubChem:441145", 
+    "CHEBI:27617"
+  ], 
+  [
+    "PubChem:327653", 
+    "CHEBI:93704"
+  ], 
+  [
+    "Uniprot:P70372", 
+    "NCBI gene:15568"
+  ], 
+  [
+    "Uniprot:P51157", 
+    "NCBI gene:9364"
+  ], 
+  [
+    "Uniprot:P04637", 
+    "NCBI gene:7157"
+  ], 
+  [
+    "PubChem:702", 
+    "CHEBI:4879", 
+    "CHEBI:16236"
+  ], 
+  [
+    "Uniprot:P11655", 
+    "NCBI gene:855760"
+  ], 
+  [
+    "Uniprot:O70571", 
+    "NCBI gene:27273"
+  ], 
+  [
+    "Uniprot:S8GE21", 
+    "NCBI gene:7900125"
+  ], 
+  [
+    "PubChem:1198", 
+    "CHEBI:30887"
+  ], 
+  [
+    "Uniprot:A8DZ29", 
+    "Uniprot:O61380", 
+    "NCBI gene:43839"
+  ], 
+  [
+    "Uniprot:Q13541", 
+    "NCBI gene:1978"
+  ], 
+  [
+    "Uniprot:P68433", 
+    "NCBI gene:360198"
+  ], 
+  [
+    "Uniprot:Q27395", 
+    "NCBI gene:181662"
+  ], 
+  [
+    "Uniprot:P08121", 
+    "NCBI gene:12825"
+  ], 
+  [
+    "Uniprot:P11276", 
+    "NCBI gene:14268"
+  ], 
+  [
+    "PubChem:137", 
+    "PubChem:7048523", 
+    "CHEBI:17549"
+  ], 
+  [
+    "Uniprot:Q8K411", 
+    "NCBI gene:69617"
+  ], 
+  [
+    "Uniprot:Q8IYX4", 
+    "NCBI gene:373863"
+  ], 
+  [
+    "PubChem:27854", 
+    "CHEBI:29035"
+  ], 
+  [
+    "Uniprot:Q22A77", 
+    "NCBI gene:7825902"
+  ], 
+  [
+    "Uniprot:Q99558", 
+    "NCBI gene:9020"
+  ], 
+  [
+    "Uniprot:A0A0B4LFK8", 
+    "Uniprot:A1ZAW0", 
+    "NCBI gene:36993"
+  ], 
+  [
+    "PubChem:457964", 
+    "CHEBI:2766"
+  ], 
+  [
+    "Uniprot:Q12142", 
+    "NCBI gene:851406"
+  ], 
+  [
+    "Uniprot:P03995", 
+    "NCBI gene:14580"
+  ], 
+  [
+    "PubChem:15950376", 
+    "CHEBI:76611"
+  ], 
+  [
+    "PubChem:107735", 
+    "CHEBI:15361", 
+    "CHEBI:14987"
+  ], 
+  [
+    "Uniprot:Q9H4L4", 
+    "NCBI gene:26168"
+  ], 
+  [
+    "Uniprot:Q04721", 
+    "NCBI gene:4853"
+  ], 
+  [
+    "Uniprot:P49023", 
+    "NCBI gene:5829"
+  ], 
+  [
+    "Uniprot:Q99689", 
+    "NCBI gene:9638"
+  ], 
+  [
+    "Uniprot:P17897", 
+    "NCBI gene:17110"
+  ], 
+  [
+    "Uniprot:P78545", 
+    "NCBI gene:1999"
+  ], 
+  [
+    "Uniprot:Q8NE86", 
+    "NCBI gene:90550"
+  ], 
+  [
+    "Uniprot:Q61179", 
+    "NCBI gene:16391"
+  ], 
+  [
+    "Uniprot:P05532", 
+    "NCBI gene:16590"
+  ], 
+  [
+    "PubChem:4311764", 
+    "CHEBI:50985"
+  ], 
+  [
+    "Uniprot:O42115", 
+    "NCBI gene:30657"
+  ], 
+  [
+    "PubChem:159603", 
+    "CHEBI:36706"
+  ], 
+  [
+    "Uniprot:P09527", 
+    "NCBI gene:29448"
+  ], 
+  [
+    "Uniprot:P24864", 
+    "NCBI gene:898"
+  ], 
+  [
+    "Uniprot:P37840", 
+    "NCBI gene:6622"
+  ], 
+  [
+    "Uniprot:Q9W1M7", 
+    "NCBI gene:37733"
+  ], 
+  [
+    "Uniprot:O70405", 
+    "NCBI gene:22241"
+  ], 
+  [
+    "Uniprot:Q94F62", 
+    "NCBI gene:829480"
+  ], 
+  [
+    "Uniprot:P35396", 
+    "NCBI gene:19015"
+  ], 
+  [
+    "Uniprot:P23644", 
+    "NCBI gene:855243"
+  ], 
+  [
+    "Uniprot:P29474", 
+    "NCBI gene:4846"
+  ], 
+  [
+    "Uniprot:Q9NTI2", 
+    "NCBI gene:51761"
+  ], 
+  [
+    "Uniprot:P42208", 
+    "NCBI gene:18000"
+  ], 
+  [
+    "Uniprot:Q96QK1", 
+    "NCBI gene:55737"
+  ], 
+  [
+    "Uniprot:A0A0B4K7P1", 
+    "Uniprot:Q8IMZ4", 
+    "Uniprot:Q9N6D8", 
+    "NCBI gene:2768677"
+  ], 
+  [
+    "Uniprot:Q96IZ7", 
+    "NCBI gene:51319"
+  ], 
+  [
+    "PubChem:947", 
+    "CHEBI:7593"
+  ], 
+  [
+    "Uniprot:Q6ZWY9", 
+    "NCBI gene:68024"
+  ], 
+  [
+    "Uniprot:Q9VCE1", 
+    "NCBI gene:42850"
+  ], 
+  [
+    "PubChem:3520", 
+    "CHEBI:42820"
+  ], 
+  [
+    "PubChem:33557", 
+    "PubChem:4427778", 
+    "PubChem:71775499", 
+    "CHEBI:278547"
+  ], 
+  [
+    "Uniprot:Q9NQC7", 
+    "NCBI gene:1540"
+  ], 
+  [
+    "Uniprot:Q61093", 
+    "NCBI gene:13058"
+  ], 
+  [
+    "Uniprot:P14868", 
+    "NCBI gene:1615"
+  ], 
+  [
+    "PubChem:22647601", 
+    "PubChem:769", 
+    "CHEBI:17544"
+  ], 
+  [
+    "PubChem:10883396", 
+    "PubChem:5283560", 
+    "CHEBI:37550"
+  ], 
+  [
+    "Uniprot:P28241", 
+    "NCBI gene:854303"
+  ], 
+  [
+    "PubChem:6436223", 
+    "CHEBI:22689"
+  ], 
+  [
+    "Uniprot:Q921K2", 
+    "NCBI gene:11545"
+  ], 
+  [
+    "PubChem:442972", 
+    "CHEBI:4021"
+  ], 
+  [
+    "PubChem:190", 
+    "CHEBI:16708"
+  ], 
+  [
+    "Uniprot:Q92667", 
+    "NCBI gene:8165"
+  ], 
+  [
+    "Uniprot:P00441", 
+    "NCBI gene:6647"
+  ], 
+  [
+    "Uniprot:P34379", 
+    "NCBI gene:176150"
+  ], 
+  [
+    "Uniprot:Q8CJG0", 
+    "NCBI gene:239528"
+  ], 
+  [
+    "Uniprot:P25454", 
+    "NCBI gene:856831"
+  ], 
+  [
+    "Uniprot:P09958", 
+    "NCBI gene:5045"
+  ], 
+  [
+    "Uniprot:E1BVI0", 
+    "NCBI gene:418257"
+  ], 
+  [
+    "Uniprot:P08700", 
+    "NCBI gene:3562"
+  ], 
+  [
+    "Uniprot:O43318", 
+    "NCBI gene:6885"
+  ], 
+  [
+    "Uniprot:P62979", 
+    "NCBI gene:6233"
+  ], 
+  [
+    "Uniprot:Q12285", 
+    "NCBI gene:854038"
+  ], 
+  [
+    "Uniprot:Q99J83", 
+    "NCBI gene:11793"
+  ], 
+  [
+    "Uniprot:Q91Y86", 
+    "NCBI gene:26419"
+  ], 
+  [
+    "Uniprot:P54310", 
+    "NCBI gene:16890"
+  ], 
+  [
+    "Uniprot:Q8TBF5", 
+    "NCBI gene:54965"
+  ], 
+  [
+    "PubChem:16850", 
+    "CHEBI:31624"
+  ], 
+  [
+    "Uniprot:P62491", 
+    "NCBI gene:8766"
+  ], 
+  [
+    "Uniprot:Q90YS5", 
+    "NCBI gene:677744"
+  ], 
+  [
+    "Uniprot:A0A0B4K7P4", 
+    "Uniprot:A0A0B4K866", 
+    "Uniprot:Q7K0H4", 
+    "NCBI gene:36526"
+  ], 
+  [
+    "PubChem:9687", 
+    "CHEBI:50095"
+  ], 
+  [
+    "PubChem:6437392", 
+    "PubChem:9831899", 
+    "CHEBI:60285"
+  ], 
+  [
+    "Uniprot:P0CG48", 
+    "NCBI gene:7316"
+  ], 
+  [
+    "Uniprot:Q9UL17", 
+    "NCBI gene:30009"
+  ], 
+  [
+    "Uniprot:Q6NZN0", 
+    "NCBI gene:74213"
+  ], 
+  [
+    "Uniprot:P04004", 
+    "NCBI gene:7448"
+  ], 
+  [
+    "Uniprot:P16675", 
+    "NCBI gene:19025"
+  ], 
+  [
+    "Uniprot:P07724", 
+    "NCBI gene:11657"
+  ], 
+  [
+    "Uniprot:Q01082", 
+    "NCBI gene:6711"
+  ], 
+  [
+    "Uniprot:Q7Z3C6", 
+    "NCBI gene:79065"
+  ], 
+  [
+    "Uniprot:O15315", 
+    "NCBI gene:5890"
+  ], 
+  [
+    "Uniprot:Q8K424", 
+    "NCBI gene:246788"
+  ], 
+  [
+    "Uniprot:F6VAN0", 
+    "NCBI gene:226641"
+  ], 
+  [
+    "Uniprot:Q9VP61", 
+    "NCBI gene:40348"
+  ], 
+  [
+    "Uniprot:Q8BHC1", 
+    "NCBI gene:67790"
+  ], 
+  [
+    "Uniprot:Q9UQN3", 
+    "NCBI gene:25978"
+  ], 
+  [
+    "PubChem:72435", 
+    "CHEBI:8204"
+  ], 
+  [
+    "PubChem:5538", 
+    "CHEBI:26536"
+  ], 
+  [
+    "Uniprot:Q14596", 
+    "NCBI gene:4077"
+  ], 
+  [
+    "Uniprot:P54733", 
+    "NCBI gene:34924"
+  ], 
+  [
+    "Uniprot:P25874", 
+    "NCBI gene:7350"
+  ], 
+  [
+    "Uniprot:P62993", 
+    "NCBI gene:2885"
+  ], 
+  [
+    "PubChem:3776", 
+    "CHEBI:8467"
+  ], 
+  [
+    "Uniprot:D4ABD5", 
+    "NCBI gene:499973"
+  ], 
+  [
+    "Uniprot:P49815", 
+    "NCBI gene:7249"
+  ], 
+  [
+    "Uniprot:Q03405", 
+    "NCBI gene:5329"
+  ], 
+  [
+    "Uniprot:Q12380", 
+    "NCBI gene:855954"
+  ], 
+  [
+    "Uniprot:A4IGH0", 
+    "Uniprot:A4K8J2", 
+    "NCBI gene:793907"
+  ], 
+  [
+    "Uniprot:Q9BZS1", 
+    "NCBI gene:50943"
+  ], 
+  [
+    "PubChem:5578", 
+    "CHEBI:9731"
+  ], 
+  [
+    "Uniprot:Q99323", 
+    "NCBI gene:38001"
+  ], 
+  [
+    "Uniprot:Q14186", 
+    "NCBI gene:7027"
+  ], 
+  [
+    "PubChem:813", 
+    "CHEBI:29103"
+  ], 
+  [
+    "Uniprot:P11413", 
+    "NCBI gene:2539"
+  ], 
+  [
+    "Uniprot:Q9XTL9", 
+    "NCBI gene:33386"
+  ], 
+  [
+    "Uniprot:Q8CH36", 
+    "NCBI gene:234967"
+  ], 
+  [
+    "Uniprot:Q22258", 
+    "NCBI gene:179352"
+  ], 
+  [
+    "Uniprot:Q08647", 
+    "NCBI gene:854417"
+  ], 
+  [
+    "Uniprot:Q15907", 
+    "NCBI gene:9230"
+  ], 
+  [
+    "Uniprot:O00429", 
+    "NCBI gene:10059"
+  ], 
+  [
+    "PubChem:667639", 
+    "CHEBI:28814"
+  ], 
+  [
+    "PubChem:101633772", 
+    "PubChem:3624", 
+    "CHEBI:42478"
+  ], 
+  [
+    "Uniprot:Q15025", 
+    "NCBI gene:10318"
+  ], 
+  [
+    "Uniprot:M9NEH6", 
+    "Uniprot:M9NGF7", 
+    "Uniprot:M9PJN5", 
+    "Uniprot:Q86NK9", 
+    "Uniprot:Q8IR37", 
+    "Uniprot:Q8IR38", 
+    "Uniprot:Q9XYX1", 
+    "NCBI gene:32461"
+  ], 
+  [
+    "Uniprot:P32897", 
+    "NCBI gene:855751"
+  ], 
+  [
+    "Uniprot:P23443", 
+    "NCBI gene:6198"
+  ], 
+  [
+    "PubChem:3541112", 
+    "CHEBI:37054"
+  ], 
+  [
+    "Uniprot:Q9BX66", 
+    "NCBI gene:10580"
+  ], 
+  [
+    "PubChem:16755649", 
+    "CHEBI:46742"
+  ], 
+  [
+    "PubChem:235719", 
+    "PubChem:4121166", 
+    "CHEBI:86269"
+  ], 
+  [
+    "PubChem:2351", 
+    "CHEBI:3061"
+  ], 
+  [
+    "PubChem:39836", 
+    "CHEBI:7549"
+  ], 
+  [
+    "Uniprot:Q96TL7", 
+    "NCBI gene:2540115"
+  ], 
+  [
+    "Uniprot:P01106", 
+    "NCBI gene:4609"
+  ], 
+  [
+    "Uniprot:Q8C6L5", 
+    "NCBI gene:214763"
+  ], 
+  [
+    "Uniprot:Q60603", 
+    "NCBI gene:16510"
+  ], 
+  [
+    "PubChem:9543442", 
+    "CHEBI:37415", 
+    "CHEBI:10207"
+  ], 
+  [
+    "Uniprot:P47857", 
+    "NCBI gene:18642"
+  ], 
+  [
+    "PubChem:94140", 
+    "CHEBI:15541"
+  ], 
+  [
+    "Uniprot:P33154", 
+    "NCBI gene:815949"
+  ], 
+  [
+    "PubChem:164533", 
+    "CHEBI:16810"
+  ], 
+  [
+    "Uniprot:O94687", 
+    "NCBI gene:2540735"
+  ], 
+  [
+    "Uniprot:Q9CPU7", 
+    "NCBI gene:67731"
+  ], 
+  [
+    "PubChem:10658", 
+    "CHEBI:28928"
+  ], 
+  [
+    "Uniprot:G5EEL5", 
+    "NCBI gene:179068"
+  ], 
+  [
+    "Uniprot:Q9NRC1", 
+    "NCBI gene:7982"
+  ], 
+  [
+    "PubChem:700", 
+    "CHEBI:16000"
+  ], 
+  [
+    "PubChem:6041", 
+    "CHEBI:8093"
+  ], 
+  [
+    "Uniprot:P42227", 
+    "NCBI gene:20848"
+  ], 
+  [
+    "Uniprot:Q8VCQ3", 
+    "NCBI gene:641340"
+  ], 
+  [
+    "Uniprot:Q7KMQ6", 
+    "Uniprot:Q9V3L4", 
+    "Uniprot:Q9Y0B6", 
+    "NCBI gene:43991"
+  ], 
+  [
+    "PubChem:5291", 
+    "CHEBI:45783"
+  ], 
+  [
+    "Uniprot:P01135", 
+    "NCBI gene:7039"
+  ], 
+  [
+    "Uniprot:P49913", 
+    "NCBI gene:820"
+  ], 
+  [
+    "Uniprot:Q01196", 
+    "NCBI gene:861"
+  ], 
+  [
+    "Uniprot:O08537", 
+    "NCBI gene:13983"
+  ], 
+  [
+    "Uniprot:H2KYU6", 
+    "Uniprot:Q95QZ7", 
+    "NCBI gene:173952"
+  ], 
+  [
+    "PubChem:72287", 
+    "CHEBI:6838"
+  ], 
+  [
+    "Uniprot:Q887C1", 
+    "NCBI gene:1183025"
+  ], 
+  [
+    "Uniprot:Q8WY41", 
+    "NCBI gene:340719"
+  ], 
+  [
+    "Uniprot:Q9Y371", 
+    "NCBI gene:51100"
+  ], 
+  [
+    "Uniprot:P04386", 
+    "NCBI gene:855828"
+  ], 
+  [
+    "Uniprot:Q9WUF4", 
+    "NCBI gene:83730"
+  ], 
+  [
+    "Uniprot:B3DIQ7", 
+    "NCBI gene:796066"
+  ], 
+  [
+    "Uniprot:Q2TA68", 
+    "NCBI gene:171116"
+  ], 
+  [
+    "Uniprot:P12032", 
+    "NCBI gene:21857"
+  ], 
+  [
+    "PubChem:5280567", 
+    "CHEBI:17224"
+  ], 
+  [
+    "Uniprot:O60331", 
+    "NCBI gene:23396"
+  ], 
+  [
+    "Uniprot:Q14739", 
+    "NCBI gene:3930"
+  ], 
+  [
+    "PubChem:1123", 
+    "PubChem:4068592", 
+    "CHEBI:15891"
+  ], 
+  [
+    "Uniprot:Q62312", 
+    "NCBI gene:21813"
+  ], 
+  [
+    "Uniprot:P34163", 
+    "NCBI gene:853717"
+  ], 
+  [
+    "Uniprot:O08528", 
+    "NCBI gene:15277"
+  ], 
+  [
+    "Uniprot:P34693", 
+    "NCBI gene:174120"
+  ], 
+  [
+    "PubChem:3488", 
+    "CHEBI:5441"
+  ], 
+  [
+    "Uniprot:Q96NE9", 
+    "NCBI gene:122786"
+  ], 
+  [
+    "Uniprot:O43623", 
+    "NCBI gene:6591"
+  ], 
+  [
+    "Uniprot:Q03707", 
+    "NCBI gene:854974"
+  ], 
+  [
+    "Uniprot:P68431", 
+    "NCBI gene:8350"
+  ], 
+  [
+    "Uniprot:P52917", 
+    "NCBI gene:856303"
+  ], 
+  [
+    "Uniprot:Q16649", 
+    "NCBI gene:4783"
+  ], 
+  [
+    "PubChem:25244553", 
+    "PubChem:738", 
+    "CHEBI:28300"
+  ], 
+  [
+    "Uniprot:Q9BUN8", 
+    "NCBI gene:79139"
+  ], 
+  [
+    "Uniprot:P05067", 
+    "NCBI gene:351"
+  ], 
+  [
+    "Uniprot:F8VQ54", 
+    "NCBI gene:192119"
+  ], 
+  [
+    "Uniprot:Q61411", 
+    "NCBI gene:15461"
+  ], 
+  [
+    "Uniprot:Q9NU22", 
+    "NCBI gene:23195"
+  ], 
+  [
+    "Uniprot:D3YYD0", 
+    "NCBI gene:380924"
+  ], 
+  [
+    "Uniprot:G5EBR7", 
+    "Uniprot:Q564V5", 
+    "NCBI gene:173069"
+  ], 
+  [
+    "Uniprot:O55042", 
+    "NCBI gene:20617"
+  ], 
+  [
+    "PubChem:5641", 
+    "CHEBI:17967"
+  ], 
+  [
+    "Uniprot:P39052", 
+    "NCBI gene:25751"
+  ], 
+  [
+    "PubChem:6505803", 
+    "CHEBI:64153"
+  ], 
+  [
+    "Uniprot:O60504", 
+    "NCBI gene:10174"
+  ], 
+  [
+    "Uniprot:P04388", 
+    "NCBI gene:38494"
+  ], 
+  [
+    "Uniprot:O64733", 
+    "NCBI gene:817566"
+  ], 
+  [
+    "Uniprot:Q91W39", 
+    "NCBI gene:228869"
+  ], 
+  [
+    "Uniprot:P49088", 
+    "NCBI gene:25612"
+  ], 
+  [
+    "Uniprot:P53798", 
+    "NCBI gene:14137"
+  ], 
+  [
+    "Uniprot:P39929", 
+    "NCBI gene:850712"
+  ], 
+  [
+    "PubChem:60663", 
+    "CHEBI:6920"
+  ], 
+  [
+    "Uniprot:Q810J8", 
+    "NCBI gene:217695"
+  ], 
+  [
+    "Uniprot:P70380", 
+    "NCBI gene:16173"
+  ], 
+  [
+    "Uniprot:Q9EPK8", 
+    "NCBI gene:63873"
+  ], 
+  [
+    "Uniprot:Q20123", 
+    "NCBI gene:176009"
+  ], 
+  [
+    "Uniprot:P11531", 
+    "NCBI gene:13405"
+  ], 
+  [
+    "Uniprot:P60879", 
+    "NCBI gene:20614"
+  ], 
+  [
+    "Uniprot:P40458", 
+    "NCBI gene:854660"
+  ], 
+  [
+    "Uniprot:Q96F24", 
+    "NCBI gene:29982"
+  ], 
+  [
+    "Uniprot:P09803", 
+    "NCBI gene:12550"
+  ], 
+  [
+    "Uniprot:Q2VRP7", 
+    "NCBI gene:569098"
+  ], 
+  [
+    "Uniprot:P09232", 
+    "NCBI gene:856649"
+  ], 
+  [
+    "Uniprot:Q9CZU6", 
+    "NCBI gene:12974"
+  ], 
+  [
+    "Uniprot:P62737", 
+    "NCBI gene:11475"
+  ], 
+  [
+    "Uniprot:O95251", 
+    "NCBI gene:11143"
+  ], 
+  [
+    "Uniprot:P04181", 
+    "NCBI gene:4942"
+  ], 
+  [
+    "Uniprot:P21237", 
+    "NCBI gene:12064"
+  ], 
+  [
+    "Uniprot:Q9ERZ3", 
+    "NCBI gene:12671"
+  ], 
+  [
+    "Uniprot:Q91VR7", 
+    "NCBI gene:66734"
+  ], 
+  [
+    "Uniprot:P05533", 
+    "NCBI gene:110454"
+  ], 
+  [
+    "Uniprot:P22091", 
+    "NCBI gene:21349"
+  ], 
+  [
+    "PubChem:24538", 
+    "PubChem:6097028", 
+    "CHEBI:62946"
+  ], 
+  [
+    "Uniprot:O75351", 
+    "NCBI gene:9525"
+  ], 
+  [
+    "Uniprot:P30630", 
+    "NCBI gene:176256"
+  ], 
+  [
+    "Uniprot:P58406", 
+    "NCBI gene:99296"
+  ], 
+  [
+    "Uniprot:P48316", 
+    "NCBI gene:13197"
+  ], 
+  [
+    "Uniprot:Q9Z0G9", 
+    "NCBI gene:12739"
+  ], 
+  [
+    "Uniprot:Q946G4", 
+    "NCBI gene:5717848"
+  ], 
+  [
+    "Uniprot:P07091", 
+    "NCBI gene:20198"
+  ], 
+  [
+    "Uniprot:O02002", 
+    "NCBI gene:37729"
+  ], 
+  [
+    "Uniprot:P45896", 
+    "NCBI gene:175955"
+  ], 
+  [
+    "PubChem:9865515", 
+    "CHEBI:94525"
+  ], 
+  [
+    "Uniprot:Q9XFH4", 
+    "NCBI gene:836808"
+  ], 
+  [
+    "Uniprot:O14544", 
+    "NCBI gene:9306"
+  ], 
+  [
+    "Uniprot:P00505", 
+    "NCBI gene:2806"
+  ], 
+  [
+    "Uniprot:M9PD17", 
+    "Uniprot:Q9VW83", 
+    "NCBI gene:40201"
+  ], 
+  [
+    "PubChem:10313134", 
+    "PubChem:24480", 
+    "CHEBI:63041"
+  ], 
+  [
+    "PubChem:1645", 
+    "CHEBI:64042"
+  ], 
+  [
+    "Uniprot:A8Y582", 
+    "Uniprot:Q7PLP4", 
+    "Uniprot:Q7PLP5", 
+    "NCBI gene:3355072"
+  ], 
+  [
+    "Uniprot:P60484", 
+    "NCBI gene:5728"
+  ], 
+  [
+    "Uniprot:P51647", 
+    "NCBI gene:24188"
+  ], 
+  [
+    "Uniprot:A2A935", 
+    "NCBI gene:70673"
+  ], 
+  [
+    "Uniprot:Q62356", 
+    "NCBI gene:14314"
+  ], 
+  [
+    "Uniprot:Q86ME4", 
+    "Uniprot:Q86ME5", 
+    "Uniprot:Q86ME6", 
+    "NCBI gene:180714"
+  ], 
+  [
+    "Uniprot:P06239", 
+    "NCBI gene:3932"
+  ], 
+  [
+    "Uniprot:Q9V9S0", 
+    "NCBI gene:35411"
+  ], 
+  [
+    "PubChem:53232", 
+    "CHEBI:40303"
+  ], 
+  [
+    "Uniprot:P15692", 
+    "NCBI gene:7422"
+  ], 
+  [
+    "Uniprot:Q99435", 
+    "NCBI gene:4753"
+  ], 
+  [
+    "Uniprot:P08134", 
+    "NCBI gene:389"
+  ], 
+  [
+    "Uniprot:P40381", 
+    "NCBI gene:2541633"
+  ], 
+  [
+    "Uniprot:A1A4Y4", 
+    "NCBI gene:345611"
+  ], 
+  [
+    "Uniprot:O95573", 
+    "NCBI gene:2181"
+  ], 
+  [
+    "Uniprot:P35222", 
+    "NCBI gene:1499"
+  ], 
+  [
+    "Uniprot:Q9DBZ5", 
+    "NCBI gene:73830"
+  ], 
+  [
+    "Uniprot:P34902", 
+    "NCBI gene:16186"
+  ], 
+  [
+    "Uniprot:Q61696", 
+    "NCBI gene:193740"
+  ], 
+  [
+    "Uniprot:A2CF42", 
+    "NCBI gene:562066"
+  ], 
+  [
+    "Uniprot:Q9Y264", 
+    "NCBI gene:51378"
+  ], 
+  [
+    "Uniprot:Q12923", 
+    "NCBI gene:5783"
+  ], 
+  [
+    "Uniprot:Q8NDV7", 
+    "NCBI gene:27327"
+  ], 
+  [
+    "PubChem:16720766", 
+    "CHEBI:95028"
+  ], 
+  [
+    "Uniprot:Q01094", 
+    "NCBI gene:1869"
+  ], 
+  [
+    "Uniprot:Q78PY7", 
+    "NCBI gene:56463"
+  ], 
+  [
+    "Uniprot:P35329", 
+    "NCBI gene:12483"
+  ], 
+  [
+    "Uniprot:Q1HL35", 
+    "NCBI gene:240672"
+  ], 
+  [
+    "Uniprot:Q8BWF0", 
+    "NCBI gene:214579"
+  ], 
+  [
+    "Uniprot:P60710", 
+    "NCBI gene:11461"
+  ], 
+  [
+    "PubChem:888", 
+    "CHEBI:18420"
+  ], 
+  [
+    "Uniprot:P16104", 
+    "NCBI gene:3014"
+  ], 
+  [
+    "Uniprot:O75051", 
+    "NCBI gene:5362"
+  ], 
+  [
+    "Uniprot:P50570", 
+    "NCBI gene:1785"
+  ], 
+  [
+    "Uniprot:Q9UKV8", 
+    "NCBI gene:27161"
+  ], 
+  [
+    "PubChem:3372", 
+    "CHEBI:5123"
+  ], 
+  [
+    "Uniprot:Q16778", 
+    "NCBI gene:8349"
+  ], 
+  [
+    "Uniprot:Q9W3Q0", 
+    "NCBI gene:31684"
+  ], 
+  [
+    "Uniprot:P06151", 
+    "NCBI gene:16828"
+  ], 
+  [
+    "PubChem:44259", 
+    "CHEBI:15738"
+  ], 
+  [
+    "Uniprot:Q13501", 
+    "NCBI gene:8878"
+  ], 
+  [
+    "Uniprot:O35426", 
+    "NCBI gene:22433"
+  ], 
+  [
+    "Uniprot:Q05923", 
+    "NCBI gene:1844"
+  ], 
+  [
+    "Uniprot:M9PBM3", 
+    "Uniprot:Q9VPW2", 
+    "NCBI gene:33283"
+  ], 
+  [
+    "Uniprot:P62992", 
+    "NCBI gene:286839"
+  ], 
+  [
+    "Uniprot:A1ZBA9", 
+    "Uniprot:Q7JY94", 
+    "NCBI gene:37141"
+  ], 
+  [
+    "Uniprot:P15529", 
+    "NCBI gene:4179"
+  ], 
+  [
+    "PubChem:1567", 
+    "CHEBI:6766", 
+    "CHEBI:41218"
+  ], 
+  [
+    "PubChem:16134956", 
+    "PubChem:16153050", 
+    "CHEBI:71193"
+  ], 
+  [
+    "Uniprot:Q9FYE1", 
+    "NCBI gene:830299"
+  ], 
+  [
+    "Uniprot:Q6XVN8", 
+    "NCBI gene:362245"
+  ], 
+  [
+    "Uniprot:Q15436", 
+    "NCBI gene:10484"
+  ], 
+  [
+    "Uniprot:Q9Y239", 
+    "NCBI gene:10392"
+  ], 
+  [
+    "Uniprot:Q64092", 
+    "NCBI gene:209446"
+  ], 
+  [
+    "Uniprot:Q9CQ92", 
+    "NCBI gene:66437"
+  ], 
+  [
+    "PubChem:6005", 
+    "CHEBI:48538"
+  ], 
+  [
+    "Uniprot:Q9UL18", 
+    "NCBI gene:26523"
+  ], 
+  [
+    "Uniprot:O35182", 
+    "NCBI gene:17130"
+  ], 
+  [
+    "PubChem:23925", 
+    "CHEBI:18248"
+  ], 
+  [
+    "Uniprot:Q7TSA3", 
+    "NCBI gene:208154"
+  ], 
+  [
+    "PubChem:36735", 
+    "CHEBI:78408"
+  ], 
+  [
+    "Uniprot:P30101", 
+    "NCBI gene:2923"
+  ], 
+  [
+    "Uniprot:Q9Z329", 
+    "NCBI gene:16439"
+  ], 
+  [
+    "Uniprot:Q22592", 
+    "NCBI gene:177345"
+  ], 
+  [
+    "Uniprot:Q9Y3I1", 
+    "NCBI gene:25793"
+  ], 
+  [
+    "Uniprot:P16858", 
+    "NCBI gene:14433"
+  ], 
+  [
+    "Uniprot:Q9UMX1", 
+    "NCBI gene:51684"
+  ], 
+  [
+    "Uniprot:P70227", 
+    "NCBI gene:16440"
+  ], 
+  [
+    "Uniprot:Q13257", 
+    "NCBI gene:4085"
+  ], 
+  [
+    "Uniprot:Q6PHS9", 
+    "NCBI gene:56808"
+  ], 
+  [
+    "Uniprot:P09103", 
+    "NCBI gene:18453"
+  ], 
+  [
+    "Uniprot:P07741", 
+    "NCBI gene:353"
+  ], 
+  [
+    "Uniprot:Q9R1S4", 
+    "NCBI gene:289754"
+  ], 
+  [
+    "PubChem:199402", 
+    "CHEBI:8309"
+  ], 
+  [
+    "Uniprot:Q9W2S2", 
+    "Uniprot:X2JEE0", 
+    "Uniprot:X2JJA8", 
+    "NCBI gene:32001"
+  ], 
+  [
+    "Uniprot:A0A0B4KFQ0", 
+    "Uniprot:A0A0B4KG50", 
+    "Uniprot:A0A0B4KGR9", 
+    "Uniprot:A0A0B4KH36", 
+    "Uniprot:Q9VH01", 
+    "NCBI gene:41260"
+  ], 
+  [
+    "Uniprot:P57774", 
+    "NCBI gene:109648"
+  ], 
+  [
+    "Uniprot:Q04997", 
+    "NCBI gene:16322"
+  ], 
+  [
+    "PubChem:32014", 
+    "CHEBI:64211"
+  ], 
+  [
+    "Uniprot:Q6TLH8", 
+    "NCBI gene:402895"
+  ], 
+  [
+    "Uniprot:Q61084", 
+    "NCBI gene:26406"
+  ], 
+  [
+    "Uniprot:P70343", 
+    "NCBI gene:12363"
+  ], 
+  [
+    "Uniprot:Q9D906", 
+    "NCBI gene:74244"
+  ], 
+  [
+    "Uniprot:P57723", 
+    "NCBI gene:57060"
+  ], 
+  [
+    "PubChem:24316", 
+    "CHEBI:1327", 
+    "CHEBI:16356"
+  ], 
+  [
+    "Uniprot:Q9VZX7", 
+    "NCBI gene:38344"
+  ], 
+  [
+    "PubChem:20054887", 
+    "CHEBI:16976"
+  ], 
+  [
+    "Uniprot:P11881", 
+    "NCBI gene:16438"
+  ], 
+  [
+    "PubChem:5350", 
+    "CHEBI:47807"
+  ], 
+  [
+    "Uniprot:Q7TSJ6", 
+    "NCBI gene:50523"
+  ], 
+  [
+    "Uniprot:Q92574", 
+    "NCBI gene:7248"
+  ], 
+  [
+    "Uniprot:Q99MK8", 
+    "NCBI gene:110355"
+  ], 
+  [
+    "Uniprot:P08100", 
+    "NCBI gene:6010"
+  ], 
+  [
+    "Uniprot:P32898", 
+    "NCBI gene:852041"
+  ], 
+  [
+    "PubChem:451668", 
+    "CHEBI:50131"
+  ], 
+  [
+    "Uniprot:P41969", 
+    "NCBI gene:13712"
+  ], 
+  [
+    "Uniprot:Q15154", 
+    "NCBI gene:5108"
+  ], 
+  [
+    "PubChem:6076", 
+    "CHEBI:1325"
+  ], 
+  [
+    "Uniprot:Q9WVP9", 
+    "NCBI gene:17858"
+  ], 
+  [
+    "Uniprot:O43293", 
+    "NCBI gene:1613"
+  ], 
+  [
+    "Uniprot:Q8BQV2", 
+    "NCBI gene:12647"
+  ], 
+  [
+    "Uniprot:Q00731", 
+    "NCBI gene:22339"
+  ], 
+  [
+    "Uniprot:Q9SXZ2", 
+    "NCBI gene:842859"
+  ], 
+  [
+    "Uniprot:Q9UHI6", 
+    "NCBI gene:11218"
+  ], 
+  [
+    "Uniprot:Q8BGE6", 
+    "NCBI gene:66615"
+  ], 
+  [
+    "Uniprot:A4FUP1", 
+    "NCBI gene:100004331"
+  ], 
+  [
+    "Uniprot:Q96EA4", 
+    "NCBI gene:54908"
+  ], 
+  [
+    "PubChem:450503", 
+    "CHEBI:31617"
+  ], 
+  [
+    "Uniprot:Q9R1K9", 
+    "NCBI gene:26370"
+  ], 
+  [
+    "Uniprot:Q8BJ56", 
+    "NCBI gene:66853"
+  ], 
+  [
+    "Uniprot:Q04740", 
+    "NCBI gene:855274"
+  ], 
+  [
+    "Uniprot:Q04656", 
+    "NCBI gene:538"
+  ], 
+  [
+    "Uniprot:B7YZX2", 
+    "Uniprot:Q9VJ56", 
+    "Uniprot:X2JAW9", 
+    "NCBI gene:35131"
+  ], 
+  [
+    "Uniprot:Q9D7P6", 
+    "NCBI gene:66383"
+  ], 
+  [
+    "Uniprot:P04387", 
+    "NCBI gene:854954"
+  ], 
+  [
+    "Uniprot:D4A4K3", 
+    "NCBI gene:305831"
+  ], 
+  [
+    "Uniprot:Q9JLV5", 
+    "NCBI gene:26554"
+  ], 
+  [
+    "Uniprot:P91926", 
+    "NCBI gene:33211"
+  ], 
+  [
+    "Uniprot:Q64438", 
+    "NCBI gene:11731"
+  ], 
+  [
+    "PubChem:55245", 
+    "CHEBI:50692"
+  ], 
+  [
+    "Uniprot:O42269", 
+    "NCBI gene:30214"
+  ], 
+  [
+    "Uniprot:P25799", 
+    "NCBI gene:18033"
+  ], 
+  [
+    "PubChem:290486", 
+    "CHEBI:91697"
+  ], 
+  [
+    "Uniprot:Q8N4N8", 
+    "NCBI gene:84643"
+  ], 
+  [
+    "Uniprot:P35969", 
+    "NCBI gene:14254"
+  ], 
+  [
+    "Uniprot:P63048", 
+    "NCBI gene:615199"
+  ], 
+  [
+    "Uniprot:O70302", 
+    "NCBI gene:12683"
+  ], 
+  [
+    "Uniprot:Q9NR97", 
+    "NCBI gene:51311"
+  ], 
+  [
+    "Uniprot:P46087", 
+    "NCBI gene:4839"
+  ], 
+  [
+    "Uniprot:Q99543", 
+    "NCBI gene:27000"
+  ], 
+  [
+    "Uniprot:Q7L523", 
+    "NCBI gene:10670"
+  ], 
+  [
+    "Uniprot:Q9Y6H5", 
+    "NCBI gene:9627"
+  ], 
+  [
+    "Uniprot:E5QCH2", 
+    "Uniprot:Q23272", 
+    "Uniprot:Q52GY6", 
+    "Uniprot:Q8I4B7", 
+    "NCBI gene:179922"
+  ], 
+  [
+    "Uniprot:P05064", 
+    "NCBI gene:11674"
+  ], 
+  [
+    "Uniprot:Q9R1E0", 
+    "NCBI gene:56458"
+  ], 
+  [
+    "Uniprot:O95817", 
+    "NCBI gene:9531"
+  ], 
+  [
+    "Uniprot:O08586", 
+    "NCBI gene:19211"
+  ], 
+  [
+    "Uniprot:P25385", 
+    "NCBI gene:850767"
+  ], 
+  [
+    "Uniprot:P49754", 
+    "NCBI gene:27072"
+  ], 
+  [
+    "Uniprot:Q32KD4", 
+    "Uniprot:Q7KY08", 
+    "NCBI gene:36544"
+  ], 
+  [
+    "Uniprot:Q14653", 
+    "NCBI gene:3661"
+  ], 
+  [
+    "Uniprot:P34529", 
+    "NCBI gene:176138"
+  ], 
+  [
+    "PubChem:11748", 
+    "CHEBI:51850"
+  ], 
+  [
+    "Uniprot:Q8IPC3", 
+    "Uniprot:Q8IPC5", 
+    "NCBI gene:34380"
+  ], 
+  [
+    "Uniprot:P15202", 
+    "NCBI gene:851843"
+  ], 
+  [
+    "Uniprot:Q8BZ71", 
+    "NCBI gene:237611"
+  ], 
+  [
+    "Uniprot:Q60636", 
+    "NCBI gene:12142"
+  ], 
+  [
+    "Uniprot:P28482", 
+    "NCBI gene:5594"
+  ], 
+  [
+    "Uniprot:O88700", 
+    "NCBI gene:12144"
+  ], 
+  [
+    "Uniprot:Q39057", 
+    "NCBI gene:831441"
+  ], 
+  [
+    "Uniprot:P35637", 
+    "NCBI gene:2521"
+  ], 
+  [
+    "Uniprot:P08123", 
+    "NCBI gene:1278"
+  ], 
+  [
+    "Uniprot:P53104", 
+    "NCBI gene:852695"
+  ], 
+  [
+    "Uniprot:Q99J21", 
+    "NCBI gene:94178"
+  ], 
+  [
+    "Uniprot:P0C242", 
+    "NCBI gene:218630"
+  ], 
+  [
+    "PubChem:121948", 
+    "CHEBI:34310"
+  ], 
+  [
+    "Uniprot:P04050", 
+    "NCBI gene:851415"
+  ], 
+  [
+    "Uniprot:P36597", 
+    "NCBI gene:2539108"
+  ], 
+  [
+    "Uniprot:Q5RKT9", 
+    "NCBI gene:17309"
+  ], 
+  [
+    "Uniprot:Q23DJ8", 
+    "NCBI gene:7844980"
+  ], 
+  [
+    "Uniprot:Q8WYQ3", 
+    "NCBI gene:400916"
+  ], 
+  [
+    "Uniprot:Q9FFI2", 
+    "NCBI gene:831594"
+  ], 
+  [
+    "Uniprot:Q9JM05", 
+    "NCBI gene:59004"
+  ], 
+  [
+    "Uniprot:P18893", 
+    "NCBI gene:16153"
+  ], 
+  [
+    "Uniprot:Q676U5", 
+    "NCBI gene:55054"
+  ], 
+  [
+    "PubChem:5283564", 
+    "CHEBI:72959"
+  ], 
+  [
+    "Uniprot:Q8BRU4", 
+    "NCBI gene:232414"
+  ], 
+  [
+    "Uniprot:Q93WC4", 
+    "NCBI gene:829361"
+  ], 
+  [
+    "Uniprot:Q3UZ45", 
+    "NCBI gene:622408"
+  ], 
+  [
+    "PubChem:11226684", 
+    "CHEBI:42265"
+  ], 
+  [
+    "PubChem:114683", 
+    "CHEBI:27404"
+  ], 
+  [
+    "PubChem:24584", 
+    "PubChem:5360315", 
+    "CHEBI:6636"
+  ], 
+  [
+    "Uniprot:Q8CFZ4", 
+    "NCBI gene:14734"
+  ], 
+  [
+    "Uniprot:P50402", 
+    "NCBI gene:2010"
+  ], 
+  [
+    "PubChem:5757", 
+    "CHEBI:16469", 
+    "CHEBI:4864"
+  ], 
+  [
+    "Uniprot:P40199", 
+    "NCBI gene:4680"
+  ], 
+  [
+    "Uniprot:O08665", 
+    "NCBI gene:20346"
+  ], 
+  [
+    "Uniprot:O95758", 
+    "NCBI gene:9991"
+  ], 
+  [
+    "Uniprot:Q08ET2", 
+    "NCBI gene:100049587"
+  ], 
+  [
+    "Uniprot:Q9NS18", 
+    "NCBI gene:51022"
+  ], 
+  [
+    "Uniprot:P25322", 
+    "NCBI gene:12443"
+  ], 
+  [
+    "Uniprot:P15289", 
+    "NCBI gene:410"
+  ], 
+  [
+    "Uniprot:P04150", 
+    "NCBI gene:2908"
+  ], 
+  [
+    "PubChem:3657", 
+    "CHEBI:44423", 
+    "CHEBI:5816"
+  ], 
+  [
+    "Uniprot:P94102", 
+    "NCBI gene:832208"
+  ], 
+  [
+    "Uniprot:O08835", 
+    "NCBI gene:60568"
+  ], 
+  [
+    "Uniprot:Q9Z2B5", 
+    "NCBI gene:13666"
+  ], 
+  [
+    "Uniprot:O88696", 
+    "NCBI gene:53895"
+  ], 
+  [
+    "Uniprot:O76922", 
+    "NCBI gene:34524"
+  ], 
+  [
+    "Uniprot:P62738", 
+    "NCBI gene:81633"
+  ], 
+  [
+    "PubChem:4521392", 
+    "CHEBI:91108"
+  ], 
+  [
+    "Uniprot:Q05029", 
+    "NCBI gene:855277"
+  ], 
+  [
+    "Uniprot:Q14141", 
+    "NCBI gene:23157"
+  ], 
+  [
+    "Uniprot:O95863", 
+    "NCBI gene:6615"
+  ], 
+  [
+    "Uniprot:O94603", 
+    "NCBI gene:2539481"
+  ], 
+  [
+    "PubChem:1153", 
+    "PubChem:4300518", 
+    "CHEBI:18186"
+  ], 
+  [
+    "Uniprot:Q8R4B8", 
+    "NCBI gene:216799"
+  ], 
+  [
+    "Uniprot:Q07955", 
+    "NCBI gene:6426"
+  ], 
+  [
+    "Uniprot:O95644", 
+    "NCBI gene:4772"
+  ], 
+  [
+    "Uniprot:P0CL47", 
+    "NCBI gene:1254407"
+  ], 
+  [
+    "Uniprot:Q9VYS3", 
+    "NCBI gene:32153"
+  ], 
+  [
+    "Uniprot:Q8K330", 
+    "NCBI gene:245857"
+  ], 
+  [
+    "Uniprot:P17564", 
+    "NCBI gene:17872"
+  ], 
+  [
+    "PubChem:5329098", 
+    "CHEBI:91083"
+  ], 
+  [
+    "Uniprot:Q9NVJ2", 
+    "NCBI gene:55207"
+  ], 
+  [
+    "Uniprot:P39054", 
+    "NCBI gene:13430"
+  ], 
+  [
+    "PubChem:3385", 
+    "CHEBI:46345"
+  ], 
+  [
+    "Uniprot:P09922", 
+    "NCBI gene:17857"
+  ], 
+  [
+    "PubChem:160434", 
+    "CHEBI:15595"
+  ], 
+  [
+    "Uniprot:Q60641", 
+    "NCBI gene:20186"
+  ], 
+  [
+    "PubChem:5707", 
+    "CHEBI:92386"
+  ], 
+  [
+    "PubChem:15951529", 
+    "CHEBI:68534"
+  ], 
+  [
+    "Uniprot:Q56NI9", 
+    "NCBI gene:157570"
+  ], 
+  [
+    "PubChem:5460033", 
+    "PubChem:5702198", 
+    "PubChem:84691", 
+    "CHEBI:27899"
+  ], 
+  [
+    "Uniprot:P12956", 
+    "NCBI gene:2547"
+  ], 
+  [
+    "Uniprot:Q02763", 
+    "NCBI gene:7010"
+  ], 
+  [
+    "Uniprot:Q9Z2E1", 
+    "NCBI gene:17191"
+  ], 
+  [
+    "Uniprot:P48436", 
+    "NCBI gene:6662"
+  ], 
+  [
+    "Uniprot:Q9H1C4", 
+    "NCBI gene:81622"
+  ], 
+  [
+    "PubChem:20130941", 
+    "PubChem:525", 
+    "CHEBI:6650"
+  ], 
+  [
+    "PubChem:4478249", 
+    "PubChem:78165", 
+    "CHEBI:39005"
+  ], 
+  [
+    "Uniprot:Q7ZVI7", 
+    "NCBI gene:57934"
+  ], 
+  [
+    "Uniprot:Q06124", 
+    "NCBI gene:5781"
+  ], 
+  [
+    "Uniprot:P53135", 
+    "NCBI gene:852765"
+  ], 
+  [
+    "Uniprot:Q860H5", 
+    "NCBI gene:426939"
+  ], 
+  [
+    "Uniprot:P01112", 
+    "NCBI gene:3265"
+  ], 
+  [
+    "Uniprot:P10276", 
+    "NCBI gene:5914"
+  ], 
+  [
+    "Uniprot:Q9W437", 
+    "NCBI gene:31543"
+  ], 
+  [
+    "Uniprot:Q99466", 
+    "NCBI gene:4855"
+  ], 
+  [
+    "Uniprot:P02778", 
+    "NCBI gene:3627"
+  ], 
+  [
+    "PubChem:6758", 
+    "CHEBI:28201"
+  ], 
+  [
+    "Uniprot:Q9LJD8", 
+    "NCBI gene:820555"
+  ], 
+  [
+    "PubChem:3721046", 
+    "CHEBI:34468"
+  ], 
+  [
+    "Uniprot:Q80U63", 
+    "NCBI gene:170731"
+  ], 
+  [
+    "PubChem:3035905", 
+    "CHEBI:81391"
+  ], 
+  [
+    "Uniprot:Q96T37", 
+    "NCBI gene:64783"
+  ], 
+  [
+    "Uniprot:Q3U3D8", 
+    "NCBI gene:73205"
+  ], 
+  [
+    "Uniprot:P31240", 
+    "NCBI gene:18591"
+  ], 
+  [
+    "Uniprot:G5E837", 
+    "NCBI gene:67933"
+  ], 
+  [
+    "Uniprot:Q9U334", 
+    "NCBI gene:173233"
+  ], 
+  [
+    "PubChem:5311", 
+    "CHEBI:45716"
+  ], 
+  [
+    "Uniprot:P08018", 
+    "NCBI gene:853313"
+  ], 
+  [
+    "PubChem:65124", 
+    "CHEBI:44454"
+  ], 
+  [
+    "PubChem:440317", 
+    "PubChem:444377", 
+    "CHEBI:27575"
+  ], 
+  [
+    "Uniprot:Q8WYB5", 
+    "NCBI gene:23522"
+  ], 
+  [
+    "Uniprot:Q9XWU8", 
+    "NCBI gene:176712"
+  ], 
+  [
+    "Uniprot:Q16790", 
+    "NCBI gene:768"
+  ], 
+  [
+    "Uniprot:P30307", 
+    "NCBI gene:995"
+  ], 
+  [
+    "Uniprot:P20248", 
+    "NCBI gene:890"
+  ], 
+  [
+    "PubChem:439153", 
+    "CHEBI:16908"
+  ], 
+  [
+    "PubChem:656586", 
+    "CHEBI:31688"
+  ], 
+  [
+    "PubChem:232", 
+    "PubChem:5246487", 
+    "PubChem:59119146", 
+    "CHEBI:29016"
+  ], 
+  [
+    "Uniprot:M9PER1", 
+    "Uniprot:M9PEY7", 
+    "Uniprot:M9PHS3", 
+    "Uniprot:Q9VSF0", 
+    "NCBI gene:38913"
+  ], 
+  [
+    "Uniprot:Q8K245", 
+    "NCBI gene:78610"
+  ], 
+  [
+    "Uniprot:Q9Y4K3", 
+    "NCBI gene:7189"
+  ], 
+  [
+    "Uniprot:Q92622", 
+    "NCBI gene:9711"
+  ], 
+  [
+    "PubChem:123969", 
+    "CHEBI:84638"
+  ], 
+  [
+    "PubChem:74267", 
+    "CHEBI:30669"
+  ], 
+  [
+    "Uniprot:P42574", 
+    "NCBI gene:836"
+  ], 
+  [
+    "PubChem:65040", 
+    "CHEBI:2094"
+  ], 
+  [
+    "PubChem:446378", 
+    "CHEBI:9516"
+  ], 
+  [
+    "Uniprot:Q64279", 
+    "NCBI gene:15110"
+  ], 
+  [
+    "Uniprot:P02833", 
+    "NCBI gene:40835"
+  ], 
+  [
+    "PubChem:11707110", 
+    "CHEBI:75998"
+  ], 
+  [
+    "Uniprot:Q9UMX0", 
+    "NCBI gene:29979"
+  ], 
+  [
+    "Uniprot:P28627", 
+    "NCBI gene:855182"
+  ], 
+  [
+    "Uniprot:P35672", 
+    "NCBI gene:1254421"
+  ], 
+  [
+    "Uniprot:O00194", 
+    "NCBI gene:5874"
+  ], 
+  [
+    "Uniprot:Q03262", 
+    "NCBI gene:855321"
+  ], 
+  [
+    "Uniprot:P32361", 
+    "NCBI gene:856478"
+  ], 
+  [
+    "Uniprot:O94529", 
+    "NCBI gene:2541088"
+  ], 
+  [
+    "Uniprot:Q27607", 
+    "NCBI gene:34792"
+  ], 
+  [
+    "Uniprot:P20350", 
+    "NCBI gene:38168"
+  ], 
+  [
+    "Uniprot:Q9VSH3", 
+    "NCBI gene:38936"
+  ], 
+  [
+    "PubChem:20469", 
+    "CHEBI:3001"
+  ], 
+  [
+    "Uniprot:Q969H0", 
+    "NCBI gene:55294"
+  ], 
+  [
+    "Uniprot:P17919", 
+    "NCBI gene:15407"
+  ], 
+  [
+    "Uniprot:P0CG71", 
+    "NCBI gene:175840"
+  ], 
+  [
+    "Uniprot:P50219", 
+    "NCBI gene:3110"
+  ], 
+  [
+    "Uniprot:Q99933", 
+    "NCBI gene:573"
+  ], 
+  [
+    "Uniprot:Q10002", 
+    "NCBI gene:174291"
+  ], 
+  [
+    "Uniprot:P20029", 
+    "NCBI gene:14828"
+  ], 
+  [
+    "PubChem:91866192", 
+    "CHEBI:36927"
+  ], 
+  [
+    "Uniprot:Q9GZV8", 
+    "NCBI gene:63978"
+  ], 
+  [
+    "Uniprot:P53805", 
+    "NCBI gene:1827"
+  ], 
+  [
+    "PubChem:5462227", 
+    "CHEBI:7989"
+  ], 
+  [
+    "Uniprot:P41235", 
+    "NCBI gene:3172"
+  ], 
+  [
+    "PubChem:5957", 
+    "CHEBI:15422", 
+    "CHEBI:2359"
+  ], 
+  [
+    "Uniprot:Q1ZXR4", 
+    "NCBI gene:4363014"
+  ], 
+  [
+    "Uniprot:P06700", 
+    "NCBI gene:851520"
+  ], 
+  [
+    "PubChem:23443619", 
+    "PubChem:424", 
+    "PubChem:57397078", 
+    "CHEBI:22660"
+  ], 
+  [
+    "PubChem:102547", 
+    "PubChem:56927689", 
+    "CHEBI:47764"
+  ], 
+  [
+    "Uniprot:Q8N884", 
+    "NCBI gene:115004"
+  ], 
+  [
+    "Uniprot:P33991", 
+    "NCBI gene:4173"
+  ], 
+  [
+    "PubChem:15939", 
+    "CHEBI:34905"
+  ], 
+  [
+    "PubChem:446512", 
+    "CHEBI:44658"
+  ], 
+  [
+    "Uniprot:P53286", 
+    "NCBI gene:853043"
+  ], 
+  [
+    "Uniprot:Q60936", 
+    "NCBI gene:67426"
+  ], 
+  [
+    "Uniprot:Q16635", 
+    "NCBI gene:6901"
+  ], 
+  [
+    "Uniprot:P06245", 
+    "NCBI gene:855898"
+  ], 
+  [
+    "Uniprot:Q02388", 
+    "NCBI gene:1294"
+  ], 
+  [
+    "PubChem:49836027", 
+    "CHEBI:84327"
+  ], 
+  [
+    "Uniprot:P51153", 
+    "NCBI gene:5872"
+  ], 
+  [
+    "PubChem:57383916", 
+    "PubChem:602", 
+    "CHEBI:16449"
+  ], 
+  [
+    "Uniprot:P57757", 
+    "NCBI gene:83429"
+  ], 
+  [
+    "Uniprot:Q01853", 
+    "NCBI gene:269523"
+  ], 
+  [
+    "Uniprot:P35499", 
+    "NCBI gene:6329"
+  ], 
+  [
+    "Uniprot:O96838", 
+    "NCBI gene:37033"
+  ], 
+  [
+    "Uniprot:Q6NW92", 
+    "NCBI gene:405860"
+  ], 
+  [
+    "Uniprot:P25694", 
+    "NCBI gene:851431"
+  ], 
+  [
+    "Uniprot:P70434", 
+    "NCBI gene:54123"
+  ], 
+  [
+    "Uniprot:P51907", 
+    "NCBI gene:25550"
+  ], 
+  [
+    "Uniprot:P10040", 
+    "NCBI gene:42896"
+  ], 
+  [
+    "PubChem:118985556", 
+    "PubChem:6058", 
+    "CHEBI:17141"
+  ], 
+  [
+    "Uniprot:Q9HB20", 
+    "NCBI gene:65977"
+  ], 
+  [
+    "Uniprot:Q15672", 
+    "NCBI gene:7291"
+  ], 
+  [
+    "PubChem:5839", 
+    "CHEBI:27584"
+  ], 
+  [
+    "PubChem:12035", 
+    "CHEBI:28939"
+  ], 
+  [
+    "Uniprot:P13010", 
+    "NCBI gene:7520"
+  ], 
+  [
+    "Uniprot:P40471", 
+    "NCBI gene:854682"
+  ], 
+  [
+    "PubChem:5113032", 
+    "CHEBI:90369"
+  ], 
+  [
+    "Uniprot:Q96JA1", 
+    "NCBI gene:26018"
+  ], 
+  [
+    "Uniprot:Q9Z0J4", 
+    "NCBI gene:18125"
+  ], 
+  [
+    "Uniprot:P11798", 
+    "NCBI gene:12322"
+  ], 
+  [
+    "PubChem:521353", 
+    "PubChem:53627818", 
+    "PubChem:5831", 
+    "CHEBI:3385"
+  ], 
+  [
+    "PubChem:31703", 
+    "CHEBI:28748"
+  ], 
+  [
+    "Uniprot:Q96S55", 
+    "NCBI gene:56897"
+  ], 
+  [
+    "Uniprot:Q5FMK0", 
+    "NCBI gene:3252692"
+  ], 
+  [
+    "Uniprot:Q91Z83", 
+    "NCBI gene:140781"
+  ], 
+  [
+    "Uniprot:Q91XJ1", 
+    "NCBI gene:114558"
+  ], 
+  [
+    "PubChem:11626560", 
+    "CHEBI:64310"
+  ], 
+  [
+    "Uniprot:Q5CZR5", 
+    "NCBI gene:503710"
+  ], 
+  [
+    "Uniprot:Q9DD24", 
+    "NCBI gene:22381"
+  ], 
+  [
+    "Uniprot:Q23TC8", 
+    "NCBI gene:7842494"
+  ], 
+  [
+    "Uniprot:Q12527", 
+    "NCBI gene:856162"
+  ], 
+  [
+    "Uniprot:Q9H160", 
+    "NCBI gene:3622"
+  ], 
+  [
+    "Uniprot:P08905", 
+    "NCBI gene:17105"
+  ], 
+  [
+    "PubChem:2554", 
+    "CHEBI:3387"
+  ], 
+  [
+    "Uniprot:P13533", 
+    "NCBI gene:4624"
+  ], 
+  [
+    "Uniprot:Q60751", 
+    "NCBI gene:16001"
+  ], 
+  [
+    "Uniprot:P56693", 
+    "NCBI gene:6663"
+  ], 
+  [
+    "PubChem:6249", 
+    "PubChem:7048611", 
+    "CHEBI:28971"
+  ], 
+  [
+    "Uniprot:P04797", 
+    "NCBI gene:24383"
+  ], 
+  [
+    "Uniprot:P10355", 
+    "NCBI gene:856897"
+  ], 
+  [
+    "Uniprot:M9PDW0", 
+    "Uniprot:M9PE71", 
+    "Uniprot:Q86BQ0", 
+    "Uniprot:Q9W0C1", 
+    "Uniprot:Q9W0C2", 
+    "NCBI gene:38196"
+  ], 
+  [
+    "Uniprot:Q03281", 
+    "NCBI gene:852069"
+  ], 
+  [
+    "PubChem:9956119", 
+    "CHEBI:91091"
+  ], 
+  [
+    "Uniprot:P56546", 
+    "NCBI gene:13017"
+  ], 
+  [
+    "Uniprot:Q01279", 
+    "NCBI gene:13649"
+  ], 
+  [
+    "Uniprot:Q24306", 
+    "NCBI gene:39753"
+  ], 
+  [
+    "Uniprot:B5B2N2", 
+    "Uniprot:B5B2N4", 
+    "Uniprot:B5B2N5", 
+    "Uniprot:B5B2N7", 
+    "Uniprot:Q6P7T9", 
+    "Uniprot:Q9DBQ6", 
+    "NCBI gene:18018"
+  ], 
+  [
+    "Uniprot:Q9NYP9", 
+    "NCBI gene:54069"
+  ], 
+  [
+    "Uniprot:P35603", 
+    "NCBI gene:180713"
+  ], 
+  [
+    "Uniprot:O75496", 
+    "NCBI gene:51053"
+  ], 
+  [
+    "Uniprot:P61110", 
+    "NCBI gene:16483"
+  ], 
+  [
+    "PubChem:24462", 
+    "CHEBI:23414"
+  ], 
+  [
+    "Uniprot:O60907", 
+    "NCBI gene:6907"
+  ], 
+  [
+    "Uniprot:A8R7E6", 
+    "NCBI gene:821717"
+  ], 
+  [
+    "Uniprot:Q09349", 
+    "NCBI gene:174295"
+  ], 
+  [
+    "Uniprot:O14974", 
+    "NCBI gene:4659"
+  ], 
+  [
+    "Uniprot:P04187", 
+    "NCBI gene:14939"
+  ], 
+  [
+    "Uniprot:F1LIM5", 
+    "Uniprot:Q22436", 
+    "NCBI gene:178139"
+  ], 
+  [
+    "PubChem:65079", 
+    "CHEBI:51903"
+  ], 
+  [
+    "PubChem:23725625", 
+    "CHEBI:83766"
+  ], 
+  [
+    "PubChem:1727", 
+    "CHEBI:34385"
+  ], 
+  [
+    "Uniprot:P48431", 
+    "NCBI gene:6657"
+  ], 
+  [
+    "Uniprot:P19484", 
+    "NCBI gene:7942"
+  ], 
+  [
+    "Uniprot:Q8IYU8", 
+    "NCBI gene:221154"
+  ], 
+  [
+    "Uniprot:P97343", 
+    "NCBI gene:16589"
+  ], 
+  [
+    "PubChem:4878", 
+    "CHEBI:78331"
+  ], 
+  [
+    "Uniprot:P55284", 
+    "NCBI gene:12562"
+  ], 
+  [
+    "Uniprot:Q9VWA1", 
+    "NCBI gene:40221"
+  ], 
+  [
+    "PubChem:22814150", 
+    "CHEBI:27082"
+  ], 
+  [
+    "PubChem:2756", 
+    "CHEBI:3699"
+  ], 
+  [
+    "Uniprot:Q15561", 
+    "NCBI gene:7004"
+  ], 
+  [
+    "Uniprot:Q9W0A0", 
+    "NCBI gene:38218"
+  ], 
+  [
+    "PubChem:5248709", 
+    "PubChem:866", 
+    "CHEBI:25094"
+  ], 
+  [
+    "Uniprot:Q15750", 
+    "NCBI gene:10454"
+  ], 
+  [
+    "Uniprot:O35235", 
+    "NCBI gene:21943"
+  ], 
+  [
+    "Uniprot:Q9CPX6", 
+    "NCBI gene:67841"
+  ], 
+  [
+    "Uniprot:P06744", 
+    "NCBI gene:2821"
+  ], 
+  [
+    "PubChem:115127", 
+    "CHEBI:28135"
+  ], 
+  [
+    "PubChem:25975", 
+    "CHEBI:28240"
+  ], 
+  [
+    "PubChem:305", 
+    "CHEBI:15354"
+  ], 
+  [
+    "Uniprot:Q9VK44", 
+    "NCBI gene:34699"
+  ], 
+  [
+    "Uniprot:O60543", 
+    "NCBI gene:1149"
+  ], 
+  [
+    "Uniprot:Q9QUK6", 
+    "NCBI gene:21898"
+  ], 
+  [
+    "PubChem:6329", 
+    "CHEBI:16830"
+  ], 
+  [
+    "Uniprot:Q13137", 
+    "NCBI gene:10241"
+  ], 
+  [
+    "Uniprot:P0CL44", 
+    "NCBI gene:1254393"
+  ], 
+  [
+    "Uniprot:P05412", 
+    "NCBI gene:3725"
+  ], 
+  [
+    "PubChem:8843", 
+    "CHEBI:23316"
+  ], 
+  [
+    "Uniprot:Q61371", 
+    "NCBI gene:21821"
+  ], 
+  [
+    "Uniprot:Q9Y2J4", 
+    "NCBI gene:51421"
+  ], 
+  [
+    "Uniprot:P53629", 
+    "NCBI gene:855753"
+  ], 
+  [
+    "Uniprot:P30153", 
+    "NCBI gene:5518"
+  ], 
+  [
+    "PubChem:11787114", 
+    "CHEBI:66484"
+  ], 
+  [
+    "Uniprot:O76512", 
+    "NCBI gene:171696"
+  ], 
+  [
+    "Uniprot:P04037", 
+    "NCBI gene:852688"
+  ], 
+  [
+    "Uniprot:Q8IY67", 
+    "NCBI gene:125950"
+  ], 
+  [
+    "Uniprot:P60568", 
+    "NCBI gene:3558"
+  ], 
+  [
+    "PubChem:5694", 
+    "CHEBI:32509"
+  ], 
+  [
+    "PubChem:439456", 
+    "CHEBI:16595"
+  ], 
+  [
+    "PubChem:2160", 
+    "CHEBI:2666"
+  ], 
+  [
+    "Uniprot:G3HEF7", 
+    "NCBI gene:100774580"
+  ], 
+  [
+    "Uniprot:Q13530", 
+    "NCBI gene:10955"
+  ], 
+  [
+    "Uniprot:Q9N3Q4", 
+    "NCBI gene:3565793"
+  ], 
+  [
+    "Uniprot:P06797", 
+    "NCBI gene:13039"
+  ], 
+  [
+    "Uniprot:Q9C9W9", 
+    "NCBI gene:843133"
+  ], 
+  [
+    "PubChem:26197", 
+    "CHEBI:241349"
+  ], 
+  [
+    "Uniprot:Q60795", 
+    "NCBI gene:18024"
+  ], 
+  [
+    "Uniprot:Q9DB70", 
+    "NCBI gene:72018"
+  ], 
+  [
+    "Uniprot:P11532", 
+    "NCBI gene:1756"
+  ], 
+  [
+    "Uniprot:P53157", 
+    "NCBI gene:852800"
+  ], 
+  [
+    "Uniprot:P27824", 
+    "NCBI gene:821"
+  ], 
+  [
+    "PubChem:447545", 
+    "CHEBI:29655"
+  ], 
+  [
+    "Uniprot:P42773", 
+    "NCBI gene:1031"
+  ], 
+  [
+    "PubChem:6207", 
+    "CHEBI:30740"
+  ], 
+  [
+    "Uniprot:Q92813", 
+    "NCBI gene:1734"
+  ], 
+  [
+    "PubChem:176155", 
+    "CHEBI:90705"
+  ], 
+  [
+    "Uniprot:P23242", 
+    "NCBI gene:14609"
+  ], 
+  [
+    "PubChem:25195391", 
+    "CHEBI:52078"
+  ], 
+  [
+    "Uniprot:P01123", 
+    "NCBI gene:850505"
+  ], 
+  [
+    "Uniprot:B0V2N1", 
+    "NCBI gene:19280"
+  ], 
+  [
+    "Uniprot:Q14790", 
+    "NCBI gene:841"
+  ], 
+  [
+    "Uniprot:Q5VT25", 
+    "NCBI gene:8476"
+  ], 
+  [
+    "PubChem:22247451", 
+    "PubChem:962", 
+    "CHEBI:15377"
+  ], 
+  [
+    "Uniprot:P29788", 
+    "NCBI gene:22370"
+  ], 
+  [
+    "Uniprot:P15656", 
+    "NCBI gene:14176"
+  ], 
+  [
+    "Uniprot:P07807", 
+    "NCBI gene:854411"
+  ], 
+  [
+    "PubChem:5232305", 
+    "PubChem:6049", 
+    "CHEBI:42191", 
+    "CHEBI:4735"
+  ], 
+  [
+    "PubChem:24403", 
+    "PubChem:517048", 
+    "CHEBI:71240"
+  ], 
+  [
+    "Uniprot:Q8VCD0", 
+    "NCBI gene:16542"
+  ], 
+  [
+    "Uniprot:P40345", 
+    "NCBI gene:855742"
+  ], 
+  [
+    "Uniprot:P46983", 
+    "NCBI gene:853254"
+  ], 
+  [
+    "Uniprot:P07750", 
+    "NCBI gene:16189"
+  ], 
+  [
+    "Uniprot:Q9GZX7", 
+    "NCBI gene:57379"
+  ], 
+  [
+    "Uniprot:P38634", 
+    "NCBI gene:850768"
+  ], 
+  [
+    "Uniprot:Q99985", 
+    "NCBI gene:10512"
+  ], 
+  [
+    "Uniprot:Q9BYM8", 
+    "NCBI gene:10616"
+  ], 
+  [
+    "PubChem:5359597", 
+    "CHEBI:18421"
+  ], 
+  [
+    "Uniprot:Q22342", 
+    "NCBI gene:180996"
+  ], 
+  [
+    "Uniprot:P0CG47", 
+    "NCBI gene:7314"
+  ], 
+  [
+    "Uniprot:Q61006", 
+    "NCBI gene:18198"
+  ], 
+  [
+    "Uniprot:Q03252", 
+    "NCBI gene:84823"
+  ], 
+  [
+    "PubChem:3346", 
+    "CHEBI:34761"
+  ], 
+  [
+    "Uniprot:Q8VIG1", 
+    "NCBI gene:19712"
+  ], 
+  [
+    "PubChem:65110", 
+    "CHEBI:18406"
+  ], 
+  [
+    "Uniprot:P40421", 
+    "NCBI gene:40224"
+  ], 
+  [
+    "Uniprot:Q9ULD4", 
+    "NCBI gene:27154"
+  ], 
+  [
+    "Uniprot:P20293", 
+    "NCBI gene:20997"
+  ], 
+  [
+    "Uniprot:Q9BXS4", 
+    "NCBI gene:9528"
+  ], 
+  [
+    "Uniprot:Q8R317", 
+    "NCBI gene:56085"
+  ], 
+  [
+    "Uniprot:P40417", 
+    "NCBI gene:3354888"
+  ], 
+  [
+    "PubChem:22880", 
+    "CHEBI:31882"
+  ], 
+  [
+    "Uniprot:Q13635", 
+    "NCBI gene:5727"
+  ], 
+  [
+    "Uniprot:Q12329", 
+    "NCBI gene:851751"
+  ], 
+  [
+    "Uniprot:Q00653", 
+    "NCBI gene:4791"
+  ], 
+  [
+    "Uniprot:P06493", 
+    "NCBI gene:983"
+  ], 
+  [
+    "Uniprot:P01108", 
+    "NCBI gene:17869"
+  ], 
+  [
+    "Uniprot:Q9XWP6", 
+    "NCBI gene:173214"
+  ], 
+  [
+    "Uniprot:Q99626", 
+    "NCBI gene:1045"
+  ], 
+  [
+    "PubChem:3779", 
+    "CHEBI:64317"
+  ], 
+  [
+    "Uniprot:Q70EL2", 
+    "NCBI gene:85015"
+  ], 
+  [
+    "Uniprot:Q9UKA9", 
+    "NCBI gene:58155"
+  ], 
+  [
+    "PubChem:180", 
+    "CHEBI:15347"
+  ], 
+  [
+    "Uniprot:O08911", 
+    "NCBI gene:29857"
+  ], 
+  [
+    "Uniprot:Q9BXP8", 
+    "NCBI gene:60676"
+  ], 
+  [
+    "Uniprot:A0A0B4KH16", 
+    "Uniprot:A0A0B4KHT3", 
+    "Uniprot:Q9VDJ9", 
+    "NCBI gene:42447"
+  ], 
+  [
+    "Uniprot:Q64373", 
+    "NCBI gene:12048"
+  ], 
+  [
+    "Uniprot:P31751", 
+    "NCBI gene:208"
+  ], 
+  [
+    "Uniprot:O15528", 
+    "NCBI gene:1594"
+  ], 
+  [
+    "Uniprot:P53078", 
+    "NCBI gene:852648"
+  ], 
+  [
+    "Uniprot:P70232", 
+    "NCBI gene:12661"
+  ], 
+  [
+    "Uniprot:P53867", 
+    "NCBI gene:855498"
+  ], 
+  [
+    "Uniprot:Q07889", 
+    "NCBI gene:6654"
+  ], 
+  [
+    "Uniprot:P48426", 
+    "NCBI gene:5305"
+  ], 
+  [
+    "PubChem:9963963", 
+    "CHEBI:61048"
+  ], 
+  [
+    "PubChem:5234", 
+    "CHEBI:26710"
+  ], 
+  [
+    "Uniprot:Q99ZW2", 
+    "NCBI gene:901176"
+  ], 
+  [
+    "PubChem:13921353", 
+    "CHEBI:60426"
+  ], 
+  [
+    "PubChem:6212", 
+    "CHEBI:35255"
+  ], 
+  [
+    "Uniprot:P92973", 
+    "NCBI gene:819296"
+  ], 
+  [
+    "Uniprot:P46937", 
+    "NCBI gene:10413"
+  ], 
+  [
+    "PubChem:444795", 
+    "CHEBI:15367"
+  ], 
+  [
+    "PubChem:176870", 
+    "CHEBI:114785"
+  ], 
+  [
+    "PubChem:6022", 
+    "CHEBI:16761"
+  ], 
+  [
+    "PubChem:15938", 
+    "CHEBI:6861"
+  ], 
+  [
+    "Uniprot:Q02948", 
+    "NCBI gene:855983"
+  ], 
+  [
+    "Uniprot:Q14206", 
+    "NCBI gene:10231"
+  ], 
+  [
+    "Uniprot:Q99700", 
+    "NCBI gene:6311"
+  ], 
+  [
+    "Uniprot:Q64008", 
+    "NCBI gene:19376"
+  ], 
+  [
+    "Uniprot:P97302", 
+    "NCBI gene:12013"
+  ], 
+  [
+    "PubChem:30165", 
+    "CHEBI:16382"
+  ], 
+  [
+    "Uniprot:O54839", 
+    "NCBI gene:13813"
+  ], 
+  [
+    "Uniprot:P02649", 
+    "NCBI gene:348"
+  ], 
+  [
+    "Uniprot:P43246", 
+    "NCBI gene:4436"
+  ], 
+  [
+    "Uniprot:Q9VHJ4", 
+    "NCBI gene:41071"
+  ], 
+  [
+    "Uniprot:Q9Y2T1", 
+    "NCBI gene:8313"
+  ], 
+  [
+    "Uniprot:P30882", 
+    "NCBI gene:20304"
+  ], 
+  [
+    "Uniprot:Q06787", 
+    "NCBI gene:2332"
+  ], 
+  [
+    "Uniprot:G5EBK4", 
+    "NCBI gene:178005"
+  ], 
+  [
+    "Uniprot:Q8NBK3", 
+    "NCBI gene:285362"
+  ], 
+  [
+    "Uniprot:Q99102", 
+    "NCBI gene:4585"
+  ], 
+  [
+    "Uniprot:P40959", 
+    "NCBI gene:855016"
+  ], 
+  [
+    "Uniprot:P17679", 
+    "NCBI gene:14460"
+  ], 
+  [
+    "Uniprot:Q9TXR4", 
+    "NCBI gene:171938"
+  ], 
+  [
+    "Uniprot:P26497", 
+    "NCBI gene:937907"
+  ], 
+  [
+    "Uniprot:Q92793", 
+    "NCBI gene:1387"
+  ], 
+  [
+    "Uniprot:Q9LHA8", 
+    "NCBI gene:820438"
+  ], 
+  [
+    "Uniprot:P28300", 
+    "NCBI gene:4015"
+  ], 
+  [
+    "Uniprot:Q7TSY8", 
+    "NCBI gene:68549"
+  ], 
+  [
+    "Uniprot:Q6PDM2", 
+    "NCBI gene:110809"
+  ], 
+  [
+    "PubChem:5460341", 
+    "CHEBI:22984"
+  ], 
+  [
+    "Uniprot:Q91ZX1", 
+    "NCBI gene:170786"
+  ], 
+  [
+    "PubChem:57397101", 
+    "PubChem:611", 
+    "CHEBI:18237", 
+    "CHEBI:5431"
+  ], 
+  [
+    "Uniprot:P68368", 
+    "NCBI gene:22145"
+  ], 
+  [
+    "Uniprot:Q91V92", 
+    "NCBI gene:104112"
+  ], 
+  [
+    "Uniprot:O95352", 
+    "NCBI gene:10533"
+  ], 
+  [
+    "Uniprot:Q9VKB9", 
+    "NCBI gene:34626"
+  ], 
+  [
+    "PubChem:522689", 
+    "CHEBI:66872"
+  ], 
+  [
+    "Uniprot:P39055", 
+    "NCBI gene:181644"
+  ], 
+  [
+    "PubChem:39562", 
+    "CHEBI:50138"
+  ], 
+  [
+    "Uniprot:D6RGH6", 
+    "NCBI gene:345643"
+  ], 
+  [
+    "Uniprot:P01587", 
+    "NCBI gene:12981"
+  ], 
+  [
+    "Uniprot:P53855", 
+    "NCBI gene:855479"
+  ], 
+  [
+    "Uniprot:P49769", 
+    "NCBI gene:19164"
+  ], 
+  [
+    "Uniprot:P19532", 
+    "NCBI gene:7030"
+  ], 
+  [
+    "Uniprot:P07203", 
+    "NCBI gene:2876"
+  ], 
+  [
+    "Uniprot:P10637", 
+    "NCBI gene:17762"
+  ], 
+  [
+    "Uniprot:Q80YX1", 
+    "NCBI gene:21923"
+  ], 
+  [
+    "Uniprot:Q8VHJ7", 
+    "NCBI gene:170826"
+  ], 
+  [
+    "Uniprot:Q9QUM0", 
+    "NCBI gene:16399"
+  ], 
+  [
+    "Uniprot:Q9Z2V5", 
+    "NCBI gene:15185"
+  ], 
+  [
+    "PubChem:3157", 
+    "CHEBI:4708"
+  ], 
+  [
+    "Uniprot:Q9Y4P8", 
+    "NCBI gene:26100"
+  ], 
+  [
+    "Uniprot:P04141", 
+    "NCBI gene:1437"
+  ], 
+  [
+    "PubChem:33113", 
+    "CHEBI:47785"
+  ], 
+  [
+    "PubChem:4893", 
+    "CHEBI:8364"
+  ], 
+  [
+    "Uniprot:O60906", 
+    "NCBI gene:6610"
+  ], 
+  [
+    "PubChem:3423265", 
+    "CHEBI:8984"
+  ], 
+  [
+    "PubChem:64945", 
+    "CHEBI:9908"
+  ], 
+  [
+    "Uniprot:Q8VDD8", 
+    "NCBI gene:68767"
+  ], 
+  [
+    "Uniprot:Q39242", 
+    "NCBI gene:816248"
+  ], 
+  [
+    "Uniprot:Q00196", 
+    "NCBI gene:18987"
+  ], 
+  [
+    "PubChem:9543102", 
+    "CHEBI:46915"
+  ], 
+  [
+    "Uniprot:Q7Z6Z7", 
+    "NCBI gene:10075"
+  ], 
+  [
+    "Uniprot:P24612", 
+    "NCBI gene:181728"
+  ], 
+  [
+    "Uniprot:Q96J02", 
+    "NCBI gene:83737"
+  ], 
+  [
+    "Uniprot:P27361", 
+    "NCBI gene:5595"
+  ], 
+  [
+    "Uniprot:Q9JJ57", 
+    "NCBI gene:70357"
+  ], 
+  [
+    "Uniprot:O35604", 
+    "NCBI gene:18145"
+  ], 
+  [
+    "Uniprot:P15056", 
+    "NCBI gene:673"
+  ], 
+  [
+    "Uniprot:P41160", 
+    "NCBI gene:16846"
+  ], 
+  [
+    "Uniprot:A0A0B4LEZ3", 
+    "Uniprot:A8DY80", 
+    "Uniprot:A8DY81", 
+    "Uniprot:A8DY82", 
+    "Uniprot:E2QCN4", 
+    "NCBI gene:5740252"
+  ], 
+  [
+    "PubChem:6918289", 
+    "CHEBI:79699"
+  ], 
+  [
+    "PubChem:65728", 
+    "CHEBI:2138"
+  ], 
+  [
+    "Uniprot:Q92611", 
+    "NCBI gene:9695"
+  ], 
+  [
+    "Uniprot:Q68FU2", 
+    "NCBI gene:293820"
+  ], 
+  [
+    "Uniprot:O75143", 
+    "NCBI gene:9776"
+  ], 
+  [
+    "Uniprot:O88351", 
+    "NCBI gene:16150"
+  ], 
+  [
+    "Uniprot:Q3TQ10", 
+    "Uniprot:Q3UG88", 
+    "Uniprot:Q3UGI8", 
+    "Uniprot:Q3UHB2", 
+    "Uniprot:Q7TT21", 
+    "NCBI gene:22084"
+  ], 
+  [
+    "Uniprot:P02340", 
+    "NCBI gene:22059"
+  ], 
+  [
+    "PubChem:3006531", 
+    "CHEBI:90693", 
+    "CHEBI:64208"
+  ], 
+  [
+    "Uniprot:Q62296", 
+    "NCBI gene:21679"
+  ], 
+  [
+    "Uniprot:H3BK99", 
+    "Uniprot:I7HJS2", 
+    "Uniprot:Q810E8", 
+    "Uniprot:Q91WF0", 
+    "NCBI gene:66826"
+  ], 
+  [
+    "Uniprot:P97953", 
+    "NCBI gene:22341"
+  ], 
+  [
+    "Uniprot:Q90YJ7", 
+    "NCBI gene:317638"
+  ], 
+  [
+    "PubChem:220401", 
+    "CHEBI:4393"
+  ], 
+  [
+    "Uniprot:Q9UHD9", 
+    "NCBI gene:29978"
+  ], 
+  [
+    "Uniprot:Q9ULV0", 
+    "NCBI gene:4645"
+  ], 
+  [
+    "Uniprot:P05942", 
+    "NCBI gene:24615"
+  ], 
+  [
+    "Uniprot:Q9WTU6", 
+    "NCBI gene:26420"
+  ], 
+  [
+    "Uniprot:O94966", 
+    "NCBI gene:10869"
+  ], 
+  [
+    "Uniprot:O75807", 
+    "NCBI gene:23645"
+  ], 
+  [
+    "Uniprot:P52480", 
+    "NCBI gene:18746"
+  ], 
+  [
+    "PubChem:5460221", 
+    "CHEBI:30823"
+  ], 
+  [
+    "Uniprot:P60321", 
+    "NCBI gene:339345"
+  ], 
+  [
+    "Uniprot:Q56026", 
+    "NCBI gene:1254406"
+  ], 
+  [
+    "Uniprot:Q86WV1", 
+    "NCBI gene:8631"
+  ], 
+  [
+    "PubChem:1474", 
+    "CHEBI:30351"
+  ], 
+  [
+    "Uniprot:O00139", 
+    "NCBI gene:3796"
+  ], 
+  [
+    "Uniprot:P29477", 
+    "NCBI gene:18126"
+  ], 
+  [
+    "Uniprot:P10176", 
+    "NCBI gene:1351"
+  ], 
+  [
+    "PubChem:5284329", 
+    "CHEBI:63053"
+  ], 
+  [
+    "Uniprot:Q687X5", 
+    "NCBI gene:79689"
+  ], 
+  [
+    "PubChem:5978", 
+    "CHEBI:28445"
+  ], 
+  [
+    "Uniprot:Q9QXJ2", 
+    "NCBI gene:20847"
+  ], 
+  [
+    "Uniprot:Q8TB72", 
+    "NCBI gene:23369"
+  ], 
+  [
+    "Uniprot:P54244", 
+    "NCBI gene:3565200"
+  ], 
+  [
+    "Uniprot:P61011", 
+    "NCBI gene:6729"
+  ], 
+  [
+    "Uniprot:P0CH08", 
+    "Uniprot:P0CH09", 
+    "NCBI gene:854658", 
+    "NCBI gene:853969"
+  ], 
+  [
+    "Uniprot:Q9HB90", 
+    "NCBI gene:64121"
+  ], 
+  [
+    "Uniprot:Q64702", 
+    "NCBI gene:20873"
+  ], 
+  [
+    "Uniprot:P11416", 
+    "NCBI gene:19401"
+  ], 
+  [
+    "Uniprot:Q15054", 
+    "NCBI gene:10714"
+  ], 
+  [
+    "Uniprot:P08575", 
+    "NCBI gene:5788"
+  ], 
+  [
+    "Uniprot:Q9Y5J3", 
+    "NCBI gene:23462"
+  ], 
+  [
+    "Uniprot:Q8K1Z0", 
+    "NCBI gene:67914"
+  ], 
+  [
+    "Uniprot:Q920F6", 
+    "NCBI gene:140557"
+  ], 
+  [
+    "Uniprot:Q07418", 
+    "NCBI gene:851494"
+  ], 
+  [
+    "Uniprot:P40304", 
+    "NCBI gene:39855"
+  ], 
+  [
+    "Uniprot:P33176", 
+    "NCBI gene:3799"
+  ], 
+  [
+    "Uniprot:A8JNK7", 
+    "Uniprot:M9NFM7", 
+    "Uniprot:Q8IRB4", 
+    "Uniprot:Q9VZC7", 
+    "NCBI gene:38543"
+  ], 
+  [
+    "Uniprot:O01803", 
+    "NCBI gene:171601"
+  ], 
+  [
+    "Uniprot:P06280", 
+    "NCBI gene:2717"
+  ], 
+  [
+    "Uniprot:D3Z5T1", 
+    "NCBI gene:381077"
+  ], 
+  [
+    "Uniprot:P29279", 
+    "NCBI gene:1490"
+  ], 
+  [
+    "PubChem:101633791", 
+    "PubChem:5111182", 
+    "PubChem:9001", 
+    "CHEBI:9607"
+  ], 
+  [
+    "PubChem:387447", 
+    "CHEBI:52717"
+  ], 
+  [
+    "Uniprot:Q924V1", 
+    "NCBI gene:85431"
+  ], 
+  [
+    "Uniprot:Q8IXH6", 
+    "NCBI gene:58476"
+  ], 
+  [
+    "Uniprot:Q9Y2Q5", 
+    "NCBI gene:28956"
+  ], 
+  [
+    "Uniprot:P61830", 
+    "NCBI gene:855700", 
+    "NCBI gene:852295"
+  ], 
+  [
+    "Uniprot:Q9UMD9", 
+    "NCBI gene:1308"
+  ], 
+  [
+    "Uniprot:P01024", 
+    "NCBI gene:718"
+  ], 
+  [
+    "Uniprot:Q6P4P7", 
+    "NCBI gene:393846"
+  ], 
+  [
+    "Uniprot:Q9SG02", 
+    "NCBI gene:824112"
+  ], 
+  [
+    "Uniprot:P02452", 
+    "NCBI gene:1277"
+  ], 
+  [
+    "Uniprot:A2AUM9", 
+    "NCBI gene:99100"
+  ], 
+  [
+    "Uniprot:P14142", 
+    "NCBI gene:20528"
+  ], 
+  [
+    "Uniprot:Q05919", 
+    "NCBI gene:851074"
+  ], 
+  [
+    "Uniprot:Q6ZWS8", 
+    "NCBI gene:20747"
+  ], 
+  [
+    "Uniprot:Q9NV96", 
+    "NCBI gene:55754"
+  ], 
+  [
+    "Uniprot:Q9HUV7", 
+    "NCBI gene:877881"
+  ], 
+  [
+    "PubChem:44367445", 
+    "PubChem:5960", 
+    "CHEBI:17053"
+  ], 
+  [
+    "Uniprot:Q969M3", 
+    "NCBI gene:81555"
+  ], 
+  [
+    "Uniprot:Q8T0S6", 
+    "NCBI gene:37247"
+  ], 
+  [
+    "Uniprot:Q2XQY7", 
+    "NCBI gene:5724201"
+  ], 
+  [
+    "Uniprot:H2KYN5", 
+    "Uniprot:O16466", 
+    "NCBI gene:179246"
+  ], 
+  [
+    "Uniprot:Q01237", 
+    "NCBI gene:15357"
+  ], 
+  [
+    "Uniprot:P67870", 
+    "NCBI gene:1460"
+  ], 
+  [
+    "Uniprot:Q17905", 
+    "NCBI gene:181705"
+  ], 
+  [
+    "Uniprot:E9PUR6", 
+    "Uniprot:E9PYV1", 
+    "NCBI gene:14815"
+  ], 
+  [
+    "Uniprot:P30872", 
+    "NCBI gene:6751"
+  ], 
+  [
+    "Uniprot:Q99081", 
+    "NCBI gene:6938"
+  ], 
+  [
+    "Uniprot:P35606", 
+    "NCBI gene:9276"
+  ], 
+  [
+    "PubChem:439260", 
+    "CHEBI:18357"
+  ], 
+  [
+    "Uniprot:O95155", 
+    "NCBI gene:10277"
+  ], 
+  [
+    "Uniprot:P48735", 
+    "NCBI gene:3418"
+  ], 
+  [
+    "Uniprot:Q00684", 
+    "NCBI gene:850585"
+  ], 
+  [
+    "Uniprot:P12074", 
+    "NCBI gene:1337"
+  ], 
+  [
+    "Uniprot:Q5EG47", 
+    "NCBI gene:105787"
+  ], 
+  [
+    "PubChem:6610292", 
+    "CHEBI:52722"
+  ], 
+  [
+    "Uniprot:Q9EQ14", 
+    "NCBI gene:83430"
+  ], 
+  [
+    "Uniprot:O43541", 
+    "NCBI gene:4091"
+  ], 
+  [
+    "Uniprot:B2RQ57", 
+    "Uniprot:F8VQH0", 
+    "NCBI gene:11352"
+  ], 
+  [
+    "Uniprot:Q12756", 
+    "NCBI gene:547"
+  ], 
+  [
+    "Uniprot:Q4Q7K5", 
+    "NCBI gene:5653628"
+  ], 
+  [
+    "Uniprot:Q96EB6", 
+    "NCBI gene:23411"
+  ], 
+  [
+    "Uniprot:Q62181", 
+    "NCBI gene:20348"
+  ], 
+  [
+    "Uniprot:O70343", 
+    "NCBI gene:19017"
+  ], 
+  [
+    "PubChem:5255803", 
+    "PubChem:857", 
+    "CHEBI:25017"
+  ], 
+  [
+    "PubChem:28780", 
+    "CHEBI:3015"
+  ], 
+  [
+    "Uniprot:Q04751", 
+    "NCBI gene:855091"
+  ], 
+  [
+    "Uniprot:Q8IU60", 
+    "NCBI gene:167227"
+  ], 
+  [
+    "Uniprot:Q9C0C7", 
+    "NCBI gene:55626"
+  ], 
+  [
+    "Uniprot:P41233", 
+    "NCBI gene:11303"
+  ], 
+  [
+    "Uniprot:O60353", 
+    "NCBI gene:8323"
+  ], 
+  [
+    "PubChem:6857549", 
+    "PubChem:71077", 
+    "CHEBI:16523"
+  ], 
+  [
+    "Uniprot:Q99ML1", 
+    "NCBI gene:170770"
+  ], 
+  [
+    "Uniprot:P08069", 
+    "NCBI gene:3480"
+  ], 
+  [
+    "PubChem:656894", 
+    "CHEBI:61448"
+  ], 
+  [
+    "Uniprot:Q9NT62", 
+    "NCBI gene:64422"
+  ], 
+  [
+    "Uniprot:P24100", 
+    "NCBI gene:824036"
+  ], 
+  [
+    "Uniprot:Q02936", 
+    "NCBI gene:42737"
+  ], 
+  [
+    "Uniprot:O42861", 
+    "NCBI gene:2541531"
+  ], 
+  [
+    "Uniprot:P78413", 
+    "NCBI gene:50805"
+  ], 
+  [
+    "PubChem:597", 
+    "CHEBI:16040", 
+    "CHEBI:4072"
+  ], 
+  [
+    "PubChem:5790", 
+    "CHEBI:60761"
+  ], 
+  [
+    "Uniprot:P55317", 
+    "NCBI gene:3169"
+  ], 
+  [
+    "Uniprot:O95467", 
+    "Uniprot:P63092", 
+    "Uniprot:P84996", 
+    "Uniprot:Q5JWF2", 
+    "NCBI gene:2778"
+  ], 
+  [
+    "Uniprot:P43593", 
+    "NCBI gene:850562"
+  ], 
+  [
+    "Uniprot:P19783", 
+    "NCBI gene:12857"
+  ], 
+  [
+    "Uniprot:Q8NFU7", 
+    "NCBI gene:80312"
+  ], 
+  [
+    "Uniprot:P24270", 
+    "NCBI gene:12359"
+  ], 
+  [
+    "Uniprot:O00154", 
+    "NCBI gene:11332"
+  ], 
+  [
+    "Uniprot:Q6Q899", 
+    "NCBI gene:230073"
+  ], 
+  [
+    "Uniprot:A8J6F1", 
+    "NCBI gene:5722691"
+  ], 
+  [
+    "Uniprot:P42232", 
+    "NCBI gene:20851"
+  ], 
+  [
+    "Uniprot:P29268", 
+    "NCBI gene:14219"
+  ], 
+  [
+    "Uniprot:O35129", 
+    "NCBI gene:12034"
+  ], 
+  [
+    "Uniprot:Q9ZVD5", 
+    "NCBI gene:817246"
+  ], 
+  [
+    "Uniprot:O43617", 
+    "NCBI gene:27095"
+  ], 
+  [
+    "Uniprot:P03903", 
+    "NCBI gene:17720"
+  ], 
+  [
+    "Uniprot:O00622", 
+    "NCBI gene:3491"
+  ], 
+  [
+    "Uniprot:P61225", 
+    "NCBI gene:5912"
+  ], 
+  [
+    "Uniprot:Q9UMF0", 
+    "NCBI gene:7087"
+  ], 
+  [
+    "PubChem:280", 
+    "CHEBI:16526"
+  ], 
+  [
+    "Uniprot:P16547", 
+    "NCBI gene:854670"
+  ], 
+  [
+    "Uniprot:Q9NQZ5", 
+    "NCBI gene:56910"
+  ], 
+  [
+    "Uniprot:P97864", 
+    "NCBI gene:12369"
+  ], 
+  [
+    "Uniprot:P10415", 
+    "NCBI gene:596"
+  ], 
+  [
+    "PubChem:5743", 
+    "CHEBI:41879"
+  ], 
+  [
+    "Uniprot:Q0PKX6", 
+    "NCBI gene:114461"
+  ], 
+  [
+    "Uniprot:P46938", 
+    "NCBI gene:22601"
+  ], 
+  [
+    "Uniprot:Q9WVE0", 
+    "NCBI gene:11628"
+  ], 
+  [
+    "Uniprot:Q9HBF4", 
+    "NCBI gene:53349"
+  ], 
+  [
+    "Uniprot:Q9WV60", 
+    "NCBI gene:56637"
+  ], 
+  [
+    "PubChem:24964624", 
+    "CHEBI:67271"
+  ], 
+  [
+    "PubChem:5281", 
+    "CHEBI:28842"
+  ], 
+  [
+    "Uniprot:Q8QGI4", 
+    "NCBI gene:325288"
+  ], 
+  [
+    "PubChem:25517", 
+    "PubChem:518533", 
+    "CHEBI:31206"
+  ], 
+  [
+    "Uniprot:Q23023", 
+    "NCBI gene:180311"
+  ], 
+  [
+    "PubChem:167583", 
+    "CHEBI:29237"
+  ], 
+  [
+    "PubChem:517044", 
+    "CHEBI:32029"
+  ], 
+  [
+    "Uniprot:Q95RF6", 
+    "NCBI gene:40189"
+  ], 
+  [
+    "Uniprot:Q9Z0D9", 
+    "NCBI gene:13051"
+  ], 
+  [
+    "Uniprot:P41800", 
+    "NCBI gene:850654"
+  ], 
+  [
+    "Uniprot:Q02242", 
+    "NCBI gene:18566"
+  ], 
+  [
+    "Uniprot:G1K2F4", 
+    "NCBI gene:799873"
+  ], 
+  [
+    "Uniprot:I7MKB8", 
+    "NCBI gene:7826679"
+  ], 
+  [
+    "Uniprot:Q9QUN7", 
+    "NCBI gene:24088"
+  ], 
+  [
+    "Uniprot:P49632", 
+    "NCBI gene:176718"
+  ], 
+  [
+    "PubChem:5479543", 
+    "CHEBI:74921"
+  ], 
+  [
+    "Uniprot:P18848", 
+    "NCBI gene:468"
+  ], 
+  [
+    "Uniprot:P63279", 
+    "NCBI gene:7329"
+  ], 
+  [
+    "Uniprot:P49768", 
+    "NCBI gene:5663"
+  ], 
+  [
+    "Uniprot:P33379", 
+    "NCBI gene:987035"
+  ], 
+  [
+    "Uniprot:Q9HAU5", 
+    "NCBI gene:26019"
+  ], 
+  [
+    "Uniprot:O88597", 
+    "NCBI gene:56208"
+  ], 
+  [
+    "Uniprot:Q9VIQ8", 
+    "NCBI gene:35279"
+  ], 
+  [
+    "Uniprot:P08965", 
+    "NCBI gene:2542080"
+  ], 
+  [
+    "Uniprot:P10636", 
+    "NCBI gene:4137"
+  ], 
+  [
+    "Uniprot:Q23536", 
+    "NCBI gene:177989"
+  ], 
+  [
+    "Uniprot:Q6ZNE5", 
+    "NCBI gene:22863"
+  ], 
+  [
+    "Uniprot:Q92949", 
+    "NCBI gene:2302"
+  ], 
+  [
+    "Uniprot:Q8VE70", 
+    "NCBI gene:56426"
+  ], 
+  [
+    "Uniprot:Q4ACU6", 
+    "NCBI gene:58234"
+  ], 
+  [
+    "Uniprot:Q12292", 
+    "NCBI gene:854071"
+  ], 
+  [
+    "Uniprot:Q64337", 
+    "NCBI gene:18412"
+  ], 
+  [
+    "Uniprot:Q9VQQ9", 
+    "NCBI gene:33563"
+  ], 
+  [
+    "PubChem:5280723", 
+    "CHEBI:15544"
+  ], 
+  [
+    "Uniprot:Q8R0B5", 
+    "Uniprot:Q8VD35", 
+    "NCBI gene:18424"
+  ], 
+  [
+    "Uniprot:P49686", 
+    "NCBI gene:851774"
+  ], 
+  [
+    "Uniprot:O00214", 
+    "NCBI gene:3964"
+  ], 
+  [
+    "PubChem:5284373", 
+    "CHEBI:4031"
+  ], 
+  [
+    "Uniprot:P07278", 
+    "NCBI gene:854778"
+  ], 
+  [
+    "PubChem:106", 
+    "CHEBI:37712"
+  ], 
+  [
+    "Uniprot:Q17796", 
+    "NCBI gene:177617"
+  ], 
+  [
+    "Uniprot:Q39243", 
+    "NCBI gene:829698"
+  ], 
+  [
+    "Uniprot:O43422", 
+    "NCBI gene:5612"
+  ], 
+  [
+    "Uniprot:P52789", 
+    "NCBI gene:3099"
+  ], 
+  [
+    "PubChem:27924", 
+    "CHEBI:37537", 
+    "CHEBI:745"
+  ], 
+  [
+    "Uniprot:P11420", 
+    "NCBI gene:34413"
+  ], 
+  [
+    "Uniprot:O89093", 
+    "NCBI gene:20297"
+  ], 
+  [
+    "PubChem:73685", 
+    "CHEBI:88294"
+  ], 
+  [
+    "Uniprot:P54861", 
+    "NCBI gene:850686"
+  ], 
+  [
+    "PubChem:2733526", 
+    "CHEBI:41774", 
+    "CHEBI:9396"
+  ], 
+  [
+    "Uniprot:Q8R3E3", 
+    "NCBI gene:52639"
+  ], 
+  [
+    "Uniprot:Q6P1D7", 
+    "NCBI gene:52864"
+  ], 
+  [
+    "Uniprot:Q92993", 
+    "NCBI gene:10524"
+  ], 
+  [
+    "Uniprot:P15567", 
+    "NCBI gene:2538734"
+  ], 
+  [
+    "PubChem:5754", 
+    "CHEBI:17650"
+  ], 
+  [
+    "Uniprot:Q9VVS6", 
+    "NCBI gene:40044"
+  ], 
+  [
+    "PubChem:221493", 
+    "CHEBI:16359"
+  ], 
+  [
+    "Uniprot:P70193", 
+    "NCBI gene:16206"
+  ], 
+  [
+    "Uniprot:F1M4A4", 
+    "NCBI gene:363288"
+  ], 
+  [
+    "Uniprot:P34443", 
+    "NCBI gene:176327"
+  ], 
+  [
+    "PubChem:5311281", 
+    "CHEBI:23527"
+  ], 
+  [
+    "Uniprot:Q9NRY6", 
+    "NCBI gene:57048"
+  ], 
+  [
+    "PubChem:2807869", 
+    "CHEBI:92464"
+  ], 
+  [
+    "PubChem:1102", 
+    "CHEBI:16610"
+  ], 
+  [
+    "PubChem:5479530", 
+    "CHEBI:29007"
+  ], 
+  [
+    "Uniprot:Q01477", 
+    "NCBI gene:856895"
+  ], 
+  [
+    "Uniprot:Q68DK7", 
+    "NCBI gene:339287"
+  ], 
+  [
+    "Uniprot:P27577", 
+    "NCBI gene:23871"
+  ], 
+  [
+    "Uniprot:Q9R210", 
+    "NCBI gene:21425"
+  ], 
+  [
+    "Uniprot:P03129", 
+    "NCBI gene:1489079"
+  ], 
+  [
+    "Uniprot:P40025", 
+    "NCBI gene:856759"
+  ], 
+  [
+    "PubChem:445639", 
+    "CHEBI:16196"
+  ], 
+  [
+    "Uniprot:Q9V3N4", 
+    "NCBI gene:43392"
+  ], 
+  [
+    "PubChem:5401", 
+    "CHEBI:9445"
+  ], 
+  [
+    "Uniprot:O80982", 
+    "NCBI gene:817155"
+  ], 
+  [
+    "Uniprot:Q9VA38", 
+    "NCBI gene:43651"
+  ], 
+  [
+    "Uniprot:O75665", 
+    "NCBI gene:8481"
+  ], 
+  [
+    "Uniprot:Q9NXF1", 
+    "NCBI gene:54881"
+  ], 
+  [
+    "Uniprot:Q9ULV1", 
+    "NCBI gene:8322"
+  ], 
+  [
+    "Uniprot:Q16539", 
+    "NCBI gene:1432"
+  ], 
+  [
+    "Uniprot:Q14683", 
+    "NCBI gene:8243"
+  ], 
+  [
+    "Uniprot:Q2L4W6", 
+    "NCBI gene:2540637"
+  ], 
+  [
+    "PubChem:6197", 
+    "CHEBI:27641"
+  ], 
+  [
+    "Uniprot:Q9U221", 
+    "NCBI gene:176633"
+  ], 
+  [
+    "Uniprot:Q6NLA3", 
+    "Uniprot:Q8IML3", 
+    "Uniprot:Q8IML4", 
+    "Uniprot:Q8IML5", 
+    "Uniprot:Q9XZ10", 
+    "NCBI gene:43442"
+  ], 
+  [
+    "Uniprot:Q9Z315", 
+    "NCBI gene:20227"
+  ], 
+  [
+    "Uniprot:Q8NFZ0", 
+    "NCBI gene:84893"
+  ], 
+  [
+    "PubChem:5905", 
+    "CHEBI:147675"
+  ], 
+  [
+    "Uniprot:Q13217", 
+    "NCBI gene:5611"
+  ], 
+  [
+    "PubChem:6605258", 
+    "CHEBI:91739"
+  ], 
+  [
+    "Uniprot:P60322", 
+    "NCBI gene:378430"
+  ], 
+  [
+    "Uniprot:P25918", 
+    "NCBI gene:12478"
+  ], 
+  [
+    "Uniprot:Q07528", 
+    "NCBI gene:851445"
+  ], 
+  [
+    "Uniprot:P10300", 
+    "NCBI gene:12526"
+  ], 
+  [
+    "Uniprot:A5PLA3", 
+    "NCBI gene:795084"
+  ], 
+  [
+    "Uniprot:P46527", 
+    "NCBI gene:1027"
+  ], 
+  [
+    "Uniprot:P01160", 
+    "NCBI gene:4878"
+  ], 
+  [
+    "Uniprot:P00738", 
+    "NCBI gene:3240"
+  ], 
+  [
+    "Uniprot:Q9HC77", 
+    "NCBI gene:55835"
+  ], 
+  [
+    "Uniprot:Q60625", 
+    "NCBI gene:15898"
+  ], 
+  [
+    "PubChem:7870", 
+    "CHEBI:62995"
+  ], 
+  [
+    "Uniprot:P24522", 
+    "NCBI gene:1647"
+  ], 
+  [
+    "Uniprot:O95292", 
+    "NCBI gene:9217"
+  ], 
+  [
+    "Uniprot:Q9Y624", 
+    "NCBI gene:50848"
+  ], 
+  [
+    "Uniprot:P51116", 
+    "NCBI gene:9513"
+  ], 
+  [
+    "Uniprot:P21264", 
+    "NCBI gene:854295"
+  ], 
+  [
+    "PubChem:24771867", 
+    "CHEBI:125628"
+  ], 
+  [
+    "Uniprot:Q86BR8", 
+    "Uniprot:Q9VDL2", 
+    "NCBI gene:42433"
+  ], 
+  [
+    "Uniprot:O94875", 
+    "NCBI gene:8470"
+  ], 
+  [
+    "PubChem:152109", 
+    "CHEBI:25164"
+  ], 
+  [
+    "Uniprot:Q62108", 
+    "NCBI gene:13385"
+  ], 
+  [
+    "Uniprot:P15066", 
+    "NCBI gene:16478"
+  ], 
+  [
+    "Uniprot:O96690", 
+    "NCBI gene:43193"
+  ], 
+  [
+    "Uniprot:P0CG49", 
+    "NCBI gene:22187"
+  ], 
+  [
+    "Uniprot:P63328", 
+    "NCBI gene:19055"
+  ], 
+  [
+    "Uniprot:P51812", 
+    "NCBI gene:6197"
+  ], 
+  [
+    "Uniprot:P04756", 
+    "NCBI gene:11435"
+  ], 
+  [
+    "Uniprot:A0A0B4KF46", 
+    "Uniprot:Q8T0L3", 
+    "NCBI gene:35998"
+  ], 
+  [
+    "Uniprot:O43264", 
+    "NCBI gene:9183"
+  ], 
+  [
+    "Uniprot:P01111", 
+    "NCBI gene:4893"
+  ], 
+  [
+    "Uniprot:P00330", 
+    "NCBI gene:854068"
+  ], 
+  [
+    "Uniprot:Q84LH8", 
+    "NCBI gene:825075"
+  ], 
+  [
+    "PubChem:2790", 
+    "CHEBI:64177"
+  ], 
+  [
+    "PubChem:5886", 
+    "CHEBI:18009", 
+    "CHEBI:7424"
+  ], 
+  [
+    "Uniprot:Q9H0X9", 
+    "NCBI gene:114879"
+  ], 
+  [
+    "Uniprot:P03888", 
+    "NCBI gene:17716"
+  ], 
+  [
+    "Uniprot:Q9NUT2", 
+    "NCBI gene:11194"
+  ], 
+  [
+    "Uniprot:Q80YR6", 
+    "NCBI gene:225182"
+  ], 
+  [
+    "Uniprot:Q9ESK9", 
+    "NCBI gene:12421"
+  ], 
+  [
+    "Uniprot:Q10146", 
+    "NCBI gene:2543630"
+  ], 
+  [
+    "PubChem:18348331", 
+    "PubChem:313", 
+    "CHEBI:17883"
+  ], 
+  [
+    "Uniprot:P53083", 
+    "NCBI gene:852654"
+  ], 
+  [
+    "Uniprot:P14602", 
+    "NCBI gene:15507"
+  ], 
+  [
+    "Uniprot:Q61337", 
+    "NCBI gene:12015"
+  ], 
+  [
+    "Uniprot:Q96L34", 
+    "NCBI gene:57787"
+  ], 
+  [
+    "Uniprot:O35601", 
+    "NCBI gene:23880"
+  ], 
+  [
+    "Uniprot:P48755", 
+    "NCBI gene:14283"
+  ], 
+  [
+    "Uniprot:A5YKK6", 
+    "NCBI gene:23019"
+  ], 
+  [
+    "Uniprot:O88566", 
+    "NCBI gene:12006"
+  ], 
+  [
+    "Uniprot:P42125", 
+    "NCBI gene:13177"
+  ], 
+  [
+    "Uniprot:O08651", 
+    "NCBI gene:58835"
+  ], 
+  [
+    "Uniprot:Q4QR83", 
+    "NCBI gene:363071"
+  ], 
+  [
+    "Uniprot:Q6NZZ7", 
+    "Uniprot:Q6PSS4", 
+    "NCBI gene:326974"
+  ], 
+  [
+    "Uniprot:P70406", 
+    "NCBI gene:22228"
+  ], 
+  [
+    "Uniprot:Q9UM47", 
+    "NCBI gene:4854"
+  ], 
+  [
+    "Uniprot:Q96BN8", 
+    "NCBI gene:90268"
+  ], 
+  [
+    "Uniprot:P40423", 
+    "NCBI gene:31554"
+  ], 
+  [
+    "Uniprot:O88513", 
+    "NCBI gene:57441"
+  ], 
+  [
+    "Uniprot:P02836", 
+    "NCBI gene:36240"
+  ], 
+  [
+    "PubChem:6133", 
+    "CHEBI:15713"
+  ], 
+  [
+    "PubChem:444493", 
+    "CHEBI:15351"
+  ], 
+  [
+    "Uniprot:Q9P0L0", 
+    "NCBI gene:9218"
+  ], 
+  [
+    "Uniprot:P84244", 
+    "NCBI gene:15078"
+  ], 
+  [
+    "Uniprot:Q9Z0P7", 
+    "NCBI gene:24069"
+  ], 
+  [
+    "Uniprot:O55003", 
+    "NCBI gene:12176"
+  ], 
+  [
+    "Uniprot:P22301", 
+    "NCBI gene:3586"
+  ], 
+  [
+    "Uniprot:Q61602", 
+    "NCBI gene:14634"
+  ], 
+  [
+    "Uniprot:Q8IYW5", 
+    "NCBI gene:165918"
+  ], 
+  [
+    "Uniprot:P48985", 
+    "NCBI gene:11921"
+  ], 
+  [
+    "Uniprot:Q8IUC6", 
+    "NCBI gene:148022"
+  ], 
+  [
+    "Uniprot:P53901", 
+    "NCBI gene:855570"
+  ], 
+  [
+    "Uniprot:P11792", 
+    "NCBI gene:856612"
+  ], 
+  [
+    "Uniprot:Q06186", 
+    "NCBI gene:15200"
+  ], 
+  [
+    "Uniprot:Q14764", 
+    "NCBI gene:9961"
+  ], 
+  [
+    "Uniprot:P55072", 
+    "NCBI gene:7415"
+  ], 
+  [
+    "Uniprot:P12242", 
+    "NCBI gene:22227"
+  ], 
+  [
+    "Uniprot:Q9CW03", 
+    "NCBI gene:13006"
+  ], 
+  [
+    "PubChem:3821", 
+    "CHEBI:6121"
+  ], 
+  [
+    "Uniprot:P32883", 
+    "NCBI gene:16653"
+  ], 
+  [
+    "Uniprot:Q13686", 
+    "NCBI gene:8846"
+  ], 
+  [
+    "Uniprot:Q62956", 
+    "NCBI gene:59323"
+  ], 
+  [
+    "PubChem:5789", 
+    "CHEBI:17748"
+  ], 
+  [
+    "Uniprot:P28795", 
+    "NCBI gene:851929"
+  ], 
+  [
+    "PubChem:9893571", 
+    "CHEBI:79997"
+  ], 
+  [
+    "Uniprot:Q8K2C6", 
+    "NCBI gene:68346"
+  ], 
+  [
+    "PubChem:753704", 
+    "CHEBI:92375"
+  ], 
+  [
+    "Uniprot:P52952", 
+    "NCBI gene:1482"
+  ], 
+  [
+    "Uniprot:P04601", 
+    "NCBI gene:156110"
+  ], 
+  [
+    "Uniprot:P34152", 
+    "NCBI gene:14083"
+  ], 
+  [
+    "Uniprot:P12710", 
+    "NCBI gene:14080"
+  ], 
+  [
+    "Uniprot:Q9Y3D6", 
+    "NCBI gene:51024"
+  ], 
+  [
+    "PubChem:65091", 
+    "CHEBI:16311"
+  ], 
+  [
+    "Uniprot:G5EE66", 
+    "NCBI gene:3565555"
+  ], 
+  [
+    "Uniprot:Q14289", 
+    "NCBI gene:2185"
+  ], 
+  [
+    "Uniprot:P53783", 
+    "NCBI gene:20664"
+  ], 
+  [
+    "Uniprot:Q3UPP8", 
+    "NCBI gene:28135"
+  ], 
+  [
+    "Uniprot:Q99ME3", 
+    "NCBI gene:67847"
+  ], 
+  [
+    "PubChem:86290183", 
+    "CHEBI:83580"
+  ], 
+  [
+    "Uniprot:Q7K519", 
+    "NCBI gene:35793"
+  ], 
+  [
+    "PubChem:6438394", 
+    "CHEBI:582124"
+  ], 
+  [
+    "PubChem:104842", 
+    "CHEBI:8988"
+  ], 
+  [
+    "Uniprot:Q04207", 
+    "NCBI gene:19697"
+  ], 
+  [
+    "Uniprot:Q9VCR6", 
+    "NCBI gene:252554"
+  ], 
+  [
+    "Uniprot:P33748", 
+    "NCBI gene:855053"
+  ], 
+  [
+    "Uniprot:P06633", 
+    "NCBI gene:854377"
+  ], 
+  [
+    "Uniprot:E9QAT0", 
+    "Uniprot:E9QNF5", 
+    "Uniprot:Q547R0", 
+    "Uniprot:Q6AXB7", 
+    "Uniprot:Q8BPK8", 
+    "NCBI gene:14265"
+  ], 
+  [
+    "Uniprot:Q9Z1S0", 
+    "NCBI gene:12236"
+  ], 
+  [
+    "Uniprot:Q9VVP8", 
+    "NCBI gene:40016"
+  ], 
+  [
+    "Uniprot:Q8BKH7", 
+    "NCBI gene:227743"
+  ], 
+  [
+    "Uniprot:P12023", 
+    "NCBI gene:11820"
+  ], 
+  [
+    "Uniprot:P78504", 
+    "NCBI gene:182"
+  ], 
+  [
+    "Uniprot:O08734", 
+    "NCBI gene:12018"
+  ], 
+  [
+    "Uniprot:P45983", 
+    "NCBI gene:5599"
+  ], 
+  [
+    "Uniprot:P25724", 
+    "NCBI gene:42297"
+  ], 
+  [
+    "Uniprot:O75439", 
+    "NCBI gene:9512"
+  ], 
+  [
+    "Uniprot:Q3TR40", 
+    "Uniprot:Q80YQ1", 
+    "NCBI gene:21825"
+  ], 
+  [
+    "PubChem:6992697", 
+    "PubChem:92907", 
+    "CHEBI:35704"
+  ], 
+  [
+    "PubChem:77487", 
+    "CHEBI:75146"
+  ], 
+  [
+    "PubChem:5287620", 
+    "CHEBI:48080"
+  ], 
+  [
+    "Uniprot:P16914", 
+    "NCBI gene:31000"
+  ], 
+  [
+    "Uniprot:Q01815", 
+    "NCBI gene:12288"
+  ], 
+  [
+    "Uniprot:Q8N682", 
+    "NCBI gene:55332"
+  ], 
+  [
+    "Uniprot:P09535", 
+    "NCBI gene:16002"
+  ], 
+  [
+    "Uniprot:O08918", 
+    "NCBI gene:12452"
+  ], 
+  [
+    "PubChem:261000", 
+    "CHEBI:379896"
+  ], 
+  [
+    "Uniprot:O60245", 
+    "NCBI gene:5099"
+  ], 
+  [
+    "Uniprot:Q92008", 
+    "NCBI gene:30269"
+  ], 
+  [
+    "Uniprot:Q9H0U4", 
+    "NCBI gene:81876"
+  ], 
+  [
+    "Uniprot:Q61025", 
+    "NCBI gene:55978"
+  ], 
+  [
+    "Uniprot:Q9NRC8", 
+    "NCBI gene:51547"
+  ], 
+  [
+    "PubChem:5313476", 
+    "CHEBI:60428"
+  ], 
+  [
+    "Uniprot:P0DI97", 
+    "Uniprot:Q9CS84", 
+    "NCBI gene:18189"
+  ], 
+  [
+    "Uniprot:P52910", 
+    "NCBI gene:850846"
+  ], 
+  [
+    "Uniprot:P32917", 
+    "NCBI gene:851680"
+  ], 
+  [
+    "Uniprot:P19812", 
+    "NCBI gene:853096"
+  ], 
+  [
+    "PubChem:13472", 
+    "CHEBI:40799"
+  ], 
+  [
+    "Uniprot:P47985", 
+    "NCBI gene:7386"
+  ], 
+  [
+    "Uniprot:O16850", 
+    "NCBI gene:172981"
+  ], 
+  [
+    "Uniprot:O88627", 
+    "NCBI gene:269346"
+  ], 
+  [
+    "Uniprot:P27695", 
+    "NCBI gene:328"
+  ], 
+  [
+    "Uniprot:Q8R0Y6", 
+    "NCBI gene:107747"
+  ], 
+  [
+    "Uniprot:Q7JYX5", 
+    "NCBI gene:36015"
+  ], 
+  [
+    "Uniprot:Q5S007", 
+    "NCBI gene:120892"
+  ], 
+  [
+    "Uniprot:P36161", 
+    "NCBI gene:853957"
+  ], 
+  [
+    "Uniprot:P51159", 
+    "NCBI gene:5873"
+  ], 
+  [
+    "Uniprot:Q7KUT2", 
+    "NCBI gene:40138"
+  ], 
+  [
+    "Uniprot:P15379", 
+    "NCBI gene:12505"
+  ], 
+  [
+    "Uniprot:Q12983", 
+    "NCBI gene:664"
+  ], 
+  [
+    "Uniprot:O75771", 
+    "NCBI gene:5892"
+  ], 
+  [
+    "PubChem:24798687", 
+    "PubChem:595", 
+    "CHEBI:17376"
+  ], 
+  [
+    "PubChem:4247", 
+    "CHEBI:52007"
+  ], 
+  [
+    "Uniprot:Q99NB8", 
+    "NCBI gene:94232"
+  ], 
+  [
+    "Uniprot:Q5VZM2", 
+    "NCBI gene:10325"
+  ], 
+  [
+    "Uniprot:P97478", 
+    "NCBI gene:12850"
+  ], 
+  [
+    "Uniprot:Q7Z434", 
+    "NCBI gene:57506"
+  ], 
+  [
+    "Uniprot:Q9ERQ8", 
+    "NCBI gene:12354"
+  ], 
+  [
+    "PubChem:60961", 
+    "CHEBI:16335"
+  ], 
+  [
+    "PubChem:560326", 
+    "CHEBI:102218"
+  ], 
+  [
+    "Uniprot:P84817", 
+    "NCBI gene:288584"
+  ], 
+  [
+    "PubChem:439530", 
+    "CHEBI:17939"
+  ], 
+  [
+    "Uniprot:Q60929", 
+    "NCBI gene:17258"
+  ], 
+  [
+    "PubChem:4485", 
+    "CHEBI:7565"
+  ], 
+  [
+    "Uniprot:Q9DBB1", 
+    "NCBI gene:67603"
+  ], 
+  [
+    "Uniprot:Q8Y7I7", 
+    "NCBI gene:985114"
+  ], 
+  [
+    "Uniprot:Q9JL15", 
+    "NCBI gene:56048"
+  ], 
+  [
+    "Uniprot:Q00610", 
+    "NCBI gene:1213"
+  ], 
+  [
+    "PubChem:25126798", 
+    "CHEBI:66919"
+  ], 
+  [
+    "PubChem:25128979", 
+    "CHEBI:52767"
+  ], 
+  [
+    "Uniprot:Q9ES52", 
+    "NCBI gene:16331"
+  ], 
+  [
+    "Uniprot:M9PCE9", 
+    "Uniprot:Q86BI2", 
+    "Uniprot:Q9U4U5", 
+    "NCBI gene:44115"
+  ], 
+  [
+    "Uniprot:P0CX80", 
+    "Uniprot:P0CX81", 
+    "NCBI gene:856450"
+  ], 
+  [
+    "Uniprot:Q8K1M6", 
+    "NCBI gene:74006"
+  ], 
+  [
+    "Uniprot:Q99570", 
+    "NCBI gene:30849"
+  ], 
+  [
+    "Uniprot:Q9Z2A7", 
+    "NCBI gene:13350"
+  ], 
+  [
+    "Uniprot:O14964", 
+    "NCBI gene:9146"
+  ], 
+  [
+    "Uniprot:Q6ZWX6", 
+    "NCBI gene:13665"
+  ], 
+  [
+    "PubChem:44611539", 
+    "CHEBI:59294"
+  ], 
+  [
+    "Uniprot:P43431", 
+    "NCBI gene:16159"
+  ], 
+  [
+    "Uniprot:P46108", 
+    "NCBI gene:1398"
+  ], 
+  [
+    "PubChem:439174", 
+    "CHEBI:506227"
+  ], 
+  [
+    "Uniprot:P10383", 
+    "NCBI gene:31789"
+  ], 
+  [
+    "Uniprot:Q9Y6C5", 
+    "NCBI gene:8643"
+  ], 
+  [
+    "Uniprot:Q99755", 
+    "NCBI gene:8394"
+  ], 
+  [
+    "Uniprot:P19338", 
+    "NCBI gene:4691"
+  ], 
+  [
+    "Uniprot:G3X9H5", 
+    "NCBI gene:15194"
+  ], 
+  [
+    "PubChem:679", 
+    "CHEBI:4612", 
+    "CHEBI:28262"
+  ], 
+  [
+    "Uniprot:F1M5N7", 
+    "NCBI gene:289397"
+  ], 
+  [
+    "Uniprot:P32829", 
+    "NCBI gene:855264"
+  ], 
+  [
+    "Uniprot:O35303", 
+    "NCBI gene:114114"
+  ], 
+  [
+    "Uniprot:Q15714", 
+    "NCBI gene:8848"
+  ], 
+  [
+    "Uniprot:P56818", 
+    "NCBI gene:23821"
+  ], 
+  [
+    "Uniprot:Q26365", 
+    "NCBI gene:32007"
+  ], 
+  [
+    "Uniprot:Q29983", 
+    "NCBI gene:100507436"
+  ], 
+  [
+    "PubChem:5260155", 
+    "PubChem:594", 
+    "CHEBI:4050"
+  ], 
+  [
+    "Uniprot:Q80XJ2", 
+    "NCBI gene:70238"
+  ], 
+  [
+    "Uniprot:P46379", 
+    "NCBI gene:7917"
+  ], 
+  [
+    "PubChem:107896", 
+    "PubChem:40428314", 
+    "CHEBI:34968"
+  ], 
+  [
+    "Uniprot:Q8VD46", 
+    "NCBI gene:74068"
+  ], 
+  [
+    "Uniprot:O00534", 
+    "NCBI gene:4013"
+  ], 
+  [
+    "Uniprot:Q96LT7", 
+    "NCBI gene:203228"
+  ], 
+  [
+    "PubChem:4775", 
+    "CHEBI:41500"
+  ], 
+  [
+    "Uniprot:P55201", 
+    "NCBI gene:7862"
+  ], 
+  [
+    "Uniprot:P60323", 
+    "NCBI gene:342977"
+  ], 
+  [
+    "Uniprot:P51943", 
+    "NCBI gene:12428"
+  ], 
+  [
+    "PubChem:5282054", 
+    "CHEBI:171741"
+  ], 
+  [
+    "Uniprot:G5EDY8", 
+    "Uniprot:Q8WQC9", 
+    "NCBI gene:177336"
+  ], 
+  [
+    "PubChem:4055", 
+    "CHEBI:28869"
+  ], 
+  [
+    "Uniprot:P50284", 
+    "NCBI gene:17000"
+  ], 
+  [
+    "Uniprot:P11346", 
+    "NCBI gene:31221"
+  ], 
+  [
+    "Uniprot:O88870", 
+    "NCBI gene:24115"
+  ], 
+  [
+    "Uniprot:P29475", 
+    "NCBI gene:4842"
+  ], 
+  [
+    "Uniprot:Q90XS6", 
+    "NCBI gene:337514"
+  ], 
+  [
+    "Uniprot:Q8IYB7", 
+    "NCBI gene:129563"
+  ], 
+  [
+    "Uniprot:Q63604", 
+    "NCBI gene:25054"
+  ], 
+  [
+    "Uniprot:Q9UTN3", 
+    "NCBI gene:3361384"
+  ], 
+  [
+    "Uniprot:P50228", 
+    "NCBI gene:20311"
+  ], 
+  [
+    "Uniprot:P48432", 
+    "NCBI gene:20674"
+  ], 
+  [
+    "Uniprot:Q9UBP5", 
+    "NCBI gene:23493"
+  ], 
+  [
+    "Uniprot:P33315", 
+    "NCBI gene:852414"
+  ], 
+  [
+    "Uniprot:P18496", 
+    "NCBI gene:851109"
+  ], 
+  [
+    "Uniprot:P53091", 
+    "NCBI gene:852673"
+  ], 
+  [
+    "Uniprot:O13915", 
+    "NCBI gene:2542061"
+  ], 
+  [
+    "Uniprot:P06463", 
+    "NCBI gene:1489088"
+  ], 
+  [
+    "Uniprot:O95140", 
+    "NCBI gene:9927"
+  ], 
+  [
+    "Uniprot:Q9V3I2", 
+    "NCBI gene:33418"
+  ], 
+  [
+    "Uniprot:P01116", 
+    "NCBI gene:3845"
+  ], 
+  [
+    "PubChem:5460839", 
+    "PubChem:5742", 
+    "CHEBI:32735"
+  ], 
+  [
+    "PubChem:16129675", 
+    "CHEBI:59219"
+  ], 
+  [
+    "PubChem:46244454", 
+    "CHEBI:124915"
+  ], 
+  [
+    "Uniprot:P31109", 
+    "NCBI gene:851203"
+  ], 
+  [
+    "Uniprot:Q62172", 
+    "NCBI gene:19765"
+  ], 
+  [
+    "Uniprot:Q9VNH6", 
+    "NCBI gene:40712"
+  ], 
+  [
+    "Uniprot:Q25AR8", 
+    "Uniprot:Q8I4C9", 
+    "Uniprot:Q9U277", 
+    "NCBI gene:179976"
+  ], 
+  [
+    "Uniprot:Q96JC1", 
+    "NCBI gene:23339"
+  ], 
+  [
+    "Uniprot:Q9VFP2", 
+    "NCBI gene:41704"
+  ], 
+  [
+    "PubChem:4713", 
+    "CHEBI:77954"
+  ], 
+  [
+    "Uniprot:Q07820", 
+    "NCBI gene:4170"
+  ], 
+  [
+    "Uniprot:P11021", 
+    "NCBI gene:3309"
+  ], 
+  [
+    "Uniprot:Q9UKY7", 
+    "NCBI gene:55573"
+  ], 
+  [
+    "Uniprot:Q13127", 
+    "NCBI gene:5978"
+  ], 
+  [
+    "Uniprot:Q5JC29", 
+    "NCBI gene:313474"
+  ], 
+  [
+    "Uniprot:P25228", 
+    "NCBI gene:36127"
+  ], 
+  [
+    "Uniprot:O54918", 
+    "NCBI gene:12125"
+  ], 
+  [
+    "Uniprot:Q8N5K1", 
+    "NCBI gene:493856"
+  ], 
+  [
+    "Uniprot:Q9Z1B7", 
+    "NCBI gene:26415"
+  ], 
+  [
+    "Uniprot:O14786", 
+    "NCBI gene:8829"
+  ], 
+  [
+    "Uniprot:Q9JMB8", 
+    "NCBI gene:53870"
+  ], 
+  [
+    "Uniprot:A0A087WSP5", 
+    "Uniprot:Q8C3V4", 
+    "Uniprot:Q8C497", 
+    "Uniprot:Q8C8M3", 
+    "Uniprot:Q8CFQ1", 
+    "Uniprot:Q99K94", 
+    "NCBI gene:20846"
+  ], 
+  [
+    "Uniprot:Q9U2A8", 
+    "NCBI gene:175070"
+  ], 
+  [
+    "Uniprot:P48754", 
+    "NCBI gene:12189"
+  ], 
+  [
+    "Uniprot:Q9UIK4", 
+    "NCBI gene:23604"
+  ], 
+  [
+    "PubChem:114880", 
+    "CHEBI:43769"
+  ], 
+  [
+    "Uniprot:S8EU18", 
+    "NCBI gene:7901253"
+  ], 
+  [
+    "Uniprot:P19037", 
+    "NCBI gene:836093"
+  ], 
+  [
+    "Uniprot:Q7SXL0", 
+    "NCBI gene:368320"
+  ], 
+  [
+    "Uniprot:P47110", 
+    "NCBI gene:853500"
+  ], 
+  [
+    "Uniprot:P42519", 
+    "NCBI gene:33281"
+  ], 
+  [
+    "Uniprot:P02772", 
+    "NCBI gene:11576"
+  ], 
+  [
+    "Uniprot:P40308", 
+    "NCBI gene:855361"
+  ], 
+  [
+    "Uniprot:P42345", 
+    "NCBI gene:2475"
+  ], 
+  [
+    "PubChem:4122", 
+    "CHEBI:34892"
+  ], 
+  [
+    "Uniprot:Q91ZV8", 
+    "NCBI gene:78560"
+  ], 
+  [
+    "Uniprot:P54849", 
+    "NCBI gene:2012"
+  ], 
+  [
+    "PubChem:271", 
+    "CHEBI:29108", 
+    "CHEBI:3308"
+  ], 
+  [
+    "Uniprot:P84247", 
+    "NCBI gene:427887", 
+    "NCBI gene:396233"
+  ], 
+  [
+    "PubChem:6438151", 
+    "CHEBI:73167"
+  ], 
+  [
+    "Uniprot:P97414", 
+    "NCBI gene:16535"
+  ], 
+  [
+    "Uniprot:Q7BCK4", 
+    "NCBI gene:876473"
+  ], 
+  [
+    "Uniprot:P10989", 
+    "NCBI gene:2540051"
+  ], 
+  [
+    "Uniprot:P28358", 
+    "NCBI gene:3236"
+  ], 
+  [
+    "Uniprot:P35917", 
+    "NCBI gene:14257"
+  ], 
+  [
+    "Uniprot:A5JNG8", 
+    "NCBI gene:792333"
+  ], 
+  [
+    "Uniprot:F8VQK4", 
+    "NCBI gene:11449"
+  ], 
+  [
+    "Uniprot:Q9BUU2", 
+    "NCBI gene:79091"
+  ], 
+  [
+    "Uniprot:O95835", 
+    "NCBI gene:9113"
+  ], 
+  [
+    "Uniprot:Q24475", 
+    "NCBI gene:40015"
+  ], 
+  [
+    "Uniprot:Q9CPY3", 
+    "NCBI gene:67849"
+  ], 
+  [
+    "Uniprot:Q9VHR6", 
+    "NCBI gene:40998"
+  ], 
+  [
+    "Uniprot:P05208", 
+    "NCBI gene:13706"
+  ], 
+  [
+    "Uniprot:Q3UMB5", 
+    "NCBI gene:237782"
+  ], 
+  [
+    "Uniprot:Q91Y97", 
+    "NCBI gene:230163"
+  ], 
+  [
+    "PubChem:5283539", 
+    "CHEBI:84398"
+  ], 
+  [
+    "Uniprot:O95786", 
+    "NCBI gene:23586"
+  ], 
+  [
+    "Uniprot:P08243", 
+    "NCBI gene:440"
+  ], 
+  [
+    "Uniprot:Q9NNX6", 
+    "NCBI gene:30835"
+  ], 
+  [
+    "PubChem:4091", 
+    "CHEBI:6801"
+  ], 
+  [
+    "Uniprot:P13473", 
+    "NCBI gene:3920"
+  ], 
+  [
+    "Uniprot:Q04519", 
+    "NCBI gene:20597"
+  ], 
+  [
+    "PubChem:37792", 
+    "PubChem:444121", 
+    "CHEBI:5235"
+  ], 
+  [
+    "Uniprot:A8JNJ6", 
+    "Uniprot:M9PBL6", 
+    "Uniprot:Q7KV69", 
+    "Uniprot:Q7KV70", 
+    "Uniprot:Q9VZQ3", 
+    "NCBI gene:38418"
+  ], 
+  [
+    "Uniprot:Q63870", 
+    "NCBI gene:12836"
+  ], 
+  [
+    "PubChem:609483", 
+    "CHEBI:93630"
+  ], 
+  [
+    "Uniprot:P51150", 
+    "NCBI gene:19349"
+  ], 
+  [
+    "Uniprot:Q9UPY3", 
+    "NCBI gene:23405"
+  ], 
+  [
+    "Uniprot:P42858", 
+    "NCBI gene:3064"
+  ], 
+  [
+    "Uniprot:Q9Y3E7", 
+    "NCBI gene:51652"
+  ], 
+  [
+    "PubChem:1066", 
+    "CHEBI:16675"
+  ], 
+  [
+    "Uniprot:P01887", 
+    "NCBI gene:12010"
+  ], 
+  [
+    "Uniprot:Q9UBQ0", 
+    "NCBI gene:51699"
+  ], 
+  [
+    "Uniprot:Q13887", 
+    "NCBI gene:688"
+  ], 
+  [
+    "Uniprot:F1Q8S0", 
+    "NCBI gene:30181"
+  ], 
+  [
+    "Uniprot:O18381", 
+    "NCBI gene:43812"
+  ], 
+  [
+    "Uniprot:Q68FE2", 
+    "NCBI gene:245860"
+  ], 
+  [
+    "Uniprot:Q10471", 
+    "NCBI gene:2590"
+  ], 
+  [
+    "Uniprot:Q6NSJ5", 
+    "NCBI gene:80131"
+  ], 
+  [
+    "Uniprot:P06778", 
+    "NCBI gene:854976"
+  ], 
+  [
+    "Uniprot:P08518", 
+    "NCBI gene:854322"
+  ], 
+  [
+    "Uniprot:Q8Y8H5", 
+    "NCBI gene:986837"
+  ], 
+  [
+    "Uniprot:P22216", 
+    "NCBI gene:855950"
+  ], 
+  [
+    "Uniprot:P04456", 
+    "NCBI gene:853993"
+  ], 
+  [
+    "Uniprot:A6NCL1", 
+    "NCBI gene:647309"
+  ], 
+  [
+    "Uniprot:P33749", 
+    "NCBI gene:853803"
+  ], 
+  [
+    "Uniprot:Q60821", 
+    "NCBI gene:22642"
+  ], 
+  [
+    "PubChem:4992", 
+    "CHEBI:6762"
+  ], 
+  [
+    "Uniprot:Q18115", 
+    "NCBI gene:175877"
+  ], 
+  [
+    "Uniprot:Q9Y2L5", 
+    "NCBI gene:22878"
+  ], 
+  [
+    "Uniprot:Q14203", 
+    "NCBI gene:1639"
+  ], 
+  [
+    "Uniprot:P42230", 
+    "NCBI gene:20850"
+  ], 
+  [
+    "Uniprot:P03966", 
+    "NCBI gene:18109"
+  ], 
+  [
+    "Uniprot:Q92731", 
+    "NCBI gene:2100"
+  ], 
+  [
+    "Uniprot:Q96FF9", 
+    "NCBI gene:113130"
+  ], 
+  [
+    "Uniprot:G3V8Y2", 
+    "NCBI gene:299830"
+  ], 
+  [
+    "Uniprot:P43241", 
+    "NCBI gene:12591"
+  ], 
+  [
+    "Uniprot:P51178", 
+    "NCBI gene:5333"
+  ], 
+  [
+    "PubChem:444732", 
+    "CHEBI:39145", 
+    "CHEBI:46024"
+  ], 
+  [
+    "Uniprot:Q9UKT4", 
+    "NCBI gene:26271"
+  ], 
+  [
+    "Uniprot:Q8CDJ3", 
+    "NCBI gene:100504663"
+  ], 
+  [
+    "Uniprot:Q8R1I1", 
+    "NCBI gene:66152"
+  ], 
+  [
+    "Uniprot:P48025", 
+    "NCBI gene:20963"
+  ], 
+  [
+    "Uniprot:Q15796", 
+    "NCBI gene:4087"
+  ], 
+  [
+    "PubChem:5222465", 
+    "CHEBI:64103"
+  ], 
+  [
+    "Uniprot:Q9P2Y5", 
+    "NCBI gene:7405"
+  ], 
+  [
+    "Uniprot:Q19123", 
+    "NCBI gene:184091"
+  ], 
+  [
+    "Uniprot:P70371", 
+    "NCBI gene:21749"
+  ], 
+  [
+    "Uniprot:Q9ULU4", 
+    "NCBI gene:23613"
+  ], 
+  [
+    "Uniprot:Q62625", 
+    "NCBI gene:64862"
+  ], 
+  [
+    "Uniprot:Q3TT99", 
+    "NCBI gene:233537"
+  ], 
+  [
+    "Uniprot:P15705", 
+    "NCBI gene:854192"
+  ], 
+  [
+    "Uniprot:A0SVK0", 
+    "NCBI gene:834623"
+  ], 
+  [
+    "Uniprot:P13504", 
+    "NCBI gene:16177"
+  ], 
+  [
+    "PubChem:447043", 
+    "CHEBI:2955"
+  ], 
+  [
+    "Uniprot:P40318", 
+    "NCBI gene:854781"
+  ], 
+  [
+    "Uniprot:P20109", 
+    "NCBI gene:16163"
+  ], 
+  [
+    "Uniprot:O94267", 
+    "NCBI gene:2541355"
+  ], 
+  [
+    "Uniprot:Q08481", 
+    "NCBI gene:18613"
+  ], 
+  [
+    "Uniprot:Q8BQ46", 
+    "NCBI gene:70439"
+  ], 
+  [
+    "PubChem:40634", 
+    "CHEBI:82625"
+  ], 
+  [
+    "Uniprot:P53492", 
+    "NCBI gene:830841"
+  ], 
+  [
+    "Uniprot:M9NEW2", 
+    "Uniprot:Q9VM15", 
+    "NCBI gene:43928"
+  ], 
+  [
+    "PubChem:4474", 
+    "CHEBI:7550"
+  ], 
+  [
+    "Uniprot:P54622", 
+    "NCBI gene:41968"
+  ], 
+  [
+    "Uniprot:Q9V9C8", 
+    "NCBI gene:53585"
+  ], 
+  [
+    "Uniprot:Q9NQ66", 
+    "NCBI gene:23236"
+  ], 
+  [
+    "Uniprot:Q06683", 
+    "NCBI gene:851932"
+  ], 
+  [
+    "Uniprot:O70576", 
+    "NCBI gene:50878"
+  ], 
+  [
+    "Uniprot:Q9ZVH8", 
+    "NCBI gene:818438"
+  ], 
+  [
+    "Uniprot:Q8CFU8", 
+    "NCBI gene:68728"
+  ], 
+  [
+    "Uniprot:Q8IWA4", 
+    "NCBI gene:55669"
+  ], 
+  [
+    "Uniprot:Q45VV3", 
+    "NCBI gene:37851"
+  ], 
+  [
+    "Uniprot:Q8BKJ9", 
+    "NCBI gene:209011"
+  ], 
+  [
+    "Uniprot:Q6P5H2", 
+    "NCBI gene:18008"
+  ], 
+  [
+    "Uniprot:P06782", 
+    "NCBI gene:852088"
+  ], 
+  [
+    "Uniprot:P10146", 
+    "NCBI gene:20290"
+  ], 
+  [
+    "Uniprot:A0A125YMF8", 
+    "NCBI gene:7896467"
+  ], 
+  [
+    "Uniprot:Q39069", 
+    "NCBI gene:820325"
+  ], 
+  [
+    "Uniprot:P47035", 
+    "NCBI gene:853369"
+  ], 
+  [
+    "Uniprot:Q9VCC9", 
+    "NCBI gene:42862"
+  ], 
+  [
+    "Uniprot:Q96DT6", 
+    "NCBI gene:84938"
+  ], 
+  [
+    "Uniprot:O14114", 
+    "NCBI gene:2543084"
+  ], 
+  [
+    "Uniprot:O14342", 
+    "NCBI gene:2540353"
+  ], 
+  [
+    "Uniprot:Q07812", 
+    "NCBI gene:581"
+  ], 
+  [
+    "Uniprot:P28572", 
+    "NCBI gene:116509"
+  ], 
+  [
+    "Uniprot:O60784", 
+    "NCBI gene:10043"
+  ], 
+  [
+    "Uniprot:P43120", 
+    "NCBI gene:15242"
+  ], 
+  [
+    "Uniprot:Q9Z1N1", 
+    "NCBI gene:114508"
+  ], 
+  [
+    "Uniprot:P14562", 
+    "NCBI gene:25328"
+  ], 
+  [
+    "Uniprot:Q8CFX3", 
+    "NCBI gene:75599"
+  ], 
+  [
+    "Uniprot:P30291", 
+    "NCBI gene:7465"
+  ], 
+  [
+    "Uniprot:Q00613", 
+    "NCBI gene:3297"
+  ], 
+  [
+    "Uniprot:Q9NZQ7", 
+    "NCBI gene:29126"
+  ], 
+  [
+    "PubChem:3017661", 
+    "CHEBI:58363"
+  ], 
+  [
+    "Uniprot:Q61146", 
+    "NCBI gene:18260"
+  ], 
+  [
+    "Uniprot:Q1PER6", 
+    "NCBI gene:820121"
+  ], 
+  [
+    "Uniprot:Q8IYT8", 
+    "NCBI gene:9706"
+  ], 
+  [
+    "Uniprot:Q9QX99", 
+    "NCBI gene:21908"
+  ], 
+  [
+    "Uniprot:Q09143", 
+    "NCBI gene:11987"
+  ], 
+  [
+    "PubChem:10237", 
+    "CHEBI:3092"
+  ], 
+  [
+    "PubChem:36709", 
+    "CHEBI:73390"
+  ], 
+  [
+    "Uniprot:Q9C5H5", 
+    "NCBI gene:836819"
+  ], 
+  [
+    "Uniprot:P56959", 
+    "NCBI gene:233908"
+  ], 
+  [
+    "Uniprot:O75015", 
+    "NCBI gene:2215"
+  ], 
+  [
+    "Uniprot:P22724", 
+    "NCBI gene:22417"
+  ], 
+  [
+    "Uniprot:P02766", 
+    "NCBI gene:7276"
+  ], 
+  [
+    "Uniprot:P41958", 
+    "NCBI gene:3565776"
+  ], 
+  [
+    "PubChem:3101", 
+    "CHEBI:77986"
+  ], 
+  [
+    "Uniprot:P91857", 
+    "NCBI gene:172755"
+  ], 
+  [
+    "Uniprot:P17047", 
+    "NCBI gene:16784"
+  ], 
+  [
+    "Uniprot:Q9H4M9", 
+    "NCBI gene:10938"
+  ], 
+  [
+    "Uniprot:P06748", 
+    "NCBI gene:4869"
+  ], 
+  [
+    "Uniprot:P61073", 
+    "NCBI gene:7852"
+  ], 
+  [
+    "PubChem:11005", 
+    "CHEBI:28875"
+  ], 
+  [
+    "Uniprot:P09913", 
+    "NCBI gene:3433"
+  ], 
+  [
+    "PubChem:454045", 
+    "PubChem:61671", 
+    "CHEBI:35607"
+  ], 
+  [
+    "Uniprot:Q9GZT9", 
+    "NCBI gene:54583"
+  ], 
+  [
+    "Uniprot:Q16254", 
+    "NCBI gene:1874"
+  ], 
+  [
+    "Uniprot:O17582", 
+    "NCBI gene:172596"
+  ], 
+  [
+    "Uniprot:Q9WTU3", 
+    "NCBI gene:20273"
+  ], 
+  [
+    "Uniprot:P21917", 
+    "NCBI gene:1815"
+  ], 
+  [
+    "Uniprot:P25087", 
+    "NCBI gene:855003"
+  ], 
+  [
+    "Uniprot:Q9Z2C5", 
+    "NCBI gene:17772"
+  ], 
+  [
+    "Uniprot:Q3MII6", 
+    "NCBI gene:4943"
+  ], 
+  [
+    "PubChem:23978", 
+    "CHEBI:3874"
+  ], 
+  [
+    "Uniprot:P39447", 
+    "NCBI gene:21872"
+  ], 
+  [
+    "Uniprot:O16844", 
+    "NCBI gene:35653"
+  ], 
+  [
+    "Uniprot:Q9FIJ0", 
+    "NCBI gene:834842"
+  ], 
+  [
+    "Uniprot:P74849", 
+    "NCBI gene:1249311"
+  ], 
+  [
+    "Uniprot:P78543", 
+    "NCBI gene:7832"
+  ], 
+  [
+    "Uniprot:Q86WV6", 
+    "NCBI gene:340061"
+  ], 
+  [
+    "PubChem:4054", 
+    "CHEBI:64312"
+  ], 
+  [
+    "Uniprot:Q6TCH7", 
+    "NCBI gene:152559"
+  ], 
+  [
+    "Uniprot:Q12125", 
+    "NCBI gene:854335"
+  ], 
+  [
+    "PubChem:8064", 
+    "CHEBI:41189"
+  ], 
+  [
+    "Uniprot:P58801", 
+    "NCBI gene:192656"
+  ], 
+  [
+    "Uniprot:P45974", 
+    "NCBI gene:8078"
+  ], 
+  [
+    "Uniprot:V9GXI5", 
+    "NCBI gene:56644"
+  ], 
+  [
+    "Uniprot:Q15717", 
+    "NCBI gene:1994"
+  ], 
+  [
+    "Uniprot:Q9BXL7", 
+    "NCBI gene:84433"
+  ], 
+  [
+    "Uniprot:P51114", 
+    "NCBI gene:8087"
+  ], 
+  [
+    "PubChem:439242", 
+    "CHEBI:16634"
+  ], 
+  [
+    "Uniprot:P26309", 
+    "NCBI gene:852762"
+  ], 
+  [
+    "Uniprot:Q96528", 
+    "NCBI gene:838652"
+  ], 
+  [
+    "Uniprot:Q62073", 
+    "NCBI gene:26409"
+  ], 
+  [
+    "Uniprot:Q13148", 
+    "NCBI gene:23435"
+  ], 
+  [
+    "PubChem:34230", 
+    "CHEBI:7569"
+  ], 
+  [
+    "Uniprot:P39533", 
+    "NCBI gene:853230"
+  ], 
+  [
+    "Uniprot:P16861", 
+    "NCBI gene:853155"
+  ], 
+  [
+    "Uniprot:Q8VI67", 
+    "NCBI gene:170574"
+  ], 
+  [
+    "Uniprot:P0CH28", 
+    "NCBI gene:444874"
+  ], 
+  [
+    "Uniprot:Q92932", 
+    "NCBI gene:5799"
+  ], 
+  [
+    "PubChem:24470", 
+    "CHEBI:32130"
+  ], 
+  [
+    "Uniprot:Q9UIL1", 
+    "NCBI gene:60592"
+  ], 
+  [
+    "PubChem:1693", 
+    "CHEBI:32585"
+  ], 
+  [
+    "Uniprot:Q9Z148", 
+    "NCBI gene:110147"
+  ], 
+  [
+    "Uniprot:P31749", 
+    "NCBI gene:207"
+  ], 
+  [
+    "Uniprot:Q15329", 
+    "NCBI gene:1875"
+  ], 
+  [
+    "Uniprot:P70210", 
+    "NCBI gene:21678"
+  ], 
+  [
+    "Uniprot:P70120", 
+    "NCBI gene:15208"
+  ], 
+  [
+    "Uniprot:P05231", 
+    "NCBI gene:3569"
+  ], 
+  [
+    "Uniprot:P33896", 
+    "NCBI gene:15975"
+  ], 
+  [
+    "PubChem:5884", 
+    "CHEBI:16474"
+  ], 
+  [
+    "Uniprot:Q16665", 
+    "NCBI gene:3091"
+  ], 
+  [
+    "PubChem:44715324", 
+    "CHEBI:529996"
+  ], 
+  [
+    "Uniprot:P28347", 
+    "NCBI gene:7003"
+  ], 
+  [
+    "PubChem:774", 
+    "CHEBI:18295"
+  ], 
+  [
+    "Uniprot:Q9NS91", 
+    "NCBI gene:56852"
+  ], 
+  [
+    "Uniprot:Q5JRX3", 
+    "NCBI gene:10531"
+  ], 
+  [
+    "Uniprot:Q96CW1", 
+    "NCBI gene:1173"
+  ], 
+  [
+    "Uniprot:P56384", 
+    "NCBI gene:228033"
+  ], 
+  [
+    "Uniprot:Q8CIT0", 
+    "NCBI gene:12918"
+  ], 
+  [
+    "Uniprot:P04179", 
+    "NCBI gene:6648"
+  ], 
+  [
+    "Uniprot:Q9VPM0", 
+    "NCBI gene:44392"
+  ], 
+  [
+    "Uniprot:P40338", 
+    "NCBI gene:22346"
+  ], 
+  [
+    "Uniprot:O64483", 
+    "NCBI gene:816436"
+  ], 
+  [
+    "Uniprot:Q15562", 
+    "NCBI gene:8463"
+  ], 
+  [
+    "Uniprot:P42677", 
+    "NCBI gene:6232"
+  ], 
+  [
+    "Uniprot:Q6GM86", 
+    "NCBI gene:444528"
+  ], 
+  [
+    "Uniprot:Q9VFC8", 
+    "NCBI gene:41823"
+  ], 
+  [
+    "Uniprot:P40532", 
+    "NCBI gene:854771"
+  ], 
+  [
+    "PubChem:5988", 
+    "CHEBI:17992"
+  ], 
+  [
+    "Uniprot:P97765", 
+    "NCBI gene:22378"
+  ], 
+  [
+    "Uniprot:P34669", 
+    "NCBI gene:176089"
+  ], 
+  [
+    "PubChem:977", 
+    "CHEBI:7860", 
+    "CHEBI:15379"
+  ], 
+  [
+    "Uniprot:Q3U2K0", 
+    "NCBI gene:212483"
+  ], 
+  [
+    "Uniprot:Q61660", 
+    "NCBI gene:15223"
+  ], 
+  [
+    "Uniprot:P36873", 
+    "NCBI gene:5501"
+  ], 
+  [
+    "Uniprot:Q9VW54", 
+    "NCBI gene:40174"
+  ], 
+  [
+    "Uniprot:P99999", 
+    "NCBI gene:54205"
+  ], 
+  [
+    "Uniprot:Q6NW34", 
+    "NCBI gene:25871"
+  ], 
+  [
+    "Uniprot:B5LZ08", 
+    "NCBI gene:569403"
+  ], 
+  [
+    "Uniprot:P21784", 
+    "NCBI gene:19374"
+  ], 
+  [
+    "Uniprot:Q9SGE0", 
+    "NCBI gene:837341"
+  ], 
+  [
+    "PubChem:6131", 
+    "CHEBI:17361"
+  ], 
+  [
+    "Uniprot:Q61539", 
+    "NCBI gene:26380"
+  ], 
+  [
+    "Uniprot:Q99836", 
+    "NCBI gene:4615"
+  ], 
+  [
+    "Uniprot:Q8W2F3", 
+    "NCBI gene:818903"
+  ], 
+  [
+    "Uniprot:Q8C5S7", 
+    "NCBI gene:56739"
+  ], 
+  [
+    "Uniprot:P27005", 
+    "NCBI gene:20201"
+  ], 
+  [
+    "PubChem:446156", 
+    "CHEBI:3558"
+  ], 
+  [
+    "PubChem:5278396", 
+    "CHEBI:91372"
+  ], 
+  [
+    "Uniprot:Q9VUJ1", 
+    "NCBI gene:39628"
+  ], 
+  [
+    "Uniprot:Q23ND1", 
+    "NCBI gene:7840065"
+  ], 
+  [
+    "Uniprot:P48544", 
+    "NCBI gene:3762"
+  ], 
+  [
+    "Uniprot:A0FLQ8", 
+    "Uniprot:G5EE07", 
+    "Uniprot:V6CLI2", 
+    "NCBI gene:175541"
+  ], 
+  [
+    "Uniprot:O35718", 
+    "NCBI gene:12702"
+  ], 
+  [
+    "Uniprot:O13339", 
+    "NCBI gene:2540601"
+  ], 
+  [
+    "Uniprot:Q03818", 
+    "NCBI gene:855194"
+  ], 
+  [
+    "Uniprot:P63167", 
+    "NCBI gene:8655"
+  ], 
+  [
+    "PubChem:10494", 
+    "CHEBI:37659"
+  ], 
+  [
+    "Uniprot:Q9NSA3", 
+    "NCBI gene:56998"
+  ], 
+  [
+    "PubChem:2519", 
+    "CHEBI:27732"
+  ], 
+  [
+    "Uniprot:Q9NRR5", 
+    "NCBI gene:56893"
+  ], 
+  [
+    "Uniprot:P22470", 
+    "NCBI gene:851721"
+  ], 
+  [
+    "Uniprot:A0A1P8BDG3", 
+    "Uniprot:F4KB50", 
+    "Uniprot:Q9FNM8", 
+    "NCBI gene:830761"
+  ], 
+  [
+    "Uniprot:Q9NXR1", 
+    "NCBI gene:54820"
+  ], 
+  [
+    "Uniprot:P04202", 
+    "NCBI gene:21803"
+  ], 
+  [
+    "Uniprot:Q9NRA8", 
+    "NCBI gene:56478"
+  ], 
+  [
+    "Uniprot:Q9LNN7", 
+    "NCBI gene:841747"
+  ], 
+  [
+    "PubChem:887", 
+    "CHEBI:17790"
+  ], 
+  [
+    "Uniprot:Q06628", 
+    "NCBI gene:856315"
+  ], 
+  [
+    "Uniprot:O60216", 
+    "NCBI gene:5885"
+  ], 
+  [
+    "PubChem:712", 
+    "CHEBI:16842", 
+    "CHEBI:5142"
+  ], 
+  [
+    "PubChem:1216", 
+    "PubChem:3907091", 
+    "CHEBI:138644"
+  ], 
+  [
+    "PubChem:935", 
+    "CHEBI:28112"
+  ], 
+  [
+    "Uniprot:P23573", 
+    "NCBI gene:42453"
+  ], 
+  [
+    "PubChem:10635", 
+    "CHEBI:41876"
+  ], 
+  [
+    "Uniprot:P34707", 
+    "NCBI gene:177343"
+  ], 
+  [
+    "PubChem:4784", 
+    "CHEBI:8102"
+  ], 
+  [
+    "Uniprot:Q10472", 
+    "NCBI gene:2589"
+  ], 
+  [
+    "Uniprot:P38489", 
+    "NCBI gene:945778"
+  ], 
+  [
+    "Uniprot:Q8N9N2", 
+    "NCBI gene:51008"
+  ], 
+  [
+    "Uniprot:P21570", 
+    "NCBI gene:11727"
+  ], 
+  [
+    "Uniprot:Q9BV40", 
+    "NCBI gene:8673"
+  ], 
+  [
+    "Uniprot:Q9HAZ2", 
+    "NCBI gene:63976"
+  ], 
+  [
+    "Uniprot:Q8VE11", 
+    "NCBI gene:219135"
+  ], 
+  [
+    "Uniprot:P08228", 
+    "NCBI gene:20655"
+  ], 
+  [
+    "Uniprot:Q9JJN1", 
+    "NCBI gene:56636"
+  ], 
+  [
+    "PubChem:22326046", 
+    "PubChem:784", 
+    "CHEBI:16240", 
+    "CHEBI:5586"
+  ], 
+  [
+    "PubChem:3476986", 
+    "CHEBI:75379"
+  ], 
+  [
+    "Uniprot:Q9JIZ9", 
+    "NCBI gene:70310"
+  ], 
+  [
+    "Uniprot:P60520", 
+    "NCBI gene:11345"
+  ], 
+  [
+    "Uniprot:P01101", 
+    "NCBI gene:14281"
+  ], 
+  [
+    "Uniprot:P06240", 
+    "NCBI gene:16818"
+  ], 
+  [
+    "Uniprot:Q8C180", 
+    "NCBI gene:327826"
+  ], 
+  [
+    "PubChem:1673", 
+    "CHEBI:38635"
+  ], 
+  [
+    "Uniprot:Q9Y294", 
+    "NCBI gene:25842"
+  ], 
+  [
+    "Uniprot:Q9CXD6", 
+    "NCBI gene:76137"
+  ], 
+  [
+    "PubChem:9931492", 
+    "CHEBI:52036"
+  ], 
+  [
+    "Uniprot:Q08754", 
+    "NCBI gene:854475"
+  ], 
+  [
+    "Uniprot:Q13464", 
+    "NCBI gene:6093"
+  ], 
+  [
+    "PubChem:4156", 
+    "CHEBI:25255"
+  ], 
+  [
+    "PubChem:11215652", 
+    "PubChem:65359", 
+    "CHEBI:17858", 
+    "CHEBI:7840"
+  ], 
+  [
+    "Uniprot:P40955", 
+    "NCBI gene:853346"
+  ], 
+  [
+    "Uniprot:P29350", 
+    "NCBI gene:5777"
+  ], 
+  [
+    "Uniprot:O54968", 
+    "NCBI gene:83619"
+  ], 
+  [
+    "Uniprot:P35579", 
+    "NCBI gene:4627"
+  ], 
+  [
+    "PubChem:241903", 
+    "CHEBI:9983"
+  ], 
+  [
+    "PubChem:46911863", 
+    "CHEBI:91417"
+  ], 
+  [
+    "Uniprot:O43524", 
+    "NCBI gene:2309"
+  ], 
+  [
+    "PubChem:9854073", 
+    "CHEBI:63584"
+  ], 
+  [
+    "Uniprot:Q94246", 
+    "NCBI gene:179022"
+  ], 
+  [
+    "Uniprot:P15919", 
+    "NCBI gene:19373"
+  ], 
+  [
+    "Uniprot:P08226", 
+    "NCBI gene:11816"
+  ], 
+  [
+    "Uniprot:Q9BXW4", 
+    "NCBI gene:440738"
+  ], 
+  [
+    "Uniprot:Q3U0D9", 
+    "NCBI gene:209462"
+  ], 
+  [
+    "Uniprot:Q9VAW5", 
+    "NCBI gene:53567"
+  ], 
+  [
+    "Uniprot:Q8NCE2", 
+    "NCBI gene:64419"
+  ], 
+  [
+    "Uniprot:R9PXM5", 
+    "NCBI gene:416928"
+  ], 
+  [
+    "Uniprot:O43474", 
+    "NCBI gene:9314"
+  ], 
+  [
+    "Uniprot:Q8R1S0", 
+    "NCBI gene:217707"
+  ], 
+  [
+    "Uniprot:Q9LJY0", 
+    "NCBI gene:821563"
+  ], 
+  [
+    "Uniprot:P30051", 
+    "NCBI gene:21676"
+  ], 
+  [
+    "Uniprot:Q2V419", 
+    "NCBI gene:818444"
+  ], 
+  [
+    "Uniprot:A1Z968", 
+    "Uniprot:Q0E996", 
+    "NCBI gene:46020"
+  ], 
+  [
+    "Uniprot:Q9LZT4", 
+    "NCBI gene:823740"
+  ], 
+  [
+    "Uniprot:Q8WYN0", 
+    "NCBI gene:115201"
+  ], 
+  [
+    "Uniprot:Q9UPY5", 
+    "NCBI gene:23657"
+  ], 
+  [
+    "Uniprot:P25644", 
+    "NCBI gene:850440"
+  ], 
+  [
+    "Uniprot:P32243", 
+    "NCBI gene:5015"
+  ], 
+  [
+    "Uniprot:P01579", 
+    "NCBI gene:3458"
+  ], 
+  [
+    "Uniprot:P17515", 
+    "NCBI gene:15945"
+  ], 
+  [
+    "Uniprot:P54265", 
+    "NCBI gene:13400"
+  ], 
+  [
+    "Uniprot:P13395", 
+    "NCBI gene:38231"
+  ], 
+  [
+    "Uniprot:Q8NFG4", 
+    "NCBI gene:201163"
+  ], 
+  [
+    "Uniprot:P20485", 
+    "NCBI gene:850824"
+  ], 
+  [
+    "Uniprot:P26196", 
+    "NCBI gene:1656"
+  ], 
+  [
+    "Uniprot:O08848", 
+    "NCBI gene:20822"
+  ], 
+  [
+    "Uniprot:Q60598", 
+    "NCBI gene:13043"
+  ], 
+  [
+    "Uniprot:P07207", 
+    "NCBI gene:31293"
+  ], 
+  [
+    "Uniprot:P78396", 
+    "NCBI gene:8900"
+  ], 
+  [
+    "PubChem:44462760", 
+    "CHEBI:75045"
+  ], 
+  [
+    "Uniprot:P10145", 
+    "NCBI gene:3576"
+  ], 
+  [
+    "Uniprot:Q8BIP0", 
+    "NCBI gene:226539"
+  ], 
+  [
+    "Uniprot:P10114", 
+    "NCBI gene:5911"
+  ], 
+  [
+    "Uniprot:Q07813", 
+    "NCBI gene:12028"
+  ], 
+  [
+    "Uniprot:Q8NCM2", 
+    "NCBI gene:27133"
+  ], 
+  [
+    "PubChem:8977", 
+    "CHEBI:5212", 
+    "CHEBI:17552"
+  ], 
+  [
+    "Uniprot:Q3UMR5", 
+    "NCBI gene:215999"
+  ], 
+  [
+    "Uniprot:P21954", 
+    "NCBI gene:851493"
+  ], 
+  [
+    "Uniprot:O35608", 
+    "NCBI gene:11601"
+  ], 
+  [
+    "Uniprot:Q9QZN1", 
+    "NCBI gene:50758"
+  ], 
+  [
+    "Uniprot:Q5FLN0", 
+    "NCBI gene:3253051"
+  ], 
+  [
+    "Uniprot:P38862", 
+    "NCBI gene:856576"
+  ], 
+  [
+    "Uniprot:Q9Z0Y9", 
+    "NCBI gene:22259"
+  ], 
+  [
+    "Uniprot:P05062", 
+    "NCBI gene:229"
+  ], 
+  [
+    "Uniprot:Q12834", 
+    "NCBI gene:991"
+  ], 
+  [
+    "Uniprot:Q9NQ88", 
+    "NCBI gene:57103"
+  ], 
+  [
+    "Uniprot:P79005", 
+    "NCBI gene:2542313"
+  ], 
+  [
+    "Uniprot:P97469", 
+    "NCBI gene:20583"
+  ], 
+  [
+    "Uniprot:Q01574", 
+    "NCBI gene:851245"
+  ], 
+  [
+    "Uniprot:P38936", 
+    "NCBI gene:1026"
+  ], 
+  [
+    "Uniprot:Q9QXE4", 
+    "NCBI gene:60599"
+  ], 
+  [
+    "Uniprot:P40753", 
+    "NCBI gene:18158"
+  ], 
+  [
+    "Uniprot:Q8TDY2", 
+    "NCBI gene:9821"
+  ], 
+  [
+    "Uniprot:P34540", 
+    "NCBI gene:176179"
+  ], 
+  [
+    "PubChem:2125", 
+    "CHEBI:90724"
+  ], 
+  [
+    "Uniprot:O15393", 
+    "NCBI gene:7113"
+  ], 
+  [
+    "PubChem:5280453", 
+    "CHEBI:17823"
+  ], 
+  [
+    "PubChem:3218", 
+    "CHEBI:4778"
+  ], 
+  [
+    "PubChem:24602", 
+    "CHEBI:29373"
+  ], 
+  [
+    "PubChem:4877", 
+    "CHEBI:52310"
+  ], 
+  [
+    "Uniprot:P19538", 
+    "NCBI gene:43767"
+  ], 
+  [
+    "Uniprot:Q04887", 
+    "NCBI gene:20682"
+  ], 
+  [
+    "PubChem:18971002", 
+    "PubChem:284", 
+    "CHEBI:30751"
+  ], 
+  [
+    "Uniprot:P10749", 
+    "NCBI gene:16176"
+  ], 
+  [
+    "Uniprot:P32568", 
+    "NCBI gene:851574"
+  ], 
+  [
+    "Uniprot:P41047", 
+    "NCBI gene:14103"
+  ], 
+  [
+    "Uniprot:Q9Y4D7", 
+    "NCBI gene:23129"
+  ], 
+  [
+    "PubChem:9952143", 
+    "CHEBI:52282"
+  ], 
+  [
+    "Uniprot:P62983", 
+    "NCBI gene:78294"
+  ], 
+  [
+    "Uniprot:Q9EPQ2", 
+    "NCBI gene:77945"
+  ], 
+  [
+    "PubChem:19001", 
+    "CHEBI:18320"
+  ], 
+  [
+    "PubChem:9250", 
+    "CHEBI:30377"
+  ], 
+  [
+    "PubChem:216239", 
+    "CHEBI:50924"
+  ], 
+  [
+    "PubChem:57469", 
+    "CHEBI:36704"
+  ], 
+  [
+    "PubChem:36314", 
+    "CHEBI:45863", 
+    "CHEBI:45862"
+  ], 
+  [
+    "Uniprot:Q9ULV4", 
+    "NCBI gene:23603"
+  ], 
+  [
+    "Uniprot:Q15118", 
+    "NCBI gene:5163"
+  ], 
+  [
+    "Uniprot:P18847", 
+    "NCBI gene:467"
+  ], 
+  [
+    "Uniprot:Q9BZF1", 
+    "NCBI gene:114882"
+  ], 
+  [
+    "Uniprot:P11142", 
+    "NCBI gene:3312"
+  ], 
+  [
+    "Uniprot:Q8R164", 
+    "NCBI gene:68021"
+  ], 
+  [
+    "PubChem:7516", 
+    "CHEBI:27924"
+  ], 
+  [
+    "Uniprot:P25118", 
+    "NCBI gene:21937"
+  ], 
+  [
+    "Uniprot:P0CG63", 
+    "NCBI gene:850620"
+  ], 
+  [
+    "Uniprot:P32563", 
+    "NCBI gene:854444"
+  ], 
+  [
+    "Uniprot:Q924X2", 
+    "NCBI gene:12895"
+  ], 
+  [
+    "Uniprot:Q96FA3", 
+    "NCBI gene:57162"
+  ], 
+  [
+    "Uniprot:O00522", 
+    "NCBI gene:889"
+  ], 
+  [
+    "Uniprot:O15264", 
+    "NCBI gene:5603"
+  ], 
+  [
+    "Uniprot:P23469", 
+    "NCBI gene:5791"
+  ], 
+  [
+    "Uniprot:Q13823", 
+    "NCBI gene:29889"
+  ], 
+  [
+    "Uniprot:Q9SP02", 
+    "NCBI gene:835985"
+  ], 
+  [
+    "Uniprot:Q9BXL6", 
+    "NCBI gene:79092"
+  ], 
+  [
+    "Uniprot:O48790", 
+    "NCBI gene:817217"
+  ], 
+  [
+    "Uniprot:Q9QY01", 
+    "NCBI gene:29869"
+  ], 
+  [
+    "Uniprot:Q6ZSZ5", 
+    "NCBI gene:23370"
+  ], 
+  [
+    "PubChem:449459", 
+    "CHEBI:44616"
+  ], 
+  [
+    "Uniprot:P06002", 
+    "NCBI gene:42367"
+  ], 
+  [
+    "Uniprot:P15864", 
+    "NCBI gene:50708"
+  ], 
+  [
+    "Uniprot:P37173", 
+    "NCBI gene:7048"
+  ], 
+  [
+    "Uniprot:Q8VCX5", 
+    "NCBI gene:216001"
+  ], 
+  [
+    "Uniprot:Q91X05", 
+    "NCBI gene:170484"
+  ], 
+  [
+    "PubChem:445643", 
+    "CHEBI:4958"
+  ], 
+  [
+    "PubChem:10077147", 
+    "CHEBI:91439"
+  ], 
+  [
+    "Uniprot:Q9EQM6", 
+    "NCBI gene:94223"
+  ], 
+  [
+    "Uniprot:P14180", 
+    "NCBI gene:852326"
+  ], 
+  [
+    "Uniprot:P46531", 
+    "NCBI gene:4851"
+  ], 
+  [
+    "Uniprot:P25628", 
+    "NCBI gene:850415"
+  ], 
+  [
+    "PubChem:443227", 
+    "CHEBI:7421"
+  ], 
+  [
+    "Uniprot:Q9Z1P4", 
+    "NCBI gene:14160"
+  ], 
+  [
+    "Uniprot:Q9VF80", 
+    "NCBI gene:41868"
+  ], 
+  [
+    "PubChem:4173", 
+    "CHEBI:6909"
+  ], 
+  [
+    "Uniprot:Q96EP0", 
+    "NCBI gene:55072"
+  ], 
+  [
+    "Uniprot:Q92831", 
+    "NCBI gene:8850"
+  ], 
+  [
+    "Uniprot:P63330", 
+    "NCBI gene:19052"
+  ], 
+  [
+    "PubChem:16725726", 
+    "CHEBI:90677"
+  ], 
+  [
+    "Uniprot:Q14114", 
+    "NCBI gene:7804"
+  ], 
+  [
+    "Uniprot:Q9VND8", 
+    "NCBI gene:117332"
+  ], 
+  [
+    "Uniprot:P07903", 
+    "NCBI gene:13870"
+  ], 
+  [
+    "Uniprot:Q9CXI0", 
+    "NCBI gene:52064"
+  ], 
+  [
+    "Uniprot:P06106", 
+    "NCBI gene:851010"
+  ], 
+  [
+    "Uniprot:P07808", 
+    "NCBI gene:24604"
+  ], 
+  [
+    "Uniprot:P52034", 
+    "NCBI gene:36060"
+  ], 
+  [
+    "PubChem:70751", 
+    "CHEBI:76792"
+  ], 
+  [
+    "Uniprot:Q8VEL2", 
+    "NCBI gene:97287"
+  ], 
+  [
+    "PubChem:44224035", 
+    "CHEBI:53087"
+  ], 
+  [
+    "Uniprot:P06243", 
+    "NCBI gene:851545"
+  ], 
+  [
+    "Uniprot:E9Q8N1", 
+    "Uniprot:Q3TZL3", 
+    "Uniprot:Q3UT48", 
+    "Uniprot:Q8BUC9", 
+    "Uniprot:Q8BUJ0", 
+    "Uniprot:Q8BUJ6", 
+    "Uniprot:Q8BUX4", 
+    "Uniprot:Q8C139", 
+    "NCBI gene:22138"
+  ], 
+  [
+    "PubChem:1560402", 
+    "CHEBI:93943"
+  ], 
+  [
+    "Uniprot:Q8L500", 
+    "NCBI gene:819292"
+  ], 
+  [
+    "PubChem:175", 
+    "CHEBI:30089"
+  ], 
+  [
+    "Uniprot:Q02085", 
+    "NCBI gene:20613"
+  ], 
+  [
+    "Uniprot:P38067", 
+    "NCBI gene:852291"
+  ], 
+  [
+    "Uniprot:Q9NR56", 
+    "NCBI gene:4154"
+  ], 
+  [
+    "PubChem:5289501", 
+    "CHEBI:75261"
+  ], 
+  [
+    "Uniprot:Q8N122", 
+    "NCBI gene:57521"
+  ], 
+  [
+    "Uniprot:Q9UF56", 
+    "NCBI gene:64839"
+  ], 
+  [
+    "PubChem:24360", 
+    "CHEBI:27656"
+  ], 
+  [
+    "PubChem:3371", 
+    "CHEBI:42638"
+  ], 
+  [
+    "PubChem:24261", 
+    "CHEBI:30563"
+  ], 
+  [
+    "Uniprot:P50579", 
+    "NCBI gene:10988"
+  ], 
+  [
+    "Uniprot:Q9HBM0", 
+    "NCBI gene:55591"
+  ], 
+  [
+    "Uniprot:P53184", 
+    "NCBI gene:852846"
+  ], 
+  [
+    "Uniprot:I7ME13", 
+    "NCBI gene:7839648"
+  ], 
+  [
+    "Uniprot:P02770", 
+    "NCBI gene:24186"
+  ], 
+  [
+    "Uniprot:Q674R7", 
+    "NCBI gene:285973"
+  ], 
+  [
+    "Uniprot:Q99835", 
+    "NCBI gene:6608"
+  ], 
+  [
+    "Uniprot:Q8L4H0", 
+    "NCBI gene:839453"
+  ], 
+  [
+    "Uniprot:P03126", 
+    "NCBI gene:1489078"
+  ], 
+  [
+    "Uniprot:Q15554", 
+    "NCBI gene:7014"
+  ], 
+  [
+    "Uniprot:Q9NCC3", 
+    "NCBI gene:39136"
+  ], 
+  [
+    "PubChem:3549", 
+    "CHEBI:94328"
+  ], 
+  [
+    "Uniprot:Q8R1C6", 
+    "NCBI gene:239706"
+  ], 
+  [
+    "Uniprot:O74958", 
+    "NCBI gene:2539540"
+  ], 
+  [
+    "Uniprot:A0A0B4LFH8", 
+    "Uniprot:E2QCF1", 
+    "Uniprot:Q7KN85", 
+    "NCBI gene:36760"
+  ], 
+  [
+    "PubChem:60750", 
+    "CHEBI:175901"
+  ], 
+  [
+    "Uniprot:O75385", 
+    "NCBI gene:8408"
+  ], 
+  [
+    "Uniprot:Q8WXF8", 
+    "NCBI gene:162989"
+  ], 
+  [
+    "Uniprot:P47818", 
+    "NCBI gene:850917"
+  ], 
+  [
+    "Uniprot:Q02750", 
+    "NCBI gene:5604"
+  ], 
+  [
+    "Uniprot:P00520", 
+    "NCBI gene:11350"
+  ], 
+  [
+    "Uniprot:P29452", 
+    "NCBI gene:12362"
+  ], 
+  [
+    "Uniprot:Q9NFU0", 
+    "NCBI gene:37528"
+  ], 
+  [
+    "Uniprot:P31040", 
+    "NCBI gene:6389"
+  ], 
+  [
+    "Uniprot:Q6NX90", 
+    "NCBI gene:406466"
+  ], 
+  [
+    "Uniprot:P36017", 
+    "NCBI gene:854256"
+  ], 
+  [
+    "Uniprot:P34947", 
+    "NCBI gene:2869"
+  ], 
+  [
+    "Uniprot:O88809", 
+    "NCBI gene:13193"
+  ], 
+  [
+    "Uniprot:P62500", 
+    "NCBI gene:21807"
+  ], 
+  [
+    "Uniprot:P37524", 
+    "NCBI gene:937920"
+  ], 
+  [
+    "PubChem:439352", 
+    "CHEBI:17456"
+  ], 
+  [
+    "Uniprot:Q8Z6L1", 
+    "NCBI gene:1248100"
+  ], 
+  [
+    "Uniprot:Q5U2V5", 
+    "NCBI gene:366196"
+  ], 
+  [
+    "PubChem:1068", 
+    "CHEBI:17437"
+  ], 
+  [
+    "Uniprot:P32266", 
+    "NCBI gene:854386"
+  ], 
+  [
+    "Uniprot:P35991", 
+    "NCBI gene:12229"
+  ], 
+  [
+    "PubChem:934", 
+    "CHEBI:25517"
+  ], 
+  [
+    "Uniprot:P03069", 
+    "NCBI gene:856709"
+  ], 
+  [
+    "Uniprot:Q5RKI8", 
+    "NCBI gene:362302"
+  ], 
+  [
+    "Uniprot:Q9QXH4", 
+    "NCBI gene:16411"
+  ], 
+  [
+    "Uniprot:Q9GZU1", 
+    "NCBI gene:57192"
+  ], 
+  [
+    "Uniprot:O08599", 
+    "NCBI gene:20910"
+  ], 
+  [
+    "Uniprot:P30622", 
+    "NCBI gene:6249"
+  ],
+  [ "NCBI taxon:10090", "NCBI taxon:10088"]
+]
