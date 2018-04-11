@@ -15,7 +15,7 @@ embeddingFile = r'/wikipedia-pubmed-and-PMC-w2v.bin'
 
 label2idx = {'O': 0, 'B-GENE': 1, 'I-GENE': 2, 'B-PROTEIN': 3, 'I-PROTEIN': 4}
 
-maxlen_s = 180  # 句子截断长度
+maxlen_s = 180  # 句子截断长度(太短？)
 maxlen_w = 25   # 单词截断长度
 word_size = 200  # 词向量维度
 MAX_NB_WORDS = None # 不设置最大词数

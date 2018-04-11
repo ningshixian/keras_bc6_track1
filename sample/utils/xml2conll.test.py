@@ -16,6 +16,7 @@ label = []
 train_path = r'/Users/ningshixian/Desktop/BC6_Track1/BioIDtest/test'
 BioC_PATH = r'/Users/ningshixian/Desktop/BC6_Track1/BioIDtest/caption_bioc_unannotated'
 files = os.listdir(BioC_PATH)  #得到文件夹下的所有文件名称
+files.sort()
 
 
 def readXML(files):

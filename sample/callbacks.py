@@ -14,50 +14,43 @@ class ConllevalCallback(Callback):
     Callback for running the conlleval script on the test dataset after each epoch.
     '''
 
-    def __init__(self, X_test, y_test, samples, idx2label, sentence_maxlen, flag):
+    def __init__(self, X_test, y_test, samples, idx2label, sentence_maxlen, max_f):
         super(ConllevalCallback, self).__init__()
         self.X = X_test
         self.y = np.array(y_test)
         self.samples = samples
         self.idx2label = idx2label
         self.sentence_maxlen = sentence_maxlen
-        self.flag = flag
+        self.max_f = max_f
 
     def on_epoch_end(self, epoch, logs={}):
         if self.samples:
             predictions = self.model.predict_generator(self.X, self.samples)
         else:
-            print('not train on batch\n')
-            predictions = self.model.predict(self.X, verbose=1)
+            predictions = self.model.predict(self.X)
 
         y_pred = predictions.argmax(axis=-1)  # Predict classes [0]
         y_test = self.y.argmax(axis=-1)
 
-        if self.flag == 'main':
-            prf_file = 'results/prf.txt'
-            target = r'data/BC4CHEMD-IOBES/test.tsv'
-        elif self.flag == 'aux':
-            prf_file = 'results/cdr_prf.txt'
-            target = r'data/JNLPBA-IOBES/test.tsv'
+        prf_file = 'prf.txt'
+        # target = r'data/BC4CHEMD-IOBES/test.tsv'
 
         pre, rec, f1 = self.predictLabels2(y_pred, y_test)
-        p, r, f, c = self.predictLabels1(target, y_pred)
+        # p, r, f, c = self.predictLabels1(target, y_pred)
 
-        # if f1 >= self.max_f:
-        #     self.max_f = f1
-        #     self.model.save('model/Model_best.h5', overwrite=True)
-        #     print('do saving')
+        if f1 >= self.max_f:
+            self.max_f = f1
+            self.model.save('model/Model_best.h5', overwrite=True)
+            print('do saving: {}'.format(epoch))
         # # 预测
         # model = load_model('model/Model_ST.h5', custom_objects=create_custom_objects())
 
         with open(prf_file, 'a') as pf:
             print('write prf...... ')
             pf.write("epoch= " + str(epoch + 1) + '\n')
-            pf.write("precision= " + str(pre) + '\t' + str(p) + '\n')
-            pf.write("recall= " + str(rec) + '\t' + str(r) + '\n')
-            pf.write("Fscore= " + str(f1) + '\t' + str(f) + '\n')
-            pf.write("processed %d tokens with %d phrases;\n" % (c.token_counter, c.found_correct))
-            pf.write('found: %d phrases; correct: %d.\n\n' % (c.found_guessed, c.correct_chunk))
+            pf.write("precision= " + str(pre) + '\n')
+            pf.write("recall= " + str(rec) + '\n')
+            pf.write("Fscore= " + str(f1) + '\n')
 
 
     def predictLabels1(self, target, y_pred):
@@ -96,7 +89,7 @@ class ConllevalCallback(Callback):
         lable_true = list(y_true)
 
         print('\n计算PRF...')
-        pre, rec, f1 = BIOF1Validation.compute_f1(lable_pred, lable_true, self.idx2label, 'O', 'IOBES')
+        pre, rec, f1 = BIOF1Validation.compute_f1(lable_pred, lable_true, self.idx2label, 'O', 'BIO')
         print('precision: {:.2f}%'.format(100. * pre))
         print('recall: {:.2f}%'.format(100. * rec))
         print('f1: {:.2f}%'.format(100. * f1))
@@ -231,6 +224,7 @@ class Predictor(LtlCallback):
         predictions = self.model.predict(self.dataitems.inputs)
         self.dataitems.set_predictions(predictions)
 
+
 class PredictionMapper(LtlCallback):
     """Maps predictions to strings for data item sequence."""
 
@@ -243,6 +237,7 @@ class PredictionMapper(LtlCallback):
         self.dataitems.map_predictions(self.mapper)
         # TODO check if summary() is defined
         info(self.mapper.summary())
+
 
 class TokenAccuracyEvaluator(EvaluatorCallback):
     """Evaluates performance using token-level accuracy."""

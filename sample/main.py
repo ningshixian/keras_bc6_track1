@@ -37,8 +37,11 @@ from keraslayers.ChainCRF import ChainCRF
 from keraslayers.ChainCRF import create_custom_objects
 from helpers import createCharDict
 from callbacks import ConllevalCallback
+from writeXMLResult import writeOutputToFile
 import keras.backend as K
 import numpy as np
+from math import ceil
+from keras.callbacks import ModelCheckpoint, EarlyStopping, TensorBoard
 from collections import OrderedDict
 
 import tensorflow as tf
@@ -56,9 +59,8 @@ word_emb_size = 200
 dropout_rate = 0.5
 # dropout_rate = [0.5, 0.5]
 
-epochs = 30
+epochs = 20
 batch_size = 32
-maxmax = 1000000
 
 max_f = 0
 cdr_max_f = 0
@@ -83,7 +85,7 @@ kernels = [2, 3]
 trainCorpus = r'data'
 embeddingPath = r'/home/administrator/PycharmProjects/embedding'
 
-label2idx = {0: 'O', 1: 'B-GENE', 2: 'I-GENE', 3: 'B-PROTEIN', 4: 'I-PROTEIN'}
+idx2label = {0: 'O', 1: 'B-GENE', 2: 'I-GENE', 3: 'B-PROTEIN', 4: 'I-PROTEIN'}
 
 print('load data...')
 
@@ -95,7 +97,9 @@ with open(embeddingPath+'/emb.pkl', "rb") as f:
 print('Data loading completed!')
 
 dataSet = OrderedDict()
+maxmax = ceil(len(train_x)*0.8)
 dataSet['train'] = [train_x[:maxmax], train_cap[:maxmax]]
+dataSet['valid'] = [train_x[maxmax:], train_cap[maxmax:]]
 # dataSet['test'] = []
 
 print('Data preprocessing....')
@@ -106,16 +110,20 @@ for key, value in dataSet.items():
         dataSet[key][i] = pad_sequences(value[i], maxlen=sentence_maxlen, padding='post')
 
 # pad the char sequences with zero list
-for j in tqdm(range(len(train_char))):
+for j in range(len(train_char)):
     if len(train_char[j]) < sentence_maxlen:
         train_char[j].extend(np.asarray([[0] * word_maxlen] * (sentence_maxlen - len(train_char[j]))))
-print(np.array(train_char).shape)   # (13697, 180, 25)
 
 dataSet['train'].insert(1, np.asarray(train_char[:maxmax]))
+dataSet['valid'].insert(1, np.asarray(train_char[maxmax:]))
+print(np.asarray(train_char[maxmax:]).shape)
+print(np.asarray(train_char[:maxmax]).shape)
 
-train_y = pad_sequences(train_y[:maxmax], maxlen=sentence_maxlen, padding='post')
-print(train_y.shape)    # (13697, 180, 5)
-
+y = pad_sequences(train_y, maxlen=sentence_maxlen, padding='post')
+train_y = y[:maxmax]
+valid_y = y[maxmax:]
+print(train_y.shape)    # (10958, 180, 5)
+print(valid_y.shape)    # (13697, 180, 5)
 
 
 
@@ -228,7 +236,7 @@ def buildModel():
     # ======================================================================= #
 
     # Classifier
-    output = TimeDistributed(Dense(5, activation=LeakyReLU()))(shared_output)
+    output = TimeDistributed(Dense(5))(shared_output)
     crf = ChainCRF(name='CRF')
     output = crf(output)
     loss_function = crf.loss
@@ -252,17 +260,47 @@ def buildModel():
 
 
 if __name__ == '__main__':
-    model = buildModel()
+    # model = buildModel()
+    #
+    # calculatePRF1 = ConllevalCallback(dataSet['valid'], valid_y, 0, label2idx, sentence_maxlen, max_f)
+    # filepath = 'model/weights1.{epoch:02d}-{val_loss:.2f}.hdf5'
+    # saveModel = ModelCheckpoint(filepath,
+    #                             monitor='val_loss',
+    #                             save_best_only=True,    # 只保存在验证集上性能最好的模型
+    #                             save_weights_only=False,
+    #                             mode='auto')
+    # earlyStop = EarlyStopping(monitor='val_loss', patience=5, mode='auto')
+    # tensorBoard = TensorBoard(log_dir='./model',     # 保存日志文件的地址,该文件将被TensorBoard解析以用于可视化
+    #                           histogram_freq=0)     # 计算各个层激活值直方图的频率(每多少个epoch计算一次)
+    #
+    # start_time = time.time()
+    # model.fit(x=dataSet['train'], y=train_y,
+    #           epochs=epochs,
+    #           batch_size=batch_size,
+    #           shuffle=True,
+    #           callbacks=[calculatePRF1, saveModel, earlyStop, tensorBoard],
+    #           validation_data=(dataSet['valid'], valid_y))
+    # time_diff = time.time() - start_time
+    # print("%.2f sec for training (4.5)" % time_diff)
+    # print(model.metrics_names)
 
-    # calculatePRF1 = ConllevalCallback(dataSet['test'], test_y, 0, labelList[main_id], sentence_maxlen, flag='main')
 
-    start_time = time.time()
-    model.fit(x=dataSet['train'], y=train_y,
-              epochs=1, batch_size=batch_size,
-              shuffle=True,
-              # callbacks=[calculatePRF1],
-              validation_split=0.2)
+    '''
+    通过下面的命令启动 TensorBoard
+    tensorboard --logdir=/home/administrator/PycharmProjects/keras_bc6_track1/sample/model
+    http://localhost:6006
+    '''
 
-    time_diff = time.time() - start_time
-    print("%.2f sec for training (4.5)" % time_diff)
-    print(model.metrics_names)
+
+    model = load_model('model/Model_best.h5', custom_objects=create_custom_objects())
+    print('加载模型成功!!')
+
+    predictions = model.predict(dataSet['valid'])
+    y_pred = predictions.argmax(axis=-1)
+
+
+    writeOutput = True
+    if writeOutput:
+        writeOutputToFile(train_x, y_pred, trainCorpus + '/' + 'train.out')
+
+

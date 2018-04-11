@@ -22,8 +22,6 @@
 
   $ ./geniatagger  ../BCdata_preprocess/segmentData/test_flag.txt > ../BCdata_preprocess/test.genia
 
-./geniatagger  /Users/ningshixian/Desktop/'BC6 Track1'/BioIDtraining_2/train/train.txt > /Users/ningshixian/Desktop/'BC6 Track1'/BioIDtraining_2/train/train.genia
-
   % echo "Quantitative measurement of #antigamma globulin factors@ (#rheumatoid factors@) using laser-nephelometry in comparison with the latex agglutination test and the Waaler-Rose test" | ./geniatagger
 
 
