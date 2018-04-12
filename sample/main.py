@@ -1,5 +1,5 @@
 '''
-基于双向LSTM和CRF的药物名实体识别
+基于双向LSTM和CRF的BioID track1
 
 用训练预料和测试预料一起训练word2vec，使得词向量本身捕捉语义信息
 
@@ -56,53 +56,42 @@ set_session(tf.Session(config=config))
 # Parameters of the network
 char_emb_size = 25
 word_emb_size = 200
-dropout_rate = 0.5
-# dropout_rate = [0.5, 0.5]
-
-epochs = 20
+dropout_rate = 0.5  # [0.5, 0.5]
+epochs = 25
 batch_size = 32
-
 max_f = 0
-cdr_max_f = 0
-num_corpus = 2
-
-use_chars = True
-use_att = False
-batch_normalization = False
 highway = 0
-earlyStopping = 0
 lstm_size = [100]    # [100, 75]
-
-optimizer = 'rmsprop'
-
 learning_rate = 1e-3
-learning_rate_disc = 2e-4
-
+optimizer = 'rmsprop'
 # CNN settings
 feature_maps = [25, 25]
 kernels = [2, 3]
 
-trainCorpus = r'data'
-embeddingPath = r'/home/administrator/PycharmProjects/embedding'
+use_chars = True
+use_att = False
+batch_normalization = False
 
+rootCorpus = r'data'
+embeddingPath = r'/home/administrator/PycharmProjects/embedding'
 idx2label = {0: 'O', 1: 'B-GENE', 2: 'I-GENE', 3: 'B-PROTEIN', 4: 'I-PROTEIN'}
 
-print('load data...')
 
-with open(trainCorpus + '/train.pkl', "rb") as f:
+print('Loading data...')
+
+with open(rootCorpus + '/train.pkl', "rb") as f:
     train_x, train_y, train_char, train_cap = pkl.load(f)
 with open(embeddingPath+'/emb.pkl', "rb") as f:
     embedding_matrix, word_maxlen, sentence_maxlen = pkl.load(f)
 
-print('Data loading completed!')
+split_pos = ceil(len(train_x)*0.8)  # 划分训练集和验证集
 
 dataSet = OrderedDict()
-maxmax = ceil(len(train_x)*0.8)
-dataSet['train'] = [train_x[:maxmax], train_cap[:maxmax]]
-dataSet['valid'] = [train_x[maxmax:], train_cap[maxmax:]]
+dataSet['train'] = [train_x[:split_pos], train_cap[:split_pos]]
+dataSet['valid'] = [train_x[split_pos:], train_cap[split_pos:]]
 # dataSet['test'] = []
 
-print('Data preprocessing....')
+print('Preprocessing data....')
 
 # pad the sequences with zero
 for key, value in dataSet.items():
@@ -114,14 +103,15 @@ for j in range(len(train_char)):
     if len(train_char[j]) < sentence_maxlen:
         train_char[j].extend(np.asarray([[0] * word_maxlen] * (sentence_maxlen - len(train_char[j]))))
 
-dataSet['train'].insert(1, np.asarray(train_char[:maxmax]))
-dataSet['valid'].insert(1, np.asarray(train_char[maxmax:]))
-print(np.asarray(train_char[maxmax:]).shape)
-print(np.asarray(train_char[:maxmax]).shape)
+dataSet['train'].insert(1, np.asarray(train_char[:split_pos]))
+dataSet['valid'].insert(1, np.asarray(train_char[split_pos:]))
 
 y = pad_sequences(train_y, maxlen=sentence_maxlen, padding='post')
-train_y = y[:maxmax]
-valid_y = y[maxmax:]
+train_y = y[:split_pos]
+valid_y = y[split_pos:]
+
+print(np.asarray(train_char[split_pos:]).shape)
+print(np.asarray(train_char[:split_pos]).shape)
 print(train_y.shape)    # (10958, 180, 5)
 print(valid_y.shape)    # (13697, 180, 5)
 
@@ -242,17 +232,16 @@ def buildModel():
     loss_function = crf.loss
 
     if optimizer.lower() == 'adam':
-        opt = Adam(lr=learning_rate, clipvalue=1., decay=1e-8)
+        opt = Adam(lr=learning_rate, clipvalue=1.)
     elif optimizer.lower() == 'nadam':
         opt = Nadam(lr=learning_rate, clipvalue=1.)
     elif optimizer.lower() == 'rmsprop':
-        opt = RMSprop(lr=learning_rate, clipvalue=1., decay=1e-8)
+        opt = RMSprop(lr=learning_rate, clipvalue=1.)
     elif optimizer.lower() == 'sgd':
         opt = SGD(lr=0.01, momentum=0.9, decay=1e-6, nesterov=True, clipvalue=5)
 
     model = Model(inputs=[tokens_input, chars_input, cap_input], outputs=[output])
     model.compile(loss=loss_function,
-                  # loss_weights=[1, 0.05],
                   optimizer=opt,
                   metrics=["accuracy"])
     model.summary()
@@ -260,9 +249,10 @@ def buildModel():
 
 
 if __name__ == '__main__':
+
     # model = buildModel()
     #
-    # calculatePRF1 = ConllevalCallback(dataSet['valid'], valid_y, 0, label2idx, sentence_maxlen, max_f)
+    # calculatePRF1 = ConllevalCallback(dataSet['valid'], valid_y, 0, idx2label, sentence_maxlen, max_f)
     # filepath = 'model/weights1.{epoch:02d}-{val_loss:.2f}.hdf5'
     # saveModel = ModelCheckpoint(filepath,
     #                             monitor='val_loss',
@@ -278,7 +268,7 @@ if __name__ == '__main__':
     #           epochs=epochs,
     #           batch_size=batch_size,
     #           shuffle=True,
-    #           callbacks=[calculatePRF1, saveModel, earlyStop, tensorBoard],
+    #           callbacks=[calculatePRF1, saveModel, tensorBoard],
     #           validation_data=(dataSet['valid'], valid_y))
     # time_diff = time.time() - start_time
     # print("%.2f sec for training (4.5)" % time_diff)
@@ -292,7 +282,7 @@ if __name__ == '__main__':
     '''
 
 
-    model = load_model('model/Model_best.h5', custom_objects=create_custom_objects())
+    model = load_model('model/Model_f_68.49.h5', custom_objects=create_custom_objects())
     print('加载模型成功!!')
 
     predictions = model.predict(dataSet['valid'])
@@ -301,6 +291,6 @@ if __name__ == '__main__':
 
     writeOutput = True
     if writeOutput:
-        writeOutputToFile(train_x, y_pred, trainCorpus + '/' + 'train.out')
+        writeOutputToFile(rootCorpus + '/' + 'train.out', y_pred, sentence_maxlen, split_pos)
 
 

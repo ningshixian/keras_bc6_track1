@@ -40,8 +40,7 @@ class ConllevalCallback(Callback):
 
         if f1 >= self.max_f:
             self.max_f = f1
-            self.model.save('model/Model_best.h5', overwrite=True)
-            print('do saving: {}'.format(epoch))
+            self.model.save('model/Model_f_'+str(f1)+'.h5', overwrite=True)
         # # 预测
         # model = load_model('model/Model_ST.h5', custom_objects=create_custom_objects())
 

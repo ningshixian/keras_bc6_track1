@@ -10,7 +10,33 @@ import codecs
 from math import ceil
 
 
-csv_path = r'/home/administrator/桌面/BC6_Track1/BioIDtraining_2/annotations.csv'
+"""
+将实体预测结果，以特定格式写入XML文件，用于scorer进行评估
+<collection>
+    <source>SourceData</source>
+    <date>00000000</date>
+    <key>sourcedata.key</key>
+    <document>
+        <id>1-A</id>
+        <infon key="sourcedata_document">?</infon>
+        <infon key="doi">?</infon>
+        <infon key="pmc_id">?</infon>
+        <infon key="figure">?</infon>
+        <infon key="sourcedata_figure_dir">?</infon>
+        <passage>
+            <offset>0</offset>
+            <text>XXX</text>
+            <annotation id="1">
+                <infon key="type">GO:0005764</infon>
+                <infon key="sourcedata_figure_annot_id">1</infon>
+                <infon key="sourcedata_article_annot_id">1</infon>
+                <location offset="16" length="9"/>
+                <text>lysosomes</text>
+            </annotation>
+        </passage>
+    </document>
+</collection>
+"""
 
 
 def getXlsxData(path):
@@ -33,6 +59,10 @@ def getXlsxData(path):
 
 
 def getCSVData(path):
+    '''
+    获取实体ID词典
+    只用到gene和protein类别的部分
+    '''
     import csv
     entity2id = {}
     with open(path) as f:
@@ -41,67 +71,121 @@ def getCSVData(path):
         # print(headers)
         f_csv = csv.DictReader(f)
         for row in f_csv:
-            entity2id[row['text']] = row['obj']
+            if row['obj'].startswith('NCBI gene:') or \
+                    row['obj'].startswith('Uniprot:') or \
+                    row['obj'].startswith('gene:') or \
+                    row['obj'].startswith('protein:'):
+                entity2id[row['text']] = row['obj']
     return entity2id
 
-entity2id = getCSVData(csv_path)
+
+def searchEntityId(s, idx, predLabels, entity2id):
+    '''
+    根据预测结果来抽取句子中的所有实体，放入 entities
+    :param s: 单词列表形成的句子
+    :param idx: 当前句子的预测结果id
+    :param predLabels: 预测结果
+    :param entity2id: 词典
+    :return:
+    '''
+    entities = []
+    id_list = []
+    result = ''
+    prex = 0
+    for tokenIdx in range(len(s)):
+        label = predLabels[idx][tokenIdx]
+        word = s[tokenIdx]
+        if label == 1:
+            if result:
+                entities.append(result.strip())
+                result = ''
+            prex = label
+            result = word + ' '
+        elif label == 2:
+            if prex == 1:
+                result += word + ' '
+        elif label == 3:
+            if result:
+                entities.append(result.strip())
+                result = ''
+            prex = label
+            result = word + ' '
+        elif label == 4:
+            if prex == 3:
+                result += word + ' '
+        else:
+            if not result == '':
+                entities.append(result.strip())
+                result = ''
+            else:
+                result = ''
+    if not result == '':
+        entities.append(result.strip())
+    l2 = list(set(entities))  # 去除相同元素
+    entities = sorted(l2, key=entities.index)  # 不改变原list顺序
+    # print(entities)
+
+    # 对识别的实体进行ID链接
+    for i in range(len(entities)):
+        entity = entities[i].strip()
+        Id = 'None'
+        if entity in entity2id:
+            # 精确匹配
+            Id = entity2id.get(entity)  # 先查词典
+        elif api.get(entity):
+            # 数据库API查询
+            Id = entity2id.get(api.get(entity))  # 先查词典
+        else:
+            # 模糊匹配--计算 Jaro–Winkler 距离
+            max_score = 0
+            for key in entity2id.keys():
+                score = Levenshtein.jaro_winkler(key, entity)
+                if score > max_score:
+                    max_score = score
+                    max_score_key = key
+            Id = entity2id.get(max_score_key)
+        id_list.append(Id)
+    return entities, id_list
 
 
-def writeOutputToFile(sentences, predLabels, path):
-    """
-    写入预测结果至XML文件
-    <collection>
-        <source>SourceData</source>
-        <date>00000000</date>
-        <key>sourcedata.key</key>
-        <document>
-            <id>1-A</id>
-            <infon key="sourcedata_document">?</infon>
-            <infon key="doi">?</infon>
-            <infon key="pmc_id">?</infon>
-            <infon key="figure">?</infon>
-            <infon key="sourcedata_figure_dir">?</infon>
-            <passage>
-                <offset>0</offset>
-                <text>XXX</text>
-                <annotation id="1">
-                    <infon key="type">GO:0005764</infon>
-                    <infon key="sourcedata_figure_annot_id">1</infon>
-                    <infon key="sourcedata_article_annot_id">1</infon>
-                    <location offset="16" length="9"/>
-                    <text>lysosomes</text>
-                </annotation>
-            </passage>
-        </document>
-    """
-    # # 读取基因的 ID词典
-    # gene_dic = self.readGeneLexicon(config.LEXICON_FILE)
+def writeOutputToFile(path, predLabels, maxlen, split_pos=0):
+    '''
+    将实体预测结果写入XML文件
+    :param path: 测试数据路径
+    :param predLabels: 测试数据的实体预测结果
+    :param maxlen: 句子截断长度
+    :param split_pos: 划分训练集和验证集的位置
+    :return:
+    '''
 
+    # 读取实体 ID 词典
+    csv_path = r'/home/administrator/桌面/BC6_Track1/BioIDtraining_2/annotations.csv'
+    entity2id = getCSVData(csv_path)
 
-    datasDic = []
+    # 获取原始conll文本句子
+    s = []
+    word_data = []
     with open(path, encoding='utf-8') as f:
-        data_sen = []
         for line in f:
             if line == '\n':
-                datasDic.append(data_sen)  # ' '.join()
-                data_sen = []
+                word_data.append(s)  # ' '.join()
+                s = []
             else:
                 token = line.replace('\n', '').split('\t')
                 word = token[0]
-                data_sen.append(word)
+                s.append(word)
 
-
-    maxmax = ceil(len(sentences) * 0.8)
-    print(maxmax)
-
+    '''
+    按顺序读取文件夹中的xml格式文件
+    同时，对应每个text生成annotation标签：
+        getElementsByTagName方法：获取孩子标签
+        getAttribute方法：可以获得元素的属性所对应的值。
+        firstChild.data≈childNodes[0].data：返回被选节点的第一个子标签对之间的数据
+    '''
+    num_sentence = -1
     BioC_PATH = r'/home/administrator/桌面/BC6_Track1/BioIDtraining_2/caption_bioc'
-    result_path = r'/home/administrator/桌面/BC6_Track1/BioIDtraining_2/train/result'
     files = os.listdir(BioC_PATH)  # 得到文件夹下的所有文件名称
     files.sort()
-
-    num_sentence = 0
-    # f = codecs.open('new_valid.txt', 'w', encoding='utf-8')
-
     for j in tqdm(range(len(files))):  # 遍历文件夹
         file = files[j]
         if not os.path.isdir(file):  # 判断是否是文件夹，不是文件夹才打开
@@ -109,20 +193,12 @@ def writeOutputToFile(sentences, predLabels, path):
             try:
                 DOMTree = parse(f)  # 使用minidom解析器打开 XML 文档
                 collection = DOMTree.documentElement  # 得到了根元素对象
-                # print('结点名字:{}\n'.format(collection.nodeName),
-                #       '结点的值，只对文本结点有效:{}\n'.format(collection.nodeValue),
-                #       '结点的类型:{}'.format(collection.nodeType))
             except:
-                print(f)
+                print('异常情况：'.format(f))
                 continue
 
-            '''
-            获得子标签，使用getElementsByTagName方法获取
-            获得标签属性值，getAttribute方法可以获得元素的属性所对应的值。
-            获得标签对之间的数据，firstChild.data返回被选节点的第一个子节点的数据
-            '''
-            source = collection.getElementsByTagName("source")[0].childNodes[0].data    # .firstChild.data
-            date = collection.getElementsByTagName("date")[0].childNodes[0].data
+            source = collection.getElementsByTagName("source")[0].childNodes[0].data
+            date = collection.getElementsByTagName("date")[0].childNodes[0].data    # 时间
             key = collection.getElementsByTagName("key")[0].childNodes[0].data
 
             # 一、生成dom对象，根元素名collection
@@ -153,11 +229,12 @@ def writeOutputToFile(sentences, predLabels, path):
                 for passage in passages:
                     text = passage.getElementsByTagName('text')[0].childNodes[0].data
                     annotationSet = []
-                    if num_sentence < maxmax:   # 取验证集的数据集
+                    num_sentence += 1
+                    if num_sentence < split_pos:   # 忽略训练集的数据集
                         continue
-                    else:
-                        print('当前第{}个句子'.format(num_sentence))
-                        # 每读取一篇passage，记录识别实体
+                    else:   # 取验证集的数据集
+                        # print('当前是第{}个句子'.format(num_sentence))
+                        # 每读取一篇passage，在<annotation>记录识别实体
                         document = dom.createElement('document')
                         id_node = makeEasyTag(dom, 'id', str(id))
                         s_d_node = makeEasyTag(dom, 'infon', str(sourcedata_document))
@@ -181,74 +258,19 @@ def writeOutputToFile(sentences, predLabels, path):
                         offset1 = makeEasyTag(dom, 'offset', '0')
                         text1 = makeEasyTag(dom, 'text', text)
 
-                        # 根据预测结果来抽取句子中的所有实体，放入 entities
-                        s = datasDic[num_sentence][:180]    # 句子截断长度
-                        sen = ' '.join(datasDic[num_sentence][:180])    # 用于查找实体的索引
-                        idx = num_sentence - maxmax
-                        entities = []
-                        id_list = []
-                        result=''
-                        prex = 0
-                        for tokenIdx in range(len(s)):
-                            label = predLabels[idx][tokenIdx]
-                            word = s[tokenIdx]
-                            if label == 1:
-                                if result:
-                                    entities.append(result.strip())
-                                    result = ''
-                                prex = label
-                                result = word + ' '
-                            elif label == 2:
-                                if prex==1:
-                                    result += word + ' '
-                            elif label == 3:
-                                if result:
-                                    entities.append(result.strip())
-                                    result = ''
-                                prex = label
-                                result = word + ' '
-                            elif label == 4:
-                                if prex == 3:
-                                    result += word + ' '
-                            else:
-                                if not result == '':
-                                    entities.append(result.strip())
-                                    result = ''
-                                else:
-                                    result = ''
-                        if not result == '':
-                            entities.append(result.strip())
-                        l2 = list(set(entities))    # 去除相同元素
-                        entities = sorted(l2, key=entities.index)   # 不改变原list顺序
-                        # print(entities)
-
-                        # 对识别的实体进行ID链接
-                        for i in range(len(entities)):
-                            entity = entities[i].strip()
-                            Id = 'None'
-                            if entity in entity2id:
-                                Id = entity2id.get(entity) # 先查词典
-                            else:
-                                """
-                                若不能精确匹配，
-                                模糊匹配--计算 Jaro–Winkler 距离
-                                """
-                                max_score = 0
-                                for key in entity2id.keys():
-                                    score = Levenshtein.jaro_winkler(key, entity)
-                                    if score > max_score:
-                                        max_score = score
-                                        max_score_key = key
-                                Id = entity2id.get(max_score_key)
-                            id_list.append(Id)
-
+                        # 根据预测结果来抽取句子中的所有实体，并进行实体链接
+                        s = word_data[num_sentence][:maxlen]  # 单词列表形成的句子
+                        sen = ' '.join(word_data[num_sentence][:maxlen])  # 句子文本
+                        idx = num_sentence - split_pos
+                        entities, id_list = searchEntityId(s, idx, predLabels, entity2id)
 
                         # 生成标注的结点
                         for i in range(len(entities)):
                             entity = entities[i]
+                            type_id = id_list[i]
                             annotation = dom.createElement('annotation')
                             annotation.setAttribute('id', str(i+1))
-                            infon1 = makeEasyTag(dom, 'infon', id_list[i])
+                            infon1 = makeEasyTag(dom, 'infon', type_id)
                             infon1.setAttribute('key', 'type')
                             infon2 = makeEasyTag(dom, 'infon', str(i+1))
                             infon2.setAttribute('key', 'sourcedata_figure_annot_id')
@@ -280,11 +302,14 @@ def writeOutputToFile(sentences, predLabels, path):
                         document.appendChild(passage1)
                         root.appendChild(document)
 
-                    num_sentence += 1
-
-            if num_sentence >= maxmax:  # 取验证集的数据集
+            '''
+            每读完一个file后，将结果写入同名的XML文件
+            问题：第一个结果文件可能会缺少开头的几行...（评估的时候去掉第一个文件）
+            '''
+            if num_sentence >= split_pos:  # 取验证集的数据集
                 '''将DOM对象doc写入文件...'''
                 Indent(dom, dom.documentElement) # 美化
+                result_path = r'/home/administrator/桌面/BC6_Track1/BioIDtraining_2/train/result'
                 outputName = result_path + '/' + file
                 f = open(outputName, 'w')
                 writer = codecs.lookup('utf-8')[3](f)

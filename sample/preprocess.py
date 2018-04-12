@@ -8,6 +8,9 @@ from keras.preprocessing.text import Tokenizer
 from helpers import wordNormalize, createCharDict
 import string
 
+'''
+对CONLL格式的训练数据进行预处理
+'''
 
 trainCorpus = r'data'
 embeddingPath = r'/home/administrator/PycharmProjects/embedding'
@@ -15,8 +18,8 @@ embeddingFile = r'/wikipedia-pubmed-and-PMC-w2v.bin'
 
 label2idx = {'O': 0, 'B-GENE': 1, 'I-GENE': 2, 'B-PROTEIN': 3, 'I-PROTEIN': 4}
 
-maxlen_s = 180  # 句子截断长度(太短？)
-maxlen_w = 25   # 单词截断长度
+maxlen_s = 473  # 句子截断长度(太短？)
+maxlen_w = 48   # 单词截断长度
 word_size = 200  # 词向量维度
 MAX_NB_WORDS = None # 不设置最大词数
 word_len_list = [0]
@@ -204,13 +207,12 @@ if __name__ == '__main__':
     word_index = tokenizer.word_index   # 将词（字符串）映射到索引（整型）的字典
     word_counts = tokenizer.word_counts # 在训练时将词（字符串）映射到其出现次数的字典
 
-    print('Found %s unique tokens.\n' % len(word_index))  # 31177
+    print('Found %s unique tokens.\n' % len(word_index))  # 31553
 
     # 将训练数据序列化
     datasDic = tokenizer.texts_to_sequences(datasDic)
     # 补齐字符向量长度 word_maxlen
     charsDic = padCharacters(charsDic, maxlen_w)
-    print(np.array(charsDic).shape)
     # 获取词向量矩阵
     embedding_matrix = produce_matrix(word_index, embeddingPath+embeddingFile)
 
