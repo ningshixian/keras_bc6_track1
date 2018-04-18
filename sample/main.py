@@ -61,7 +61,7 @@ epochs = 25
 batch_size = 32
 max_f = 0
 highway = 0
-lstm_size = [100]    # [100, 75]
+lstm_size = [200]    # [100, 75]
 learning_rate = 1e-3
 optimizer = 'rmsprop'
 # CNN settings
@@ -81,17 +81,19 @@ print('Loading data...')
 
 with open(rootCorpus + '/train.pkl', "rb") as f:
     train_x, train_y, train_char, train_cap = pkl.load(f)
+with open(rootCorpus + '/devel.pkl', "rb") as f:
+    devel_x, devel_y, devel_char, devel_cap = pkl.load(f)
 with open(embeddingPath+'/emb.pkl', "rb") as f:
     embedding_matrix, word_maxlen, sentence_maxlen = pkl.load(f)
 
-split_pos = ceil(len(train_x)*0.8)  # 划分训练集和验证集
+# split_pos = ceil(len(train_x)*0.8)  # 划分训练集和验证集
 
 dataSet = OrderedDict()
-dataSet['train'] = [train_x[:split_pos], train_cap[:split_pos]]
-dataSet['valid'] = [train_x[split_pos:], train_cap[split_pos:]]
+dataSet['train'] = [train_x, train_cap]
+dataSet['devel'] = [devel_x, devel_cap]
 # dataSet['test'] = []
 
-print('Preprocessing data....')
+print('done! Preprocessing data....')
 
 # pad the sequences with zero
 for key, value in dataSet.items():
@@ -102,20 +104,22 @@ for key, value in dataSet.items():
 for j in range(len(train_char)):
     if len(train_char[j]) < sentence_maxlen:
         train_char[j].extend(np.asarray([[0] * word_maxlen] * (sentence_maxlen - len(train_char[j]))))
+for j in range(len(devel_char)):
+    if len(devel_char[j]) < sentence_maxlen:
+        devel_char[j].extend(np.asarray([[0] * word_maxlen] * (sentence_maxlen - len(devel_char[j]))))
 
-dataSet['train'].insert(1, np.asarray(train_char[:split_pos]))
-dataSet['valid'].insert(1, np.asarray(train_char[split_pos:]))
+dataSet['train'].insert(1, np.asarray(train_char))
+dataSet['devel'].insert(1, np.asarray(devel_char))
 
-y = pad_sequences(train_y, maxlen=sentence_maxlen, padding='post')
-train_y = y[:split_pos]
-valid_y = y[split_pos:]
+train_y = pad_sequences(train_y, maxlen=sentence_maxlen, padding='post')
+devel_y = pad_sequences(devel_y, maxlen=sentence_maxlen, padding='post')
 
-print(np.asarray(train_char[split_pos:]).shape)
-print(np.asarray(train_char[:split_pos]).shape)
-print(train_y.shape)    # (10958, 180, 5)
-print(valid_y.shape)    # (13697, 180, 5)
+print(np.asarray(train_char).shape)     # (10966, 473, 48)
+print(np.asarray(devel_char).shape)     # (2731, 473, 48)
+print(train_y.shape)    # (10966, 473, 5)
+print(devel_y.shape)    # (2731, 473, 5)
 
-
+print('done! Model building....')
 
 def _shared_layer(concat_input):
     '''共享不同任务的Embedding层和bilstm层'''
@@ -225,8 +229,9 @@ def buildModel():
 
     # ======================================================================= #
 
-    # Classifier
-    output = TimeDistributed(Dense(5))(shared_output)
+    # Classifier 激活函数的选择参考 【Sheng E et al.】 做法
+    output = TimeDistributed(Dense(200, activation='tanh'))(shared_output)
+    output = TimeDistributed(Dense(5, activation='sigmoid'))(output)
     crf = ChainCRF(name='CRF')
     output = crf(output)
     loss_function = crf.loss
@@ -245,6 +250,8 @@ def buildModel():
                   optimizer=opt,
                   metrics=["accuracy"])
     model.summary()
+
+    plot_model(model, to_file='model.png', show_shapes=True)
     return model
 
 
@@ -252,7 +259,7 @@ if __name__ == '__main__':
 
     # model = buildModel()
     #
-    # calculatePRF1 = ConllevalCallback(dataSet['valid'], valid_y, 0, idx2label, sentence_maxlen, max_f)
+    # calculatePRF1 = ConllevalCallback(dataSet['devel'], devel_y, 0, idx2label, sentence_maxlen, max_f)
     # filepath = 'model/weights1.{epoch:02d}-{val_loss:.2f}.hdf5'
     # saveModel = ModelCheckpoint(filepath,
     #                             monitor='val_loss',
@@ -269,7 +276,7 @@ if __name__ == '__main__':
     #           batch_size=batch_size,
     #           shuffle=True,
     #           callbacks=[calculatePRF1, saveModel, tensorBoard],
-    #           validation_data=(dataSet['valid'], valid_y))
+    #           validation_data=(dataSet['devel'], devel_y))
     # time_diff = time.time() - start_time
     # print("%.2f sec for training (4.5)" % time_diff)
     # print(model.metrics_names)
@@ -282,15 +289,16 @@ if __name__ == '__main__':
     '''
 
 
-    model = load_model('model/Model_f_68.49.h5', custom_objects=create_custom_objects())
+    model = load_model('model/Model_f_67.97.h5', custom_objects=create_custom_objects())
     print('加载模型成功!!')
 
-    predictions = model.predict(dataSet['valid'])
+    predictions = model.predict(dataSet['devel'])
     y_pred = predictions.argmax(axis=-1)
+    # print(len(y_pred), len(devel_y))    # 2731 2731
 
 
     writeOutput = True
     if writeOutput:
-        writeOutputToFile(rootCorpus + '/' + 'train.out', y_pred, sentence_maxlen, split_pos)
+        writeOutputToFile(rootCorpus + '/' + 'devel.out', y_pred, sentence_maxlen)
 
 

@@ -2,26 +2,27 @@
 # -*- coding: UTF-8 -*-
 '''
      1、从 .XML 原始文件中解析获取数据和标签文件
-     2、将句子中所有的实体用一对标签 <B-xxx>entity</I-xxx> 进行标记
-     3、利用GENIA tagger工具对标记过的语料进行预处理
-     4、根据预处理语料的标记 <B-xxx></I-xxx> 获取BIO标签
+     2、将570篇 document 分为训练455篇 document 和验证115篇 document
+     3、将句子中所有的实体用一对标签 <B-xxx>entity</I-xxx> 进行标记
+     4、利用GENIA tagger工具对标记过的语料进行预处理
+     5、根据预处理语料的标记 <B-xxx></I-xxx> 获取BIO标签
 '''
 from xml.dom.minidom import parse
 import re
 import codecs
 import os
 
-data = []
-label = []
-train_path = r'/Users/ningshixian/Desktop/BC6_Track1/BioIDtraining_2/train'
+train_path = r'/Users/ningshixian/Desktop/BC6_Track1/BioIDtraining_2/train_455'
+devel_path = r'/Users/ningshixian/Desktop/BC6_Track1/BioIDtraining_2/devel_115'
 BioC_PATH = r'/Users/ningshixian/Desktop/BC6_Track1/BioIDtraining_2/caption_bioc'
 files = os.listdir(BioC_PATH)  #得到文件夹下的所有文件名称
 files.sort()
 
 
 def readXML(files):
-    num_sentence = 0
-    s = []
+    num_passage = 0
+    num_file = 0
+    passages_list = []
     for file in files:  #遍历文件夹
         if not os.path.isdir(file):  #判断是否是文件夹，不是文件夹才打开
             f = BioC_PATH + "/" + file
@@ -46,7 +47,7 @@ def readXML(files):
                     sentence = text.childNodes[0].data
                     entity_list = []
                     entity2id = {}
-                    num_sentence += 1
+                    num_passage += 1
                     # print("text: %s" % sentence)
                     annotations = passage.getElementsByTagName('annotation')
                     for annotation in annotations:
@@ -119,13 +120,26 @@ def readXML(files):
                     sentence = sentence.replace(' B-ORGANISMS- ', ' B-ORGANISMS-').replace(' -I-ORGANISMS ', '-I-ORGANISMS ')
                     sentence = sentence.replace(' B-CELLTYPE- ', ' B-CELLTYPE-').replace(' -I-CELLTYPE ', '-I-CELLTYPE ')
                     sentence = sentence.replace(' B-RNA- ', ' B-RNA-').replace(' -I-RNA ', '-I-RNA ')
-                    s.append(sentence)
+                    passages_list.append(sentence)
 
-    with open(BioC_PATH + "/" + 'train.txt', 'w') as f:
-        for sentence in s:
-            f.write(sentence)
-            f.write('\n')
-    print('句子总数：{}'.format(num_sentence))
+        num_file+=1
+        if num_file==455:
+            print(file) # 4864890.xml
+            with open(train_path + "/" + 'train.txt', 'w') as f:
+                for sentence in passages_list:
+                    f.write(sentence)
+                    f.write('\n')
+            passages_list = []
+            print('passage 总数： {}'.format(num_passage)) # 10966
+            num_passage = 0
+
+        if num_file==570:
+            with open(devel_path + "/" + 'devel.txt', 'w') as f:
+                for sentence in passages_list:
+                    f.write(sentence)
+                    f.write('\n')
+            passages_list = []
+            print('passage 总数： {}'.format(num_passage)) # 2731
 
 
 # 利用GENIA tagger工具对标记过的语料进行预处理（分词+POS+CHUNK+NER）
@@ -186,7 +200,7 @@ def getLabel(dataPath):
     # label = []
     label_sen = []
     sent = []
-    with open(dataPath+ '/' + 'train.genia', 'r') as data:
+    with open(dataPath+ '/' + 'devel.genia', 'r') as data:
         for line in data:
             if not line=='\n':
                 word = line.split('\t')[0]
@@ -202,15 +216,14 @@ def getLabel(dataPath):
                 label_sen = []
                 sent.append('\n')
 
-    with open(dataPath+ '/' + 'train.out', 'w') as f:
+    with open(dataPath+ '/' + 'devel.out', 'w') as f:
         for line in sent:
             f.write(line)
-    return label
 
 
 if __name__ == '__main__':
     
-    # readXML(files)
+    readXML(files)
 
     # GENIA tagger
     '''
@@ -219,6 +232,6 @@ if __name__ == '__main__':
     > /Users/ningshixian/Desktop/'BC6_Track1'/BioIDtraining_2/train/train.genia
     '''
 
-    getLabel(train_path)
+    # getLabel(devel_path)
 
     print("完结撒花====")
