@@ -40,6 +40,7 @@ from callbacks import ConllevalCallback
 from writeXMLResult import writeOutputToFile
 import keras.backend as K
 import numpy as np
+import codecs
 from math import ceil
 from keras.callbacks import ModelCheckpoint, EarlyStopping, TensorBoard
 from collections import OrderedDict
@@ -54,14 +55,17 @@ config.gpu_options.allow_growth = True  # 按需求增长
 set_session(tf.Session(config=config))
 
 # Parameters of the network
-char_emb_size = 25
 word_emb_size = 200
+char_emb_size = 25
+cap_emb_size = 5
+pos_emb_size = 25
+chunk_emb_size = 25
 dropout_rate = 0.5  # [0.5, 0.5]
-epochs = 25
+epochs = 35
 batch_size = 32
 max_f = 0
 highway = 0
-lstm_size = [200]    # [100, 75]
+lstm_size = [200]    # BLSTM 隐层大小
 learning_rate = 1e-3
 optimizer = 'rmsprop'
 # CNN settings
@@ -79,18 +83,18 @@ idx2label = {0: 'O', 1: 'B-GENE', 2: 'I-GENE', 3: 'B-PROTEIN', 4: 'I-PROTEIN'}
 
 print('Loading data...')
 
-with open(rootCorpus + '/train.pkl', "rb") as f:
-    train_x, train_y, train_char, train_cap = pkl.load(f)
+with codecs.open(rootCorpus + '/train.pkl', "rb") as f:
+    train_x, train_y, train_char, train_cap, train_pos, train_chunk = pkl.load(f)
 with open(rootCorpus + '/devel.pkl', "rb") as f:
-    devel_x, devel_y, devel_char, devel_cap = pkl.load(f)
+    devel_x, devel_y, devel_char, devel_cap, devel_pos, devel_chunk = pkl.load(f)
 with open(embeddingPath+'/emb.pkl', "rb") as f:
     embedding_matrix, word_maxlen, sentence_maxlen = pkl.load(f)
 
 # split_pos = ceil(len(train_x)*0.8)  # 划分训练集和验证集
 
 dataSet = OrderedDict()
-dataSet['train'] = [train_x, train_cap]
-dataSet['devel'] = [devel_x, devel_cap]
+dataSet['train'] = [train_x, train_cap, train_pos, train_chunk]
+dataSet['devel'] = [devel_x, devel_cap, devel_pos, devel_chunk]
 # dataSet['test'] = []
 
 print('done! Preprocessing data....')
@@ -114,10 +118,10 @@ dataSet['devel'].insert(1, np.asarray(devel_char))
 train_y = pad_sequences(train_y, maxlen=sentence_maxlen, padding='post')
 devel_y = pad_sequences(devel_y, maxlen=sentence_maxlen, padding='post')
 
-print(np.asarray(train_char).shape)     # (10966, 473, 48)
-print(np.asarray(devel_char).shape)     # (2731, 473, 48)
-print(train_y.shape)    # (10966, 473, 5)
-print(devel_y.shape)    # (2731, 473, 5)
+print(np.asarray(train_char).shape)     # (10966, 639, 34)
+print(np.asarray(devel_char).shape)     # (2731, 639, 34)
+print(train_y.shape)    # (10966, 639, 5)
+print(devel_y.shape)    # (2731, 639, 5)
 
 print('done! Model building....')
 
@@ -138,14 +142,13 @@ def _shared_layer(concat_input):
                                    name='shared_varLSTM_' + str(cnt))(concat_input)
         else:
             """ Naive dropout """
+            print('\nNaive dropout')
             output = Bidirectional(CuDNNLSTM(units=size,
                                              return_sequences=True,
                                              kernel_regularizer=l2(1e-4),
                                              bias_regularizer=l2(1e-4)),
                                    name='shared_LSTM_' + str(cnt))(concat_input)
-            if dropout_rate > 0.0:
-                output = TimeDistributed(Dropout(dropout_rate), name='shared_drop')(output)
-                # output = TimeDistributed(BatchNormalization())(output)
+            output = Dropout(dropout_rate)(output)
 
         if use_att:
             # output = Attention_layer()(output)
@@ -188,7 +191,7 @@ def buildModel():
                            output_dim=embedding_matrix.shape[1],  # 词向量的维度
                            weights=[embedding_matrix],
                            trainable=True,
-                           # mask_zero=True,    # 若√则编译报错，CRF不支持？
+                           # mask_zero=True,    # 若√则编译报错，CuDNNLSTM 不支持？
                            name='token_emd')(tokens_input)
 
     '''字符向量'''
@@ -209,9 +212,21 @@ def buildModel():
     # Additional features
     cap_input = Input(shape=(sentence_maxlen,), name='cap_input')
     cap_emb = Embedding(input_dim=2,  # 索引字典大小
-                        output_dim=5,  # pos向量的维度
+                        output_dim=cap_emb_size,  # pos向量的维度
                         trainable=True)(cap_input)
     mergeLayers.append(cap_emb)
+
+    pos_input = Input(shape=(sentence_maxlen,), name='pos_input')
+    pos_emb = Embedding(input_dim=50,  # 索引字典大小
+                        output_dim=pos_emb_size,  # pos向量的维度
+                        trainable=True)(pos_input)
+    mergeLayers.append(pos_emb)
+
+    chunk_input = Input(shape=(sentence_maxlen,), name='chunk_input')
+    chunk_emb = Embedding(input_dim=25,  # 索引字典大小
+                          output_dim=chunk_emb_size,  # chunk 向量的维度
+                          trainable=True)(chunk_input)
+    mergeLayers.append(chunk_emb)
 
     concat_input = concatenate(mergeLayers, axis=-1)  # (none, none, 200)
 
@@ -229,9 +244,8 @@ def buildModel():
 
     # ======================================================================= #
 
-    # Classifier 激活函数的选择参考 【Sheng E et al.】 做法
-    output = TimeDistributed(Dense(200, activation='tanh'))(shared_output)
-    output = TimeDistributed(Dense(5, activation='sigmoid'))(output)
+    output = TimeDistributed(Dense(2*lstm_size[-1], activation='tanh'))(shared_output)
+    output = TimeDistributed(Dense(5, kernel_regularizer=l2(1e-4)))(output)
     crf = ChainCRF(name='CRF')
     output = crf(output)
     loss_function = crf.loss
@@ -245,7 +259,7 @@ def buildModel():
     elif optimizer.lower() == 'sgd':
         opt = SGD(lr=0.01, momentum=0.9, decay=1e-6, nesterov=True, clipvalue=5)
 
-    model = Model(inputs=[tokens_input, chars_input, cap_input], outputs=[output])
+    model = Model(inputs=[tokens_input, chars_input, cap_input, pos_input, chunk_input], outputs=[output])
     model.compile(loss=loss_function,
                   optimizer=opt,
                   metrics=["accuracy"])
@@ -257,6 +271,9 @@ def buildModel():
 
 if __name__ == '__main__':
 
+    # # import preprocess
+    # # preprocess.main()
+    #
     # model = buildModel()
     #
     # calculatePRF1 = ConllevalCallback(dataSet['devel'], devel_y, 0, idx2label, sentence_maxlen, max_f)
@@ -288,17 +305,29 @@ if __name__ == '__main__':
     http://localhost:6006
     '''
 
+    # print(string.punctuation)   # !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+    # print(string.printable)
 
-    model = load_model('model/Model_f_67.97.h5', custom_objects=create_custom_objects())
+
+    model = load_model('model/Model_f_73.80.h5', custom_objects=create_custom_objects())
     print('加载模型成功!!')
 
     predictions = model.predict(dataSet['devel'])
     y_pred = predictions.argmax(axis=-1)
     # print(len(y_pred), len(devel_y))    # 2731 2731
 
+    with open('data/prediction.txt', 'w') as f:
+        for line in y_pred:
+            for k in line:
+                f.write(str(k))
+            f.write('\n')
 
     writeOutput = True
     if writeOutput:
-        writeOutputToFile(rootCorpus + '/' + 'devel.out', y_pred, sentence_maxlen)
+        writeOutputToFile(rootCorpus + '/' + 'devel.out.txt', y_pred, sentence_maxlen)
 
 
+    '''
+    python bioid_score.py --verbose 1 --force \
+    存放结果文件的目录 正确答案所在的目录 system1:预测结果所在的目录
+    '''

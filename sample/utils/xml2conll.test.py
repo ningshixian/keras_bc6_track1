@@ -21,7 +21,7 @@ files.sort()
 
 def readXML(files):
     num_sentence = 0
-    s = []
+    passages_list = []
     for file in files:  #遍历文件夹
         if not os.path.isdir(file):  #判断是否是文件夹，不是文件夹才打开
             f = BioC_PATH + "/" + file
@@ -44,11 +44,13 @@ def readXML(files):
                 for passage in passages:
                     text = passage.getElementsByTagName('text')[0]
                     sentence = text.childNodes[0].data
+                    for specific_symbol in ['-', '°C']:
+                        sentence = sentence.replace(specific_symbol, ' ' + specific_symbol + ' ')
                     num_sentence +=1
-                    s.append(sentence)
+                    passages_list.append(sentence)
 
     with open(BioC_PATH + "/" + 'test.txt', 'w') as f:
-        for sentence in s:
+        for sentence in passages_list:
             f.write(sentence)
             f.write('\n')
     print('句子总数：{}'.format(num_sentence))
@@ -58,10 +60,7 @@ def readXML(files):
 # 得到 train.genia 文件
 
 
-# 根据预处理语料的标记 <B-xxx></I-xxx> 获取BIO标签
 def getLabel(dataPath):
-    flag = 0    # 0:实体结束    1:实体内部  2:特殊实体[]
-    preType = None
     sent = []
     with open(dataPath+ '/' + 'test.genia', 'r') as data:
         for line in data:
@@ -70,8 +69,6 @@ def getLabel(dataPath):
                 sent.append(word + '\t' + '\t'.join(line.split('\t')[2:-1]) + '\n')
                 # sent.append(word + '\t' + '\t'.join(line.split('\t')[1:-1]) + '\t' + label_sen[-1] + '\n')
             else:
-                # label.append(label_sen)
-                label_sen = []
                 sent.append('\n')
 
     with open(dataPath+ '/' + 'test.out', 'w') as f:

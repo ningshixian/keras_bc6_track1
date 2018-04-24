@@ -1,6 +1,7 @@
 import re
 import string
 import sys
+import numpy as np
 print(sys.getdefaultencoding())
 
 
@@ -11,18 +12,71 @@ def get_answer():
 
 # 对单词进行清洗
 def wordNormalize(word):
-    word = word.lower()
+    word = word.strip().lower()
     word = re.sub(u'\s+', '', word, flags=re.U)  # 匹配任何空白字符
     word = word.replace("--", "-")
     word = re.sub("\"+", '"', word)
 
-    # 特殊符号归一化
+    # 特殊符号归一化，替换为'-'
     temp = word
     for char in word:
         if char not in string.printable:
-            temp = temp.replace(char, '')
+            temp = temp.replace(char, '-')
     word = temp
     return word
+
+
+def entityNormalize(entity):
+    for char in string.punctuation:
+        if char in entity:
+            entity = entity.replace(' '+char+' ', char)
+            entity = entity.replace(char+' ', char)
+            entity = entity.replace(' '+char, char)
+    return entity
+
+
+
+def idFilter(type, Ids):
+    '''
+    将字典匹配或API匹配得到的Ids集合中，与type不符的部分去掉
+    '''
+    temp = []
+    for Id in Ids:
+        if type == 'protein':
+            if 'uniprot' in Id or 'protein' in Id:
+                temp.append(Id)
+        elif type == 'gene':
+            if 'NCBI' in Id or 'gene' in Id:
+                temp.append(Id)
+        else:
+            print('??')
+    return temp
+
+
+def idFilter2(res, type):
+    '''
+        将字典匹配或API匹配得到的Ids集合中，与type不符的部分去掉
+        取第一个结果作为实体ID
+    '''
+    temp = []
+    if res == 400:
+        print('请求无效\n')
+    results = res.split('\n')[1:-1]  # 去除开头一行和最后的''
+    for line in results:
+        Id = line.split('\t')[-1]
+        temp.append(Id)
+        break
+        # if type == 'protein':
+        #     if 'uniprot' in Id or 'protein' in Id:
+        #         temp.append(Id)
+        #         break
+        # elif type == 'gene':
+        #     if 'NCBI' in Id or 'gene' in Id:
+        #         temp.append(Id)
+        #         break
+        # else:
+        #     print(res)
+    return temp
 
 
 def createCharDict():
@@ -37,11 +91,28 @@ def createCharDict():
     #             charSet.update(a[0])  # 获取字符集合
 
     char2idx = {}
+    char2idx['None'] = len(char2idx)  # 0索引用于填充
     for char in string.printable:
         char2idx[char] = len(char2idx)
     char2idx['**'] = len(char2idx)  # 用于那些未收录的字符
     print(char2idx)
     return char2idx
+
+
+def cos_sim(vector_a, vector_b):
+    """
+    计算两个向量之间的余弦相似度
+    :param vector_a: 向量 a
+    :param vector_b: 向量 b
+    :return: sim
+    """
+    vector_a = np.mat(vector_a)
+    vector_b = np.mat(vector_b)
+    num = float(vector_a * vector_b.T)  # np.dot(vector1,vector2)
+    denom = np.linalg.norm(vector_a) * np.linalg.norm(vector_b)
+    cos = num / denom
+    sim = 0.5 + 0.5 * cos   # ?
+    return sim
 
 
 
