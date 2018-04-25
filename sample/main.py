@@ -59,15 +59,16 @@ word_emb_size = 200
 char_emb_size = 25
 cap_emb_size = 5
 pos_emb_size = 25
-chunk_emb_size = 25
+chunk_emb_size = 10
 dropout_rate = 0.5  # [0.5, 0.5]
-epochs = 35
+epochs = 25
 batch_size = 32
 max_f = 0
 highway = 0
 lstm_size = [200]    # BLSTM 隐层大小
-learning_rate = 1e-3
-optimizer = 'rmsprop'
+learning_rate = 1e-3    # 1e-4
+decay_rate = learning_rate / epochs     # 1e-6
+optimizer = 'rmsprop'    #'rmsprop'
 # CNN settings
 feature_maps = [25, 25]
 kernels = [2, 3]
@@ -125,6 +126,20 @@ print(devel_y.shape)    # (2731, 639, 5)
 
 print('done! Model building....')
 
+
+def attention_3d_block(inputs, TIME_STEPS):
+    # inputs.shape = (batch_size, time_steps, input_dim)
+    input_dim = int(inputs.shape[2])
+    a = Permute((2, 1))(inputs)
+    a = Dense(TIME_STEPS, activation='softmax')(a)
+    if False:
+        a = Lambda(lambda x: K.mean(x, axis=1), name='dim_reduction')(a)
+        a = RepeatVector(input_dim)(a)
+    a_probs = Permute((2, 1), name='attention_vec')(a)
+    output_attention_mul = concatenate([inputs, a_probs], name='attention_mul', mode='mul')
+    return output_attention_mul
+
+
 def _shared_layer(concat_input):
     '''共享不同任务的Embedding层和bilstm层'''
     cnt = 0
@@ -142,21 +157,16 @@ def _shared_layer(concat_input):
                                    name='shared_varLSTM_' + str(cnt))(concat_input)
         else:
             """ Naive dropout """
-            print('\nNaive dropout')
             output = Bidirectional(CuDNNLSTM(units=size,
                                              return_sequences=True,
                                              kernel_regularizer=l2(1e-4),
                                              bias_regularizer=l2(1e-4)),
                                    name='shared_LSTM_' + str(cnt))(concat_input)
-            output = Dropout(dropout_rate)(output)
+            output = Dropout(dropout_rate, name='shared_dropout')(output)
 
         if use_att:
-            # output = Attention_layer()(output)
-            output = AttentionDecoder(units=lstm_size[-1],
-                             name='attention_decoder_1',
-                             output_dim=lstm_size[-1]*2,
-                             return_probabilities=False,
-                             trainable=True)(output)
+            attention_mul = attention_3d_block(output, sentence_maxlen)
+            output = concatenate([output, attention_mul], axis=-1)
     return output
 
 
@@ -244,20 +254,21 @@ def buildModel():
 
     # ======================================================================= #
 
-    output = TimeDistributed(Dense(2*lstm_size[-1], activation='tanh'))(shared_output)
-    output = TimeDistributed(Dense(5, kernel_regularizer=l2(1e-4)))(output)
+    output = TimeDistributed(Dense(lstm_size[-1], activation='tanh', name='tanh_layer'))(shared_output)
+    output = TimeDistributed(Dense(5, kernel_regularizer=l2(1e-4), name='final_layer'))(output)     # 不加激活函数，否则预测结果有问题222222
     crf = ChainCRF(name='CRF')
     output = crf(output)
     loss_function = crf.loss
 
     if optimizer.lower() == 'adam':
-        opt = Adam(lr=learning_rate, clipvalue=1.)
+        opt = Adam(lr=learning_rate, clipvalue=1., decay=decay_rate)
     elif optimizer.lower() == 'nadam':
-        opt = Nadam(lr=learning_rate, clipvalue=1.)
+        opt = Nadam(lr=learning_rate, clipvalue=1., decay=decay_rate)
     elif optimizer.lower() == 'rmsprop':
-        opt = RMSprop(lr=learning_rate, clipvalue=1.)
+        opt = RMSprop(lr=learning_rate, clipvalue=1., decay=decay_rate)
     elif optimizer.lower() == 'sgd':
-        opt = SGD(lr=0.01, momentum=0.9, decay=1e-6, nesterov=True, clipvalue=5)
+        opt = SGD(lr=0.005, clipvalue=5)
+        # opt = SGD(lr=0.005, momentum=0.9, decay=0., nesterov=True, clipvalue=5)
 
     model = Model(inputs=[tokens_input, chars_input, cap_input, pos_input, chunk_input], outputs=[output])
     model.compile(loss=loss_function,
@@ -292,8 +303,9 @@ if __name__ == '__main__':
     #           epochs=epochs,
     #           batch_size=batch_size,
     #           shuffle=True,
-    #           callbacks=[calculatePRF1, saveModel, tensorBoard],
-    #           validation_data=(dataSet['devel'], devel_y))
+    #           callbacks=[calculatePRF1, tensorBoard],
+    #           validation_split=0.2)
+    #           # validation_data=(dataSet['devel'], devel_y))
     # time_diff = time.time() - start_time
     # print("%.2f sec for training (4.5)" % time_diff)
     # print(model.metrics_names)
@@ -309,6 +321,7 @@ if __name__ == '__main__':
     # print(string.printable)
 
 
+    # model = load_model('model/Model_att_f_73.60.h5', custom_objects=create_custom_objects())
     model = load_model('model/Model_f_73.80.h5', custom_objects=create_custom_objects())
     print('加载模型成功!!')
 

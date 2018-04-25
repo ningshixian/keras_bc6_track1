@@ -2,7 +2,7 @@ import datetime
 import xml.dom.minidom
 import Levenshtein  # pip install python-Levenshtein
 from tqdm import tqdm
-from helpers import makeEasyTag, Indent, convert_2_BIO, entityNormalize, cos_sim, idFilter, idFilter2
+from helpers import makeEasyTag, Indent, convert_2_BIO, entityNormalize, cos_sim, idFilter, idFilter2, check
 import numpy as np
 import os
 import csv
@@ -43,62 +43,65 @@ u = UniProt()
 </collection>
 """
 
-
-synsets_path = '/home/administrator/PycharmProjects/embedding/AutoExtend/synsets.txt'
-synsets_code_path = '/home/administrator/PycharmProjects/embedding/AutoExtend/synsets_code.txt'
-lexemes_path = '/home/administrator/PycharmProjects/embedding/AutoExtend/lexemes.txt'
-
-synset2id = {}
-with open(synsets_code_path, 'r') as f:
-    for line in f:
-        splited = line.strip().split('\t')
-        synset_ncbi_id = splited[0]
-        words = splited[1]
-        words = words.replace('@@', ' ')
-        synset2id[words] = synset_ncbi_id
-# print(synset2id['pMF1.22::,pMX1.22::,'])
-
-
-id2vec = {}
-with open(synsets_path, 'r') as f:
-    for line in f:
-        splited = line.strip().split(' ')
-        synset = splited[0].replace('@@', ' ')
-        id = synset2id[synset]
-        vec = np.asarray(splited[1:], dtype=np.float32)
-        id2vec[id] = vec
-# print(id2vec['22196'])
-# print(id2vec['7329'])
-
-
-def readBinEmbedFile(embFile, word_size):
-    """
-    读取二进制格式保存的词向量文件，引入外部知识
-    """
-    print("\nProcessing Embedding File...")
-    from collections import OrderedDict
-    import word2vec
-    embeddings = OrderedDict()
-    embeddings["PADDING_TOKEN"] = np.zeros(word_size)
-    embeddings["UNKNOWN_TOKEN"] = np.random.uniform(-0.1, 0.1, word_size)
-    embeddings["NUMBER"] = np.random.uniform(-0.25, 0.25, word_size)
-
-    model = word2vec.load(embFile)
-    print('加载词向量文件完成')
-    for i in tqdm(range(len(model.vectors))):
-        vector = model.vectors[i]
-        word = model.vocab[i].lower()   # convert all characters to lowercase
-        embeddings[word] = vector
-    return embeddings
-
-
-# embedPath = r'/home/administrator/PycharmProjects/embedding'
-# embedFile = r'wikipedia-pubmed-and-PMC-w2v.bin'
-# word2vec = readBinEmbedFile(embedPath+'/'+embedFile, 200)
-# with open('data/word2vec.pkl', "wb") as f:
-#     pkl.dump(word2vec, f, -1)
-with open('data/word2vec.pkl', "rb") as f:
-    word2vec = pkl.load(f)
+# def readSynVec():
+#     synsetsVec_path1 = '/home/administrator/PycharmProjects/embedding/AutoExtend_Gene/synsetsVec.txt'
+#     synsetsVec_path2 = '/home/administrator/PycharmProjects/embedding/AutoExtend_Protein/synsetsVec.txt'
+#
+#     geneId2vec = {}
+#     with open(synsetsVec_path1, 'r') as f:
+#         for line in f:
+#             splited = line.strip().split(' ')
+#             geneId = splited[0]
+#             vec = np.asarray(splited[1:], dtype=np.float32)
+#             geneId2vec[geneId] = vec
+#     # print(geneId2vec['31459'])
+#
+#
+#     proteinId2vec = {}
+#     with open(synsetsVec_path2, 'r') as f:
+#         for line in f:
+#             splited = line.strip().split(' ')
+#             proteinId = splited[0]
+#             vec = np.asarray(splited[1:], dtype=np.float32)
+#             proteinId2vec[proteinId] = vec
+#
+#
+#     stop_word = []
+#     with open('data/stopwords_gene', 'r') as f:
+#         for line in f:
+#             stop_word.append(line.strip('\n'))
+#
+#     return geneId2vec, proteinId2vec, stop_word
+#
+#
+# def readBinEmbedFile(embFile, word_size):
+#     """
+#     读取二进制格式保存的词向量文件，引入外部知识
+#     """
+#     print("\nProcessing Embedding File...")
+#     from collections import OrderedDict
+#     import word2vec
+#     embeddings = OrderedDict()
+#     embeddings["PADDING_TOKEN"] = np.zeros(word_size)
+#     embeddings["UNKNOWN_TOKEN"] = np.random.uniform(-0.1, 0.1, word_size)
+#     embeddings["NUMBER"] = np.random.uniform(-0.25, 0.25, word_size)
+#
+#     model = word2vec.load(embFile)
+#     print('加载词向量文件完成')
+#     for i in tqdm(range(len(model.vectors))):
+#         vector = model.vectors[i]
+#         word = model.vocab[i].lower()   # convert all characters to lowercase
+#         embeddings[word] = vector
+#     return embeddings
+#
+#
+# # embedPath = r'/home/administrator/PycharmProjects/embedding'
+# # embedFile = r'wikipedia-pubmed-and-PMC-w2v.bin'
+# # word2vec = readBinEmbedFile(embedPath+'/'+embedFile, 200)
+# # with open('data/word2vec.pkl', "wb") as f:
+# #     pkl.dump(word2vec, f, -1)
+# with open('data/word2vec.pkl', "rb") as f:
+#     word2vec = pkl.load(f)
 
 
 def getXlsxData(path):
@@ -147,11 +150,11 @@ def getCSVData(csv_path):
                 # entity2id[row['text']] = list(set(entity2id[row['text']]))
         print('entity2id字典总长度：{}'.format(len(entity2id)))   # 4221
 
+    # 拓展实体词典
     for key, value in entity2id.items():
         if len(value)>1:
             num_word_multiID+=1
         entity2id_new[key] = value
-        # 去掉实体中的标点符号
         for char in string.punctuation:
             if char in key:
                 key = key.replace(char, '')
@@ -181,9 +184,9 @@ def searchEntityId(s, predLabels, entity2id):
         if label == 1:
             if entity:
                 if prex==1 or prex==2:
-                    entity_list[entityNormalize(entity.strip())]='gene'  # 实体标准化
+                    entity_list[entityNormalize(entity, s, tokenIdx)]='gene'  # 实体标准化
                 elif prex == 3 or prex == 4:
-                    entity_list[entityNormalize(entity.strip())] = 'protein'  # 实体标准化
+                    entity_list[entityNormalize(entity, s, tokenIdx)] = 'protein'  # 实体标准化
                 entity = ''
             prex = label
             entity = word + ' '
@@ -195,9 +198,9 @@ def searchEntityId(s, predLabels, entity2id):
         elif label == 3:
             if entity:
                 if prex==1 or prex==2:
-                    entity_list[entityNormalize(entity.strip())]='gene'  # 实体标准化
+                    entity_list[entityNormalize(entity, s, tokenIdx)]='gene'  # 实体标准化
                 elif prex == 3 or prex == 4:
-                    entity_list[entityNormalize(entity.strip())] = 'protein'  # 实体标准化
+                    entity_list[entityNormalize(entity, s, tokenIdx)] = 'protein'  # 实体标准化
                 entity = ''
             prex = label
             entity = word + ' '
@@ -209,40 +212,40 @@ def searchEntityId(s, predLabels, entity2id):
         else:
             if entity:
                 if prex==1 or prex==2:
-                    entity_list[entityNormalize(entity.strip())]='gene'  # 实体标准化
+                    entity_list[entityNormalize(entity, s, tokenIdx)]='gene'  # 实体标准化
                 elif prex == 3 or prex == 4:
-                    entity_list[entityNormalize(entity.strip())] = 'protein'  # 实体标准化
+                    entity_list[entityNormalize(entity, s, tokenIdx)] = 'protein'  # 实体标准化
                 entity = ''
             else:
                 entity = ''
             prex = 0
     if not entity == '':
         if prex == 1 or prex == 2:
-            entity_list[entityNormalize(entity.strip())] = 'gene'  # 实体标准化
+            entity_list[entityNormalize(entity, s, tokenIdx)] = 'gene'  # 实体标准化
         elif prex == 3 or prex == 4:
-            entity_list[entityNormalize(entity.strip())] = 'protein'  # 实体标准化
+            entity_list[entityNormalize(entity, s, tokenIdx)] = 'protein'  # 实体标准化
         entity = ''
     entities = entity_list
     # l2 = list(set(entity_list))  # 去除相同元素
     # entities = sorted(l2, key=entity_list.index)  # 不改变原list顺序
     # print(entities)
 
-    # 多个词组成的实体中，单个组成词也可能是实体
-    temp_entities = entities.copy()     # 字典的直接赋值和copy的区别（浅拷贝引用，深拷贝）
-    for entity in temp_entities.keys():
-        splited = entity.split(' ')
-        if len(splited)>1:
-            for e in splited:
-                if e in entity2id and e not in entities:
-                    entities[e]=entities[entity]
-    temp_entities = None
+    # # 多个词组成的实体中，单个组成词也可能是实体
+    # temp_entities = entities.copy()     # 字典的直接赋值和copy的区别（浅拷贝引用，深拷贝）
+    # for entity in temp_entities.keys():
+    #     splited = entity.split(' ')
+    #     if len(splited)>1:
+    #         for e in splited:
+    #             if e in entity2id and e not in entities:
+    #                 entities[e]=entities[entity]
+    # temp_entities = None
 
     ''' 对识别的实体进行ID链接 '''
     for entity, type in entities.items():
         # 词典精确匹配1
         if entity.lower() in entity2id:
             Ids = entity2id[entity.lower()]
-            # Ids = idFilter(type, Ids)     # ID几乎全被干掉了
+            # Ids = idFilter(type, Ids)     # 不进行筛选，否则ID几乎全被干掉了
             id_list[entity] = Ids
             continue
 
@@ -261,7 +264,7 @@ def searchEntityId(s, predLabels, entity2id):
         # 数据库API查询
         res = u.search(entity + '+reviewed:yes', frmt="tab", columns="genes, id", limit=3)
         if res:     # 若是有返回结果
-            Ids = idFilter2(res, type)
+            Ids = idFilter2(res, type)     # 不进行筛选
             id_list[entity] = Ids
             entity2id[entity.lower()] = Ids   # 将未登录实体添加到实体ID词典中
             continue
@@ -275,7 +278,6 @@ def searchEntityId(s, predLabels, entity2id):
             continue
 
         # 模糊匹配--计算 Jaro–Winkler 距离
-        print('模糊匹配--计算 Jaro–Winkler 距离')
         max_score = -1
         max_score_key = ''
         for key in entity2id.keys():
@@ -306,6 +308,8 @@ def writeOutputToFile(path, predLabels, maxlen):
     csv_path = r'/home/administrator/桌面/BC6_Track1/BioIDtraining_2/annotations.csv'
     entity2id = getCSVData(csv_path)
     print('tau 的ID集合：{}'.format(entity2id['tau']))
+
+    # geneId2vec, proteinId2vec, stop_word = readSynVec()
 
     # 获取 train.out 所有句子的集合
     s = []
@@ -416,37 +420,46 @@ def writeOutputToFile(path, predLabels, maxlen):
                     '''
                     annotation_id = 0
                     for entity, e_type in entities.items():
-                        type_id = None
                         entity_id = entity_ids[entity]
-                        if entity=='SUMO1':
-                            print(entity_id)
+                        type_id = entity_id[0]
+                        # if entity=='SUMO1':
+                        #     print(entity_id)
                         if len(entity_id)>1:
                             if entity not in words_with_multiId:
                                 words_with_multiId.append(entity)
-                            if e_type == 'gene':
-                                score = 0
-                                zhixin = np.zeros(200)
-                                for word in sen_list[idx_line]:
-                                    vector = word2vec.get(word)
-                                    if vector is None:
-                                        vector = np.zeros(200)
-                                    zhixin += vector
-
-                                type_id = entity_id[0]
-                                for id in entity_id:
-                                    splited_id = id.split(':')[1]
-                                    synset_vec = id2vec.get(splited_id)
-                                    if synset_vec is not None:
-                                        cos_sim_score = cos_sim(zhixin, synset_vec)
-                                        if cos_sim_score > score:
-                                            score = cos_sim_score
-                                            type_id = id
-                            else:
-                                type_id = entity_id[0]
-                        elif len(entity_id)==1:
-                            type_id = entity_id[0]  # 说明实体对应了唯一ID
-                        else:
-                            type_id = e_type + ':' + entity     # 未找到对应的ID
+                            # score = 0.65   # cos相似度的阙值
+                            # zhixin = np.zeros(200)  # 计算质心向量
+                            # for word in sen_list[idx_line]:
+                            #     if word not in stop_word and not word==entity:
+                            #         vector = word2vec.get(word.lower())
+                            #         if vector is None:
+                            #             # vector = np.random.uniform(-0.1, 0.1, 200)
+                            #             vector = np.zeros(200)
+                            #         zhixin += vector
+                            # for id in entity_id:    # 计算质心与实体每个歧义（同义词集）的cos相似度
+                            #     id = id.split('|')[0] if '|' in id else id
+                            #     entityType = id.split(':')[0]
+                            #     splited_id = id.split(':')[1]
+                            #     if entityType.startswith('NCBI') or entityType.startswith('gene'):
+                            #         synset_vec = geneId2vec.get(splited_id)
+                            #     elif entityType.startswith('Uniprot') or entityType.startswith('protein'):
+                            #         synset_vec = proteinId2vec.get(splited_id)
+                            #     else:
+                            #         print('类型错误!')
+                            #         continue
+                            #     if synset_vec is not None:
+                            #         # print('{}对应的同义词集向量 ok'.format(id))
+                            #         cos_sim_score = cos_sim(zhixin, synset_vec)
+                            #         if cos_sim_score > score:
+                            #             score = cos_sim_score
+                            #             type_id = id
+                            #     else:
+                            #         # print('{}对应的同义词集向量 failed'.format(id))
+                            #         pass
+                        elif len(entity_id)==1:  # 说明实体对应了唯一ID
+                            type_id = entity_id[0]
+                        else:     # 未找到对应的ID
+                            type_id = e_type + ':' + entity
                             num_entity_no_id += 1
 
                         # 标记句子中所有相同的实体
@@ -465,8 +478,8 @@ def writeOutputToFile(path, predLabels, maxlen):
                                 infon3.setAttribute('key', 'sourcedata_article_annot_id')
                                 location = dom.createElement('location')
                                 location.setAttribute('offset', str(offset))
-                                location.setAttribute('length', str(len(entityNormalize(entity))))
-                                text_node = makeEasyTag(dom, 'text', entityNormalize(entity))
+                                location.setAttribute('length', str(len(entity)))
+                                text_node = makeEasyTag(dom, 'text', entity)
                                 annotation.appendChild(infon1)
                                 annotation.appendChild(infon2)
                                 annotation.appendChild(infon3)
@@ -502,8 +515,8 @@ def writeOutputToFile(path, predLabels, maxlen):
             writer.close()
             f.close()
 
-    print('{}个词未找到对应的ID'.format(num_entity_no_id))
-    print('{}个词有歧义'.format(len(words_with_multiId)))    # 262
+    print('{}个词未找到对应的ID'.format(num_entity_no_id))    # 457
+    print('{}个词有歧义'.format(len(words_with_multiId)))    # 775
     print('完结撒花')
 
 

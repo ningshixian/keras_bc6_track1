@@ -4,6 +4,9 @@ import sys
 import numpy as np
 print(sys.getdefaultencoding())
 
+SYMBOLS = {'}': '{', ']': '[', ')': '('}  # 符号表
+SYMBOLS_L, SYMBOLS_R = SYMBOLS.values(), SYMBOLS.keys()
+
 
 def get_answer():
     """Get an answer."""
@@ -26,7 +29,26 @@ def wordNormalize(word):
     return word
 
 
-def entityNormalize(entity):
+def entityNormalize(entity, s, tokenIdx):
+    '''
+    检查实体的括号是否匹配
+    实体中的标点符号周围的空格去掉
+    '''
+    entity = entity.strip()
+    result = check(entity)
+    if result == 'R':
+        print('R')
+        idx = tokenIdx
+        while s[idx - 1] not in SYMBOLS_L:
+            entity = s[idx - 1] + ' ' + entity
+        entity = s[idx - 1] + ' ' + entity
+    elif result == 'L':
+        print('L')
+        idx = tokenIdx
+        while s[idx + 1] not in SYMBOLS_R:
+            entity = entity + ' ' + s[idx + 1]
+        entity = entity + ' ' + s[idx + 1]
+
     for char in string.punctuation:
         if char in entity:
             entity = entity.replace(' '+char+' ', char)
@@ -61,7 +83,10 @@ def idFilter2(res, type):
     temp = []
     if res == 400:
         print('请求无效\n')
-    results = res.split('\n')[1:-1]  # 去除开头一行和最后的''
+    try:
+        results = res.split('\n')[1:-1]  # 去除开头一行和最后的''
+    except:
+        print(res)
     for line in results:
         Id = line.split('\t')[-1]
         temp.append(Id)
@@ -95,7 +120,7 @@ def createCharDict():
     for char in string.printable:
         char2idx[char] = len(char2idx)
     char2idx['**'] = len(char2idx)  # 用于那些未收录的字符
-    print(char2idx)
+    # print(char2idx)
     return char2idx
 
 
@@ -113,6 +138,27 @@ def cos_sim(vector_a, vector_b):
     cos = num / denom
     sim = 0.5 + 0.5 * cos   # ?
     return sim
+
+
+def check(s):
+    '''
+    python 括号检测是否匹配？
+    '''
+    arr = []
+    for c in s:
+        if c in SYMBOLS_L:
+            # 左符号入栈
+            arr.append(c)
+        elif c in SYMBOLS_R:
+            # 右符号要么出栈，要么匹配失败
+            if arr and arr[-1] == SYMBOLS[c]:
+                arr.pop()
+            else:
+                return 'R'
+    if arr:
+        return 'L'
+    else:
+        return not arr
 
 
 
@@ -212,3 +258,5 @@ def testLabel2Word():
     if not result == '':
         entities.append(result.strip())
     print(entities)
+
+
