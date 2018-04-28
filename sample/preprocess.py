@@ -14,8 +14,8 @@ embeddingPath = r'/home/administrator/PycharmProjects/embedding'
 embeddingFile = r'wikipedia-pubmed-and-PMC-w2v.bin'
 label2idx = {'O': 0, 'B-GENE': 1, 'I-GENE': 2, 'B-PROTEIN': 3, 'I-PROTEIN': 4}
 
-maxlen_s = 639  # 句子截断长度
-maxlen_w = 34  # 单词截断长度
+maxlen_s = 418  # 句子截断长度
+maxlen_w = 23  # 单词截断长度
 word_size = 200  # 词向量维度
 MAX_NB_WORDS = None  # 不设置最大词数
 word_len_list = [0]  # 用于统计单词长度
@@ -72,7 +72,7 @@ def produce_matrix(word_index, embedFile):
     miss_num=0
     num=0
     embeddings_index = readBinEmbedFile(embedFile)
-    print('Found %s word vectors.' % len(embeddings_index))  # 356224
+    print('Found %s word vectors.' % len(embeddings_index))  # 4706287
 
     num_words = len(word_index)+1
     embedding_matrix = np.zeros((num_words, word_size))
@@ -84,12 +84,13 @@ def produce_matrix(word_index, embedFile):
             miss_num=miss_num+1
             vec = embeddings_index["UNKNOWN_TOKEN"] # 未登录词均统一表示
         embedding_matrix[i] = vec
-    print('missnum',miss_num)    # 5686
-    print('num',num)    # 24220
+    print('missnum',miss_num)    # 7308
+    print('num',num)    # 28868
     return embedding_matrix
 
 
 def padCharacters(chars_dic, max_char):
+    print('\n补齐字符向量长度')
     for senIdx in tqdm(range(len(chars_dic))):
         for tokenIdx in range(len(chars_dic[senIdx])):
             token = chars_dic[senIdx][tokenIdx]
@@ -112,14 +113,14 @@ def getData(trainCorpus, sen_len_list):
     pos2idx = {'None': 0}
     chunk2idx = {'None': 0}
 
-    datasDic = {'train':[], 'devel':[]}
-    charsDic = {'train':[], 'devel':[]}
-    capDic = {'train':[], 'devel':[]}
-    posDic = {'train': [], 'devel': []}
-    chunkDic = {'train': [], 'devel': []}
-    labelsDic = {'train':[], 'devel':[]}
+    datasDic = {'train':[], 'devel':[], 'test':[]}
+    charsDic = {'train':[], 'devel':[], 'test':[]}
+    capDic = {'train':[], 'devel':[], 'test':[]}
+    posDic = {'train': [], 'devel': [], 'test':[]}
+    chunkDic = {'train': [], 'devel': [], 'test':[]}
+    labelsDic = {'train':[], 'devel':[], 'test':[]}
 
-    for name in ['train', 'devel']:
+    for name in ['train', 'devel', 'test']:
         with open(trainCorpus + '/' + name + '.out.txt', encoding='utf-8') as f:
             data_sen = []
             char_sen = []
@@ -197,10 +198,11 @@ def getData(trainCorpus, sen_len_list):
                     labels_sen.append(labelIdx)
 
     print('chars not exits in the char2idx:{}'.format(chars_not_exit))
-    print('longest char is', word_len_list[-3:])  # [23, 34, 48]
-    print('longest word is', sen_len_list[-3:])  # [639, 701, 732]
+    print('longest char is', word_len_list[-5:])  # [17, 21, 23, 34, 48]
+    print('longest word is', sen_len_list[-5:])  # [402, 417, 638, 697, 729]
     print('len(pos2idx):{}'.format(len(pos2idx)))     # 49
     print('len(chunk2idx):{}'.format(len(chunk2idx)))     # 22
+
     return datasDic, charsDic, capDic, posDic, chunkDic, labelsDic, pos2idx, chunk2idx
 
 
@@ -209,35 +211,42 @@ def getData(trainCorpus, sen_len_list):
 def main():
     datasDic, charsDic, capDic, posDic, chunkDic, labelsDic, pos2idx, chunk2idx = getData(corpusPath, sen_len_list)
 
+    # 将验证集并入训练集(无关)
+    for item in [datasDic, charsDic, capDic, posDic, chunkDic, labelsDic]:
+        item['train'].extend(item['devel'])
+        item['devel'] = None
+    print('合并训练集data大小：', len(datasDic['train']))  # 13697
+
     data = []
-    for name in ['train', 'devel']:
-        print('训练集data大小：', len(datasDic[name]))  # 13697= 10966   2731
+    for name in ['train', 'test']:
+        print('训练集data大小：', len(datasDic[name]))  # 13697   4528
         data.extend(datasDic[name])
     tokenizer = Tokenizer(num_words=MAX_NB_WORDS,
                           filters='',   # 需要过滤掉的字符列表（或连接）
                           split=' ')    # 词的分隔符
     tokenizer.fit_on_texts(data)
     data = []
+
     word_index = tokenizer.word_index   # 将词（字符串）映射到索引（整型）的字典
     word_counts = tokenizer.word_counts # 在训练时将词（字符串）映射到其出现次数的字典
-    print('Found %s unique tokens.\n' % len(word_index))  # 28067
+    print('Found %s unique tokens.\n' % len(word_index))  # 36182
 
     # 将训练数据序列化
     datasDic['train'] = tokenizer.texts_to_sequences(datasDic['train'])
-    datasDic['devel'] = tokenizer.texts_to_sequences(datasDic['devel'])
+    datasDic['test'] = tokenizer.texts_to_sequences(datasDic['test'])
     # 将pos特征序列化
-    for name in ['train', 'devel']:
+    for name in ['train', 'test']:
         for i in range(len(posDic[name])):
             sent = posDic[name][i]
             posDic[name][i] = [pos2idx[item] for item in sent]
     # 将chunk特征序列化
-    for name in ['train', 'devel']:
+    for name in ['train', 'test']:
         for i in range(len(chunkDic[name])):
             sent = chunkDic[name][i]
             chunkDic[name][i] = [chunk2idx[item] for item in sent]
     # 补齐字符向量长度 word_maxlen
     charsDic['train'] = padCharacters(charsDic['train'], maxlen_w)
-    charsDic['devel'] = padCharacters(charsDic['devel'], maxlen_w)
+    charsDic['test'] = padCharacters(charsDic['test'], maxlen_w)
     # 获取词向量矩阵
     embedding_matrix = produce_matrix(word_index, embeddingPath+'/'+embeddingFile)
 
@@ -245,9 +254,9 @@ def main():
     with open(corpusPath+'/train.pkl', "wb") as f:
         pkl.dump((datasDic['train'], labelsDic['train'], charsDic['train'],
                   capDic['train'], posDic['train'], chunkDic['train']), f, -1)
-    with open(corpusPath+'/devel.pkl', "wb") as f:
-        pkl.dump((datasDic['devel'], labelsDic['devel'], charsDic['devel'],
-                  capDic['devel'], posDic['devel'], chunkDic['devel']), f, -1)
+    with open(corpusPath+'/test.pkl', "wb") as f:
+        pkl.dump((datasDic['test'], labelsDic['test'], charsDic['test'],
+                  capDic['test'], posDic['test'], chunkDic['test']), f, -1)
 
     with open(embeddingPath + '/emb.pkl', "wb") as f:
         pkl.dump((embedding_matrix, maxlen_w, maxlen_s), f, -1)

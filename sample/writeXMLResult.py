@@ -1,5 +1,6 @@
 import datetime
 import xml.dom.minidom
+from xml.dom.minidom import parse
 import Levenshtein  # pip install python-Levenshtein
 from tqdm import tqdm
 from helpers import makeEasyTag, Indent, convert_2_BIO, entityNormalize, cos_sim, idFilter, idFilter2, check
@@ -7,7 +8,6 @@ import numpy as np
 import os
 import csv
 import pickle as pkl
-from xml.dom.minidom import parse
 import xml.dom.minidom
 import codecs
 import string
@@ -43,65 +43,69 @@ u = UniProt()
 </collection>
 """
 
-# def readSynVec():
-#     synsetsVec_path1 = '/home/administrator/PycharmProjects/embedding/AutoExtend_Gene/synsetsVec.txt'
-#     synsetsVec_path2 = '/home/administrator/PycharmProjects/embedding/AutoExtend_Protein/synsetsVec.txt'
-#
-#     geneId2vec = {}
-#     with open(synsetsVec_path1, 'r') as f:
-#         for line in f:
-#             splited = line.strip().split(' ')
-#             geneId = splited[0]
-#             vec = np.asarray(splited[1:], dtype=np.float32)
-#             geneId2vec[geneId] = vec
-#     # print(geneId2vec['31459'])
-#
-#
-#     proteinId2vec = {}
-#     with open(synsetsVec_path2, 'r') as f:
-#         for line in f:
-#             splited = line.strip().split(' ')
-#             proteinId = splited[0]
-#             vec = np.asarray(splited[1:], dtype=np.float32)
-#             proteinId2vec[proteinId] = vec
-#
-#
-#     stop_word = []
-#     with open('data/stopwords_gene', 'r') as f:
-#         for line in f:
-#             stop_word.append(line.strip('\n'))
-#
-#     return geneId2vec, proteinId2vec, stop_word
-#
-#
-# def readBinEmbedFile(embFile, word_size):
-#     """
-#     读取二进制格式保存的词向量文件，引入外部知识
-#     """
-#     print("\nProcessing Embedding File...")
-#     from collections import OrderedDict
-#     import word2vec
-#     embeddings = OrderedDict()
-#     embeddings["PADDING_TOKEN"] = np.zeros(word_size)
-#     embeddings["UNKNOWN_TOKEN"] = np.random.uniform(-0.1, 0.1, word_size)
-#     embeddings["NUMBER"] = np.random.uniform(-0.25, 0.25, word_size)
-#
-#     model = word2vec.load(embFile)
-#     print('加载词向量文件完成')
-#     for i in tqdm(range(len(model.vectors))):
-#         vector = model.vectors[i]
-#         word = model.vocab[i].lower()   # convert all characters to lowercase
-#         embeddings[word] = vector
-#     return embeddings
-#
-#
-# # embedPath = r'/home/administrator/PycharmProjects/embedding'
-# # embedFile = r'wikipedia-pubmed-and-PMC-w2v.bin'
-# # word2vec = readBinEmbedFile(embedPath+'/'+embedFile, 200)
-# # with open('data/word2vec.pkl', "wb") as f:
-# #     pkl.dump(word2vec, f, -1)
-# with open('data/word2vec.pkl', "rb") as f:
-#     word2vec = pkl.load(f)
+def readSynVec():
+    synsetsVec_path1 = '/home/administrator/PycharmProjects/embedding/AutoExtend_Gene/synsetsVec.txt'
+    synsetsVec_path2 = '/home/administrator/PycharmProjects/embedding/AutoExtend_Protein/synsetsVec.txt'
+
+    geneId2vec = {}
+    with open(synsetsVec_path1, 'r') as f:
+        for line in f:
+            splited = line.strip().split(' ')
+            geneId = splited[0]
+            vec = np.asarray(splited[1:], dtype=np.float32)
+            geneId2vec[geneId] = vec
+    # print(geneId2vec['31459'])
+
+
+    proteinId2vec = {}
+    with open(synsetsVec_path2, 'r') as f:
+        for line in f:
+            splited = line.strip().split(' ')
+            proteinId = splited[0]
+            vec = np.asarray(splited[1:], dtype=np.float32)
+            proteinId2vec[proteinId] = vec
+
+
+    stop_word = []
+    with open('data/stopwords_gene', 'r') as f:
+        for line in f:
+            stop_word.append(line.strip('\n'))
+
+    return geneId2vec, proteinId2vec, stop_word
+
+
+def readBinEmbedFile(embFile, word_size):
+    """
+    读取二进制格式保存的词向量文件，引入外部知识
+    """
+    print("\nProcessing Embedding File...")
+    from collections import OrderedDict
+    import word2vec
+    embeddings = OrderedDict()
+    embeddings["PADDING_TOKEN"] = np.zeros(word_size)
+    embeddings["UNKNOWN_TOKEN"] = np.random.uniform(-0.1, 0.1, word_size)
+    embeddings["NUMBER"] = np.random.uniform(-0.25, 0.25, word_size)
+
+    model = word2vec.load(embFile)
+    print('加载词向量文件完成')
+    for i in tqdm(range(len(model.vectors))):
+        vector = model.vectors[i]
+        word = model.vocab[i].lower()   # convert all characters to lowercase
+        embeddings[word] = vector
+    return embeddings
+
+
+def get_w2v():
+    if os.path.exists('data/word2vec.pkl'):
+        with open('data/word2vec.pkl', "rb") as f:
+            word2vec = pkl.load(f)
+    else:
+        embedPath = r'/home/administrator/PycharmProjects/embedding'
+        embedFile = r'wikipedia-pubmed-and-PMC-w2v.bin'
+        word2vec = readBinEmbedFile(embedPath+'/'+embedFile, 200)
+        with open('data/word2vec.pkl', "wb") as f:
+            pkl.dump(word2vec, f, -1)
+    return word2vec
 
 
 def getXlsxData(path):
@@ -191,10 +195,10 @@ def searchEntityId(s, predLabels, entity2id):
             prex = label
             entity = word + ' '
         elif label == 2:
-            if prex == 1:
+            if prex == 1 or prex==2:
                 entity += word + ' '
             else:
-                print('标签错误！')
+                print('标签错误！跳过')
         elif label == 3:
             if entity:
                 if prex==1 or prex==2:
@@ -205,10 +209,10 @@ def searchEntityId(s, predLabels, entity2id):
             prex = label
             entity = word + ' '
         elif label == 4:
-            if prex == 3:
+            if prex == 3 or prex==4:
                 entity += word + ' '
             else:
-                print('标签错误！')
+                print('标签错误！跳过')
         else:
             if entity:
                 if prex==1 or prex==2:
@@ -230,15 +234,15 @@ def searchEntityId(s, predLabels, entity2id):
     # entities = sorted(l2, key=entity_list.index)  # 不改变原list顺序
     # print(entities)
 
-    # # 多个词组成的实体中，单个组成词也可能是实体
-    # temp_entities = entities.copy()     # 字典的直接赋值和copy的区别（浅拷贝引用，深拷贝）
-    # for entity in temp_entities.keys():
-    #     splited = entity.split(' ')
-    #     if len(splited)>1:
-    #         for e in splited:
-    #             if e in entity2id and e not in entities:
-    #                 entities[e]=entities[entity]
-    # temp_entities = None
+    # 多个词组成的实体中，单个组成词也可能是实体
+    temp_entities = entities.copy()     # 字典的直接赋值和copy的区别（浅拷贝引用，深拷贝）
+    for entity in temp_entities.keys():
+        splited = entity.split(' ')
+        if len(splited)>1:
+            for e in splited:
+                if e in entity2id and e not in entities:
+                    entities[e]=entities[entity]
+    temp_entities = None
 
     ''' 对识别的实体进行ID链接 '''
     for entity, type in entities.items():
@@ -296,52 +300,49 @@ def searchEntityId(s, predLabels, entity2id):
 
 def writeOutputToFile(path, predLabels, maxlen):
     '''
+    按顺序读取原文件夹中的xml格式文件
+    同时，对应每个text生成annotation标签：
+        getElementsByTagName方法：获取孩子标签
+        getAttribute方法：可以获得元素的属性所对应的值。
+        firstChild.data≈childNodes[0].data：返回被选节点的第一个子标签对之间的数据
     将实体预测结果写入XML文件
+
     :param path: 测试数据路径
     :param predLabels: 测试数据的实体预测结果
     :param maxlen: 句子截断长度
     :param split_pos: 划分训练集和验证集的位置
     :return:
     '''
+    idx_line = -1
+    num_entity_no_id = 0
+    words_with_multiId = []
+    base = r'/home/administrator/桌面/BC6_Track1'
+    BioC_path = base + '/' + 'test_corpus_20170804/caption_bioc'    # 测试数据文件夹
+    dic_path = base + '/' + 'BioIDtraining_2/annotations.csv'   # 实体ID查找词典文件
+    result_path = base + '/' + 'test_corpus_20170804/prediction'
 
-    # 读取实体 ID 词典
-    csv_path = r'/home/administrator/桌面/BC6_Track1/BioIDtraining_2/annotations.csv'
-    entity2id = getCSVData(csv_path)
-    print('tau 的ID集合：{}'.format(entity2id['tau']))
+    entity2id = getCSVData(dic_path)    # 读取实体ID查找词典
+    geneId2vec, proteinId2vec, stop_word = readSynVec() # 读取AutoExtend训练获得的同义词集向量
+    word2vec = get_w2v()    # 读取词向量词典
 
-    # geneId2vec, proteinId2vec, stop_word = readSynVec()
-
-    # 获取 train.out 所有句子的集合
-    s = []
+    # 获取测试集所有句子list的集合
+    sen_line = []
     sen_list = []
     with open(path, encoding='utf-8') as f:
         for line in f:
             if line == '\n':
-                sen_list.append(s)  # ' '.join()
-                s = []
+                sen_list.append(sen_line)
+                sen_line = []
             else:
                 token = line.replace('\n', '').split('\t')
-                word = token[0]
-                s.append(word)
+                sen_line.append(token[0])
 
-    '''
-    按顺序读取文件夹中的xml格式文件
-    同时，对应每个text生成annotation标签：
-        getElementsByTagName方法：获取孩子标签
-        getAttribute方法：可以获得元素的属性所对应的值。
-        firstChild.data≈childNodes[0].data：返回被选节点的第一个子标签对之间的数据
-    '''
-    idx_line = -1
-    num_entity_no_id = 0
-    words_with_multiId = []
-    BioC_PATH = r'/home/administrator/桌面/BC6_Track1/BioIDtraining_2/devel_115/gold'
-    files = os.listdir(BioC_PATH)  # 得到文件夹下的所有文件名称
+    files = os.listdir(BioC_path)
     files.sort()
-
     for j in tqdm(range(len(files))):  # 遍历文件夹
         file = files[j]
         if not os.path.isdir(file):  # 判断是否是文件夹，不是文件夹才打开
-            f = BioC_PATH + "/" + file
+            f = BioC_path + "/" + file
             try:
                 DOMTree = parse(f)  # 使用minidom解析器打开 XML 文档
                 collection = DOMTree.documentElement  # 得到了根元素对象
@@ -404,13 +405,10 @@ def writeOutputToFile(path, predLabels, maxlen):
                     # print(idx_line)
                     annotation_list = []
                     s = sen_list[idx_line][:maxlen]  # 单词列表形成的句子
-                    # sen = ' '.join(sen_list[idx_line][:maxlen])  # 字符串句子
                     prediction = predLabels[idx_line]
 
                     # 根据预测结果来抽取句子中的所有实体，并进行实体链接
                     entities, entity_ids = searchEntityId(s, prediction, entity2id)
-                    # print((entities))
-                    # print((entity_ids))
 
                     ''' 
                     多ID的实体需要进行实体消岐，AutoExtend 实体消歧方法：
@@ -427,14 +425,16 @@ def writeOutputToFile(path, predLabels, maxlen):
                         if len(entity_id)>1:
                             if entity not in words_with_multiId:
                                 words_with_multiId.append(entity)
-                            # score = 0.65   # cos相似度的阙值
+                            # score = 0.7   # cos相似度的阙值
                             # zhixin = np.zeros(200)  # 计算质心向量
+                            # # idx = sen_list[idx_line].index(entity.split()[0])
+                            # # start = idx-9 if idx-9>0 else 0
+                            # # context = sen_list[idx_line][start:idx+5+len(entity.split())]   # 实体周围的5个词组成上下文
                             # for word in sen_list[idx_line]:
                             #     if word not in stop_word and not word==entity:
                             #         vector = word2vec.get(word.lower())
                             #         if vector is None:
-                            #             # vector = np.random.uniform(-0.1, 0.1, 200)
-                            #             vector = np.zeros(200)
+                            #             vector = np.random.uniform(-0.1, 0.1, 200)
                             #         zhixin += vector
                             # for id in entity_id:    # 计算质心与实体每个歧义（同义词集）的cos相似度
                             #     id = id.split('|')[0] if '|' in id else id
@@ -507,7 +507,6 @@ def writeOutputToFile(path, predLabels, maxlen):
             每读完一个file后，将结果写入同名的XML文件
             '''
             Indent(dom, dom.documentElement) # 美化
-            result_path = r'/home/administrator/桌面/BC6_Track1/BioIDtraining_2/devel_115/result'
             outputName = result_path + '/' + file
             f = open(outputName, 'w')
             writer = codecs.lookup('utf-8')[3](f)
@@ -515,8 +514,8 @@ def writeOutputToFile(path, predLabels, maxlen):
             writer.close()
             f.close()
 
-    print('{}个词未找到对应的ID'.format(num_entity_no_id))    # 457
-    print('{}个词有歧义'.format(len(words_with_multiId)))    # 775
+    print('{}个词未找到对应的ID'.format(num_entity_no_id))    # 0
+    print('{}个词有歧义'.format(len(words_with_multiId)))    # 615
     print('完结撒花')
 
 

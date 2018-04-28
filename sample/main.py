@@ -86,17 +86,14 @@ print('Loading data...')
 
 with codecs.open(rootCorpus + '/train.pkl', "rb") as f:
     train_x, train_y, train_char, train_cap, train_pos, train_chunk = pkl.load(f)
-with open(rootCorpus + '/devel.pkl', "rb") as f:
-    devel_x, devel_y, devel_char, devel_cap, devel_pos, devel_chunk = pkl.load(f)
+with open(rootCorpus + '/test.pkl', "rb") as f:
+    test_x, test_y, test_char, test_cap, test_pos, test_chunk = pkl.load(f)
 with open(embeddingPath+'/emb.pkl', "rb") as f:
     embedding_matrix, word_maxlen, sentence_maxlen = pkl.load(f)
 
-# split_pos = ceil(len(train_x)*0.8)  # 划分训练集和验证集
-
 dataSet = OrderedDict()
 dataSet['train'] = [train_x, train_cap, train_pos, train_chunk]
-dataSet['devel'] = [devel_x, devel_cap, devel_pos, devel_chunk]
-# dataSet['test'] = []
+dataSet['test'] = [test_x, test_cap, test_pos, test_chunk]
 
 print('done! Preprocessing data....')
 
@@ -109,20 +106,20 @@ for key, value in dataSet.items():
 for j in range(len(train_char)):
     if len(train_char[j]) < sentence_maxlen:
         train_char[j].extend(np.asarray([[0] * word_maxlen] * (sentence_maxlen - len(train_char[j]))))
-for j in range(len(devel_char)):
-    if len(devel_char[j]) < sentence_maxlen:
-        devel_char[j].extend(np.asarray([[0] * word_maxlen] * (sentence_maxlen - len(devel_char[j]))))
+for j in range(len(test_char)):
+    if len(test_char[j]) < sentence_maxlen:
+        test_char[j].extend(np.asarray([[0] * word_maxlen] * (sentence_maxlen - len(test_char[j]))))
 
 dataSet['train'].insert(1, np.asarray(train_char))
-dataSet['devel'].insert(1, np.asarray(devel_char))
+dataSet['test'].insert(1, np.asarray(test_char))
 
 train_y = pad_sequences(train_y, maxlen=sentence_maxlen, padding='post')
-devel_y = pad_sequences(devel_y, maxlen=sentence_maxlen, padding='post')
+test_y = pad_sequences(test_y, maxlen=sentence_maxlen, padding='post')
 
-print(np.asarray(train_char).shape)     # (10966, 639, 34)
-print(np.asarray(devel_char).shape)     # (2731, 639, 34)
-print(train_y.shape)    # (10966, 639, 5)
-print(devel_y.shape)    # (2731, 639, 5)
+print(np.asarray(train_char).shape)     # (13697, 418, 23)
+print(np.asarray(test_char).shape)     # (4528, 418, 23)
+print(train_y.shape)    # (13697, 639, 5)
+print(test_y.shape)    # (4528, 639, 5)
 
 print('done! Model building....')
 
@@ -265,10 +262,11 @@ def buildModel():
     elif optimizer.lower() == 'nadam':
         opt = Nadam(lr=learning_rate, clipvalue=1., decay=decay_rate)
     elif optimizer.lower() == 'rmsprop':
+        # opt = RMSprop(lr=0.01, rho=0.9, epsilon=1e-08, decay=0.0)     # best for LSTM
         opt = RMSprop(lr=learning_rate, clipvalue=1., decay=decay_rate)
     elif optimizer.lower() == 'sgd':
-        opt = SGD(lr=0.005, clipvalue=5)
-        # opt = SGD(lr=0.005, momentum=0.9, decay=0., nesterov=True, clipvalue=5)
+        opt = SGD(lr=0.001, decay=1e-5, momentum=0.9, nesterov=True)
+        # opt = SGD(lr=0.001, momentum=0.9, decay=0., nesterov=True, clipvalue=5)
 
     model = Model(inputs=[tokens_input, chars_input, cap_input, pos_input, chunk_input], outputs=[output])
     model.compile(loss=loss_function,
@@ -287,7 +285,7 @@ if __name__ == '__main__':
     #
     # model = buildModel()
     #
-    # calculatePRF1 = ConllevalCallback(dataSet['devel'], devel_y, 0, idx2label, sentence_maxlen, max_f)
+    # calculatePRF1 = ConllevalCallback(dataSet['test'], test_y, 0, idx2label, sentence_maxlen, max_f)
     # filepath = 'model/weights1.{epoch:02d}-{val_loss:.2f}.hdf5'
     # saveModel = ModelCheckpoint(filepath,
     #                             monitor='val_loss',
@@ -304,8 +302,7 @@ if __name__ == '__main__':
     #           batch_size=batch_size,
     #           shuffle=True,
     #           callbacks=[calculatePRF1, tensorBoard],
-    #           validation_split=0.2)
-    #           # validation_data=(dataSet['devel'], devel_y))
+    #           validation_data=(dataSet['test'], test_y))
     # time_diff = time.time() - start_time
     # print("%.2f sec for training (4.5)" % time_diff)
     # print(model.metrics_names)
@@ -321,11 +318,11 @@ if __name__ == '__main__':
     # print(string.printable)
 
 
-    # model = load_model('model/Model_att_f_73.60.h5', custom_objects=create_custom_objects())
-    model = load_model('model/Model_f_73.80.h5', custom_objects=create_custom_objects())
+    model = load_model('model/Model_f_75.32.h5', custom_objects=create_custom_objects())
+    # model = load_model('model/Model_f_73.80.h5', custom_objects=create_custom_objects())
     print('加载模型成功!!')
 
-    predictions = model.predict(dataSet['devel'])
+    predictions = model.predict(dataSet['test'])
     y_pred = predictions.argmax(axis=-1)
     # print(len(y_pred), len(devel_y))    # 2731 2731
 
@@ -337,7 +334,7 @@ if __name__ == '__main__':
 
     writeOutput = True
     if writeOutput:
-        writeOutputToFile(rootCorpus + '/' + 'devel.out.txt', y_pred, sentence_maxlen)
+        writeOutputToFile(rootCorpus + '/' + 'test.out.txt', y_pred, sentence_maxlen)
 
 
     '''

@@ -20,7 +20,8 @@
 
   Prepare a text file containing one sentence per line, then
 
-  $ ./geniatagger /Users/ningshixian/Desktop/BC6_Track1/BioIDtraining_2/devel_115/devel.txt > /Users/ningshixian/Desktop/BC6_Track1/BioIDtraining_2/devel_115/devel.genia
+  $ ./geniatagger /Users/ningshixian/Desktop/BC6_Track1/BioIDtraining_2/devel_115/devel.txt > /Users/ningshixian/Desktop/BC6_Track1/BioIDtraining_2/devel_115/devel.genia.txt
+
 
   % echo "Quantitative measurement of #antigamma globulin factors@ (#rheumatoid factors@) using laser-nephelometry in comparison with the latex agglutination test and the Waaler-Rose test" | ./geniatagger
 

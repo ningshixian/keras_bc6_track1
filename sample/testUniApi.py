@@ -56,5 +56,70 @@ def getIdFromApi(entity):
 
 
 if __name__ == '__main__':
-    ids = getIdFromApi('tau')
-    print(ids)
+    # ids = getIdFromApi('tau')
+    # print(ids)
+
+    import numpy as np
+
+    synsets_path1 = '/home/administrator/PycharmProjects/embedding/AutoExtend_Gene/synsets.txt'
+    synsets_code_path1 = '/home/administrator/PycharmProjects/embedding/AutoExtend_Gene/synsets_code.txt'
+    synsetsVec_path1 = '/home/administrator/PycharmProjects/embedding/AutoExtend_Gene/synsetsVec.txt'
+
+    synsets_path2 = '/home/administrator/PycharmProjects/embedding/AutoExtend_Protein/synsets.txt'
+    synsets_code_path2 = '/home/administrator/PycharmProjects/embedding/AutoExtend_Protein/synsets_code.txt'
+    synsetsVec_path2 = '/home/administrator/PycharmProjects/embedding/AutoExtend_Protein/synsetsVec.txt'
+
+    synset2id = []
+    synset2name = []
+    with open(synsets_code_path1, 'r') as f:
+        for line in f:
+            splited = line.strip().split('\t')
+            synset_ncbi_id = splited[0]
+            words = splited[1]
+            words = words.replace('@@', ' ')
+            synset2id.append(synset_ncbi_id)
+            synset2name.append(words)
+    # print(synset2id['pMF1.22::,pMX1.22::,'])
+
+    with open(synsets_path1, 'r') as f:
+        lines = f.readlines()
+    print(len(synset2id), len(lines))
+    assert (len(synset2id)==len(lines))
+    with open(synsetsVec_path1, 'w') as wf:
+        for i in range(len(lines)):
+            line = lines[i]
+            synsetId = synset2id[i]
+            splited = line.strip().split(' ')
+            synset = splited[0].replace('@@', ' ')
+            if not synset2name[i]==synset:
+                print(i)
+                break
+            vec = ' '.join(splited[1:])
+            wf.write(str(synsetId) + ' ' + vec)
+            wf.write('\n')
+
+
+
+    synset2id_ = []
+    with open(synsets_code_path2, 'r') as f:
+        for line in f:
+            splited = line.strip().split('\t')
+            synset_ncbi_id = splited[0]
+            words = splited[1]
+            words = words.replace('@@', ' ')
+            synset2id_.append(synset_ncbi_id)
+    # print(synset2id['pMF1.22::,pMX1.22::,'])
+
+    with open(synsets_path2, 'r') as f:
+        lines = f.readlines()
+    print(len(synset2id), len(lines))
+    assert (len(synset2id_) == len(lines))
+    with open(synsetsVec_path2, 'w') as wf:
+        for i in range(len(lines)):
+            line = lines[i]
+            synsetId = synset2id_[i]
+            splited = line.strip().split(' ')
+            synset = splited[0].replace('@@', ' ')
+            vec = ' '.join(splited[1:])
+            wf.write(str(synsetId) + ' ' + vec)
+            wf.write('\n')
