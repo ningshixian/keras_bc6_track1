@@ -13,10 +13,35 @@ import codecs
 import os
 
 
+def entityReplace(splited_sen, splited_tagged, i, item, sen_length):
+    # 将 splited_sen[i] 替换成 item
+    # 1、先处理嵌套实体的问题
+    if B_tag in splited_sen[i] and I_tag in splited_sen[i]:
+        k1 = splited_sen[i].index(B_tag)+4
+        k2 = splited_sen[i].index(I_tag)
+        splited_sen[i] = splited_sen[i][:k1] + item + splited_sen[i][k2:]
+    elif B_tag in splited_sen[i]:
+        k1 = splited_sen[i].index(B_tag)+4
+        splited_sen[i] = splited_sen[i][:k1] + item
+    elif I_tag in splited_sen[i]:
+        k2 = splited_sen[i].index(I_tag)
+        splited_sen[i] = item + splited_sen[i][k2:]
+    else:
+        splited_sen[i] = item
+    # 2、对于嵌入在单词内部的实体，需要重新对齐二者的长度
+    gap = i+1
+    diff = len(splited_tagged) - sen_length    # 标记后的句子与原始句子的长度差
+    while diff:
+        splited_sen.insert(gap, splited_tagged[gap])
+        diff-=1
+        gap+=1
+
+
 def readXML(files, BioC_PATH):
     num_passage = 0
     num_file = 0
     passages_list = []
+    raw_passages_list = []
     for file in files:  #遍历文件夹
         if not os.path.isdir(file):  #判断是否是文件夹，不是文件夹才打开
             f = BioC_PATH + "/" + file
@@ -37,6 +62,8 @@ def readXML(files, BioC_PATH):
                     text = passage.getElementsByTagName('text')[0]
                     sentence = text.childNodes[0].data.encode("utf-8")  # byte
                     sen_new = sentence.decode("utf-8")  # str
+                    sen_length = len(sen_new.split())
+                    raw_passages_list.append(sen_new)
                     # for specific_symbol in ['-', '°C']:
                     #     sentence = sentence.replace(specific_symbol, ' '+specific_symbol+' ')
                     entity_list = []
@@ -72,44 +99,58 @@ def readXML(files, BioC_PATH):
                         length = length_list[i]
                         ID = id_list[i]
                         # print(tmp[offset:offset+length].decode("utf-8"))
+                        left = tmp[:offset].decode("utf-8")
+                        mid = tmp[offset:offset+length].decode("utf-8")
+                        right = tmp[offset+length:].decode("utf-8")
                         if ID.startswith('NCBI gene:') or ID.startswith('Uniprot:') or \
                             ID.startswith('gene:') or ID.startswith('protein:'):
-                            tmp = tmp[:offset].decode("utf-8") + ' ' + left + tmp[offset:offset+length].decode("utf-8") + right + ' ' + tmp[offset+length:].decode("utf-8")
+                            tmp = left + ' ' + B_tag + mid + I_tag + ' ' + right
                             tmp = tmp.replace('   ', ' ').replace('  ', ' ')
                         elif ID.startswith('Rfam:') or ID.startswith('mRNA:'):
-                            tmp = tmp[:offset].decode("utf-8") + ' ' + left + tmp[offset:offset+length].decode("utf-8") + right + ' ' + tmp[offset+length:].decode("utf-8")
+                            tmp = left + ' ' + B_tag + mid + I_tag + ' ' + right
                             tmp = tmp.replace('   ', ' ').replace('  ', ' ')
                         else:
                             # 暂时不考虑其他类别的实体
                             continue
 
-                        # 将标记的实体替换到新句子中
-                        splited_tmp = tmp.split()   # str
-                        splited_sen = sen_new.split()   # str
-                        for i in range(len(splited_sen)):
-                            item = splited_tmp[i]
-                            if left in item or right in item:
-                                if left in splited_sen[i] and right in splited_sen[i]:
-                                    k1 = splited_sen[i].index(left)+4
-                                    k2 = splited_sen[i].index(right)
-                                    splited_sen[i] = splited_sen[i][:k1] + item + splited_sen[i][k2:]
-                                elif left in splited_sen[i]:
-                                    k1 = splited_sen[i].index(left)+4
-                                    splited_sen[i] = splited_sen[i][:k1] + item
-                                elif right in splited_sen[i]:
-                                    k2 = splited_sen[i].index(right)
-                                    splited_sen[i] = item + splited_sen[i][k2:]
-                                else:
+                        if num_passage==101:
+                            print(tmp)
+
+                        # 将标记的实体替换到新句子中, 一次仅一个实体
+                        splited_tagged = tmp.split()   # str
+                        splited_sen = sen_new.split()   # str [::-1]
+                        for i in range(len(splited_tagged)):
+                            item = splited_tagged[i]
+                            # 解决实体标注在句子的最后的问题
+                            # 直接插入标注在句子最后的实体
+                            if i>=len(splited_sen):
+                                splited_sen.insert(i-len(splited_sen), item)
+                                continue
+                            # 替换实体
+                            if B_tag in item and I_tag in item or \
+                                I_tag in item:
+                                entityReplace(splited_sen, splited_tagged, i, item, sen_length)
+                                break
+                            elif B_tag in item:
+                                entityReplace(splited_sen, splited_tagged, i, item, sen_length)
+                            else:
+                                if B_tag not in splited_sen[i] and I_tag not in splited_sen[i]:
                                     splited_sen[i] = item
                         sen_new = ' '.join(splited_sen)
-                        # if not len(splited_sen)==len(splited_tmp):
-                        #     print(splited_tmp)
-                        #     print(sen_new.split())
+                        if num_passage==101:
+                            print(sen_new)
+                        # if sen_new.startswith('(D) Immunoblot analysis of'):
+                        #     print(sen_new)
+                        # assert len(splited_sen)==len(splited_tagged):
                     sen_new = sen_new.replace('   ', ' ').replace('  ', ' ')
                     passages_list.append(sen_new)
 
     with codecs.open(train_path + "/" + 'train.txt', 'w', encoding='utf-8') as f:
         for sentence in passages_list:
+            f.write(sentence)
+            f.write('\n')
+    with codecs.open(train_path + "/" + 'train_raw.txt', 'w', encoding='utf-8') as f:
+        for sentence in raw_passages_list:
             f.write(sentence)
             f.write('\n')
     passages_list = []
@@ -141,16 +182,16 @@ def judge(word, label_sen, flag):
     '''  
     changable = None
     if 'B-' in word or '/I-' in word:
-        if word==left:
+        if word==B_tag:
             # 处理 B-[]-I 实体在分词后标签B-和-I被分离的情况
             flag=2
             changable = 1
-            print('left')
-        elif word==right:
+            print('B_tag')
+        elif word==I_tag:
             # 处理 B-[]-I 实体在分词后标签B-和-I被分离的情况
             flag=0
             changable = 1
-            print('right')
+            print('I_tag')
         if not changable:
             if word.startswith('B-'):
                 # 获取实体B-XXX的类型
@@ -238,15 +279,15 @@ if __name__ == '__main__':
 
     # entityTypes = ['**', '*']
     # star2Type = {'*':'GENE', '**':'PROTEIN'}
-    left = 'B-*/'
-    right = '/I-*'
+    B_tag = 'B-*/'
+    I_tag = '/I-*'
 
     train_path = r'/Users/ningshixian/Desktop/BC6_Track1/BioIDtraining_2/train'
     BioC_PATH = r'/Users/ningshixian/Desktop/BC6_Track1/BioIDtraining_2/caption_bioc'
     files = os.listdir(BioC_PATH)  # 得到文件夹下的所有文件名称
     files.sort()
     
-    # readXML(files, BioC_PATH)
+    readXML(files, BioC_PATH)
 
     '''
     % cd geniatagger-3.0.2
@@ -254,6 +295,6 @@ if __name__ == '__main__':
     > /Users/ningshixian/Desktop/'BC6_Track1'/BioIDtraining_2/train/train.genia.txt
     '''
 
-    getLabel(train_path)
+    # getLabel(train_path)
 
     print("完结撒花====")
