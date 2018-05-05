@@ -8,9 +8,14 @@ SYMBOLS = {'}': '{', ']': '[', ')': '('}  # 符号表
 SYMBOLS_L, SYMBOLS_R = SYMBOLS.values(), SYMBOLS.keys()
 
 
-def get_answer():
-    """Get an answer."""
-    return True
+def get_stop_dic():
+    """获取停用词词典."""
+    stopWord_path = '/home/administrator/PycharmProjects/keras_bc6_track1/sample/data/stopwords_gene'
+    stop_word = []
+    with open(stopWord_path, 'r') as f:
+        for line in f:
+            stop_word.append(line.strip('\n'))
+    return stop_word
 
 
 def wordNormalize(word):
@@ -37,24 +42,29 @@ def wordNormalize(word):
 
 def entityNormalize(entity, s, tokenIdx):
     '''
-    检查实体的括号是否匹配
+    检查实体的括号是否匹配×
     实体中的标点符号周围的空格去掉
     '''
     entity = entity.strip()
     result = check(entity)
     if result == 'R':
-        print('R括号')
+        print('R括号多')
         idx = tokenIdx
-        while s[idx - 1] not in SYMBOLS_L:
-            entity = s[idx - 1] + ' ' + entity
-        entity = s[idx - 1] + ' ' + entity
+        while idx-1>=0 and s[idx - 1] not in SYMBOLS_L:
+            entity = s[idx - 1] + entity
+            idx-=1
+        if s[idx - 1] in SYMBOLS_L:
+            entity = s[idx - 1] + entity
     elif result == 'L':
-        print('L括号')
+        print('L括号多')
         idx = tokenIdx
-        while s[idx + 1] not in SYMBOLS_R:
-            entity = entity + ' ' + s[idx + 1]
-        entity = entity + ' ' + s[idx + 1]
+        while idx+1<len(s) and s[idx + 1] not in SYMBOLS_R:
+            entity = entity + s[idx + 1]
+            idx+=1
+        if s[idx + 1] in SYMBOLS_R:
+            entity = entity + s[idx + 1]
 
+    entity = entity.strip()
     for char in string.punctuation:
         if char in entity:
             entity = entity.replace(' '+char+' ', char)
@@ -81,33 +91,14 @@ def idFilter(type, Ids):
     return temp
 
 
-def idFilter2(res):
-    '''
-        将字典匹配或API匹配得到的Ids集合中，与type不符的部分去掉
-        取第一个结果作为实体ID
-    '''
-    temp = []
-    if res == 400:
-        print('请求无效\n')
-    try:
-        results = res.split('\n')[1:-1]  # 去除开头一行和最后的''
-    except:
-        print(res)
+def extract_id_from_res(res):
+
+    Ids = []
+    results = res.split('\n')[1:-1]  # 去除开头一行和最后的''
     for line in results:
-        Id = line.split('\t')[-1]
-        temp.append(Id)
-        break
-        # if type == 'protein':
-        #     if 'uniprot' in Id or 'protein' in Id:
-        #         temp.append(Id)
-        #         break
-        # elif type == 'gene':
-        #     if 'NCBI' in Id or 'gene' in Id:
-        #         temp.append(Id)
-        #         break
-        # else:
-        #     print(res)
-    return temp
+        id = line.split('\t')[0]
+        Ids.append(id)
+    return Ids
 
 
 def createCharDict():

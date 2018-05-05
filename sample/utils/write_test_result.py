@@ -12,38 +12,109 @@ import Levenshtein  # pip install python-Levenshtein
 import numpy as np
 from bioservices import UniProt
 from tqdm import tqdm
-
-from sample.utils.helpers import makeEasyTag, Indent, entityNormalize, cos_sim, idFilter2
+from sample.utils.helpers import get_stop_dic
+from sample.utils.helpers import makeEasyTag, Indent, entityNormalize, cos_sim, extract_id_from_res
 
 u = UniProt()
 
 """
 将实体预测结果，以特定格式写入XML文件，用于scorer进行评估
-<collection>
-    <source>SourceData</source>
-    <date>00000000</date>
-    <key>sourcedata.key</key>
-    <document>
-        <id>1-A</id>
-        <infon key="sourcedata_document">?</infon>
-        <infon key="doi">?</infon>
-        <infon key="pmc_id">?</infon>
-        <infon key="figure">?</infon>
-        <infon key="sourcedata_figure_dir">?</infon>
-        <passage>
-            <offset>0</offset>
-            <text>XXX</text>
-            <annotation id="1">
-                <infon key="type">GO:0005764</infon>
-                <infon key="sourcedata_figure_annot_id">1</infon>
-                <infon key="sourcedata_article_annot_id">1</infon>
-                <location offset="16" length="9"/>
-                <text>lysosomes</text>
-            </annotation>
-        </passage>
-    </document>
-</collection>
 """
+
+
+def post_process(sen_list, BioC_path, maxlen, predLabels):
+
+    path = '/home/administrator/PycharmProjects/keras_bc6_track1/sample/data/idx_line2pmc_id_test.txt'
+    idx_line2pmc_id = {}
+    with open(path, 'r') as f:
+        for line in f:
+            idx_line, pmc_id = line.split('\t')
+            idx_line2pmc_id[idx_line] = pmc_id
+
+    idx_line = -1
+    pmc_id_entity_list = {}
+
+    files = os.listdir(BioC_path)
+    files.sort()
+    for j in tqdm(range(len(files))):  # 遍历文件夹
+        file = files[j]
+        if not os.path.isdir(file):  # 判断是否是文件夹，不是文件夹才打开
+            f = BioC_path + "/" + file
+            try:
+                DOMTree = parse(f)  # 使用minidom解析器打开 XML 文档
+                collection = DOMTree.documentElement  # 得到了根元素对象
+            except:
+                print('异常情况：'.format(f))
+                continue
+
+            source = collection.getElementsByTagName("source")[0].childNodes[0].data
+            date = collection.getElementsByTagName("date")[0].childNodes[0].data  # 时间
+            key = collection.getElementsByTagName("key")[0].childNodes[0].data
+
+            # 一、生成dom对象，根元素名collection
+            impl = xml.dom.minidom.getDOMImplementation()
+            dom = impl.createDocument(None, 'collection', None)  # 创建DOM文档对象
+            root = dom.documentElement  # 创建根元素
+
+            source = makeEasyTag(dom, 'source', source)
+            date = makeEasyTag(dom, 'date', datetime.datetime.now().strftime('%Y-%m-%d'))
+            key = makeEasyTag(dom, 'key', key)
+
+            # 给根节点添加子节点
+            root.appendChild(source)
+            root.appendChild(date)
+            root.appendChild(key)
+
+            # 在集合中获取所有 document 的内容
+            documents = collection.getElementsByTagName("document")
+            for doc in documents:
+                id = doc.getElementsByTagName("id")[0].childNodes[0].data
+                sourcedata_document = doc.getElementsByTagName("infon")[0].childNodes[0].data
+                doi = doc.getElementsByTagName("infon")[1].childNodes[0].data
+                pmc_id = doc.getElementsByTagName("infon")[2].childNodes[0].data
+                figure = doc.getElementsByTagName("infon")[3].childNodes[0].data
+                sourcedata_figure_dir = doc.getElementsByTagName("infon")[4].childNodes[0].data
+
+                document = dom.createElement('document')
+                id_node = makeEasyTag(dom, 'id', str(id))
+                s_d_node = makeEasyTag(dom, 'infon', str(sourcedata_document))
+                doi_node = makeEasyTag(dom, 'infon', str(doi))
+                pmc_id_node = makeEasyTag(dom, 'infon', str(pmc_id))
+                figure_node = makeEasyTag(dom, 'infon', str(figure))
+                s_f_d_node = makeEasyTag(dom, 'infon', str(sourcedata_figure_dir))
+                s_d_node.setAttribute('key', 'sourcedata_document')  # 向元素中加入属性
+                doi_node.setAttribute('key', 'doi')  # 向元素中加入属性
+                pmc_id_node.setAttribute('key', 'pmc_id')  # 向元素中加入属性
+                figure_node.setAttribute('key', 'figure')  # 向元素中加入属性
+                s_f_d_node.setAttribute('key', 'sourcedata_figure_dir')  # 向元素中加入属性
+                document.appendChild(id_node)
+                document.appendChild(s_d_node)
+                document.appendChild(doi_node)
+                document.appendChild(pmc_id_node)
+                document.appendChild(figure_node)
+                document.appendChild(s_f_d_node)
+
+                passages = doc.getElementsByTagName("passage")
+                for passage in passages:
+                    text = passage.getElementsByTagName('text')[0].childNodes[0].data
+                    text_byte = text.encode('utf-8')
+                    '''每读取一篇passage，在<annotation>结点记录识别实体'''
+                    idx_line += 1
+                    s = sen_list[idx_line][:maxlen]  # 单词列表形成的句子
+                    prediction = predLabels[idx_line]
+
+                    # 根据预测结果来抽取句子中的所有实体
+                    entities = getEntityList(s, prediction)
+
+                    pmc_id = idx_line2pmc_id[str(idx_line)]
+                    if pmc_id not in pmc_id_entity_list:
+                        pmc_id_entity_list[pmc_id] = []
+                    for entity in entities:
+                        if entity not in pmc_id_entity_list[pmc_id]:
+                            pmc_id_entity_list[pmc_id].append(entity)
+
+    return idx_line2pmc_id, pmc_id_entity_list
+
 
 def readSynVec():
     '''
@@ -51,7 +122,6 @@ def readSynVec():
     '''
     synsetsVec_path1 = '/home/administrator/PycharmProjects/embedding/AutoExtend_Gene/synsetsVec.txt'
     synsetsVec_path2 = '/home/administrator/PycharmProjects/embedding/AutoExtend_Protein/synsetsVec.txt'
-    stopWord_path = '/home/administrator/PycharmProjects/keras_bc6_track1/sample/data/stopwords_gene'
 
     geneId2vec = {}
     with open(synsetsVec_path1, 'r') as f:
@@ -71,13 +141,7 @@ def readSynVec():
             vec = np.asarray(splited[1:], dtype=np.float32)
             proteinId2vec[proteinId] = vec
 
-
-    stop_word = []
-    with open(stopWord_path, 'r') as f:
-        for line in f:
-            stop_word.append(line.strip('\n'))
-
-    return geneId2vec, proteinId2vec, stop_word
+    return geneId2vec, proteinId2vec
 
 
 def readBinEmbedFile(embFile, word_size):
@@ -175,17 +239,11 @@ def getCSVData(csv_path):
     return entity2id_new
 
 
-def searchEntityId(s, predLabels, entity2id):
+def getEntityList(s, predLabels):
     '''
-    抽取句子中的所有实体及其对应ID
-    :param s: 单词列表形成的句子
-    :param idx: 当前句子的预测结果id
-    :param predLabels: 预测结果
-    :param entity2id: 词典
-    :return:
+    抽取句子中的所有实体
     '''
     entity_list = []
-    id_list = {}
     entity = ''
     prex = 0
     for tokenIdx in range(len(s)):
@@ -193,23 +251,23 @@ def searchEntityId(s, predLabels, entity2id):
         word = s[tokenIdx]
         if label == 1:
             if entity:
-                entity_list.append(entityNormalize(entity, s, tokenIdx))
+                entity_list.append(entityNormalize(entity, s, tokenIdx - len(entity.split())))
                 entity = ''
             prex = label
             entity = word + ' '
         elif label == 2:
-            if prex == 1 or prex==2:
+            if prex == 1 or prex == 2:
                 entity += word + ' '
             else:
                 print('标签错误！跳过')
             prex = label
         else:
             if entity:
-                entity_list.append(entityNormalize(entity, s, tokenIdx))
+                entity_list.append(entityNormalize(entity, s, tokenIdx - len(entity.split())))
                 entity = ''
             prex = 0
     if not entity == '':
-        entity_list.append(entityNormalize(entity, s, tokenIdx))
+        entity_list.append(entityNormalize(entity, s, tokenIdx - len(entity.split())))
         entity = ''
     l2 = list(set(entity_list))  # 去除相同元素
     entities = sorted(l2, key=entity_list.index)  # 不改变原list顺序
@@ -223,41 +281,91 @@ def searchEntityId(s, predLabels, entity2id):
     #             if e in entity2id and e not in entities:
     #                 entities.append(e)
 
-    ''' 对识别的实体进行ID链接 '''
-    for entity in entities:
-        # 词典精确匹配1
-        if entity.lower() in entity2id:
-            Ids = entity2id[entity.lower()]
-            # Ids = idFilter(type, Ids)     # 不进行筛选，否则ID几乎全被干掉了
-            id_list[entity] = Ids
-            continue
+    return entities
 
-        # 数据库API查询1
-        res = u.search(entity + '+reviewed:yes', frmt="tab", columns="genes, id", limit=3)
-        if res:  # 若是有返回结果
-            Ids = idFilter2(res)  # 不进行筛选
-            id_list[entity] = Ids
-            entity2id[entity.lower()] = Ids  # 将未登录实体添加到实体ID词典中
-            continue
+
+def searchEntityId(s, predLabels, entity_tag_consisteny, entity2id):
+    ''' 
+    对识别的实体进行ID链接：
+    
+    先是词典精确匹配
+    然后是知识库API匹配
+    最后是模糊匹配
+    '''
+    # entities = getEntityList(s, predLabels, entity_tag_consisteny)
+    entities = entity_tag_consisteny
+    entities_new = entities
+
+    id_list = {}
+    for entity in entities:
 
         temp = entity
         for char in string.punctuation:
             if char in temp:
                 temp = temp.replace(char, '')
 
-        # 词典精确匹配2
-        if temp.lower() in entity2id:
+        # 词典精确匹配
+        if entity.lower() in entity2id:
+            Ids = entity2id[entity.lower()]
+            # Ids = idFilter(type, Ids)     # 不进行筛选，否则ID几乎全被干掉了
+            id_list[entity] = Ids
+            continue
+        elif temp.lower() in entity2id:
             Ids = entity2id[temp.lower()]
             # Ids = idFilter(type, Ids)
             id_list[entity] = Ids
             continue
 
-        # 数据库API查询2
-        res = u.search(temp + '+reviewed:yes', frmt="tab", columns="genes, id", limit=3)
-        if res:
-            Ids = idFilter2(res)
-            id_list[entity] = Ids
-            entity2id[entity.lower()] = Ids  # 将未登录实体添加到实体ID词典中
+        # 数据库API查询1-reviewed
+        res_reviewed = u.search(entity + '+reviewed:yes', frmt="tab", columns="id", limit=5)
+        if res_reviewed==400:
+            print('请求无效\n')
+            print(entity)   # ab′)2
+            entities_new.remove(entity)
+            continue
+        if res_reviewed:  # 若是有返回结果
+            Ids = extract_id_from_res(res_reviewed)
+            id_list[entity] = ['Uniprot:' + Ids[0]]  # 取第一个结果作为ID
+            entity2id[entity.lower()] = ['Uniprot:' + Ids[0]]  # 将未登录实体添加到实体ID词典中
+            continue
+
+        # 数据库API查询1-unreviewed
+        unres_reviewed = u.search(entity, frmt="tab", columns="id", limit=5)
+        if unres_reviewed==400:
+            print('请求无效\n')
+            print(entity)
+            entities_new.remove(entity)
+            continue
+        if unres_reviewed:  # 若是有返回结果
+            Ids = extract_id_from_res(unres_reviewed)
+            id_list[entity] = ['Uniprot:' + Ids[0]]  # 取第一个结果作为ID
+            entity2id[entity.lower()] = ['Uniprot:' + Ids[0]]  # 将未登录实体添加到实体ID词典中
+            continue
+
+        # 数据库API查询2-reviewed
+        res_reviewed = u.search(temp + '+reviewed:yes', frmt="tab", columns="id", limit=5)
+        if res_reviewed==400:
+            print('请求无效\n')
+            print(entity)
+            entities_new.remove(entity)
+            continue
+        if res_reviewed:
+            Ids = extract_id_from_res(res_reviewed)
+            id_list[entity] = ['Uniprot:' + Ids[0]]  # 取第一个结果作为ID
+            entity2id[entity.lower()] = ['Uniprot:' + Ids[0]]  # 将未登录实体添加到实体ID词典中
+            continue
+
+        # 数据库API查询2-unreviewed
+        unres_reviewed = u.search(temp, frmt="tab", columns="id", limit=5)
+        if unres_reviewed==400:
+            print('请求无效\n')
+            print(entity)
+            entities_new.remove(entity)
+            continue
+        if res_reviewed:
+            Ids = extract_id_from_res(res_reviewed)
+            id_list[entity] = ['Uniprot:' + Ids[0]]  # 取第一个结果作为ID
+            entity2id[entity.lower()] = ['Uniprot:' + Ids[0]]  # 将未登录实体添加到实体ID词典中
             continue
 
         # 模糊匹配--计算 Jaro–Winkler 距离
@@ -269,12 +377,11 @@ def searchEntityId(s, predLabels, entity2id):
                 max_score = score
                 max_score_key = key
         Ids = entity2id.get(max_score_key)
-        # Ids = idFilter(type, Ids)
         id_list[entity] = Ids
 
     # if entity == 'Ubc9':
     #     print(entity2id.get(entity))
-    return entities, id_list
+    return entities_new, id_list
 
 
 def writeOutputToFile(path, predLabels, maxlen):
@@ -300,10 +407,6 @@ def writeOutputToFile(path, predLabels, maxlen):
     dic_path = base + '/' + 'BioIDtraining_2/annotations.csv'   # 实体ID查找词典文件
     result_path = base + '/' + 'test_corpus_20170804/prediction'
 
-    entity2id = getCSVData(dic_path)    # 读取实体ID查找词典
-    geneId2vec, proteinId2vec, stop_word = readSynVec() # 读取AutoExtend训练获得的同义词集向量
-    word2vec = get_w2v()    # 读取词向量词典
-
     # 获取测试集所有句子list的集合
     sen_line = []
     sen_list = []
@@ -315,6 +418,15 @@ def writeOutputToFile(path, predLabels, maxlen):
             else:
                 token = line.replace('\n', '').split('\t')
                 sen_line.append(token[0])
+
+    idx_line2pmc_id, pmc_id2entity_list = post_process(sen_list, BioC_path, maxlen, predLabels)
+
+    entity2id = getCSVData(dic_path)    # 读取实体ID查找词典
+    # geneId2vec, proteinId2vec = readSynVec() # 读取AutoExtend训练获得的同义词集向量
+    # stop_word = get_stop_dic()
+    # word2vec = get_w2v()    # 读取词向量词典
+
+
 
     files = os.listdir(BioC_path)
     files.sort()
@@ -379,16 +491,22 @@ def writeOutputToFile(path, predLabels, maxlen):
                 passages = doc.getElementsByTagName("passage")
                 for passage in passages:
                     text = passage.getElementsByTagName('text')[0].childNodes[0].data
+                    text_byte = text.encode('utf-8')
                     '''每读取一篇passage，在<annotation>结点记录识别实体'''
                     idx_line += 1
-                    # print(idx_line)
+                    pmc_id = idx_line2pmc_id[str(idx_line)]
                     annotation_list = []
                     s = sen_list[idx_line][:maxlen]  # 单词列表形成的句子
                     prediction = predLabels[idx_line]
 
                     # 根据预测结果来抽取句子中的所有实体，并进行实体链接
                     # start_time = time.time()
-                    entities, entity_ids = searchEntityId(s, prediction, entity2id)
+                    entity_tag_consisteny = []
+                    entity_list = pmc_id2entity_list[pmc_id]
+                    for entity in entity_list:
+                        if not text.find(entity)==-1:
+                            entity_tag_consisteny.append(entity)
+                    entities, entity_ids = searchEntityId(s, prediction, entity_tag_consisteny, entity2id)
                     # time_diff = time.time() - start_time
                     # print("%.2f sec" % time_diff)
 
@@ -442,9 +560,16 @@ def writeOutputToFile(path, predLabels, maxlen):
                             num_entity_no_id += 1
 
                         # 标记句子中所有相同的实体
+
+                        if entity.encode('utf-8') in text_byte:
+                            entity_byte = entity.encode('utf-8')
+                        else:
+                            print(entity)
+                            print(text)
+                            entity_byte = entity.encode('utf-8')
                         offset = -1
                         while 1:
-                            offset = text.find(entity, offset+1)
+                            offset = text_byte.find(entity_byte, offset+1)   # 二进制编码查找offset
                             if not offset == -1:
                                 annotation_id += 1
                                 annotation = dom.createElement('annotation')
@@ -467,6 +592,7 @@ def writeOutputToFile(path, predLabels, maxlen):
                                 annotation_list.append(annotation)
                             else:
                                 break
+
 
                     # 最后串到根结点上，形成一棵树
                     passage1 = dom.createElement('passage')
@@ -493,6 +619,7 @@ def writeOutputToFile(path, predLabels, maxlen):
             writer.close()
             f.close()
 
+    print('测试集预测结果写入成功！')
     print('{}个词未找到对应的ID'.format(num_entity_no_id))    # 0
-    print('{}个词有歧义'.format(len(words_with_multiId)))    # 688
+    print('{}个词有歧义'.format(len(words_with_multiId)))    # 701
     print('完结撒花')

@@ -1,3 +1,6 @@
+from bioservices import UniProt
+u = UniProt(cache=True)
+
 '''
 Trying to get Uniprot ID from Entrez Gene ID with Python script (solved)
 
@@ -56,20 +59,40 @@ def getIdFromApi(entity):
 
 def get_id_from_bioservice(entity):
 
-    from bioservices import UniProt
-    u = UniProt()
-
     # 数据库API查询
+    Ids = None
     temp = []
-    res = u.search(entity + '+reviewed:yes', frmt="tab", columns="genes, id", limit=3)
-    if res:  # 若是有返回结果
-        if res == 400:
-            print('请求无效\n')
-        results = res.split('\n')[1:-1]  # 去除开头一行和最后的''
+    res_reviewed = u.search(entity + '+reviewed:yes', frmt="tab", columns="id, entry name, genes, genes(PREFERRED)", limit=5)   # , protein names
+    res_unreviewed = u.search(entity, frmt="tab", columns="id, entry name, genes, genes(PREFERRED)", limit=5)
+    # print(res_reviewed)
+    # print(res_unreviewed)
+
+    if res_reviewed == 400:
+        print('请求无效\n')
+        return Ids
+
+    if res_reviewed:  # 若是有返回结果
+        results = res_reviewed.split('\n')[1:-1]  # 去除开头一行和最后的''
         for line in results:
-            Ids = line.split('\t')[-1]
+            Ids = line.split('\t')[0]
             temp.append(Ids)
             # break
-    return Ids
+    return temp
+
+
+if __name__ == '__main__':
+
+    Ids = get_id_from_bioservice('Gli1')   # Uniprot:P47806|NCBI gene:14632|Uniprot:P08151|NCBI gene:2735
+    print(Ids)
+
+
+    # 2. mapping from/to uniprot identifiers
+    # UniProtKB AC: ACC
+    # Entrez Gene (GeneID): P_ENTREZGENEID
+    # GeneID (Entrez Gene): P_ENTREZGENEID
+
+    # mapper = u.mapping(fr="GENENAME", to="ACC", query='Gli1')
+    # print(mapper['Gli1'])
+
 
 
