@@ -53,7 +53,7 @@ from tqdm import tqdm
 #
 #
 # from lxml import etree
-# infile = '/home/administrator/桌面/pubmed_result_.xml'
+# infile = '/home/administrator/桌面/pubmed_gene_protein.xml'
 #
 # '''
 # xml 的 iterparse 方法是 ElementTree API 的扩展。
@@ -103,27 +103,48 @@ count = 0
 tag = 0
 path_xml = '/home/administrator/桌面'
 infile = '/home/administrator/桌面/pubmed_result.xml'
-out = open(path_xml + '/' + 'corpus.txt', 'w')
+corpus_path = path_xml + '/' + 'corpus.txt'
+corpus_path2 = path_xml + '/' + 'corpus2.txt'
 
-for event, elem in ET.iterparse(infile, events=('end',)):   # 注意这里只使用end进行触发即可
-    count += 1
-    if count%100000==0:
-        print(count)
-    if elem.tag=='Pagination':
-        tag=1
-    elif elem.tag=='VernacularTitle':
-        tag=0
+# out = open(corpus_path, 'w')
+#
+# for event, elem in ET.iterparse(infile, events=('end',)):   # 注意这里只使用end进行触发即可
+#     count += 1
+#     if count%100000==0:
+#         print(count)
+#     if elem.tag=='Pagination':
+#         tag=1
+#     elif elem.tag=='VernacularTitle':
+#         tag=0
+#
+#     elif elem.tag == 'ArticleTitle':
+#         if elem.text:
+#             if elem.text.startswith('[') and elem.text.endswith(']'):
+#                 title = elem.text[1:-1]
+#             else:
+#                 title = elem.text
+#             out.write('%s\n' % title)
+#     elif elem.tag=='AbstractText':
+#         if tag:
+#             out.write('%s\n' % elem.text)
+#     elem.clear()     # 非常关键：将元素废弃，释放出系统分配的内存。
+#
+# out.close()
 
-    elif elem.tag == 'ArticleTitle':
-        if elem.text:
-            if elem.text.startswith('[') and elem.text.endswith(']'):
-                title = elem.text[1:-1]
-            else:
-                title = elem.text
-            out.write('%s\n' % title)
-    elif elem.tag=='AbstractText':
-        if tag:
-            out.write('%s\n' % elem.text)
-    elem.clear()     # 非常关键：将元素废弃，释放出系统分配的内存。
 
-out.close()
+'''
+将训练预料和测试预料加入到pubmed摘要中，用于训练词向量
+'''
+sen_list = []
+with open('/home/administrator/PycharmProjects/keras_bc6_track1/sample/data/train_raw.txt') as f:
+    for line in f:
+        sen_list.append(line)
+with open('/home/administrator/PycharmProjects/keras_bc6_track1/sample/data/test_raw.txt') as f:
+    for line in f:
+        sen_list.append(line)
+with open(corpus_path) as f:
+    for line in f:
+        sen_list.append(line)
+with open(corpus_path2, 'w') as f:
+    for line in sen_list:
+        f.write(line)

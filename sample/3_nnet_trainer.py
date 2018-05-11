@@ -62,7 +62,7 @@ chunk_emb_size = 10
 dropout_rate = 0.5  # [0.5, 0.5]
 
 num_classes = 3
-epochs = 25
+epochs = 30
 batch_size = 32
 max_f = 0
 highway = 0
@@ -266,7 +266,6 @@ def buildModel():
     elif optimizer.lower() == 'nadam':
         opt = Nadam(lr=learning_rate, clipvalue=1., decay=decay_rate)
     elif optimizer.lower() == 'rmsprop':
-        # opt = RMSprop(lr=0.01, rho=0.9, epsilon=1e-08, decay=0.0)     # best for LSTM
         opt = RMSprop(lr=learning_rate, clipvalue=1., decay=decay_rate)
     elif optimizer.lower() == 'sgd':
         opt = SGD(lr=0.001, decay=1e-5, momentum=0.9, nesterov=True)
@@ -278,7 +277,7 @@ def buildModel():
                   metrics=["accuracy"])
     model.summary()
 
-    plot_model(model, to_file='sample/result/model.png', show_shapes=True)
+    plot_model(model, to_file='result/model.png', show_shapes=True)
     return model
 
 
@@ -305,8 +304,9 @@ if __name__ == '__main__':
               epochs=epochs,
               batch_size=batch_size,
               shuffle=True,
-              callbacks=[calculatePRF1, tensorBoard],
-              validation_data=(dataSet['test'], test_y))
+              callbacks=[calculatePRF1, tensorBoard, saveModel],
+              validation_split=0.2)
+              # validation_data=(dataSet['test'], test_y))
     time_diff = time.time() - start_time
     print("%.2f sec for training (4.5)" % time_diff)
     print(model.metrics_names)

@@ -2,8 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="710ad492-fdbe-468b-81ba-a11398140d46" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample/utils/xml2conll.py" afterPath="$PROJECT_DIR$/sample/utils/xml2conll.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample/utils/xml2conll.test.py" afterPath="$PROJECT_DIR$/sample/utils/xml2conll.test.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sample/1_xml2conll.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sample/1_xml2conll_test.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sample/utils/w2v.py" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sample/utils/xml2conll.py" afterPath="$PROJECT_DIR$/sample/utils/old/xml2conll.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sample/utils/xml2conll.test.py" afterPath="$PROJECT_DIR$/sample/utils/old/xml2conll.test.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sample/utils/xml2conll_offset.py" afterPath="$PROJECT_DIR$/sample/utils/old/xml2conll_offset.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sample/utils/xml2conll_offset.test.py" afterPath="$PROJECT_DIR$/sample/utils/old/xml2conll_offset.test.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample/2_process_conll_data.py" afterPath="$PROJECT_DIR$/sample/2_process_conll_data.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample/3_nnet_trainer.py" afterPath="$PROJECT_DIR$/sample/3_nnet_trainer.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample/4_test_nnet.py" afterPath="$PROJECT_DIR$/sample/4_test_nnet.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample/ned/1_med_xml_parser.py" afterPath="$PROJECT_DIR$/sample/ned/1_med_xml_parser.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample/ned/2_feature_extractor_.py" afterPath="$PROJECT_DIR$/sample/ned/2_feature_extractor_.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample/ned/3_svm_trainer.py" afterPath="$PROJECT_DIR$/sample/ned/3_svm_trainer.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample/ned/w2v.py" afterPath="$PROJECT_DIR$/sample/ned/w2v.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample/ned/xxx.py" afterPath="$PROJECT_DIR$/sample/ned/xxx.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample/utils/callbacks.py" afterPath="$PROJECT_DIR$/sample/utils/callbacks.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample/utils/helpers.py" afterPath="$PROJECT_DIR$/sample/utils/helpers.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample/utils/write_test_result.py" afterPath="$PROJECT_DIR$/sample/utils/write_test_result.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample/utils/xx.py" afterPath="$PROJECT_DIR$/sample/utils/xx.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,24 +31,22 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="xml2conll.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/sample/utils/xml2conll.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-370">
-              <caret line="118" column="33" lean-forward="false" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>-</find>
       <find>@</find>
       <find>$</find>
+      <find>归一化</find>
+      <find>数字</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -41,6 +57,9 @@
       <list>
         <option value="$PROJECT_DIR$/sample/utils/xml2conll.py" />
         <option value="$PROJECT_DIR$/sample/utils/xml2conll.test.py" />
+        <option value="$PROJECT_DIR$/sample/utils/xx.py" />
+        <option value="$PROJECT_DIR$/sample/1_xml2conll_offset.py" />
+        <option value="$PROJECT_DIR$/sample/4_test_nnet.py" />
       </list>
     </option>
   </component>
@@ -79,7 +98,7 @@
               <item name="keras_bc6_track1" type="b2602c69:ProjectViewProjectNode" />
               <item name="keras_bc6_track1" type="462c0819:PsiDirectoryNode" />
               <item name="sample" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="ned" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -92,6 +111,11 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sample/utils/old" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -118,7 +142,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="keras_bc6_track1" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sample/utils/xml2conll.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sample/utils/old/xml2conll.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -135,7 +159,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="keras_bc6_track1" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sample/utils/xml2conll.test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sample/utils/old/xml2conll.test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -166,9 +190,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20386267" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2067239" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27932286" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -196,27 +219,17 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sample/writeXMLResult.py">
+    <entry file="file://$PROJECT_DIR$/sample/utils/old/xml2conll.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#15#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="2242">
+          <caret line="118" column="33" lean-forward="false" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sample/writeXMLResult.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="7" lean-forward="false" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#15#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sample/utils/xml2conll.test.py">
+    <entry file="file://$PROJECT_DIR$/sample/writeXMLResult.py" />
+    <entry file="file://$PROJECT_DIR$/sample/writeXMLResult.py" />
+    <entry file="file://$PROJECT_DIR$/sample/utils/old/xml2conll.test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2">
           <caret line="70" column="17" lean-forward="false" selection-start-line="70" selection-start-column="17" selection-end-line="70" selection-end-column="17" />
@@ -224,10 +237,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sample/utils/xml2conll.py">
+    <entry file="file://$PROJECT_DIR$/sample/utils/old/xml2conll.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-370">
-          <caret line="118" column="33" lean-forward="false" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="33" />
+        <state relative-caret-position="-2811">
+          <caret line="117" column="0" lean-forward="false" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample/utils/xx.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample/ned/LocalCollocationsExtractor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1424">
+          <caret line="22" column="27" lean-forward="true" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample/1_xml2conll_offset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="295" column="32" lean-forward="false" selection-start-line="295" selection-start-column="32" selection-end-line="295" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample/1_xml2conll_offset.test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1539">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample/2_process_conll_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="229" column="11" lean-forward="false" selection-start-line="229" selection-start-column="11" selection-end-line="229" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample/4_test_nnet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample/3_nnet_trainer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding />
         </state>
       </provider>

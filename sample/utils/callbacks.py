@@ -31,7 +31,7 @@ class ConllevalCallback(Callback):
         y_pred = predictions.argmax(axis=-1)  # Predict classes [0]
         y_test = self.y.argmax(axis=-1)
 
-        prf_file = 'sample/result/prf.txt'
+        prf_file = '/home/administrator/PycharmProjects/keras_bc6_track1/sample/result/prf.txt'
         # target = r'data/BC4CHEMD-IOBES/test.tsv'
 
         pre, rec, f1 = self.predictLabels2(y_pred, y_test)
@@ -39,7 +39,8 @@ class ConllevalCallback(Callback):
 
         if f1 >= self.max_f:
             self.max_f = f1
-            self.model.save('model/Model_f_'+str(f1)+'.h5', overwrite=True)
+            path = '/home/administrator/PycharmProjects/keras_bc6_track1/sample/model/Model_{}_{}.h5'.format(epoch, f1)
+            self.model.save(path, overwrite=True)
         # # 预测
         # model = load_model('model/Model_ST.h5', custom_objects=create_custom_objects())
 
@@ -73,11 +74,11 @@ class ConllevalCallback(Callback):
                         sentences.append(r)
                     sentences.append('\n')
                     s = []
-        with open('results/result.txt', 'w') as f:
+        with open('../result/result.txt', 'w') as f:
             for line in sentences:
                 f.write(str(line))
 
-        p, r, f, c = conlleval.main((None, r'results/result.txt'))
+        p, r, f, c = conlleval.main((None, r'../result/result.txt'))
         return round(Decimal(p), 2), round(Decimal(r), 2), round(Decimal(f), 2), c
 
 
@@ -253,3 +254,13 @@ class TokenAccuracyEvaluator(EvaluatorCallback):
         total = len(gold)
         correct = sum(int(p==g) for p, g in zip(pred, gold))
         return 'acc: {:.2%} ({}/{})'.format(1.*correct/total, correct, total)
+
+
+# if __name__ == '__main__':
+#     path = '../model/Model_{}_{}.h5'.format(0, 81.29)
+#     from keras.models import Model
+#     from keras.layers import Input, Dense
+#     input = Input(shape=(1,2))
+#     output = Dense(2)(input)
+#     model = Model(inputs=input, outputs=output)
+#     model.save(path, overwrite=True)

@@ -1,7 +1,9 @@
 import re
 import string
 import sys
+
 import numpy as np
+
 print(sys.getdefaultencoding())
 
 SYMBOLS = {'}': '{', ']': '[', ')': '('}  # 符号表
@@ -65,7 +67,7 @@ def entityNormalize(entity, s, tokenIdx):
             entity = entity + s[idx + 1]
 
     entity = entity.strip()
-    for char in string.punctuation:
+    for char in string.punctuation + '-':
         if char in entity:
             entity = entity.replace(' '+char+' ', char)
             entity = entity.replace(char+' ', char)
@@ -92,6 +94,11 @@ def idFilter(type, Ids):
 
 
 def extract_id_from_res(res):
+    '''
+    从数据库API匹配的结果中抽取实体id
+    :param res:
+    :return:
+    '''
 
     Ids = []
     results = res.split('\n')[1:-1]  # 去除开头一行和最后的''
@@ -99,6 +106,78 @@ def extract_id_from_res(res):
         id = line.split('\t')[0]
         Ids.append(id)
     return Ids
+
+
+idx2pos = {}
+with open('/home/administrator/PycharmProjects/keras_bc6_track1/sample/data/pos2idx.txt') as f:
+    for line in f:
+        pos, idx = line.split(' ')
+        idx2pos[idx.strip('\n')] = pos
+
+from sample.ned.LocalCollocationsExtractor import LocalCollocationsExtractor
+import pickle as pkl
+with open('LocalCollocations.pkl', 'rb') as f:
+    features_dict = pkl.load(f)
+
+
+def pos_surround(test_x, test_pos, tokenIdx, entity):
+    '''
+    获取实体周围的窗口为3的上下文pos标记
+    获取 Local Collocations 特征
+    '''
+    pos_list = ['null', 'n', 'v', 'a', 'r']
+    MAP = [
+        "n N NOUN NN NNP NNPS NE NNS NN|NNS NN|SYM NN|VBG NP N",
+        "v V VERB MD VB VBD VBD|VBN VBG VBG|NN VBN VBP VBP|TO VBZ VP VVD VVZ VVN VVB VVG VV V",
+        "a A ADJ JJ JJR JJRJR JJS JJ|RB JJ|VBG",
+        "r R ADV RB RBR RBS RB|RP RB|VBG WRB R IN IN|RP"
+        ]
+    map_dict = {}
+    for line in MAP:
+        splited = line.split(' ')
+        token = splited[0]
+        for i in range(1, len(splited)):
+            map_dict[splited[i]] = token
+
+    index1 = tokenIdx - 3
+    index2 = tokenIdx
+    index3 = tokenIdx + len(entity.split())
+    index4 = tokenIdx + 3 + len(entity.split())
+
+    test_pos2 = []
+    for item in test_pos:
+        pos = idx2pos[str(item)]
+        new_idx = pos_list.index(map_dict.get(pos)) if map_dict.get(pos) else 0
+        test_pos2.append(new_idx)
+
+    left_pos = test_pos2[index1:index2] if index1 >= 0 else [0] * abs(index1) + test_pos2[0:index2]
+    right_pos = test_pos2[index3:index4] if index4 <= len(test_pos2) else test_pos2[index3:] + [0] * (index4-len(test_pos2))
+    pos = left_pos + [1] + right_pos    # 1:'NN'
+
+    DEFAULT_COLLOCATIONS = ["-2,-2", "-1,-1", "1,1", "2,2", "-2,-1", "-1,1", "1,2", "-3,-1", "-2,1", "-1,2", "1,3"]
+    local_collocations = LocalCollocationsExtractor(tokenIdx, len(entity.split()), len(test_x), test_x)
+    features = features_dict.get(entity)
+    local_collocations_fea = []
+    if features:
+        for i in range(len(local_collocations)):
+            if local_collocations[i] in features[DEFAULT_COLLOCATIONS[i]]:
+                x = list(features[DEFAULT_COLLOCATIONS[i]]).index(local_collocations[i])
+                local_collocations_fea.append(x)
+            else:
+                local_collocations_fea.append(-1)
+    else:
+        local_collocations_fea = [-1]*11
+
+    # print(local_collocations_fea)
+
+    # left_x = test_x[index1:index2] if index1 >= 0 else [0] * abs(index1) + test_x[0:index2]
+    # right_x = test_x[index3:index4] if index4 <= len(test_x) else test_x[index3:] + [0] * (index4 - len(test_x))
+    # surroundding_word = left_x + right_x
+
+    assert len(pos) == 7
+    assert len(local_collocations_fea) == 11
+
+    return pos, local_collocations_fea
 
 
 def createCharDict():

@@ -40,8 +40,7 @@ print(test_y.shape)    # (4528, 639, 5)
 print('create test set done!\n')
 
 
-
-model = load_model('model/Model_f_89.87.h5', custom_objects=create_custom_objects())
+model = load_model('model/Model_3_85.85.h5', custom_objects=create_custom_objects())
 # model = load_model('model/Model_f_73.80.h5', custom_objects=create_custom_objects())
 print('加载模型成功!!')
 

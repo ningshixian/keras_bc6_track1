@@ -7,12 +7,14 @@ import string
 import xml.dom.minidom
 import xml.dom.minidom
 from xml.dom.minidom import parse
-
+from collections import OrderedDict
 import Levenshtein  # pip install python-Levenshtein
 import numpy as np
 from bioservices import UniProt
 from tqdm import tqdm
-from sample.utils.helpers import get_stop_dic
+from sklearn.preprocessing import StandardScaler
+
+from sample.utils.helpers import get_stop_dic, pos_surround
 from sample.utils.helpers import makeEasyTag, Indent, entityNormalize, cos_sim, extract_id_from_res
 
 u = UniProt()
@@ -120,26 +122,33 @@ def readSynVec():
     '''
     读取AutoExtend训练得到的同义词集向量，和停用词词典
     '''
-    synsetsVec_path1 = '/home/administrator/PycharmProjects/embedding/AutoExtend_Gene/synsetsVec.txt'
-    synsetsVec_path2 = '/home/administrator/PycharmProjects/embedding/AutoExtend_Protein/synsetsVec.txt'
-
-    geneId2vec = {}
-    with open(synsetsVec_path1, 'r') as f:
-        for line in f:
-            splited = line.strip().split(' ')
-            geneId = splited[0]
-            vec = np.asarray(splited[1:], dtype=np.float32)
-            geneId2vec[geneId] = vec
-    # print(geneId2vec['31459'])
-
+    # synsetsVec_path1 = '/home/administrator/PycharmProjects/embedding/AutoExtend_Gene/synsetsVec.txt'
+    # synsetsVec_path2 = '/home/administrator/PycharmProjects/embedding/AutoExtend_Protein/synsetsVec.txt'
+    #
+    # geneId2vec = {}
+    # with open(synsetsVec_path1, 'r') as f:
+    #     for line in f:
+    #         splited = line.strip().split(' ')
+    #         geneId = splited[0].lower()
+    #         vec = np.asarray(splited[1:], dtype=np.float32)
+    #         geneId2vec[geneId] = vec
+    # # print(geneId2vec['31459'])
+    #
+    #
+    # proteinId2vec = {}
+    # with open(synsetsVec_path2, 'r') as f:
+    #     for line in f:
+    #         splited = line.strip().split(' ')
+    #         proteinId = splited[0].lower()
+    #         vec = np.asarray(splited[1:], dtype=np.float32)
+    #         proteinId2vec[proteinId] = vec
 
     proteinId2vec = {}
-    with open(synsetsVec_path2, 'r') as f:
+    geneId2vec = {}
+    with open('/home/administrator/PycharmProjects/keras_bc6_track1/sample/synsets.txt', 'r') as f:
         for line in f:
-            splited = line.strip().split(' ')
-            proteinId = splited[0]
-            vec = np.asarray(splited[1:], dtype=np.float32)
-            proteinId2vec[proteinId] = vec
+            id, entities = line.split('\t')
+            proteinId2vec[id] = np.random.uniform(-1, 1, 200)
 
     return geneId2vec, proteinId2vec
 
@@ -216,7 +225,9 @@ def getCSVData(csv_path):
                     row['obj'].startswith('Uniprot:') or \
                     row['obj'].startswith('gene:') or \
                     row['obj'].startswith('protein:'):
+
                 text = row['text'].lower()
+
                 if text not in entity2id:
                     entity2id[text] = []
                 if row['obj'] not in entity2id[text]:
@@ -243,34 +254,32 @@ def getEntityList(s, predLabels):
     '''
     抽取句子中的所有实体
     '''
-    entity_list = []
+    entity_dict = OrderedDict()
     entity = ''
     prex = 0
     for tokenIdx in range(len(s)):
         label = predLabels[tokenIdx]
         word = s[tokenIdx]
-        if label == 1:
+        if label == 1 or label == 0:
             if entity:
-                entity_list.append(entityNormalize(entity, s, tokenIdx - len(entity.split())))
+                position = tokenIdx - len(entity.split())
+                entity_dict[entityNormalize(entity, s, tokenIdx - len(entity.split()))] = position
                 entity = ''
-            prex = label
-            entity = word + ' '
-        elif label == 2:
+            if label==1:
+                entity = str(word) + ' '
+        else:
             if prex == 1 or prex == 2:
                 entity += word + ' '
             else:
                 print('标签错误！跳过')
-            prex = label
-        else:
-            if entity:
-                entity_list.append(entityNormalize(entity, s, tokenIdx - len(entity.split())))
-                entity = ''
-            prex = 0
+        prex = label
     if not entity == '':
-        entity_list.append(entityNormalize(entity, s, tokenIdx - len(entity.split())))
+        position = tokenIdx - len(entity.split())
+        entity_dict[entityNormalize(entity, s, tokenIdx - len(entity.split()))] = position
         entity = ''
-    l2 = list(set(entity_list))  # 去除相同元素
-    entities = sorted(l2, key=entity_list.index)  # 不改变原list顺序
+
+    # l2 = list(set(entity_list))  # 去除相同元素
+    # entities = sorted(l2, key=entity_list.index)  # 不改变原list顺序
 
     # # 多个词组成的实体中，单个组成词也可能是实体
     # temp_entities = entities.copy()     # 字典的直接赋值和copy的区别（浅拷贝引用，深拷贝）
@@ -281,7 +290,7 @@ def getEntityList(s, predLabels):
     #             if e in entity2id and e not in entities:
     #                 entities.append(e)
 
-    return entities
+    return entity_dict
 
 
 def searchEntityId(s, predLabels, entity_tag_consisteny, entity2id):
@@ -292,12 +301,12 @@ def searchEntityId(s, predLabels, entity_tag_consisteny, entity2id):
     然后是知识库API匹配
     最后是模糊匹配
     '''
-    # entities = getEntityList(s, predLabels, entity_tag_consisteny)
-    entities = entity_tag_consisteny
-    entities_new = entities
+    entities_dict = getEntityList(s, predLabels)
+    # entities = entity_tag_consisteny
+    entities_new = entities_dict
 
     id_list = {}
-    for entity in entities:
+    for entity in entities_dict:
 
         temp = entity
         for char in string.punctuation:
@@ -321,12 +330,13 @@ def searchEntityId(s, predLabels, entity_tag_consisteny, entity2id):
         if res_reviewed==400:
             print('请求无效\n')
             print(entity)   # ab′)2
-            entities_new.remove(entity)
+            entities_new.pop(entity)
+            # entities_new.remove(entity)
             continue
         if res_reviewed:  # 若是有返回结果
             Ids = extract_id_from_res(res_reviewed)
-            id_list[entity] = ['Uniprot:' + Ids[0]]  # 取第一个结果作为ID
-            entity2id[entity.lower()] = ['Uniprot:' + Ids[0]]  # 将未登录实体添加到实体ID词典中
+            id_list[entity] = ['Uniprot:' + Ids[i] for i in range(len(Ids))]  # 取第一个结果作为ID
+            entity2id[entity.lower()] = ['Uniprot:' + Ids[i] for i in range(len(Ids))]  # 将未登录实体添加到实体ID词典中
             continue
 
         # 数据库API查询1-unreviewed
@@ -334,12 +344,13 @@ def searchEntityId(s, predLabels, entity_tag_consisteny, entity2id):
         if unres_reviewed==400:
             print('请求无效\n')
             print(entity)
-            entities_new.remove(entity)
+            entities_new.pop(entity)
+            # entities_new.remove(entity)
             continue
         if unres_reviewed:  # 若是有返回结果
             Ids = extract_id_from_res(unres_reviewed)
-            id_list[entity] = ['Uniprot:' + Ids[0]]  # 取第一个结果作为ID
-            entity2id[entity.lower()] = ['Uniprot:' + Ids[0]]  # 将未登录实体添加到实体ID词典中
+            id_list[entity] = ['Uniprot:' + Ids[i] for i in range(len(Ids))]  # 取第一个结果作为ID
+            entity2id[entity.lower()] = ['Uniprot:' + Ids[i] for i in range(len(Ids))]  # 将未登录实体添加到实体ID词典中
             continue
 
         # 数据库API查询2-reviewed
@@ -347,12 +358,13 @@ def searchEntityId(s, predLabels, entity_tag_consisteny, entity2id):
         if res_reviewed==400:
             print('请求无效\n')
             print(entity)
-            entities_new.remove(entity)
+            entities_new.pop(entity)
+            # entities_new.remove(entity)
             continue
         if res_reviewed:
             Ids = extract_id_from_res(res_reviewed)
-            id_list[entity] = ['Uniprot:' + Ids[0]]  # 取第一个结果作为ID
-            entity2id[entity.lower()] = ['Uniprot:' + Ids[0]]  # 将未登录实体添加到实体ID词典中
+            id_list[entity] = ['Uniprot:' + Ids[i] for i in range(len(Ids))]  # 取第一个结果作为ID
+            entity2id[entity.lower()] = ['Uniprot:' + Ids[i] for i in range(len(Ids))]  # 将未登录实体添加到实体ID词典中
             continue
 
         # 数据库API查询2-unreviewed
@@ -360,12 +372,13 @@ def searchEntityId(s, predLabels, entity_tag_consisteny, entity2id):
         if unres_reviewed==400:
             print('请求无效\n')
             print(entity)
-            entities_new.remove(entity)
+            entities_new.pop(entity)
+            # entities_new.remove(entity)
             continue
-        if res_reviewed:
+        if unres_reviewed:
             Ids = extract_id_from_res(res_reviewed)
-            id_list[entity] = ['Uniprot:' + Ids[0]]  # 取第一个结果作为ID
-            entity2id[entity.lower()] = ['Uniprot:' + Ids[0]]  # 将未登录实体添加到实体ID词典中
+            id_list[entity] = ['Uniprot:' + Ids[i] for i in range(len(Ids))]  # 取第一个结果作为ID
+            entity2id[entity.lower()] = ['Uniprot:' + Ids[i] for i in range(len(Ids))]  # 将未登录实体添加到实体ID词典中
             continue
 
         # 模糊匹配--计算 Jaro–Winkler 距离
@@ -382,6 +395,32 @@ def searchEntityId(s, predLabels, entity_tag_consisteny, entity2id):
     # if entity == 'Ubc9':
     #     print(entity2id.get(entity))
     return entities_new, id_list
+
+
+def entity_disambiguation(entity_id, geneId2vec, proteinId2vec, zhixin):
+    score = 0.7   # cos相似度的阙值
+
+    for id in entity_id:    # 计算质心与实体每个歧义（同义词集）的cos相似度
+        id = id.split('|')[0] if '|' in id else id
+        entityType = id.split(':')[0]
+        splited_id = id.split(':')[1]
+        if entityType.startswith('NCBI') or entityType.startswith('gene'):
+            synset_vec = geneId2vec.get(splited_id)
+        elif entityType.startswith('Uniprot') or entityType.startswith('protein'):
+            synset_vec = proteinId2vec.get(splited_id)
+        else:
+            print('类型错误!')
+            continue
+        if synset_vec is not None:
+            # print('{}对应的同义词集向量 ok'.format(id))
+            cos_sim_score = cos_sim(zhixin, synset_vec)
+            if cos_sim_score > score:
+                score = cos_sim_score
+                type_id = id
+        else:
+            # print('{}对应的同义词集向量 failed'.format(id))
+            pass
+    return type_id
 
 
 def writeOutputToFile(path, predLabels, maxlen):
@@ -421,12 +460,22 @@ def writeOutputToFile(path, predLabels, maxlen):
 
     idx_line2pmc_id, pmc_id2entity_list = post_process(sen_list, BioC_path, maxlen, predLabels)
 
+
     entity2id = getCSVData(dic_path)    # 读取实体ID查找词典
     # geneId2vec, proteinId2vec = readSynVec() # 读取AutoExtend训练获得的同义词集向量
     # stop_word = get_stop_dic()
     # word2vec = get_w2v()    # 读取词向量词典
 
-
+    with open('/home/administrator/PycharmProjects/keras_bc6_track1/sample/ned/clf.pkl', 'rb') as f:
+        svm = pkl.load(f)
+    with open(r'/home/administrator/PycharmProjects/keras_bc6_track1/sample/data/test.pkl', "rb") as f:
+        test_x, test_y, test_char, test_cap, test_pos, test_chunk = pkl.load(f)
+    synId2entity = {}
+    with open('/home/administrator/PycharmProjects/keras_bc6_track1/sample/ned/synId2entity.txt') as f:
+        for line in f:
+            s1, s2 = line.split('\t')
+            entities = s2.strip('\n').split('::,')
+            synId2entity[s1] = entities
 
     files = os.listdir(BioC_path)
     files.sort()
@@ -510,6 +559,18 @@ def writeOutputToFile(path, predLabels, maxlen):
                     # time_diff = time.time() - start_time
                     # print("%.2f sec" % time_diff)
 
+                    for entity, tokenIdx in entities.items():
+                        entity_id = entity_ids[entity]
+                        for id in entity_id:
+                            if id.startswith('gene:') or id.startswith('protein:'):
+                                continue
+                            id = id.split('|')[0] if '|' in id else id
+                            id = id.split(':')[1]
+                            if id not in synId2entity:
+                                synId2entity[id] = []
+                            if entity not in synId2entity[id]:
+                                synId2entity[id].append(entity)
+
                     ''' 
                     多ID的实体需要进行实体消岐，AutoExtend 实体消歧方法：
                         1、计算实体所在句子的质心
@@ -517,41 +578,52 @@ def writeOutputToFile(path, predLabels, maxlen):
                         3、取最大得分作为ID
                     '''
                     annotation_id = 0
-                    for entity in entities:
+                    for entity, tokenIdx in entities.items():
                         entity_id = entity_ids[entity]
                         type_id = entity_id[0]
                         if len(entity_id)>1:
                             if entity not in words_with_multiId:
                                 words_with_multiId.append(entity)
-                                pass
-                            # score = 0.7   # cos相似度的阙值
+
                             # zhixin = np.zeros(200)  # 计算质心向量
                             # for word in sen_list[idx_line]:
-                            #     if word not in stop_word and not word==entity:
+                            #     if word not in stop_word and word not in string.punctuation + '-':
                             #         vector = word2vec.get(word.lower())
                             #         if vector is None:
                             #             vector = np.random.uniform(-0.1, 0.1, 200)
                             #         zhixin += vector
-                            # for id in entity_id:    # 计算质心与实体每个歧义（同义词集）的cos相似度
+                            # # type_id = entity_disambiguation(entity_id, geneId2vec, proteinId2vec, zhixin)
+                            #
+                            # id_list = []
+                            # for id in entity_id:
+                            #     pos, surroundding_word = pos_surround(test_x[idx_line], test_pos[idx_line], tokenIdx, entity)
+                            #     # pos, surround = get_x_y(idx_line, tokenIdx, entity)
                             #     id = id.split('|')[0] if '|' in id else id
-                            #     entityType = id.split(':')[0]
-                            #     splited_id = id.split(':')[1]
-                            #     if entityType.startswith('NCBI') or entityType.startswith('gene'):
-                            #         synset_vec = geneId2vec.get(splited_id)
-                            #     elif entityType.startswith('Uniprot') or entityType.startswith('protein'):
-                            #         synset_vec = proteinId2vec.get(splited_id)
+                            #     id = id.split(':')[1]
+                            #     if id in geneId2vec:
+                            #         syn_vec = np.round(geneId2vec.get(id),6)
+                            #     elif id in proteinId2vec:
+                            #         syn_vec = np.round(proteinId2vec.get(id),6)
                             #     else:
-                            #         print('类型错误!')
-                            #         continue
-                            #     if synset_vec is not None:
-                            #         # print('{}对应的同义词集向量 ok'.format(id))
-                            #         cos_sim_score = cos_sim(zhixin, synset_vec)
-                            #         if cos_sim_score > score:
-                            #             score = cos_sim_score
-                            #             type_id = id
-                            #     else:
-                            #         # print('{}对应的同义词集向量 failed'.format(id))
-                            #         pass
+                            #         print('未找到对应同义词集向量，随机初始化')
+                            #         syn_vec = np.round(np.random.uniform(-0.1, 0.1, 200),6)
+                            #     s_profuction = list(np.multiply(zhixin, syn_vec))
+                            #
+                            #     id_list.append(pos + s_profuction)
+                            #     # id_list.append(pos + surroundding_word + s_profuction)
+                            # id_list = np.array(id_list)
+                            # # print(id_list.shape)  # (?, 212)
+                            # scaler = StandardScaler()
+                            # scaler.fit(id_list)   # Expected 2D array
+                            # id_list = scaler.transform(id_list)
+                            # cls = list(svm.predict_proba(id_list))
+                            # max_proba = -1
+                            # for i in range(len(cls)):
+                            #     proba = cls[i][1]
+                            #     if proba > max_proba:
+                            #         max_proba = proba
+                            #         type_id = entity_id[i]
+
                         elif len(entity_id)==1:  # 说明实体对应了唯一ID
                             type_id = entity_id[0]
                         else:     # 未找到对应的ID
@@ -566,7 +638,7 @@ def writeOutputToFile(path, predLabels, maxlen):
                         else:
                             print(entity)
                             print(text)
-                            entity_byte = entity.encode('utf-8')
+                            entity_byte = entity.replace(' ', '').replace('.', '. ').encode('utf-8')
                         offset = -1
                         while 1:
                             offset = text_byte.find(entity_byte, offset+1)   # 二进制编码查找offset
@@ -623,3 +695,8 @@ def writeOutputToFile(path, predLabels, maxlen):
     print('{}个词未找到对应的ID'.format(num_entity_no_id))    # 0
     print('{}个词有歧义'.format(len(words_with_multiId)))    # 701
     print('完结撒花')
+
+    with open('synsets.txt', "w") as f:
+        for key, value in synId2entity.items():
+            f.write('{}\t{}'.format(key, '::,'.join(value)))
+            f.write('\n')

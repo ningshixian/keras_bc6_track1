@@ -6,7 +6,7 @@ from tqdm import tqdm
 import word2vec
 from keras.preprocessing.text import Tokenizer
 from sample.utils.helpers import wordNormalize, createCharDict
-import string
+from sample.utils.helpers import get_stop_dic
 
 
 corpusPath = r'data'
@@ -15,7 +15,7 @@ embeddingFile = r'wikipedia-pubmed-and-PMC-w2v.bin'
 label2idx = {'O': 0, 'B': 1, 'I': 2}
 # label2idx = {'O': 0, 'B-GENE': 1, 'I-GENE': 2, 'B-PROTEIN': 3, 'I-PROTEIN': 4}
 
-maxlen_s = 382  # 句子截断长度
+maxlen_s = 417  # 句子截断长度
 maxlen_w = 34  # 单词截断长度
 word_size = 200  # 词向量维度
 MAX_NB_WORDS = None  # 不设置最大词数
@@ -85,8 +85,8 @@ def produce_matrix(word_index, embedFile):
             miss_num=miss_num+1
             vec = embeddings_index["UNKNOWN_TOKEN"] # 未登录词均统一表示
         embedding_matrix[i] = vec
-    print('missnum',miss_num)    # 9899
-    print('num',num)    # 32604
+    print('missnum',miss_num)    # 8974
+    print('num',num)    # 26430
     return embedding_matrix
 
 
@@ -219,16 +219,23 @@ def getData(trainCorpus, sen_len_list):
                     labels_sen.append(labelIdx)
 
     print('chars not exits in the char2idx:{}'.format(chars_not_exit))
-    print('longest char is', word_len_list[-5:])  # [21, 23, 34, 48, 52]
-    print('longest word is', sen_len_list[-5:])  # [330, 331, 382, 576, 689]
-    print('len(pos2idx):{}'.format(len(pos2idx)))     # 51
-    print('len(chunk2idx):{}'.format(len(chunk2idx)))     # 20
+    print('longest char is', word_len_list[-5:])  # [17, 21, 23, 34, 48]
+    print('longest word is', sen_len_list[-5:])  # [402, 417, 646, 697, 728]
+    print('len(pos2idx):{}'.format(len(pos2idx)))     # 52
+    print('len(chunk2idx):{}'.format(len(chunk2idx)))     # 22
 
     return datasDic, charsDic, capDic, posDic, chunkDic, labelsDic, pos2idx, chunk2idx
 
 
 def main():
+
+    stop_word_dic = get_stop_dic()
     datasDic, charsDic, capDic, posDic, chunkDic, labelsDic, pos2idx, chunk2idx = getData(corpusPath, sen_len_list)
+
+    # with open('pos2idx.txt', 'w') as f:
+    #     for key, value in pos2idx.items():
+    #         if key:
+    #             f.write('{} {}\n'.format(key, value))
 
     # # 将验证集并入训练集(无关)
     # for item in [datasDic, charsDic, capDic, posDic, chunkDic, labelsDic]:
@@ -248,7 +255,7 @@ def main():
 
     word_index = tokenizer.word_index   # 将词（字符串）映射到索引（整型）的字典
     word_counts = tokenizer.word_counts # 在训练时将词（字符串）映射到其出现次数的字典
-    print('Found %s unique tokens.\n' % len(word_index))  # 42503
+    print('Found %s unique tokens.' % len(word_index))  # 35404
 
     # 将训练数据序列化
     datasDic['train'] = tokenizer.texts_to_sequences(datasDic['train'])
