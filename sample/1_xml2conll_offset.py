@@ -3,9 +3,9 @@
 '''
      1、从 .XML 原始文件中解析获取数据和标签文件
      2、将570篇 document 分为训练455篇 document 和验证115篇 document
-     3、通过offset，将句子中所有的实体用一对标签 <B*/>entity</I*> 进行标记
+     3、通过offset，将句子中所有的实体用一对标签 <B^>entity<^I> 进行标记
      4、利用GENIA tagger工具对标记过的语料进行预处理
-     5、根据预处理语料的标记 <B*/></I*> 获取BIO标签
+     5、根据预处理语料的标记 <B^><^I> 获取BIO标签
 '''
 from xml.dom.minidom import parse
 import re
@@ -44,6 +44,7 @@ def readXML(files, BioC_PATH):
     num_file = 0
     passages_list = []
     raw_passages_list = []
+    id_list_list = []
     for file in files:  #遍历文件夹
         if not os.path.isdir(file):  #判断是否是文件夹，不是文件夹才打开
             f = BioC_PATH + "/" + file
@@ -58,6 +59,7 @@ def readXML(files, BioC_PATH):
             documents = collection.getElementsByTagName("document")
 
             for document in documents:
+                doc_id = document.getElementsByTagName("id")[0].childNodes[0].data
                 passages = document.getElementsByTagName("passage")
                 # print("*****passage*****")
                 for passage in passages:
@@ -65,8 +67,8 @@ def readXML(files, BioC_PATH):
                     sentence = text.childNodes[0].data.encode("utf-8")  # byte
                     sen_new = sentence.decode("utf-8")  # str
                     raw_passages_list.append(sen_new)
-                    entity_list = []
                     id_list = []
+                    id_list_ = []   # 筛选后仅保留gene or protein的ID
                     offset_list = []
                     length_list = []
                     num_passage += 1
@@ -95,10 +97,9 @@ def readXML(files, BioC_PATH):
                     #     print(offset_list)
                     #     print(id_list)
 
-                    # 针对实体嵌套的情况（即两个实体的offset相同，而长度不同）
-                    # 保留其中长的实体的 offset
-                    idx = []
-                    idx_remove = []
+                    # 针对实体嵌套的情况（即两个实体的offset相同，而长度不同，保留长的哪个）
+                    offset_temp = []
+                    offset_remove = []
                     for i in range(len(offset_list)):
                         offset1 = offset_list[i]
                         if i+1<len(offset_list):
@@ -106,73 +107,82 @@ def readXML(files, BioC_PATH):
                         else:
                             continue
                         if offset1==offset2:
-                            idx.append([i, i+1])
+                            offset_temp.append([i, i+1])
                     while 1:
-                        if idx:
-                            idx1 = idx[0][0]
-                            idx2 = idx[0][1]
+                        if offset_temp:
+                            idx1 = offset_temp[0][0]
+                            idx2 = offset_temp[0][1]
                             idx3 = idx2 if length_list[idx1]>length_list[idx2] else idx1
-                            idx_remove.append(idx3)
-                            idx = idx[1:]
+                            offset_remove.append(idx3)
+                            offset_temp = offset_temp[1:]
                         else:
                             break
-                    if idx_remove:
-                        print(num_passage)
-                        print(offset_list)
-                        # print(id_list)
-                        idx_remove = sorted(idx_remove, reverse=True)
-                        for idxidx in idx_remove:
+
+                    # 丢弃list中的短实体的offset/length/id
+                    if offset_remove:
+                        print('{}: {}'.format(doc_id, offset_list))
+                        offset_remove = sorted(offset_remove, reverse=True)
+                        for idxidx in offset_remove:
                             offset_list.pop(idxidx)
                             length_list.pop(idxidx)
                             id_list.pop(idxidx)
-                        print(offset_list)
-                        # print(id_list)
+                        print('{}: {}'.format(doc_id, offset_list))
 
-                    # 将句子中的所有实体分别用一对标签 <B*/>entity</I*> 进行标记
+                    # 包裹筛选后的所有实体
+                    # 分别用一对标签 <B^>entity<^I> 进行标记
                     tmp = sentence
                     for i in range(len(offset_list)):
                         offset = offset_list[i]
                         length = length_list[i]
                         ID = id_list[i]
+
                         if isinstance(tmp, str):
                             tmp = tmp.encode("utf-8")
                         
-                        # This solution will strip out (ignore) the characters in 
-                        # question returning the string without them. 
-                        left = tmp[:offset].decode("utf-8", errors='ignore')
-                        mid = tmp[offset:offset+length].decode("utf-8", errors='ignore')
-                        right = tmp[offset+length:].decode("utf-8", errors='ignore')
-                        
                         if ID.startswith('NCBI gene:') or ID.startswith('Uniprot:') or \
                             ID.startswith('gene:') or ID.startswith('protein:'):
+                            id_list_.append(ID)
+                            # This solution will strip out (ignore) the characters in
+                            # question returning the string without them.
+                            left = tmp[:offset].decode("utf-8", errors='ignore')
+                            mid = tmp[offset:offset + length].decode("utf-8", errors='ignore')
+                            right = tmp[offset + length:].decode("utf-8", errors='ignore')
+                            # 标记实体
                             tmp = left + ' ' + B_tag + mid + I_tag + ' ' + right
                             tmp = tmp.replace('   ', ' ').replace('  ', ' ')
-                        # elif ID.startswith('Rfam:') or ID.startswith('mRNA:'):
-                        #     tmp = left + ' ' + B_tag + mid + I_tag + ' ' + right
-                        #     tmp = tmp.replace('   ', ' ').replace('  ', ' ')
                         else:
                             # 暂时不考虑其他类别的实体
                             continue
+                    if not id_list_:
+                        id_list_.append('0')
 
                     if isinstance(tmp, bytes):
                         tmp = tmp.decode("utf-8")
                     if num_passage==4628:    # 101
                         print(file)
 
-                    for specific_symbol in ['-', '°C']:
+                    for specific_symbol in "!\"#$%'()*+,-./:;<=>?@[\\]_`{|}~":     # °C ^
                         tmp = tmp.replace(specific_symbol, ' '+specific_symbol+' ')
-                        tmp = tmp.replace('  ', ' ')
+                        tmp = tmp.replace('   ', ' ').replace('  ', ' ')
+
                     passages_list.append(tmp)
+                    id_list_list.append(id_list_)
 
     with codecs.open(train_path + "/" + 'train.txt', 'w', encoding='utf-8') as f:
         for sentence in passages_list:
             f.write(sentence)
+            f.write('\n')
+    with codecs.open(train_path + "/" + 'train_goldenID.txt', 'w', encoding='utf-8') as f:
+        for sentence in id_list_list:
+            f.write('\t'.join(sentence))
             f.write('\n')
     with codecs.open(train_path + "/" + 'train_raw.txt', 'w', encoding='utf-8') as f:
         for sentence in raw_passages_list:
             f.write(sentence)
             f.write('\n')
     passages_list = []
+    del passages_list
+
     print('passage 总数： {}'.format(num_passage)) # 13697
 
 
@@ -200,7 +210,7 @@ def judge(word, label_sen, flag):
 
     '''  
     changable = False
-    if 'B*' in word or 'I*' in word:
+    if B_tag in word or I_tag in word:
         if word==B_tag:
             # 处理 B-[]-I 实体在分词后标签B-和-I被分离的情况
             flag=2
@@ -272,7 +282,7 @@ def getLabel(dataPath):
                 words = line.split('\t')[0]
                 word, flag = judge(words, label_sen, flag)
                 if not word:
-                    # 跳过单纯的标签 B*/ 和 /I*
+                    # 跳过单纯的标签 B^ 和 ^I
                     continue
                 sent.append(word + '\t' + '\t'.join(line.split('\t')[2:-1]) + '\t' + label_sen[-1] + '\n')
             else:
@@ -290,15 +300,15 @@ if __name__ == '__main__':
 
     # entityTypes = ['**', '*']
     # star2Type = {'*':'GENE', '**':'PROTEIN'}
-    B_tag = 'B*/'
-    I_tag = '/I*'
+    B_tag = 'B^'
+    I_tag = '^I'
 
     train_path = r'/Users/ningshixian/Desktop/BC6_Track1/BioIDtraining_2/train'
     BioC_PATH = r'/Users/ningshixian/Desktop/BC6_Track1/BioIDtraining_2/caption_bioc'
     files = os.listdir(BioC_PATH)  # 得到文件夹下的所有文件名称
     files.sort()
     
-    readXML(files, BioC_PATH)
+    # readXML(files, BioC_PATH)
 
     '''
     % cd geniatagger-3.0.2
@@ -306,6 +316,7 @@ if __name__ == '__main__':
     > /Users/ningshixian/Desktop/'BC6_Track1'/BioIDtraining_2/train/train.genia.txt
     '''
 
-    # getLabel(train_path)
+    getLabel(train_path)
 
     print("完结撒花====")
+

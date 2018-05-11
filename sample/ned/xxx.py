@@ -161,3 +161,5 @@ import string
 #         f.write('\n')
 
 
+a = ['a']
+print(a[1:])
