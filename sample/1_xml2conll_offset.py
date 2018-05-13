@@ -71,6 +71,7 @@ def readXML(files, BioC_PATH):
                     id_list_ = []   # 筛选后仅保留gene or protein的ID
                     offset_list = []
                     length_list = []
+                    entity_list = []
                     num_passage += 1
                     annotations = passage.getElementsByTagName('annotation')
                     for annotation in annotations:
@@ -85,6 +86,7 @@ def readXML(files, BioC_PATH):
                         id_list.append(ID)
                         offset_list.append(offset)
                         length_list.append(length)
+                        entity_list.append(entity)
                     
                     # 根据offset的大小对数组进行逆序排序
                     offset_sort = sorted(enumerate(offset_list), key=lambda x:x[1], reverse=True)
@@ -93,21 +95,26 @@ def readXML(files, BioC_PATH):
                     length_list = [length_list[idx] for idx in offset_idx]
                     id_list = [id_list[idx] for idx in offset_idx]
 
-                    # if num_passage==111:
+                    # if num_passage==750:
                     #     print(offset_list)
                     #     print(id_list)
+                    #     print(entity_list)
 
-                    # 针对实体嵌套的情况（即两个实体的offset相同，而长度不同，保留长的哪个）
+                    # 针对实体嵌套的情况（即两个实体的start/end相同，而长度不同，保留长的哪个）
                     offset_temp = []
                     offset_remove = []
                     for i in range(len(offset_list)):
                         offset1 = offset_list[i]
+                        length1 = length_list[i]
                         if i+1<len(offset_list):
                             offset2 = offset_list[i+1]
+                            length2 = length_list[i+1]
                         else:
                             continue
                         if offset1==offset2:
                             offset_temp.append([i, i+1])
+                        elif offset1+length1==offset2+length2:
+                            offset_temp.append([i, i + 1])
                     while 1:
                         if offset_temp:
                             idx1 = offset_temp[0][0]
@@ -154,16 +161,20 @@ def readXML(files, BioC_PATH):
                             # 暂时不考虑其他类别的实体
                             continue
                     if not id_list_:
-                        id_list_.append('0')
+                        id_list_.append('')
 
                     if isinstance(tmp, bytes):
                         tmp = tmp.decode("utf-8")
                     if num_passage==4628:    # 101
                         print(file)
 
+                    tmp = ' '.join(tmp.split())
                     for specific_symbol in "!\"#$%'()*+,-./:;<=>?@[\\]_`{|}~":     # °C ^
                         tmp = tmp.replace(specific_symbol, ' '+specific_symbol+' ')
-                        tmp = tmp.replace('   ', ' ').replace('  ', ' ')
+                    for space in ['   ', '  ']:
+                        tmp = tmp.replace(space, ' ')
+                    if '' in tmp.split():
+                        print('!!!!!!!!!!!!!!!!!\n')
 
                     passages_list.append(tmp)
                     id_list_list.append(id_list_)
@@ -295,13 +306,29 @@ def getLabel(dataPath):
         for line in sent:
             f.write(line)
 
+    # 单独的BIO标签文件
+    from tqdm import tqdm
+    label_sen = []
+    ff = open(dataPath + '/' +'label.txt', 'w')
+    with open(dataPath + '/' +'train.out.txt') as f:
+        lines = f.readlines()
+    for line in tqdm(lines):
+        if line=='\n':
+            ff.write(''.join(label_sen))
+            ff.write('\n')
+            label_sen = []
+        else:
+            label = line.split('\t')[-1]
+            label_sen.append(label.strip('\n'))
+    ff.close()
+
 
 if __name__ == '__main__':
 
     # entityTypes = ['**', '*']
     # star2Type = {'*':'GENE', '**':'PROTEIN'}
-    B_tag = 'B^'
-    I_tag = '^I'
+    B_tag = 'B‐^'   # '‐' != '-'
+    I_tag = '^‐I'
 
     train_path = r'/Users/ningshixian/Desktop/BC6_Track1/BioIDtraining_2/train'
     BioC_PATH = r'/Users/ningshixian/Desktop/BC6_Track1/BioIDtraining_2/caption_bioc'
@@ -319,4 +346,22 @@ if __name__ == '__main__':
     getLabel(train_path)
 
     print("完结撒花====")
+
+
+    counts1 = []
+    with codecs.open(train_path + "/" + 'train_goldenID.txt', encoding='utf-8') as f:
+        lines1 = f.readlines()
+    with open(train_path + '/' + 'label.txt') as f:
+        lines2 = f.readlines()
+
+    for i in range(len(lines1)):
+        sentence1 = lines1[1]
+        sentence2 = lines2[1]
+        sentence1 = sentence1.strip('\n')
+        sentence2 = sentence2.strip('\n')
+        count1 = len(sentence1.split('\t'))
+        count2 = sentence2.count('B')
+        if not count1 == count2:
+            print(sentence1)
+            print(sentence2)
 

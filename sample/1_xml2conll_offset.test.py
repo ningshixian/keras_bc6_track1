@@ -97,16 +97,20 @@ def readXML(files, BioC_PATH):
                     #     print(offset_list)
                     #     print(id_list)
 
-                    # 针对实体嵌套的情况（即两个实体的offset相同，而长度不同，保留长的哪个）
+                    # 针对实体嵌套的情况（即两个实体的start/end相同，而长度不同，保留长的哪个）
                     offset_temp = []
                     offset_remove = []
                     for i in range(len(offset_list)):
                         offset1 = offset_list[i]
+                        length1 = length_list[i]
                         if i + 1 < len(offset_list):
                             offset2 = offset_list[i + 1]
+                            length2 = length_list[i + 1]
                         else:
                             continue
                         if offset1 == offset2:
+                            offset_temp.append([i, i + 1])
+                        elif offset1 + length1 == offset2 + length2:
                             offset_temp.append([i, i + 1])
                     while 1:
                         if offset_temp:
@@ -154,16 +158,20 @@ def readXML(files, BioC_PATH):
                             # 暂时不考虑其他类别的实体
                             continue
                     if not id_list_:
-                        id_list_.append('0')
+                        id_list_.append('')
 
                     if isinstance(tmp, bytes):
                         tmp = tmp.decode("utf-8")
                     if num_passage == 4628:  # 101
                         print(file)
 
+                    tmp = ' '.join(tmp.split())
                     for specific_symbol in "!\"#$%'()*+,-./:;<=>?@[\\]_`{|}~":  # °C ^
                         tmp = tmp.replace(specific_symbol, ' ' + specific_symbol + ' ')
-                        tmp = tmp.replace('   ', ' ').replace('  ', ' ')
+                    for space in ['   ', '  ']:
+                        tmp = tmp.replace(space, ' ')
+                    if '' in tmp.split():
+                        print('!!!!!!!!!!!!!!!!!\n')
 
                     passages_list.append(tmp)
                     id_list_list.append(id_list_)
@@ -209,17 +217,17 @@ def judge(word, label_sen, flag):
         GENIA tagger 分词后变为 B- [ 14C ] -I。标记被分离了
     解决3：在获取BIO标签时进行处理
 
-    '''  
+    '''
     changable = False
-    if 'B*' in word or 'I*' in word:
-        if word==B_tag:
+    if B_tag in word or I_tag in word:
+        if word == B_tag:
             # 处理 B-[]-I 实体在分词后标签B-和-I被分离的情况
-            flag=2
+            flag = 2
             changable = 1
             print('B_tag')
-        elif word==I_tag:
+        elif word == I_tag:
             # 处理 B-[]-I 实体在分词后标签B-和-I被分离的情况
-            flag=0
+            flag = 0
             changable = 1
             print('I_tag')
         if not changable:
@@ -227,44 +235,44 @@ def judge(word, label_sen, flag):
                 if word.count(B_tag) > word.count(I_tag):
                     # 嵌套实体①
                     label_sen.append('B')
-                    flag=1
+                    flag = 1
                     changable = 1
                 elif word.count(B_tag) < word.count(I_tag):  # 实体结尾
                     # 嵌套实体②
                     label_sen.append('I')
-                    flag=0
+                    flag = 0
                     changable = 1
-                else: # 单个实体
+                else:  # 单个实体
                     if flag:
                         label_sen.append('I')
-                        flag=1
+                        flag = 1
                     else:
                         label_sen.append('B')
-                        flag=0
+                        flag = 0
                     changable = 1
             elif I_tag in word:
                 # 对应两种结尾情况：①/I-XXX ②/I-XXX/I-XXX
                 label_sen.append('I')
-                flag=0
+                flag = 0
                 changable = 1
             else:
                 # 非实体词
                 pass
-            
+
     if changable:
         word = word.replace(B_tag, '').replace(I_tag, '')
     else:
         if flag:
-            if flag==2: # 针对‘[entity]’这种实体形式
+            if flag == 2:  # 针对‘[entity]’这种实体形式
                 # print(word, flag)
                 label_sen.append('B')
-                flag=1
-            else:   # flag=1
+                flag = 1
+            else:  # flag=1
                 label_sen.append('I')
-                flag=1
+                flag = 1
         else:
             label_sen.append('O')
-            flag=0
+            flag = 0
 
     return word, flag
 
@@ -296,13 +304,29 @@ def getLabel(dataPath):
         for line in sent:
             f.write(line)
 
+    # 单独的BIO标签文件
+    from tqdm import tqdm
+    label_sen = []
+    ff = open(dataPath + '/' +'label.txt', 'w')
+    with open(dataPath + '/' +'test.out.txt') as f:
+        lines = f.readlines()
+    for line in tqdm(lines):
+        if line=='\n':
+            ff.write(''.join(label_sen))
+            ff.write('\n')
+            label_sen = []
+        else:
+            label = line.split('\t')[-1]
+            label_sen.append(label.strip('\n'))
+    ff.close()
+
 
 if __name__ == '__main__':
 
     # entityTypes = ['**', '*']
     # star2Type = {'*':'GENE', '**':'PROTEIN'}
-    B_tag = 'B^'
-    I_tag = '^I'
+    B_tag = 'B‐^'
+    I_tag = '^‐I'
 
     test_path = r'/Users/ningshixian/Desktop/BC6_Track1/test_corpus_20170804/test'
     BioC_PATH = r'/Users/ningshixian/Desktop/BC6_Track1/test_corpus_20170804/caption_bioc'
@@ -321,3 +345,20 @@ if __name__ == '__main__':
     getLabel(test_path)
 
     print("完结撒花====")
+
+    counts1 = []
+    with codecs.open(test_path + "/" + 'test_goldenID.txt', encoding='utf-8') as f:
+        lines1 = f.readlines()
+    with open(test_path + '/' + 'label.txt') as f:
+        lines2 = f.readlines()
+
+    for i in range(len(lines1)):
+        sentence1 = lines1[1]
+        sentence2 = lines2[1]
+        sentence1 = sentence1.strip('\n')
+        sentence2 = sentence2.strip('\n')
+        count1 = len(sentence1.split('\t'))
+        count2 = sentence2.count('B')
+        if not count1 == count2:
+            print(sentence1)
+            print(sentence2)
