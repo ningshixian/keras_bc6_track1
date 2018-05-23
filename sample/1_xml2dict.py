@@ -1,60 +1,24 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 '''
-    BioC(XML)格式ConNLL格式
-    从 .XML 原始document文件中解析获取训练数据和标签文件
-
-    1、通过offset，将句子中所有的实体用一对标签 <B^>entity<^I> 进行标记
-       注意：offset 是在二进制编码下索引的，要对句子进行编码 s=s.encode(‘utf-8’)
-    2、对于嵌套实体（offset 相同），仅保留其中长度较长的实体
-    3、对句子中的标点符号  !\”#$%‘()*+,-./:;<=>?@[\\]_`{|}~ 进行切分；^ 保留用于实体标签！！
-    4、利用GENIA tagger工具对标记过的语料进行分词和词性标注
-    5、根据预处理语料的标记 <B^><^I> 获取BIO标签
+    从 trian.out.txt 抽取字典特征
+    python2.7
 '''
 from xml.dom.minidom import parse
 import re
 import codecs
 import os
 from tqdm import tqdm
-
-# def entityReplace(splited_sen, splited_tagged, i, item, sen_length):
-#     '''
-#     将句子中的实体用<></>标签包裹
-#     '''
-#     # 1、先处理嵌套实体的问题
-#     if B_tag in splited_sen[i] and I_tag in splited_sen[i]:
-#         k1 = splited_sen[i].index(B_tag)+4
-#         k2 = splited_sen[i].index(I_tag)
-#         splited_sen[i] = splited_sen[i][:k1] + item + splited_sen[i][k2:]
-#     elif B_tag in splited_sen[i]:
-#         k1 = splited_sen[i].index(B_tag)+4
-#         splited_sen[i] = splited_sen[i][:k1] + item
-#     elif I_tag in splited_sen[i]:
-#         k2 = splited_sen[i].index(I_tag)
-#         splited_sen[i] = item + splited_sen[i][k2:]
-#     else:
-#         splited_sen[i] = item
-#     # 2、对于嵌入在单词内部的实体，包裹标签后 需要重新调整句子的长度
-#     gap = i+1
-#     diff = len(splited_tagged) - sen_length    # 标记后的句子与原始句子的长度差
-#     while diff:
-#         splited_sen.insert(gap, splited_tagged[gap])
-#         diff-=1
-#         gap+=1
-
-
-def xx(entity):
-    if entity.startswith('NCBI gene:') or entity.startswith('Uniprot:') or \
-    entity.startswith('gene:') or entity.startswith('protein:'):
-        return True
-    else:
-        return False
+import esm
 
 
 def readKB():
+    '''
+    读取蛋白质/基因字典
+    '''
     word_list=[]
-    pro_path = '/home/administrator/PycharmProjects/embedding/uniprot_sprot.dat2'
-    gene_path = '/home/administrator/PycharmProjects/embedding/gene_info2'
+    pro_path = '/Users/ningshixian/PycharmProjects/keras_bc6_track1/sample/data/uniprot_sprot.dat2'
+    gene_path = '/Users/ningshixian/PycharmProjects/keras_bc6_track1/sample/data/gene_info2'
 
     with open(pro_path) as f:
         lines = f.readlines()
@@ -64,7 +28,7 @@ def readKB():
         e_list = splited[1].replace('\n', '').split(';')
         # word_list.extend(e_list)
         for e in e_list:
-            e = e.strip()
+            e = e.strip().lower()
             if len(e)>1 and not e.isdigit():
                 word_list.append(e)
 
@@ -76,7 +40,7 @@ def readKB():
         e_list = splited[1].replace('\n', '').split(';')
         # word_list.extend(e_list)
         for e in e_list:
-            e = e.strip()
+            e = e.strip().lower()
             if len(e)>2 and not e.isdigit():
                 word_list.append(e)
 
@@ -85,15 +49,14 @@ def readKB():
 
 def max_match_cut(sentence, dic):
     """
-    将字典中的所有词与输入句子进行完全匹配，若匹配，则分配"IBES"；否则，分配"O"
+    最大匹配，标记实体
     :param sentence:输入句子
-    :param dic:蛋白质词典
+    :param dic:词典
     :return:字典特征
     """
-    sentence = sentence     # .decode("utf-8", errors='ignore')
     tmp = sentence
     splited_s = sentence.split()
-    result = dic.query(sentence)
+    result = dic.query(sentence.lower())
     result = list(set(result))
     # # 先按照实体长度排序
     # en_list = [len(r[1]) for r in result]
@@ -101,13 +64,16 @@ def max_match_cut(sentence, dic):
     # en_idx = [x[0] for x in en_sorted]  # 数组下标
     # result = [result[idx] for idx in en_idx]
 
-    # 再按照offset排序
+    # 按照offset排序
     offset_list = [r[0][0] for r in result]
     offset_sorted = sorted(enumerate(offset_list), key=lambda x:x[1], reverse=True)
-    offset_idx = [x[0] for x in offset_sorted]  # 数组下标
-    result = [result[idx] for idx in offset_idx]
+    offset_idx = [x[0] for x in offset_sorted]  # 排序后的数组下标
+    result = [result[idx] for idx in offset_idx]  # 排序后的结果
 
     def filter(result):
+        '''
+        对排序后的结果进行过滤，留下可能的实体结果
+        '''
         p1 = 0
         p2 = 0
         id_list = []
@@ -115,9 +81,6 @@ def max_match_cut(sentence, dic):
         for i in range(len(result)):
             start = result[i][0][0]
             end = result[i][0][1]
-            # if i+1<len(result):
-            #     start_next = result[i+1][0][0]
-            #     end_next = result[i+1][0][1]
             if start == p1:
                 if end > p2:
                     if id_list:
@@ -145,9 +108,12 @@ def max_match_cut(sentence, dic):
 
     result = filter(result)
     result = filter(result)
-    if result:
-        print(result)
+    # if result:
+    #     print(result)
 
+    '''
+    对句子中的实体进行标记
+    '''
     prex = None
     end = None
     lenth = None
@@ -172,24 +138,16 @@ def max_match_cut(sentence, dic):
             tmp = tmp.replace('   ', ' ').replace('  ', ' ')
 
             if not len(tmp.split()) == len(splited_s):
-                # print(len(tmp.split()) , len(splited_s))
-                # print(tmp.split())
-                # print(splited_s)
+                # 实体标记错误，跳过
                 tmp = tmp_tmp
                 continue
             assert len(tmp.split()) == len(splited_s)
-
     return tmp
 
 
-
 def readXML():
-    
-    import esm
-
     word_list = readKB()
     word_list.append('PPCA')
-    # word_list = ['PPCA']
 
     print('获取字典树trie')
     dic = esm.Index()
@@ -198,12 +156,9 @@ def readXML():
         dic.enter(word)
     dic.fix()
 
-    # word_list = readKB()
-    # word_list.append('PPCA')
-
     print('最大匹配')
     results = []
-    with open('/home/administrator/PycharmProjects/keras_bc6_track1/sample/data/train.txt') as f:
+    with open('/Users/ningshixian/PycharmProjects/keras_bc6_track1/sample/data/BIBIO/train/train.txt') as f:
         lines = f.readlines()
     for i in tqdm(range(len(lines))):
         line = lines[i]
@@ -213,10 +168,9 @@ def readXML():
         # label = max_match_cut2(line, word_list)
         results.append(line)
 
-    with open('/home/administrator/PycharmProjects/keras_bc6_track1/sample/data/train2.txt', 'w') as f:
+    with open('/Users/ningshixian/PycharmProjects/keras_bc6_track1/sample/data/BIBIO/train/train2.txt', 'w') as f:
         for sentence in results:
             f.write(sentence)
-
 
 
 # 利用GENIA tagger工具对标记过的语料进行预处理（分词+POS+CHUNK+NER）
@@ -303,12 +257,12 @@ def judge(word, label_sen, flag):
 
 
 # 根据预处理语料的标记 <B-xxx-></-I-xxx> 获取BIO标签
-def getLabel(dataPath):
+def getLabel():
     flag = 0    # 0:实体结束    1:实体内部  2:特殊实体[]
     label_sen = []
     sent = []
-    geniaPath = dataPath+ '/' + 'train.genia.txt'
-    outputPath = dataPath+ '/' + 'train.out.txt'
+    geniaPath = '/Users/ningshixian/PycharmProjects/keras_bc6_track1/sample/data/BIBIO/train/train2.genia.txt'
+    outputPath = '/Users/ningshixian/PycharmProjects/keras_bc6_track1/sample/data/BIBIO/train/train2.out.txt'
 
     with codecs.open(geniaPath, 'r', encoding='utf-8') as data:
         for line in data:
@@ -329,52 +283,45 @@ def getLabel(dataPath):
         for line in sent:
             f.write(line)
 
-    # 生成单独的BIO标签文件
-    label_sen = []
-    ff = open(dataPath + '/' +'label.txt', 'w')
-    with codecs.open(dataPath + '/' +'train.out.txt', encoding='utf-8') as f:
-        lines = f.readlines()
-    for line in tqdm(lines):
-        if line=='\n':
-            ff.write(''.join(label_sen))
-            ff.write('\n')
-            label_sen = []
-        else:
-            label = line.split('\t')[-1]
-            label_sen.append(label.strip('\n')[0])
-    ff.close()
-
 
 
 if __name__ == '__main__':
+    
     tag_list = ['B‐^^', '^^‐I', 'B‐^', '^‐I']
     B_flag = 'B^'
     I_flag = '^I'
 
-    readXML()
-    print("完结撒花====")
+    # readXML()
+    # print("完结撒花====")
 
     '''
     % cd geniatagger-3.0.2
-    % ./geniatagger  /Users/ningshixian/Desktop/'BC6_Track1'/BioIDtraining_2/train/train.txt \
-    > /Users/ningshixian/Desktop/'BC6_Track1'/BioIDtraining_2/train/train.genia.txt
+    % ./geniatagger  /Users/ningshixian/PycharmProjects/keras_bc6_track1/sample/data/BIBIO/train/train2.txt \
+    > /Users/ningshixian/PycharmProjects/keras_bc6_track1/sample/data/BIBIO/train/train2.genia.txt
     '''
 
-    # getLabel(train_path)
+    # getLabel()
     # print("完结撒花====")
 
-    # with codecs.open(train_path + "/" + 'train_goldenID.txt', encoding='utf-8') as f:
-    #     lines1 = f.readlines()
-    # with codecs.open(train_path + '/' + 'label.txt', encoding='utf-8') as f:
-    #     lines2 = f.readlines()
+    '''
+    将词典特征加入到训练文件中
+    '''
+    outputPath = '/Users/ningshixian/PycharmProjects/keras_bc6_track1/sample/data/BIBIO/train/train.out.txt'
+    outputPath2 = '/Users/ningshixian/PycharmProjects/keras_bc6_track1/sample/data/BIBIO/train/train2.out.txt'
+    finalPath = '/Users/ningshixian/PycharmProjects/keras_bc6_track1/sample/data/BIBIO/train/train.final.txt'
 
-    # for i in range(len(lines1)):
-    #     sentence1 = lines1[i].strip('\n')
-    #     sentence2 = lines2[i].strip('\n')
-    #     count1 = len(sentence1.split('\t')) if sentence1 else 0
-    #     count2 = sentence2.count('B')
-    #     if not count1 == count2:
-    #         print(i)
-    #         print(count1, count2)
-    #         print(sentence1)
-    #         print(sentence2)
+    with codecs.open(outputPath, 'r', encoding='utf-8') as data:
+        output = data.readlines()
+    with codecs.open(outputPath2, 'r', encoding='utf-8') as data:
+        output2 = data.readlines()
+
+    results = []
+    for i in range(len(output)):
+        line1 = output[i].replace('\n', '').strip()
+        line2 = output2[i].replace('\n', '').strip()
+        tmp = line1.split('\t')[:-1] + [line2.split('\t')[-1]] + [line1.split('\t')[-1]]
+        results.append('\t'.join(tmp))
+    with codecs.open(finalPath, 'w', encoding='utf-8') as f:
+        for line in results:
+            f.write(line)
+            f.write('\n')
