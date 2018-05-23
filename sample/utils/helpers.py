@@ -1,7 +1,7 @@
 import re
 import string
 import sys
-
+from sample.ned.LocalCollocationsExtractor import LocalCollocationsExtractor
 import numpy as np
 
 print(sys.getdefaultencoding())
@@ -108,24 +108,13 @@ def extract_id_from_res(res):
     return Ids
 
 
-idx2pos = {}
-with open('/home/administrator/PycharmProjects/keras_bc6_track1/sample/data/pos2idx.txt') as f:
-    for line in f:
-        pos, idx = line.split(' ')
-        idx2pos[idx.strip('\n')] = pos
 
-from sample.ned.LocalCollocationsExtractor import LocalCollocationsExtractor
-import pickle as pkl
-with open('LocalCollocations.pkl', 'rb') as f:
-    features_dict = pkl.load(f)
-
-
-def pos_surround(test_x, test_pos, tokenIdx, entity):
+def pos_surround(test_x, test_pos, tokenIdx, entity, idx2pos, features_dict):
     '''
     获取实体周围的窗口为3的上下文pos标记
     获取 Local Collocations 特征
     '''
-    pos_list = ['null', 'n', 'v', 'a', 'r']
+    pos_list = ['null', 'n', 'v', 'a', 'r', 'other']
     MAP = [
         "n N NOUN NN NNP NNPS NE NNS NN|NNS NN|SYM NN|VBG NP N",
         "v V VERB MD VB VBD VBD|VBN VBG VBG|NN VBN VBP VBP|TO VBZ VP VVD VVZ VVN VVB VVG VV V",
@@ -147,7 +136,7 @@ def pos_surround(test_x, test_pos, tokenIdx, entity):
     test_pos2 = []
     for item in test_pos:
         pos = idx2pos[str(item)]
-        new_idx = pos_list.index(map_dict.get(pos)) if map_dict.get(pos) else 0
+        new_idx = pos_list.index(map_dict.get(pos)) if map_dict.get(pos) else pos_list.index('other')
         test_pos2.append(new_idx)
 
     left_pos = test_pos2[index1:index2] if index1 >= 0 else [0] * abs(index1) + test_pos2[0:index2]

@@ -8,6 +8,9 @@ from sample.evaluation import conlleval
 from sample.evaluation import BIOF1Validation
 
 
+tag2id = {'O': 0, 'B-protein': 1, 'I-protein': 2, 'B-gene': 3, 'I-gene': 4}
+tag = tag2id.keys()
+
 class ConllevalCallback(Callback):
     '''
     Callback for running the conlleval script on the test dataset after each epoch.
@@ -26,10 +29,28 @@ class ConllevalCallback(Callback):
         if self.samples:
             predictions = self.model.predict_generator(self.X, self.samples)
         else:
-            predictions = self.model.predict(self.X)
+            predictions = self.model.predict(self.X)  # 模型预测
 
         y_pred = predictions.argmax(axis=-1)  # Predict classes [0]
         y_test = self.y.argmax(axis=-1)
+
+
+        # _ = self.model.get_weights()[-1]  # 从训练模型中取出最新得到的转移矩阵
+        # trans = {}
+        # for i in tag:
+        #     for j in tag:
+        #         trans[i + j] = _[tag2id[i], tag2id[j]]
+        #
+        # y_pred=[]
+        # y_test = self.y.argmax(axis=-1)
+        # predictions = self.model.predict(self.X)  # 模型预测
+        # for i in range(len(predictions)):
+        #     p = predictions[i]
+        #     nodes = [dict(zip(tag, i)) for i in p]
+        #     print(nodes)
+        #     tags = viterbi(nodes, trans)[0]
+        #     print(tags)
+        #     y_pred.append(tags)
 
         prf_file = '/home/administrator/PycharmProjects/keras_bc6_track1/sample/result/prf.txt'
         # target = r'data/BC4CHEMD-IOBES/test.tsv'
@@ -94,6 +115,30 @@ class ConllevalCallback(Callback):
         print('f1: {:.2f}%'.format(100. * f1))
 
         return round(Decimal(100. * pre), 2), round(Decimal(100. * rec), 2), round(Decimal(100. * f1), 2)
+
+
+# def max_in_dict(d): # 定义一个求字典中最大值的函数
+#     key,value = d.items()[0]
+#     for i,j in d.items()[1:]:
+#         if j > value:
+#             key,value = i,j
+#     return key,value
+
+
+# def viterbi(nodes, trans): # viterbi算法，跟前面的HMM一致
+#     paths = nodes[0] # 初始化起始路径
+#     for l in range(1, len(nodes)): # 遍历后面的节点
+#         paths_old,paths = paths,{}
+#         for n,ns in nodes[l].items(): # 当前时刻的所有节点
+#             max_path,max_score = '', -1e10
+#             for p,ps in paths_old.items(): # 截止至前一时刻的最优路径集合
+#                 print(p)
+#                 print(n)
+#                 score = ns + ps + trans[p+n] # 计算新分数
+#                 if score > max_score: # 如果新分数大于已有的最大分
+#                     max_path,max_score = p+n, score # 更新路径
+#             paths[max_path] = max_score # 储存到当前时刻所有节点的最优路径
+#     return max_in_dict(paths)
 
 
 class LtlCallback(Callback):

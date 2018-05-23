@@ -32,9 +32,9 @@ from keras.optimizers import *
 from keras.utils import plot_model
 from keras.preprocessing.sequence import pad_sequences
 from keras.regularizers import l2
-from keras_contrib.layers import CRF
+# from keras_contrib.layers import CRF
 from sample.keraslayers.ChainCRF import ChainCRF
-from sample.keraslayers.ChainCRF import create_custom_objects
+# from sample.keraslayers.crf_keras import CRF
 from sample.utils.helpers import createCharDict
 from sample.utils.callbacks import ConllevalCallback
 import keras.backend as K
@@ -43,7 +43,7 @@ import codecs
 from math import ceil
 from keras.callbacks import ModelCheckpoint, EarlyStopping, TensorBoard
 from collections import OrderedDict
-
+import gensim
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
 
@@ -55,19 +55,18 @@ set_session(tf.Session(config=config))
 
 # Parameters of the network
 word_emb_size = 200
-char_emb_size = 25
+char_emb_size = 50
 cap_emb_size = 5
 pos_emb_size = 25
 chunk_emb_size = 10
 dropout_rate = 0.5  # [0.5, 0.5]
 
-num_classes = 3
-epochs = 30
+num_classes = 5
+epochs = 25
 batch_size = 32
 max_f = 0
-highway = 0
 lstm_size = [200]    # BLSTM 隐层大小
-learning_rate = 1e-3    # 1e-4
+learning_rate = 1e-3    # 1e-3  5e-4
 decay_rate = learning_rate / epochs     # 1e-6
 optimizer = 'rmsprop'    #'rmsprop'
 # CNN settings
@@ -76,17 +75,18 @@ kernels = [2, 3]
 
 use_chars = True
 use_att = False
-batch_normalization = False
+batch_normalization = True
+highway = False
 
 rootCorpus = r'data'
 embeddingPath = r'/home/administrator/PycharmProjects/embedding'
-idx2label = {0: 'O', 1: 'B', 2: 'I'}
-# idx2label = {0: 'O', 1: 'B-GENE', 2: 'I-GENE', 3: 'B-PROTEIN', 4: 'I-PROTEIN'}
+# idx2label = {0: 'O', 1: 'B', 2: 'I'}
+idx2label = {0: 'O', 1: 'B-protein', 2: 'I-protein', 3: 'B-gene', 4: 'I-gene'}
 
 
 print('Loading data...')
 
-with codecs.open(rootCorpus + '/train.pkl', "rb") as f:
+with open(rootCorpus + '/train.pkl', "rb") as f:
     train_x, train_y, train_char, train_cap, train_pos, train_chunk = pkl.load(f)
 with open(rootCorpus + '/test.pkl', "rb") as f:
     test_x, test_y, test_char, test_cap, test_pos, test_chunk = pkl.load(f)
@@ -120,10 +120,13 @@ dataSet['test'].insert(1, np.asarray(test_char))
 train_y = pad_sequences(train_y, maxlen=sentence_maxlen, padding='post')
 test_y = pad_sequences(test_y, maxlen=sentence_maxlen, padding='post')
 
-print(np.asarray(train_char).shape)     # (13697, 418, 23)
-print(np.asarray(test_char).shape)     # (4528, 418, 23)
-print(train_y.shape)    # (13697, 639, 5)
-print(test_y.shape)    # (4528, 639, 5)
+print(np.asarray(train_x).shape)     # (13697,)
+print(np.asarray(train_char).shape)     # (13697, 455, 21)
+print(train_y.shape)    # (13697, 455, 3)
+
+print(np.asarray(test_x).shape)     # (4528,)
+print(np.asarray(test_char).shape)     # (4528, 455, 21)
+print(test_y.shape)    # (4528, 455, 3)
 
 print('done! Model building....')
 
@@ -163,8 +166,6 @@ def _shared_layer(concat_input):
                                              kernel_regularizer=l2(1e-4),
                                              bias_regularizer=l2(1e-4)),
                                    name='shared_LSTM_' + str(cnt))(concat_input)
-            output = Dropout(dropout_rate, name='shared_dropout')(output)
-
         if use_att:
             attention_mul = attention_3d_block(output, sentence_maxlen)
             output = concatenate([output, attention_mul], axis=-1)
@@ -213,7 +214,7 @@ def buildModel():
                                           trainable=True,
                                           # mask_zero=True,
                                           name='char_emd'))(chars_input)
-    chars_emb = TimeDistributed(Bidirectional(CuDNNLSTM(units=25, return_sequences=False,
+    chars_emb = TimeDistributed(Bidirectional(CuDNNLSTM(units=char_emb_size, return_sequences=False,
                                                         kernel_regularizer=l2(1e-4),
                                                         bias_regularizer=l2(1e-4))))(chars_emb)
     # chars_emb = CNN(sentence_maxlen, word_maxlen, feature_maps, kernels, chars_emb)
@@ -248,15 +249,24 @@ def buildModel():
             concat_input = TimeDistributed(Highway(activation='tanh'))(concat_input)
 
     # Dropout on final input
-    concat_input = Dropout(0.5)(concat_input)
+    concat_input = Dropout(dropout_rate)(concat_input)
 
     # shared layer
-    shared_output = _shared_layer(concat_input)  # (none, none, 200)
+    output = _shared_layer(concat_input)  # (none, none, 200)
 
     # ======================================================================= #
 
-    output = TimeDistributed(Dense(lstm_size[-1], activation='tanh', name='tanh_layer'))(shared_output)
+    if batch_normalization:
+        output = BatchNormalization()(output)
+    output = Dropout(0.3)(output)
+
+    output = TimeDistributed(Dense(lstm_size[-1], activation='tanh', name='tanh_layer'))(output)
     output = TimeDistributed(Dense(num_classes, kernel_regularizer=l2(1e-4), name='final_layer'))(output)     # 不加激活函数，否则预测结果有问题222222
+
+    # crf = CRF()  # 定义crf层，参数为True，自动mask掉最有一个标签
+    # output = crf(output)  # 包装一下原来的tag_score
+    # loss_function = crf.loss
+
     crf = ChainCRF(name='CRF')
     output = crf(output)
     loss_function = crf.loss
@@ -304,7 +314,7 @@ if __name__ == '__main__':
               epochs=epochs,
               batch_size=batch_size,
               shuffle=True,
-              callbacks=[calculatePRF1, tensorBoard, saveModel],
+              callbacks=[calculatePRF1, tensorBoard],
               validation_split=0.2)
               # validation_data=(dataSet['test'], test_y))
     time_diff = time.time() - start_time
