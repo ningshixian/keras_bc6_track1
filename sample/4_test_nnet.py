@@ -6,6 +6,14 @@ from keras.preprocessing.sequence import pad_sequences
 
 from sample.keraslayers.ChainCRF import create_custom_objects
 from sample.utils.write_test_result2 import writeOutputToFile
+import tensorflow as tf
+from keras.backend.tensorflow_backend import set_session
+
+config = tf.ConfigProto()
+# config.gpu_options.per_process_gpu_memory_fraction = 0.3    # 按比例
+config.gpu_options.allow_growth = True  # 自适应分配
+set_session(tf.Session(config=config))
+
 
 
 def getTestData():
@@ -15,12 +23,12 @@ def getTestData():
     rootCorpus = r'data'
     embeddingPath = r'/home/administrator/PycharmProjects/embedding'
     with open(rootCorpus + '/test.pkl', "rb") as f:
-        test_x, test_y, test_char, test_cap, test_pos, test_chunk = pkl.load(f)
+        test_x, test_y, test_char, test_cap, test_pos, test_chunk, test_dict = pkl.load(f)
     with open(embeddingPath+'/length.pkl', "rb") as f:
         word_maxlen, sentence_maxlen = pkl.load(f)
 
     dataSet = {}
-    dataSet['test'] = [test_x, test_cap, test_pos, test_chunk]
+    dataSet['test'] = [test_x, test_cap, test_pos, test_chunk, test_dict]
 
     # pad the sequences with zero
     for key, value in dataSet.items():
@@ -36,8 +44,8 @@ def getTestData():
 
     test_y = pad_sequences(test_y, maxlen=sentence_maxlen, padding='post')
 
-    print(np.asarray(test_char).shape)     # (4528, 418, 23)
-    print(test_y.shape)    # (4528, 639, 5)
+    print(np.asarray(test_char).shape)     # (4528, 455, 21)
+    print(test_y.shape)    # (4528, 455, 5)
 
     print('create test set done!\n')
     return dataSet
@@ -46,10 +54,10 @@ def getTestData():
 import os
 if not os.path.exists('predictions.pkl'):
     dataSet = getTestData()
-    model = load_model('model/Model_3_74.07.h5', custom_objects=create_custom_objects())
+    model = load_model('model/Model_3_76.31.h5', custom_objects=create_custom_objects())
     print('加载模型成功!!')
 
-    predictions = model.predict(dataSet['test'])
+    predictions = model.predict(dataSet['test'])   # 75.93模型没加dic特征
     y_pred = predictions.argmax(axis=-1)
 
     with open('result/prediction.txt', 'w') as f:

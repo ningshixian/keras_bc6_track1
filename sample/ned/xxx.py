@@ -331,46 +331,74 @@ from tqdm import tqdm
 #         break
 
 
-result = [((128, 138), 'polymerase'), ((128, 131), 'pol'), ((128, 132), 'poly'), ((125, 127), 'NA'), ((124, 141), 'RNA polymerase II'), ((124, 138), 'RNA polymerase')]
-# result = [((329, 332), 'els'), ((329, 332), 'els'), ((328, 331), 'nel'), ((327, 332), 'nell'), ((326, 331), 'pan'), ((322, 325), 'per'), ((321, 324), 'ppe'), ((320, 323), 'upp'), ((308, 311), 'how'), ((307, 310), 'sho'), ((303, 306), 'nes'), ((291, 294), 'lar'), ((289, 292), 'mil'), ((287, 290), 'sim'), ((283, 286), 'nts'), ((277, 280), 'per'), ((275, 278), 'exp'), ((270, 273), 'ren'), ((268, 271), 'fer'), ((259, 262), 'thr'), ((253, 255), 'SE'), ((246, 249), 'ans'), ((244, 247), 'mea'), ((227, 230), 'sts'), ((226, 229), 'ast'), ((224, 227), 'bla'), ((223, 226), 'obl'), ((222, 225), 'rob'), ((222, 226), 'robl'), ((214, 217), 'ski'), ((190, 192), 'CA'), ((188, 192), 'PPCA'), ((165, 168), 'bel'), ((163, 166), 'lab'), ((156, 160), 'ical'), ((155, 158), 'lic'), ((154, 157), 'oli'), ((153, 156), 'bol'), ((152, 155), 'abo'), ((150, 153), 'eta'), ((149, 152), 'met'), ((145, 148), 'rom'), ((136, 139), 'rig'), ((129, 132), 'con'), ((128, 131), 'eco'), ((121, 126), 'lamp2'), ((112, 115), 'for'), ((109, 112), 'iso'), ((104, 107), 'nin'), ((101, 104), 'mai'), ((100, 103), 'ema'), ((99, 102), 'rem'), ((74, 77), 'rst'), ((72, 75), 'fir'), ((68, 71), 'p2a'), ((65, 70), 'lamp2'), ((57, 60), 'tio'), ((56, 59), 'ati'), ((55, 58), 'tat'), ((53, 57), 'pita'), ((52, 55), 'ipi'), ((49, 52), 'rec'), ((48, 51), 'pre'), ((42, 45), 'imm'), ((37, 40), 'tia'), ((31, 34), 'seq'), ((20, 23), 'phy'), ((19, 22), 'aph'), ((18, 21), 'rap'), ((17, 20), 'gra'), ((17, 21), 'grap'), ((14, 17), 'oro'), ((11, 14), 'flu')]
+# a = []
+# p = list(string.punctuation)
+# a.extend(p)
+# print(a)
 
-def filter(result):
-    p1 = 0
-    p2 = 0
-    id_list = []
-    temp = None
-    for i in range(len(result)):
-        start = result[i][0][0]
-        end = result[i][0][1]
-        # if i+1<len(result):
-        #     start_next = result[i+1][0][0]
-        #     end_next = result[i+1][0][1]
-        if start == p1:
-            if end>p2:
-                id_list.pop()
-                temp=i
-                p1 = start
-                p2 = end
-        else:
-            if end>=p2 and start<p1:
-                id_list.pop()
-            p1=start
-            p2=end
-            if temp:
-                id_list.append(temp)
-                id_list.append(i)
-            else:
-                id_list.append(i)
-            temp=None
 
-    if temp:
-        id_list.append(temp)
-    result = [result[idx] for idx in id_list]
+# a = {'entity':{}}
+# a['entity']['id1']=1
+# a['entity']['id2']=1
+# a['entity']['id1']+=1
+# print(a['entity']['id1'])
+# entity2id_new = {}
+# for key, value in a.items():
+#     value_sorted = sorted(value.items(), key=lambda item: item[1], reverse=True)
+#     entity2id_new[key] = [item[0] for item in value_sorted]
+# print(entity2id_new)
 
-    if result:
-        print(id_list)
-        print(result)
-    return result
+import re
+s='3a4b5cdd7e'
+a = re.findall(r'[0-9]+|[a-z]+',s)
+print(' '.join(a))
 
-result = filter(result)
-result = filter(result)
+
+da = []
+for item in ['a', 'b', 'c']:
+    if item=='b':
+        da.append(item)
+        break
+
+
+
+
+def getCSVData(csv_path, entity2id):
+    '''
+    获取实体ID词典 {'entity':[id1, id2, ...]}
+    实体区分大小写
+    '''
+    with open(csv_path) as f:
+        f_csv = csv.DictReader(f)
+        for row in f_csv:
+            id = row['obj']
+            entity = row['text']
+            # text = row['text'].lower()
+            if id.startswith('NCBI gene:') or id.startswith('Uniprot:') or \
+                    id.startswith('gene:') or id.startswith('protein:'):
+                if entity not in entity2id:
+                    entity2id[entity] = []
+                if id not in entity2id[entity]:
+                    entity2id[entity].append(id)
+        print('entity2id字典总长度：{}'.format(len(entity2id)))  # 5096
+
+    num_word_multiID = 0
+    entity2id_new = entity2id.copy()
+    # 拓展实体词典
+    for key, value in entity2id.items():
+        if len(value)>1:
+            num_word_multiID+=1
+        for char in string.punctuation:
+            if char in key:
+                key = key.replace(char, ' ' + char + ' ')
+        key = key.strip().replace('  ', ' ')
+        if key not in entity2id_new:
+            entity2id_new[key] = value
+        key = key.strip().replace(' ', '')  # 去掉所有空格
+        if key not in entity2id_new:
+            entity2id_new[key] = value
+    entity2id = {}
+    del entity2id
+    print('F4/80: {}'.format(entity2id_new['F4/80']))
+    print('其中，多ID实体的个数：{}'.format(num_word_multiID))    # 1538
+    return entity2id_new

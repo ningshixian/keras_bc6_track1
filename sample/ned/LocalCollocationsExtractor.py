@@ -180,7 +180,6 @@ if __name__ == '__main__':
                 features_dict[entity][DEFAULT_COLLOCATIONS[i]].add(fea)
             entity = ''
 
-
     with open('data/LocalCollocations.pkl', 'wb') as f:
         pkl.dump((features_dict), f, -1)
 

@@ -1,18 +1,22 @@
+'''
+语料预处理，加入词典特征
+'''
 import pickle as pkl
 from collections import OrderedDict
 import numpy as np
 np.random.seed(1337)
+import string
 from tqdm import tqdm
 import word2vec
 from keras.preprocessing.text import Tokenizer
 from sample.utils.helpers import wordNormalize, createCharDict
-from sample.utils.helpers import get_stop_dic
+# from sample.utils.helpers import get_stop_dic
 
 
-corpusPath = r'data'
-embeddingPath = r'/home/administrator/PycharmProjects/embedding'
+corpusPath = r'F:/B910/PythonCode/keras_bc6_track1/sample/data'
+embeddingPath = r'F:/B910\PythonCode/keras_bc6_track1/sample/embedding'
 embeddingFile = r'wikipedia-pubmed-and-PMC-w2v.bin'
-# label2idx = {'O': 0, 'B': 1, 'I': 2}
+dict2idx = {'O': 0, 'B': 1, 'I': 2}  # 字典特征
 label2idx = {'O': 0, 'B-protein': 1, 'I-protein': 2, 'B-gene': 3, 'I-gene': 4}
 
 maxlen_s = 455  # 句子截断长度
@@ -78,6 +82,21 @@ def produce_matrix(word_index, embedFile):
     '''
     生成词向量矩阵 embedding_matrix
     '''
+
+    # """获取停用词词典+标点符号"""
+    stop_word = []
+    # from nltk.corpus import stopwords
+    # import string
+    # stopWord_path = '/home/administrator/PycharmProjects/keras_bc6_track1/sample/data/stopwords_gene'
+    # stop_word = []
+    # with open(stopWord_path, 'r') as f:
+    #     for line in f:
+    #         stop_word.append(line.strip('\n'))
+    # stop_word.extend(stopwords.words('english'))
+    # stop_word.extend(list(string.punctuation))
+    # stop_word = list(set(stop_word))
+
+    word_id_filter = []
     miss_num=0
     num=0
     # embeddings_index = readGensimFile(embedFile)
@@ -87,7 +106,14 @@ def produce_matrix(word_index, embedFile):
     num_words = len(word_index)+1
     embedding_matrix = np.zeros((num_words, word_size))
     for word, i in word_index.items():
-        vec = embeddings_index.get(word)
+        # if word in stop_word:
+        #     word_id_filter.append(i)
+        if word.lower() in embeddings_index:
+            vec = embeddings_index.get(word.lower())
+        else:
+            for punc in string.punctuation:
+                word = word.replace(punc, '')
+            vec = embeddings_index.get(word.lower())
         if vec is not None:
             num=num+1
         else:
@@ -96,6 +122,8 @@ def produce_matrix(word_index, embedFile):
         embedding_matrix[i] = vec
     print('missnum',miss_num)    # 8381
     print('num',num)    # 20431
+    print('word_id_filter:{}'.format(word_id_filter))
+    # [5180, 703, 6778, 21098, 10790, 88, 2661, 150, 551, 2035, 5209, 2834, 5197, 541, 26, 15, 1135, 47, 914, 9655, 4976, 1060, 7017, 647, 205, 268, 483, 1734, 2707, 8, 16228, 18, 390, 516, 4325, 5194, 7359, 5022, 76, 22, 605, 8413, 2309, 4421, 27, 42, 947, 24317, 5597, 2566, 24965, 169, 217, 2901, 595, 891, 325, 615, 603, 775, 153, 137, 852, 10748, 22948, 7, 192, 6032, 3399, 28, 10281, 15853, 520, 522, 89, 16368, 32, 6912, 2140, 1374, 579, 4980, 3927, 20, 10, 2223, 488, 3351, 459, 649, 99, 173, 1116, 7803, 1644, 96, 3811, 2366, 432, 1239, 666, 785, 521, 1279, 13, 1538, 16346, 16, 1612, 337, 378, 12, 381, 300, 18695, 1976, 64, 25, 8504, 3915, 655, 140, 231, 181, 1735, 8439, 6870, 5205, 69, 3932, 247, 846, 491, 678, 77, 63, 1980, 578, 1189, 21733, 249, 134, 1440, 671, 59, 3939, 21441, 229, 4593, 2208, 6569, 237, 238, 2267, 4089, 78, 15593, 136, 416, 549, 48, 1192, 1649, 5702, 375, 3601, 620, 331, 9, 239, 3707, 11926, 1150, 43, 9414, 37, 315]
     return embedding_matrix
 
 
@@ -150,15 +178,17 @@ def getData(trainCorpus, sen_len_list):
     posDic = {'train': [], 'devel': [], 'test':[]}
     chunkDic = {'train': [], 'devel': [], 'test':[]}
     labelsDic = {'train':[], 'devel':[], 'test':[]}
+    dictDic = {'train':[], 'devel':[], 'test':[]}
 
     for name in ['train', 'test']:
-        with open(trainCorpus + '/' + name + '.out.txt', encoding='utf-8') as f:
+        with open(trainCorpus + '/' + name + '.final.txt', encoding='utf-8') as f:
             data_sen = []
             char_sen = []
             cap_sen = []
             pos_sen = []
             chunk_sen = []
             labels_sen = []
+            dict_sen = []
             num = -1
             line_number = 0
             for line in f:
@@ -175,6 +205,7 @@ def getData(trainCorpus, sen_len_list):
                         posDic[name].append(pos_sen)
                         chunkDic[name].append(chunk_sen)
                         labelsDic[name].append(labels_sen)
+                        dictDic[name].append(dict_sen)
                     else:
                         datasDic[name].append(' '.join(data_sen[:maxlen_s]))  # .join()
                         charsDic[name].append(char_sen[:maxlen_s])
@@ -182,6 +213,7 @@ def getData(trainCorpus, sen_len_list):
                         posDic[name].append(pos_sen[:maxlen_s])
                         chunkDic[name].append(chunk_sen[:maxlen_s])
                         labelsDic[name].append(labels_sen[:maxlen_s])
+                        dictDic[name].append(dict_sen[:maxlen_s])
 
                     # if name=='train' and num==3725:
                     #     print(len(data_sen[:maxlen_s]), len(labels_sen[:maxlen_s]))
@@ -199,24 +231,30 @@ def getData(trainCorpus, sen_len_list):
                     labels_sen = []
                     nb_word = 0
                 else:
+                    # print(line_number)
                     nb_word+=1
                     line_number += 1
                     token = line.replace('\n', '').split('\t')
                     word = token[0]
                     pos = token[1]
                     chunk = token[2]
+                    dict = token[3]
                     label = token[-1]
+
                     labelIdx = label2idx.get(label) if label in label2idx else label2idx.get('O')
                     labelIdx = np.eye(len(label2idx))[labelIdx]
                     labelIdx = list(labelIdx)
 
-                    cap = casing_vocab[getCasting(word)]  # 大小写特征
-                    word = wordNormalize(word)  # 对单词进行清洗
+                    # 大小写特征
+                    cap = casing_vocab[getCasting(word)]
+                    # 对单词进行清洗
+                    word = wordNormalize(word)
+                    # 获取pos和chunk字典
                     if not pos in pos2idx:
                         pos2idx[pos] = len(pos2idx)
                     if not chunk in chunk2idx:
                         chunk2idx[chunk] = len(chunk2idx)
-
+                    # 字符特征
                     nb_char = 0
                     char_w = []
                     for char in word:
@@ -229,6 +267,8 @@ def getData(trainCorpus, sen_len_list):
                             char_w.append(charIdx)
                     if nb_char > word_len_list[-1]:
                         word_len_list.append(nb_char)
+                    # 字典特征
+                    dict_fea = dict2idx[dict]
 
                     data_sen.append(word)
                     char_sen.append(char_w)
@@ -236,6 +276,109 @@ def getData(trainCorpus, sen_len_list):
                     pos_sen.append(pos)
                     chunk_sen.append(chunk)
                     labels_sen.append(labelIdx)
+                    dict_sen.append(dict_fea)
+
+    # # 加BC2GM预料效果不太好
+    # name = 'train'
+    # with open('F:\B910\PythonCode\keras_bc6_track1\sample\data\data.final.txt', encoding='utf-8') as f:
+    #     data_sen = []
+    #     char_sen = []
+    #     cap_sen = []
+    #     pos_sen = []
+    #     chunk_sen = []
+    #     labels_sen = []
+    #     dict_sen = []
+    #     num = -1
+    #     line_number = 0
+    #     for line in f:
+    #         if line == '\n':
+    #             line_number += 1
+    #             num += 1
+    #             if nb_word > sen_len_list[-1]:
+    #                 sen_len_list.append(nb_word)
+    #             assert len(data_sen) == len(labels_sen)
+    #             if nb_word <= maxlen_s:
+    #                 datasDic[name].append(' '.join(data_sen))  # .join()
+    #                 charsDic[name].append(char_sen)
+    #                 capDic[name].append(cap_sen)
+    #                 posDic[name].append(pos_sen)
+    #                 chunkDic[name].append(chunk_sen)
+    #                 labelsDic[name].append(labels_sen)
+    #                 dictDic[name].append(dict_sen)
+    #             else:
+    #                 datasDic[name].append(' '.join(data_sen[:maxlen_s]))  # .join()
+    #                 charsDic[name].append(char_sen[:maxlen_s])
+    #                 capDic[name].append(cap_sen[:maxlen_s])
+    #                 posDic[name].append(pos_sen[:maxlen_s])
+    #                 chunkDic[name].append(chunk_sen[:maxlen_s])
+    #                 labelsDic[name].append(labels_sen[:maxlen_s])
+    #                 dictDic[name].append(dict_sen[:maxlen_s])
+    #
+    #             # if name=='train' and num==3725:
+    #             #     print(len(data_sen[:maxlen_s]), len(labels_sen[:maxlen_s]))
+    #             #     print(data_sen[:maxlen_s])
+    #             # elif name=='train' and num==7587:
+    #             #     print(len(data_sen[:maxlen_s]), len(labels_sen[:maxlen_s]))
+    #             #     print(data_sen[:maxlen_s])
+    #             assert len(data_sen[:maxlen_s]) == len(labels_sen[:maxlen_s])
+    #
+    #             data_sen = []
+    #             char_sen = []
+    #             cap_sen = []
+    #             pos_sen = []
+    #             chunk_sen = []
+    #             labels_sen = []
+    #             nb_word = 0
+    #         else:
+    #             # print(line_number)
+    #             nb_word += 1
+    #             line_number += 1
+    #             token = line.replace('\n', '').split('\t')
+    #             word = token[0]
+    #             pos = token[1]
+    #             chunk = token[2]
+    #             dict = token[3]
+    #             label = token[-1]
+    #
+    #             labelIdx = label2idx.get(label) if label in label2idx else label2idx.get('O')
+    #             labelIdx = np.eye(len(label2idx))[labelIdx]
+    #             labelIdx = list(labelIdx)
+    #
+    #             # 大小写特征
+    #             try:
+    #                 cap = casing_vocab[getCasting(word)]
+    #             except:
+    #                 continue
+    #             # 对单词进行清洗
+    #             word = wordNormalize(word)
+    #             # 获取pos和chunk字典
+    #             if not pos in pos2idx:
+    #                 pos2idx[pos] = len(pos2idx)
+    #             if not chunk in chunk2idx:
+    #                 chunk2idx[chunk] = len(chunk2idx)
+    #             # 字符特征
+    #             nb_char = 0
+    #             char_w = []
+    #             for char in word:
+    #                 nb_char += 1
+    #                 charIdx = char2idx.get(char)
+    #                 if not charIdx:
+    #                     chars_not_exit.add(char)
+    #                     char_w.append(char2idx['**'])
+    #                 else:
+    #                     char_w.append(charIdx)
+    #             if nb_char > word_len_list[-1]:
+    #                 word_len_list.append(nb_char)
+    #             # 字典特征
+    #             dict_fea = dict2idx[dict]
+    #
+    #             data_sen.append(word)
+    #             char_sen.append(char_w)
+    #             cap_sen.append(cap)
+    #             pos_sen.append(pos)
+    #             chunk_sen.append(chunk)
+    #             labels_sen.append(labelIdx)
+    #             dict_sen.append(dict_fea)
 
     print('chars not exits in the char2idx:{}'.format(chars_not_exit))
     print('longest char is', word_len_list[-5:])  # [12, 14, 17, 21, 34]
@@ -243,13 +386,13 @@ def getData(trainCorpus, sen_len_list):
     print('len(pos2idx):{}'.format(len(pos2idx)))     # 50
     print('len(chunk2idx):{}'.format(len(chunk2idx)))     # 22
 
-    return datasDic, charsDic, capDic, posDic, chunkDic, labelsDic, pos2idx, chunk2idx
+    return datasDic, charsDic, capDic, posDic, chunkDic, labelsDic, dictDic, pos2idx, chunk2idx
 
 
 def main():
 
-    stop_word_dic = get_stop_dic()
-    datasDic, charsDic, capDic, posDic, chunkDic, labelsDic, pos2idx, chunk2idx = getData(corpusPath, sen_len_list)
+    # stop_word_dic = get_stop_dic()
+    datasDic, charsDic, capDic, posDic, chunkDic, labelsDic, dictDic, pos2idx, chunk2idx = getData(corpusPath, sen_len_list)
 
     with open('pos2idx.txt', 'w') as f:
         for key, value in pos2idx.items():
@@ -308,10 +451,10 @@ def main():
     # 保存文件
     with open(corpusPath+'/train.pkl', "wb") as f:
         pkl.dump((datasDic['train'], labelsDic['train'], charsDic['train'],
-                  capDic['train'], posDic['train'], chunkDic['train']), f, -1)
+                  capDic['train'], posDic['train'], chunkDic['train'], dictDic['train']), f, -1)
     with open(corpusPath+'/test.pkl', "wb") as f:
         pkl.dump((datasDic['test'], labelsDic['test'], charsDic['test'],
-                  capDic['test'], posDic['test'], chunkDic['test']), f, -1)
+                  capDic['test'], posDic['test'], chunkDic['test'], dictDic['test']), f, -1)
 
     with open(embeddingPath + '/emb.pkl', "wb") as f:
         pkl.dump((embedding_matrix), f, -1)

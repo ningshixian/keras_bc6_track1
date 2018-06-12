@@ -16,6 +16,7 @@ from sample.utils.write_test_result import extract_id_from_res
 from sample.utils.helpers import cos_sim, pos_surround
 import Levenshtein
 from bioservices import UniProt
+from Bio import Entrez
 u = UniProt()
 
 
@@ -144,43 +145,89 @@ def searchEntityId(entity, entity2id):
     # 词典精确匹配
     if entity in entity2id:
         Ids = entity2id[entity]
-        id_list.extend(Ids)
+        id_list.extend(Ids[:5])
         return id_list
     if entity.lower() in entity2id:
         Ids = entity2id[entity.lower()]
-        id_list.extend(Ids)
+        id_list.extend(Ids[:5])
         return id_list
     if temp in entity2id:
         Ids = entity2id[temp]
-        id_list.extend(Ids)
+        id_list.extend(Ids[:5])
         return id_list
-    if entity.replace(' ', '') in entity2id:
-        Ids = entity2id[entity.replace(' ', '')]
-        id_list.extend(Ids)
+    if temp.lower() in entity2id:
+        Ids = entity2id[temp.lower()]
+        id_list.extend(Ids[:5])
         return id_list
+    print('词典匹配失败')
 
-    print('{} 不在 entity2id 词典中'.format(entity))
+    # 知识库精确匹配（先忽略类型 leixing）
+    if entity.lower() in gene2id:
+        print('NCBI gene 知识库精确匹配')
+        Ids = gene2id[entity.lower()]
+        id_list.extend(['NCBI gene:' + Ids[i] for i in range(len(Ids[:5]))])
+    elif entity.lower() in protein2id:
+        print('Uniprot 知识库精确匹配')
+        Ids = protein2id[entity.lower()]
+        id_list.extend(['Uniprot:' + Ids[i] for i in range(len(Ids[:5]))])
+    else:
 
-    # 数据库API查询1-reviewed
-    res_reviewed = u.search(entity + '+reviewed:yes', frmt="tab", columns="id", limit=3)
-    if res_reviewed == 400:
-        print('请求无效\n')
-    elif res_reviewed:  # 若是有返回结果
-        Ids = extract_id_from_res(res_reviewed)
-        for item in Ids:
-            id_list.extend(['Uniprot:' + item])
-        entity2id[entity] = id_list  # 将未登录实体添加到实体ID词典中
-        return id_list
+        # NCBI-gene数据库API查询
+        handle = Entrez.esearch(db="gene", idtype="acc", sort='relevance', term=entity)
+        record = Entrez.read(handle)
+        if record["IdList"]:
+            id_list.extend(['NCBI gene:' + record["IdList"][i] for i in range(len(record["IdList"][:5]))])
+            entity2id[entity] = ['NCBI gene:' + record["IdList"][i] for i in range(len(record["IdList"][:5]))]
+            # print(record["IdList"][:3])
+            return id_list
 
-    # # 模糊匹配--计算 Jaro–Winkler 距离
-    # max_score = -1
-    # max_score_key = ''
-    # for key in entity2id.keys():
-    #     score = Levenshtein.jaro_winkler(key, entity)
-    #     if score > max_score:
-    #         max_score = score
-    #         max_score_key = key
-    # id_list.extend(entity2id.get(max_score_key))
+        # 数据库API查询1-reviewed
+        res_reviewed = u.search(entity + '+reviewed:yes', frmt="tab", columns="id", limit=5)
+        if isinstance(res_reviewed, int):
+            print('请求无效\n')
+        elif res_reviewed:  # 若是有返回结果
+            Ids = extract_id_from_res(res_reviewed)
+            id_list.extend(['Uniprot:' + Ids[i] for i in range(len(Ids))])
+            entity2id[entity] = ['Uniprot:' + Ids[i] for i in range(len(Ids))]  # 将未登录实体添加到实体ID词典中
+            return id_list
+
+        # 数据库API查询1-unreviewed
+        unres_reviewed = u.search(entity, frmt="tab", columns="id", limit=5)
+        if isinstance(unres_reviewed, int):
+            print('请求无效\n')
+            # entities_new.remove(entity)
+        elif unres_reviewed:  # 若是有返回结果
+            Ids = extract_id_from_res(unres_reviewed)
+            id_list.extend(['Uniprot:' + Ids[i] for i in range(len(Ids))])
+            entity2id[entity] = ['Uniprot:' + Ids[i] for i in range(len(Ids))]  # 将未登录实体添加到实体ID词典中
+            return id_list
+
+        # 数据库API查询2-reviewed
+        res_reviewed = u.search(temp + '+reviewed:yes', frmt="tab", columns="id", limit=5)
+        if isinstance(res_reviewed, int):
+            print('请求无效\n')
+            # entities_new.remove(entity)
+        elif res_reviewed:
+            print('# 数据库API查询2-reviewed')
+            Ids = extract_id_from_res(res_reviewed)
+            id_list.extend(['Uniprot:' + Ids[i] for i in range(len(Ids))])
+            entity2id[entity] = ['Uniprot:' + Ids[i] for i in range(len(Ids))]  # 将未登录实体添加到实体ID词典中
+            return id_list
+
+        # 数据库API查询2-unres_reviewed
+        unres_reviewed = u.search(temp, frmt="tab", columns="id", limit=5)
+        if isinstance(unres_reviewed, int):
+            print('请求无效\n')
+            # entities_new.remove(entity)
+        elif unres_reviewed:
+            print('# 数据库API查询2-reviewed')
+            Ids = extract_id_from_res(unres_reviewed)
+            id_list.extend(['Uniprot:' + Ids[i] for i in range(len(Ids))])
+            entity2id[entity] = ['Uniprot:' + Ids[i] for i in range(len(Ids))]  # 将未登录实体添加到实体ID词典中
+            return id_list
+
+    if entity not in id_list:
+        print('未找到{}的ID，空'.format(entity))  # 152次出现
 
     return id_list
 
@@ -220,7 +267,7 @@ def get_s_features(entity, goldenID, zhixin, entity2id, method='S-product'):
         syn_vec = Id2synvec.get(golden_id)
     else:
         print('未找到 {} 对应同义词集向量，随机初始化1'.format(golden_id))
-        syn_vec = np.round(np.random.uniform(-0.1, 0.1, 200), 6)
+        syn_vec = np.random.uniform(-0.1, 0.1, 200)
     can_not = syn_vec
     x_one.append(list(func(zhixin, syn_vec)))
     y_one.append(1)
@@ -236,6 +283,8 @@ def get_s_features(entity, goldenID, zhixin, entity2id, method='S-product'):
         candidtaIds.remove(goldenID)
     # print(goldenID)
     # print(candidtaIds)
+    while len(candidtaIds)<3:
+        candidtaIds.append('Uniprot:' + '????')
     for candidta in candidtaIds:
         if candidta.startswith('gene:') or candidta.startswith('protein:'):
             continue
@@ -248,7 +297,7 @@ def get_s_features(entity, goldenID, zhixin, entity2id, method='S-product'):
             syn_vec = Id2synvec.get(candidta)
         else:
             print('未找到{}对应同义词集向量，随机初始化2'.format(candidta))
-            syn_vec = np.round(np.random.uniform(-0.1, 0.1, 200), 6)
+            syn_vec = np.random.uniform(-0.1, 0.1, 200)
 
         # 若不同ID，同义词集向量相同，跳过（more than 10,000）
         if (syn_vec==can_not).all():
@@ -289,13 +338,14 @@ def get_x_y(position, entity, entityId, id, zhixin, x_sen, pos_sen, x, y):
     获取实体周围的窗口为3的上下文及其对应的pos标记
     +  S_production 特征 = 组成SVM的输入特征
     '''
-    pos, local_collocations_fea = pos_surround(x_sen, pos_sen, position, entityId, idx2pos, features_dict)
+    pos, surroundding_word = pos_surround(x_sen, pos_sen, position, entityId, idx2pos, features_dict)
     s_feas, labels = get_s_features(entity, id, zhixin, entity2id)
+
     for i in range(len(s_feas)):
         fea = s_feas[i]
         label = labels[i]
-        # x.append(pos + fea)
-        x.append(pos + local_collocations_fea + fea)
+        x.append(fea)
+        # x.append(pos + surroundding_word + fea)
         y.append(label)
 
 
@@ -335,30 +385,39 @@ def main(data1, data2, label_list, pos, id_list, train_num_remove):
             wordId = x_sen[j]
             word = x_data[j]
             label = y_sen[j]
-            if label == 1 or label == 0:
+            if label == 0 or label == 1 or label == 3:
                 if entity:
                     entity_list.append(j)
                     if IDs[k].startswith('gene:') or IDs[k].startswith('protein:'):
                         pass
                     elif IDs[k].startswith('NCBI gene:') or IDs[k].startswith('Uniprot:'):
                         position = j - len(entity.split())
+                        # print(position)
+                        # entity = entityNormalize(entity, s, tokenIdx - len(entity.split()))
                         get_x_y(position, entity, entityId.strip(), IDs[k], zhixin, x_sen, pos_sen, x, y)
                     else:
                         print('IDs error!')
                     entity = ''
                     entityId = ''
                     k += 1
-                if label == 1:
+                if label == 1 or label == 3:
                     entity = str(word) + ' '
                     entityId += " " + str(wordId)
                 prex = label
-            else:
+            elif label == 2:
                 if prex == 1 or prex == 2:
                     entity += str(word) + ' '
                     entityId += " " + str(wordId)
                     prex = label
                 else:
-                    print('标签错误！跳过 {}-->{}'.format(prex, label))
+                    print('标签错误！跳过1: {}-->{}'.format(prex, label))
+            else:
+                if prex == 3 or prex == 4:
+                    entity += str(word) + ' '
+                    entityId += " " + str(wordId)
+                    prex = label
+                else:
+                    print('标签错误！跳过2: {}-->{}'.format(prex, label))
 
 
         if not entity == '':
@@ -381,6 +440,11 @@ def main(data1, data2, label_list, pos, id_list, train_num_remove):
 
 
 if __name__ == '__main__':
+
+    results = []
+    gap_pos = 0
+    gap_surround = 36
+    gap_s = 188950
 
     base = r'/home/administrator/桌面/BC6_Track1'
     # train_path = base + '/' + 'BioIDtraining_2/caption_bioc'
@@ -411,20 +475,23 @@ if __name__ == '__main__':
     test_data = get_train_out_data(test_out_path)
     test_id_list = getGoldenID(test_path)
 
+    with open('pg2id.pkl', 'rb') as f:
+        protein2id, gene2id = pkl.load(f)
+
     with open(embeddingPath + '/emb.pkl', "rb") as f:
         embedding_matrix = pkl.load(f)
     with open(embeddingPath + '/length.pkl', "rb") as f:
         word_maxlen, sentence_maxlen = pkl.load(f)
 
     with codecs.open('../data/train.pkl', "rb") as f:
-        train_x, train_y, train_char, train_cap, train_pos, train_chunk = pkl.load(f)
+        train_x, train_y, train_char, train_cap, train_pos, train_chunk, train_dict = pkl.load(f)
     train_label_list = []
     for y in train_y:
         y = np.array(y).argmax(axis=-1)
         train_label_list.append(y)
 
     with codecs.open('../data/test.pkl', "rb") as f:
-        test_x, test_y, test_char, test_cap, test_pos, test_chunk = pkl.load(f)
+        test_x, test_y, test_char, test_cap, test_pos, test_chunk, test_dict = pkl.load(f)
     test_label_list = []
     for y in test_y:
         y = np.array(y).argmax(axis=-1)
@@ -474,5 +541,35 @@ if __name__ == '__main__':
             f.write('{}\t{}'.format(key, '::,'.join(value)))
             f.write('\n')
 
+    # 保存SVM训练数据(差不多10分钟？)
     with open('data/train_svm.pkl', "wb") as f:
         pkl.dump((x, y), f, -1)
+
+
+
+    # # 转换成SVM输入格式的数据 +1 1:2
+    # results = []
+    # for i in tqdm(range(len(x))):
+    #     data = x[i]
+    #     label = '+1' if y[i]==1 else '-1'
+    #     gap_pos = 1
+    #     gap_surround = 43
+    #     gap_s = 189000
+    #     tmp = []
+    #     for feature in data[:7]:
+    #         tmp.append('{}:{}'.format(int(feature)+gap_pos, 1))
+    #         gap_pos+=6
+    #     for feature in data[7:14]:
+    #         tmp.append('{}:{}'.format(int(feature)+gap_surround, 1))
+    #         gap_surround+=26988
+    #     for feature in data[14:]:
+    #         tmp.append('{}:{}'.format(gap_s, np.round(float(feature), 6)))
+    #         gap_s+=1
+    #     results.append(label + ' ' + ' '.join(tmp))
+    #
+    # with open('data/svm_input.txt','w') as f:
+    #     for line in results:
+    #         f.write(line)
+    #         f.write('\n')
+
+

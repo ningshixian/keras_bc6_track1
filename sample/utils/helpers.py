@@ -1,7 +1,7 @@
 import re
 import string
 import sys
-from sample.ned.LocalCollocationsExtractor import LocalCollocationsExtractor
+# from sample.ned.LocalCollocationsExtractor import LocalCollocationsExtractor
 import numpy as np
 
 print(sys.getdefaultencoding())
@@ -17,6 +17,10 @@ def get_stop_dic():
     with open(stopWord_path, 'r') as f:
         for line in f:
             stop_word.append(line.strip('\n'))
+
+    from nltk.corpus import stopwords
+    stop_word.extend(stopwords.words('english'))
+    stop_word = list(set(stop_word))
     return stop_word
 
 
@@ -49,25 +53,26 @@ def entityNormalize(entity, s, tokenIdx):
     '''
     entity = entity.strip()
     result = check(entity)
-    if result == 'R':
-        print('R括号多')
-        idx = tokenIdx
-        while idx-1>=0 and s[idx - 1] not in SYMBOLS_L:
-            entity = s[idx - 1] + entity
-            idx-=1
-        if s[idx - 1] in SYMBOLS_L:
-            entity = s[idx - 1] + entity
-    elif result == 'L':
-        print('L括号多')
-        idx = tokenIdx
-        while idx+1<len(s) and s[idx + 1] not in SYMBOLS_R:
-            entity = entity + s[idx + 1]
-            idx+=1
-        if s[idx + 1] in SYMBOLS_R:
-            entity = entity + s[idx + 1]
+    if s:
+        if result == 'R':
+            print('R括号多')
+            idx = tokenIdx
+            while idx-1>=0 and s[idx - 1] not in SYMBOLS_L:
+                entity = s[idx - 1] + entity
+                idx-=1
+            if s[idx - 1] in SYMBOLS_L:
+                entity = s[idx - 1] + entity
+        elif result == 'L':
+            print('L括号多')
+            idx = tokenIdx
+            while idx+1<len(s) and s[idx + 1] not in SYMBOLS_R:
+                entity = entity + s[idx + 1]
+                idx+=1
+            if s[idx + 1] in SYMBOLS_R:
+                entity = entity + s[idx + 1]
 
     entity = entity.strip()
-    for char in string.punctuation + '-':
+    for char in string.punctuation:
         if char in entity:
             entity = entity.replace(' '+char+' ', char)
             entity = entity.replace(char+' ', char)
@@ -111,8 +116,8 @@ def extract_id_from_res(res):
 
 def pos_surround(test_x, test_pos, tokenIdx, entity, idx2pos, features_dict):
     '''
-    获取实体周围的窗口为3的上下文pos标记
-    获取 Local Collocations 特征
+    获取实体周围的窗口为3的上下文及其pos标记
+    # 获取 Local Collocations 特征
     '''
     pos_list = ['null', 'n', 'v', 'a', 'r', 'other']
     MAP = [
@@ -143,30 +148,29 @@ def pos_surround(test_x, test_pos, tokenIdx, entity, idx2pos, features_dict):
     right_pos = test_pos2[index3:index4] if index4 <= len(test_pos2) else test_pos2[index3:] + [0] * (index4-len(test_pos2))
     pos = left_pos + [1] + right_pos    # 1:'NN'
 
-    DEFAULT_COLLOCATIONS = ["-2,-2", "-1,-1", "1,1", "2,2", "-2,-1", "-1,1", "1,2", "-3,-1", "-2,1", "-1,2", "1,3"]
-    local_collocations = LocalCollocationsExtractor(tokenIdx, len(entity.split()), len(test_x), test_x)
-    features = features_dict.get(entity)
-    local_collocations_fea = []
-    if features:
-        for i in range(len(local_collocations)):
-            if local_collocations[i] in features[DEFAULT_COLLOCATIONS[i]]:
-                x = list(features[DEFAULT_COLLOCATIONS[i]]).index(local_collocations[i])
-                local_collocations_fea.append(x)
-            else:
-                local_collocations_fea.append(-1)
-    else:
-        local_collocations_fea = [-1]*11
+    # local_collocations_fea = []
+    # DEFAULT_COLLOCATIONS = ["-2,-2", "-1,-1", "1,1", "2,2", "-2,-1", "-1,1", "1,2", "-3,-1", "-2,1", "-1,2", "1,3"]
+    # local_collocations = LocalCollocationsExtractor(tokenIdx, len(entity.split()), len(test_x), test_x)
+    # features = features_dict.get(entity)
+    # if features:
+    #     for i in range(len(local_collocations)):
+    #         if local_collocations[i] in features[DEFAULT_COLLOCATIONS[i]]:
+    #             x = list(features[DEFAULT_COLLOCATIONS[i]]).index(local_collocations[i])
+    #             local_collocations_fea.append(x)
+    #         else:
+    #             local_collocations_fea.append(-1)
+    # else:
+    #     local_collocations_fea = [-1]*11
 
-    # print(local_collocations_fea)
-
-    # left_x = test_x[index1:index2] if index1 >= 0 else [0] * abs(index1) + test_x[0:index2]
-    # right_x = test_x[index3:index4] if index4 <= len(test_x) else test_x[index3:] + [0] * (index4 - len(test_x))
-    # surroundding_word = left_x + right_x
+    left_x = test_x[index1:index2] if index1 >= 0 else [0] * abs(index1) + test_x[0:index2]
+    right_x = test_x[index3:index4] if index4 <= len(test_x) else test_x[index3:] + [0] * (index4 - len(test_x))
+    surroundding_word = left_x + [test_x[tokenIdx]] + right_x
 
     assert len(pos) == 7
-    assert len(local_collocations_fea) == 11
+    assert len(surroundding_word) == 7
+    # assert len(local_collocations_fea) == 11
 
-    return pos, local_collocations_fea
+    return pos, surroundding_word
 
 
 def createCharDict():
@@ -324,4 +328,22 @@ def testLabel2Word():
         entities.append(result.strip())
     print(entities)
 
+
+# def getXlsxData(path):
+#     from openpyxl import load_workbook
+#
+#     wb = load_workbook(path)  # 加载一个工作簿
+#     sheets = wb.get_sheet_names()  # 获取各个sheet的名字
+#     sheet0 = sheets[0]  # 第一个表格的名称
+#     ws = wb.get_sheet_by_name(sheet0)  # 获取特定的 worksheet
+#
+#     # 获取表格所有行和列，两者都是可迭代的
+#     rows = ws.rows
+#     # columns = ws.columns
+#
+#     # 行迭代
+#     content = []
+#     for row in rows:
+#         line = [col.value for col in row]
+#         content.append(line)
 

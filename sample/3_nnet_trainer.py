@@ -59,6 +59,7 @@ char_emb_size = 50
 cap_emb_size = 5
 pos_emb_size = 25
 chunk_emb_size = 10
+dict_emb_size = 15
 dropout_rate = 0.5  # [0.5, 0.5]
 
 num_classes = 5
@@ -87,17 +88,17 @@ idx2label = {0: 'O', 1: 'B-protein', 2: 'I-protein', 3: 'B-gene', 4: 'I-gene'}
 print('Loading data...')
 
 with open(rootCorpus + '/train.pkl', "rb") as f:
-    train_x, train_y, train_char, train_cap, train_pos, train_chunk = pkl.load(f)
+    train_x, train_y, train_char, train_cap, train_pos, train_chunk, train_dict = pkl.load(f)
 with open(rootCorpus + '/test.pkl', "rb") as f:
-    test_x, test_y, test_char, test_cap, test_pos, test_chunk = pkl.load(f)
+    test_x, test_y, test_char, test_cap, test_pos, test_chunk, test_dict = pkl.load(f)
 with open(embeddingPath+'/emb.pkl', "rb") as f:
     embedding_matrix = pkl.load(f)
 with open(embeddingPath+'/length.pkl', "rb") as f:
     word_maxlen, sentence_maxlen = pkl.load(f)
 
 dataSet = OrderedDict()
-dataSet['train'] = [train_x, train_cap, train_pos, train_chunk]
-dataSet['test'] = [test_x, test_cap, test_pos, test_chunk]
+dataSet['train'] = [train_x, train_cap, train_pos, train_chunk, train_dict]
+dataSet['test'] = [test_x, test_cap, test_pos, test_chunk, test_dict]
 
 print('done! Preprocessing data....')
 
@@ -240,6 +241,12 @@ def buildModel():
                           trainable=True)(chunk_input)
     mergeLayers.append(chunk_emb)
 
+    dict_input = Input(shape=(sentence_maxlen,), name='dict_input')
+    dict_emb = Embedding(input_dim=5,
+                          output_dim=dict_emb_size,  # dict 向量的维度
+                          trainable=True)(dict_input)
+    mergeLayers.append(dict_emb)
+
     concat_input = concatenate(mergeLayers, axis=-1)  # (none, none, 200)
 
     if batch_normalization:
@@ -258,7 +265,7 @@ def buildModel():
 
     if batch_normalization:
         output = BatchNormalization()(output)
-    output = Dropout(0.3)(output)
+    output = Dropout(0.5)(output)
 
     output = TimeDistributed(Dense(lstm_size[-1], activation='tanh', name='tanh_layer'))(output)
     output = TimeDistributed(Dense(num_classes, kernel_regularizer=l2(1e-4), name='final_layer'))(output)     # 不加激活函数，否则预测结果有问题222222
@@ -281,7 +288,8 @@ def buildModel():
         opt = SGD(lr=0.001, decay=1e-5, momentum=0.9, nesterov=True)
         # opt = SGD(lr=0.001, momentum=0.9, decay=0., nesterov=True, clipvalue=5)
 
-    model = Model(inputs=[tokens_input, chars_input, cap_input, pos_input, chunk_input], outputs=[output])
+    model_input =[tokens_input, chars_input, cap_input, pos_input, chunk_input, dict_input]
+    model = Model(inputs=model_input, outputs=[output])
     model.compile(loss=loss_function,
                   optimizer=opt,
                   metrics=["accuracy"])

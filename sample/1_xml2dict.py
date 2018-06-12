@@ -10,15 +10,18 @@ import codecs
 import os
 from tqdm import tqdm
 import esm
+import csv
 
 
 def readKB():
     '''
     读取蛋白质/基因字典
     '''
-    word_list=[]
-    pro_path = '/Users/ningshixian/PycharmProjects/keras_bc6_track1/sample/data/uniprot_sprot.dat2'
-    gene_path = '/Users/ningshixian/PycharmProjects/keras_bc6_track1/sample/data/gene_info2'
+    word_list=set()
+    pro_path = '/Users/ningshixian/Desktop/bc6_data_big/uniprot_sprot.dat2'
+    gene_path = '/Users/ningshixian/Desktop/bc6_data_big/gene_info2'
+    csv_path = r'/Users/ningshixian/Desktop/BC6_Track1/BioIDtraining_2/annotations.csv'
+    csv_path_test = r'/Users/ningshixian/Desktop/BC6_Track1/test_corpus_20170804/annotations.csv'
 
     with open(pro_path) as f:
         lines = f.readlines()
@@ -29,8 +32,8 @@ def readKB():
         # word_list.extend(e_list)
         for e in e_list:
             e = e.strip().lower()
-            if len(e)>1 and not e.isdigit():
-                word_list.append(e)
+            if len(e)>3 and not e.isdigit():
+                word_list.add(e)
 
     with open(gene_path) as f:
         lines = f.readlines()
@@ -41,10 +44,37 @@ def readKB():
         # word_list.extend(e_list)
         for e in e_list:
             e = e.strip().lower()
-            if len(e)>2 and not e.isdigit():
-                word_list.append(e)
+            if len(e)>3 and not e.isdigit():
+                word_list.add(e)
 
-    return list(set(word_list))
+    with open(csv_path) as f:
+        f_csv = csv.DictReader(f)
+        for row in f_csv:
+            id = row['obj']
+            e = row['text']
+            # text = row['text'].lower()
+            if id.startswith('NCBI gene:') or id.startswith('Uniprot:') or \
+                    id.startswith('gene:') or id.startswith('protein:'):
+                if len(e)>3 and not e.isdigit():
+                    word_list.add(e)
+
+    with open(csv_path_test) as f:
+        f_csv = csv.DictReader(f)
+        for row in f_csv:
+            id = row['obj']
+            e = row['text']
+            # text = row['text'].lower()
+            if id.startswith('NCBI gene:') or id.startswith('Uniprot:') or \
+                    id.startswith('gene:') or id.startswith('protein:'):
+                if len(e)>3 and not e.isdigit():
+                    word_list.add(e)
+
+    word_list = list(word_list)
+    xx = sorted(enumerate(word_list), key = lambda x:len(x[1]), reverse=True)
+    xx = [item[0] for item in xx]
+    word_list = [word_list[i] for i in xx]
+
+    return list(word_list)
 
 
 def max_match_cut(sentence, dic):
@@ -138,7 +168,7 @@ def max_match_cut(sentence, dic):
             tmp = tmp.replace('   ', ' ').replace('  ', ' ')
 
             if not len(tmp.split()) == len(splited_s):
-                # 实体标记错误，跳过
+                # 若实体标记错误，返回前一步结果
                 tmp = tmp_tmp
                 continue
             assert len(tmp.split()) == len(splited_s)
@@ -147,12 +177,12 @@ def max_match_cut(sentence, dic):
 
 def readXML():
     word_list = readKB()
-    word_list.append('PPCA')
+    # word_list.append('PPCA')
 
     print('获取字典树trie')
     dic = esm.Index()
     for i in range(len(word_list)):
-        word = word_list[i]
+        word = word_list[i].lower()
         dic.enter(word)
     dic.fix()
 
@@ -300,23 +330,26 @@ if __name__ == '__main__':
     > /Users/ningshixian/PycharmProjects/keras_bc6_track1/sample/data/BIBIO/train/train2.genia.txt
     '''
 
-    # getLabel()
-    # print("完结撒花====")
-
+    getLabel()
+    print("完结撒花====")
+    
     '''
     将词典特征加入到训练文件中
     '''
     outputPath = '/Users/ningshixian/PycharmProjects/keras_bc6_track1/sample/data/BIBIO/train/train.out.txt'
     outputPath2 = '/Users/ningshixian/PycharmProjects/keras_bc6_track1/sample/data/BIBIO/train/train2.out.txt'
     finalPath = '/Users/ningshixian/PycharmProjects/keras_bc6_track1/sample/data/BIBIO/train/train.final.txt'
-
+    
     with codecs.open(outputPath, 'r', encoding='utf-8') as data:
         output = data.readlines()
     with codecs.open(outputPath2, 'r', encoding='utf-8') as data:
         output2 = data.readlines()
-
+    
     results = []
     for i in range(len(output)):
+        if output[i]=='\n':
+            results.append('')
+            continue
         line1 = output[i].replace('\n', '').strip()
         line2 = output2[i].replace('\n', '').strip()
         tmp = line1.split('\t')[:-1] + [line2.split('\t')[-1]] + [line1.split('\t')[-1]]

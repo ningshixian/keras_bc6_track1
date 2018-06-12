@@ -4,7 +4,7 @@
     <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredPackages">
         <value>
-          <list size="10">
+          <list size="12">
             <item index="0" class="java.lang.String" itemvalue="tqdm" />
             <item index="1" class="java.lang.String" itemvalue="Theano" />
             <item index="2" class="java.lang.String" itemvalue="gensim" />
@@ -15,6 +15,8 @@
             <item index="7" class="java.lang.String" itemvalue="keras-contrib" />
             <item index="8" class="java.lang.String" itemvalue="numpy" />
             <item index="9" class="java.lang.String" itemvalue="tensorflow-gpu" />
+            <item index="10" class="java.lang.String" itemvalue="scikit-learn" />
+            <item index="11" class="java.lang.String" itemvalue="Keras" />
           </list>
         </value>
       </option>
