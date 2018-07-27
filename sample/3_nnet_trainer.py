@@ -55,11 +55,11 @@ set_session(tf.Session(config=config))
 
 # Parameters of the network
 word_emb_size = 200
+chunk_emb_size = 10
+dict_emb_size = 15
 char_emb_size = 50
 cap_emb_size = 5
 pos_emb_size = 25
-chunk_emb_size = 10
-dict_emb_size = 15
 dropout_rate = 0.5  # [0.5, 0.5]
 
 num_classes = 5
@@ -97,8 +97,10 @@ with open(embeddingPath+'/length.pkl', "rb") as f:
     word_maxlen, sentence_maxlen = pkl.load(f)
 
 dataSet = OrderedDict()
-dataSet['train'] = [train_x, train_cap, train_pos, train_chunk, train_dict]
-dataSet['test'] = [test_x, test_cap, test_pos, test_chunk, test_dict]
+dataSet['train'] = [train_x, train_cap, train_pos, train_chunk]
+dataSet['test'] = [test_x, test_cap, test_pos, test_chunk]
+# dataSet['train'] = [train_x, train_cap, train_pos, train_chunk, train_dict]
+# dataSet['test'] = [test_x, test_cap, test_pos, test_chunk, test_dict]
 
 print('done! Preprocessing data....')
 
@@ -189,6 +191,7 @@ def CNN(seq_length, length, feature_maps, kernels, x):
     return x
 
 
+TIME_STEPS = 21
 def buildModel():
     char2idx = createCharDict()
 
@@ -215,12 +218,24 @@ def buildModel():
                                           trainable=True,
                                           # mask_zero=True,
                                           name='char_emd'))(chars_input)
-    chars_emb = TimeDistributed(Bidirectional(CuDNNLSTM(units=char_emb_size, return_sequences=False,
-                                                        kernel_regularizer=l2(1e-4),
-                                                        bias_regularizer=l2(1e-4))))(chars_emb)
-    # chars_emb = CNN(sentence_maxlen, word_maxlen, feature_maps, kernels, chars_emb)
+    chars_lstm_out = TimeDistributed(Bidirectional(CuDNNLSTM(units=char_emb_size, return_sequences=True,
+                                                            kernel_regularizer=l2(1e-4),
+                                                            bias_regularizer=l2(1e-4))))(chars_emb)
+    # Character-level model
+    chars_attention = TimeDistributed(Permute((2, 1)))(chars_lstm_out)
+    chars_attention = TimeDistributed(Dense(TIME_STEPS, activation='softmax'))(chars_attention)
+    chars_attention = TimeDistributed(Permute((2, 1), name='attention_vec'))(chars_attention)
+    chars_attention = Multiply()([chars_lstm_out, chars_attention])
+    chars_attention = TimeDistributed(GlobalAveragePooling1D())(chars_attention)
 
-    mergeLayers = [tokens_emb, chars_emb]
+    chars_lstm_final = TimeDistributed(Bidirectional(CuDNNLSTM(units=char_emb_size, return_sequences=False,
+                                                               kernel_regularizer=l2(1e-4),
+                                                               bias_regularizer=l2(1e-4)),
+                                                     merge_mode='concat'))(chars_emb)
+    # chars_emb = CNN(sentence_maxlen, word_maxlen, feature_maps, kernels, chars_emb)
+    chars_rep = Concatenate(axis=-1)([chars_attention, chars_lstm_final])
+
+    mergeLayers = [tokens_emb, chars_rep]
 
     # Additional features
     cap_input = Input(shape=(sentence_maxlen,), name='cap_input')
@@ -241,11 +256,12 @@ def buildModel():
                           trainable=True)(chunk_input)
     mergeLayers.append(chunk_emb)
 
-    dict_input = Input(shape=(sentence_maxlen,), name='dict_input')
-    dict_emb = Embedding(input_dim=5,
-                          output_dim=dict_emb_size,  # dict 向量的维度
-                          trainable=True)(dict_input)
-    mergeLayers.append(dict_emb)
+    # # 加入词典特征
+    # dict_input = Input(shape=(sentence_maxlen,), name='dict_input')
+    # dict_emb = Embedding(input_dim=5,
+    #                       output_dim=dict_emb_size,  # dict 向量的维度
+    #                       trainable=True)(dict_input)
+    # mergeLayers.append(dict_emb)
 
     concat_input = concatenate(mergeLayers, axis=-1)  # (none, none, 200)
 
@@ -255,20 +271,33 @@ def buildModel():
         for l in range(highway):
             concat_input = TimeDistributed(Highway(activation='tanh'))(concat_input)
 
+    # # Dict Features
+    # dict_input = Input(shape=(sentence_maxlen,), name='dict_input')
+    # dict_emb = Embedding(input_dim=5,
+    #                      output_dim=dict_emb_size,  # dict 向量的维度
+    #                      trainable=True)(dict_input)
+    # dict_out = Bidirectional(CuDNNLSTM(units=dict_emb_size,
+    #                                    return_sequences=True))(dict_emb)
+    #
+    # concat_input = concatenate([concat_input, dict_out], axis=-1)
+
     # Dropout on final input
     concat_input = Dropout(dropout_rate)(concat_input)
 
     # shared layer
     output = _shared_layer(concat_input)  # (none, none, 200)
 
+
+
     # ======================================================================= #
 
-    if batch_normalization:
-        output = BatchNormalization()(output)
-    output = Dropout(0.5)(output)
+    # if batch_normalization:
+    #     output = BatchNormalization()(output)
+    # output = Dropout(0.5)(output)
 
     output = TimeDistributed(Dense(lstm_size[-1], activation='tanh', name='tanh_layer'))(output)
-    output = TimeDistributed(Dense(num_classes, kernel_regularizer=l2(1e-4), name='final_layer'))(output)     # 不加激活函数，否则预测结果有问题222222
+    output = Dropout(0.5)(output)
+    output = TimeDistributed(Dense(num_classes, name='final_layer'))(output)     # 不加激活函数，否则预测结果有问题222222
 
     # crf = CRF()  # 定义crf层，参数为True，自动mask掉最有一个标签
     # output = crf(output)  # 包装一下原来的tag_score
@@ -279,16 +308,17 @@ def buildModel():
     loss_function = crf.loss
 
     if optimizer.lower() == 'adam':
-        opt = Adam(lr=learning_rate, clipvalue=1., decay=decay_rate)
+        opt = Adam(lr=learning_rate, clipvalue=1.)
     elif optimizer.lower() == 'nadam':
-        opt = Nadam(lr=learning_rate, clipvalue=1., decay=decay_rate)
+        opt = Nadam(lr=learning_rate, clipvalue=1.)
     elif optimizer.lower() == 'rmsprop':
-        opt = RMSprop(lr=learning_rate, clipvalue=1., decay=decay_rate)
+        opt = RMSprop(lr=learning_rate, clipvalue=1.)
     elif optimizer.lower() == 'sgd':
         opt = SGD(lr=0.001, decay=1e-5, momentum=0.9, nesterov=True)
         # opt = SGD(lr=0.001, momentum=0.9, decay=0., nesterov=True, clipvalue=5)
 
-    model_input =[tokens_input, chars_input, cap_input, pos_input, chunk_input, dict_input]
+    model_input =[tokens_input, chars_input, cap_input, pos_input, chunk_input]
+    # model_input =[tokens_input, chars_input, cap_input, pos_input, chunk_input, dict_input]
     model = Model(inputs=model_input, outputs=[output])
     model.compile(loss=loss_function,
                   optimizer=opt,

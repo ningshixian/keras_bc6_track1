@@ -28,7 +28,8 @@ def getTestData():
         word_maxlen, sentence_maxlen = pkl.load(f)
 
     dataSet = {}
-    dataSet['test'] = [test_x, test_cap, test_pos, test_chunk, test_dict]
+    dataSet['test'] = [test_x, test_cap, test_pos, test_chunk]
+    # dataSet['test'] = [test_x, test_cap, test_pos, test_chunk, test_dict]
 
     # pad the sequences with zero
     for key, value in dataSet.items():
@@ -54,7 +55,7 @@ def getTestData():
 import os
 if not os.path.exists('predictions.pkl'):
     dataSet = getTestData()
-    model = load_model('model/Model_3_76.31.h5', custom_objects=create_custom_objects())
+    model = load_model('model/Model_2_72.77.h5', custom_objects=create_custom_objects())
     print('加载模型成功!!')
 
     predictions = model.predict(dataSet['test'])   # 75.93模型没加dic特征

@@ -54,6 +54,10 @@ def xx(entity):
 def readXML(files, BioC_PATH):
     num_sentence = 0
     num_file = 0
+    num_annotations_pro = 0
+    num_entitytype_pro = 0
+    num_annotations_gene = 0
+    num_entitytype_gene = 0
     passages_list = []
     raw_sentence_list = []
     id_list_list = []
@@ -162,11 +166,16 @@ def readXML(files, BioC_PATH):
                         offset = offset_list[i]
                         length = length_list[i]
                         ID = id_list[i]
+                        entity = entity_list[i]
 
                         if isinstance(tmp, str):
                             tmp = tmp.encode("utf-8")
                             
                         if ID.startswith('Uniprot:') or ID.startswith('protein:'):
+                            if ID.startswith('Uniprot:'):
+                                num_annotations_pro+=1
+                            elif ID.startswith('protein:'):
+                                num_entitytype_pro+=1
                             id_list_only.append(ID.strip('\n').strip())
                             # # This solution will strip out (ignore) the characters in
                             # # question returning the string without them.
@@ -176,6 +185,10 @@ def readXML(files, BioC_PATH):
                             tmp = left + ' ' + B_tag[0] + mid + I_tag[0] + ' ' + right
                             tmp = tmp.replace('   ', ' ').replace('  ', ' ')
                         elif ID.startswith('NCBI gene:') or ID.startswith('gene:'):
+                            if ID.startswith('NCBI gene:'):
+                                num_annotations_gene+=1
+                            elif ID.startswith('gene:'):
+                                num_entitytype_gene+=1
                             id_list_only.append(ID.strip('\n').strip())
                             # # This solution will strip out (ignore) the characters in
                             # # question returning the string without them.
@@ -220,6 +233,10 @@ def readXML(files, BioC_PATH):
     passages_list = []
     del passages_list
 
+    print('标注proID的实体的个数：{}'.format((num_annotations_pro)))
+    print('标注pro类型的实体的个数：{}'.format((num_entitytype_pro)))
+    print('标注geneID的实体的个数：{}'.format((num_annotations_gene)))
+    print('标注gene类型的实体的个数：{}'.format((num_entitytype_gene)))
     print('passage 总数： {}'.format(num_sentence)) # 13697
 
 

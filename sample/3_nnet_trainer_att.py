@@ -133,19 +133,6 @@ print(test_y.shape)    # (4528, 455, 3)
 print('done! Model building....')
 
 
-def attention_3d_block(inputs, TIME_STEPS):
-    # inputs.shape = (batch_size, time_steps, input_dim)
-    input_dim = int(inputs.shape[2])
-    a = Permute((2, 1))(inputs)
-    a = Dense(TIME_STEPS, activation='softmax')(a)
-    if False:
-        a = Lambda(lambda x: K.mean(x, axis=1), name='dim_reduction')(a)
-        a = RepeatVector(input_dim)(a)
-    a_probs = Permute((2, 1), name='attention_vec')(a)
-    output_attention_mul = concatenate(inputs=[inputs, a_probs], name='attention_mul', mode='mul')
-    return output_attention_mul
-
-
 def _residual_fn(x, y):
     '''
     在非线性子层之后，增加了残差连接和 layer normalization 操作
@@ -191,10 +178,8 @@ def CNN(seq_length, length, feature_maps, kernels, x):
 
 INPUT_DIM = 2
 TIME_STEPS = 21
-# if True, the attention vector is shared across the input_dimensions where the attention is applied.
 SINGLE_ATTENTION_VECTOR = False
 APPLY_ATTENTION_BEFORE_LSTM = False
-from sample.utils.attention_utils import get_activations, get_data_recurrent
 def attention_3d_block(inputs):
     # inputs.shape = (batch_size, time_steps, input_dim)
     input_dim = int(inputs.shape[2])

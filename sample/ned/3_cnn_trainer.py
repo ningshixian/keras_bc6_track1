@@ -30,8 +30,19 @@ from keras.utils import plot_model, to_categorical
 from keras.preprocessing.sequence import pad_sequences
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 from keras.optimizers import SGD, Adagrad
+from keras.callbacks import Callback
+from keras.regularizers import l2
+import tensorflow as tf
+from keras.backend.tensorflow_backend import set_session
 
-context_window_size = 20
+# GPU内存分配
+config = tf.ConfigProto()
+# config.gpu_options.per_process_gpu_memory_fraction = 0.3  # 按比例
+config.gpu_options.allow_growth = True  # 自适应分配
+set_session(tf.Session(config=config))
+
+
+context_window_size = 10
 context_network = 'attention'
 
 with open('data/train_cnn.pkl', "rb") as f:
@@ -47,7 +58,7 @@ for item in y:
         num_zero+=1
     else:
         num_ones+=1
-print(num_zero, num_ones)   # 301765 57426
+print(num_zero, num_ones)   # 253369 57426
 
 rootCorpus = r'data'
 embeddingPath = r'/home/administrator/PycharmProjects/embedding'
@@ -131,6 +142,28 @@ def buildAttention(seq, controller):
     return summed, attention
 
 
+def CNN(concat_input):
+    shared_layer1 = Conv1D(200, kernel_size=3, activation='relu', padding='same',
+                           kernel_regularizer=l2(1e-4),
+                           bias_regularizer=l2(1e-4))
+    shared_layer2 = Conv1D(200, kernel_size=3, activation='relu', padding='same',
+                           kernel_regularizer=l2(1e-4),
+                           bias_regularizer=l2(1e-4))
+    shared_layer3 = Conv1D(200, kernel_size=3, activation='relu', padding='same',
+                           kernel_regularizer=l2(1e-4),
+                           bias_regularizer=l2(1e-4))
+    output = shared_layer1(concat_input)
+    output = BatchNormalization(momentum=0.8)(output)
+    output = shared_layer2(output)
+    output = BatchNormalization(momentum=0.8)(output)
+    output = shared_layer3(output)
+
+    output = MaxPooling1D(pool_size=10)(output)   # 加入MaxPooling1D效果降低
+    output = Flatten()(output)
+
+    return output
+
+
 def mask_aware_mean(x):
     # recreate the masks - all zero rows have been masked
     mask = K.not_equal(K.sum(K.abs(x), axis=2, keepdims=True), 0)
@@ -158,8 +191,9 @@ def build_model():
                                       weights=[conceptEmbeddings],
                                       trainable=True)
     pos_embed_layer = Embedding(input_dim=60,  # 索引字典大小
-                                  output_dim=20,  # pos向量的维度
-                                  trainable=True)
+                                output_dim=20,  # pos向量的维度
+                                # mask_zero=True,
+                                trainable=True)
 
     # addCandidateInput
     candidate_input = Input(shape=(1,), dtype='int32', name='candidate_input')
@@ -195,14 +229,16 @@ def build_model():
     # right_rnn_input = Dropout(0.5)(right_rnn_input)
 
     if context_network=='cnn':
-        left_rnn = Conv1D(200, 3, padding='same', activation='relu')(left_rnn_input)
-        right_rnn = Conv1D(200, 3, padding='same', activation='relu')(right_rnn_input)
+        left_rnn = CNN(left_rnn_input)
+        right_rnn = CNN(right_rnn_input)
     elif context_network=='gru':
         left_rnn = CuDNNGRU(200, return_sequences=False)(left_rnn_input)
-        right_rnn = CuDNNGRU(200, return_sequences=False)(right_rnn_input)
+        right_rnn = CuDNNGRU(200, return_sequences=False, go_backwards=True)(right_rnn_input)
     elif context_network == 'attention':
-        left_rnn = CuDNNLSTM(200, return_sequences=True)(left_rnn_input)
-        right_rnn = CuDNNLSTM(200, return_sequences=True)(right_rnn_input)
+        left_rnn = CuDNNGRU(200, return_sequences=True)(left_rnn_input)
+        right_rnn = CuDNNGRU(200, return_sequences=True, go_backwards=True)(right_rnn_input)
+        # left_rnn = Conv1D(200, 3, padding='same', activation='relu')(left_rnn_input)
+        # right_rnn = Conv1D(200, 3, padding='same', activation='relu')(right_rnn_input)
         left_rnn, attn_values_left = buildAttention(left_rnn, controller)
         right_rnn, attn_values_right = buildAttention(right_rnn, controller)
     x_input.append(left_rnn)
@@ -223,26 +259,71 @@ def build_model():
     x_input = concatenate(x_input, axis=-1)
     x_input = Dropout(0.5)(x_input)
 
+    # # 融合上下文和attention结果
+    # context = Dense(600)(context)
+    # la = Lambda(lambda x: x * 0.5)
+    # x_input = Add()([la(x_input), la(context)])
+
     # build classifier model
     output = Dense(200, activation='relu')(x_input)
-    output = Dropout(0.5)(output)
     output = Dense(50, activation='relu')(output)
-    output = Dropout(0.5)(output)
-    # output = Dense(1, activation='sigmoid', name='main_output')(output)
     output = Dense(2, activation='softmax', name='main_output')(output)
 
     model_input = [candidate_input, left_context_input, right_context_input, left_pos_input, right_pos_input]
     model = Model(inputs=model_input, outputs=[output])
 
-    sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
-    adagrad = Adagrad(lr=0.01, decay=1e-6, clipvalue=1.)
+    # sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+    # adagrad = Adagrad(lr=0.002, decay=1e-6, clipvalue=1.)
     model.compile(loss='categorical_crossentropy',   # binary_crossentropy   categorical_crossentropy
-                  optimizer=adagrad,
+                  optimizer='adam',
                   metrics=["accuracy"])
 
     model.summary()
     plot_model(model, to_file='data/model.png', show_shapes=True)
     return model
+
+
+class ConllevalCallback(Callback):
+    '''
+    Callback for running the conlleval script on the test dataset after each epoch.
+    '''
+
+    def __init__(self, X_test, y_test, max_match):
+        super(ConllevalCallback, self).__init__()
+        self.X = X_test
+        self.y = y_test
+        self.max_match = max_match
+
+    def on_epoch_end(self, epoch, logs={}):
+        predictions = self.model.predict(self.X)  # 模型预测
+        y_pred = predictions.argmax(axis=-1)  # Predict classes [0]
+        y_test = self.y.argmax(axis=-1)
+
+        TP = 0
+        FP = 0
+        FN = 0
+        for i in range(len(y_test)):
+            if y_test[i]==1 and y_pred[i]==1:
+                TP+=1
+            elif y_test[i]==0 and y_pred[i]==1:
+                FP+=1
+            elif y_test[i]==1 and y_pred[i]==0:
+                FN+=1
+
+        P = TP / (TP + FP)
+        R = TP / (TP + FN)
+        F = (2*P*R)/(P+R)
+
+        with open('prf.txt','a') as f:
+            f.write('{}\n{}\t{}\t{}'.format(str(epoch), TP,FP,FN))
+            f.write('\n')
+            f.write('{}\t{}\t{}'.format(P,R,F))
+            f.write('\n')
+
+        if F>self.max_match:
+            print('\nTP:{}\tF:{}'.format(TP,F))
+            self.model.save('data/weights.hdf5')
+            self.max_match = F
 
 
 if __name__ == '__main__':
@@ -260,10 +341,10 @@ if __name__ == '__main__':
 
     dataSet = [x_id, x_left, x_right, x_pos_left, x_pos_right]
 
-    print(x_left.shape)  # (388253, 20)
-    print(x_id.shape)  # (388253, 1)
-    print(x_pos_left.shape)  # (388253, 20)
-    print(y.shape)  # (388253, 2)
+    print(x_left.shape)  # (367523, 20)
+    print(x_id.shape)  # (367523, 1)
+    print(x_pos_left.shape)  # (367523, 20)
+    print(y.shape)  # (367523, 2)
 
     filepath = 'data/weights2.{epoch:02d}-{val_acc:.2f}.hdf5'
     saveModel = ModelCheckpoint(filepath,
@@ -273,25 +354,36 @@ if __name__ == '__main__':
                                 mode='auto')
     earlyStop = EarlyStopping(monitor='val_acc', patience=5, mode='auto')
 
+    max_match=0
+    call = ConllevalCallback(dataSet, y, max_match)
+
     start_time = time.time()
     model = build_model()
     model.fit(x=dataSet,
               y=y,
-              epochs=15,
+              epochs=20,
               batch_size=32,
               shuffle=True,
-              callbacks=[saveModel, earlyStop],
+              callbacks=[call],
               validation_split=0.2)
     time_diff = time.time() - start_time
     print("%.2f sec for training (%.2f)" % (time_diff, time_diff/60))
 
-    model.save('data/weights2.hdf5')
-
 
     # test
-    cnn = load_model('/home/administrator/PycharmProjects/keras_bc6_track1/sample/ned/data/weights2.hdf5')
-    testSet = [x_id[:30], x_left[:30], x_right[:30], x_pos_left[:30], x_pos_right[:30]]
-    # print(x_id[1], x_left[1], x_right[1], x_pos_left[1], x_pos_right[1])
-    # print(x_id[20], x_left[20], x_right[20], x_pos_left[20], x_pos_right[20])
-    print(y[:30])
-    print(cnn.predict(testSet))
+    cnn = load_model('/home/administrator/PycharmProjects/keras_bc6_track1/sample/ned/data/weights.hdf5')
+    num = 40
+    testSet = [x_id[:num], x_left[:num], x_right[:num], x_pos_left[:num], x_pos_right[:num]]
+    result = cnn.predict(testSet)
+    print(result)
+
+    y2 = []
+    for i in range(len(y[:num])):
+        y2.append(0 if y[:num][i][0] > y[:num][i][1] else 1)
+    print('answer:', y2)
+
+    result2 = []
+    for i in range(len(result)):
+        result2.append(0 if result[i][0]>result[i][1] else 1)
+    print('predict:', result2)
+
