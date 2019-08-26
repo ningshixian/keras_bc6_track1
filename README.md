@@ -1,7 +1,5 @@
 # keras_bc6_track1
 
-Code is coming soon
-
 ## Requirements File
 
 ```
