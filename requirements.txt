@@ -7,7 +7,7 @@ scikit-learn==0.19.1
 scipy==1.0.0
 six==1.10.0
 python-dateutil==2.6.0
-numpy==1.11.1rc1
+numpy==1.22.0rc1
 h5py==2.7.1
 gensim==3.1.0
 tqdm==4.19.5
